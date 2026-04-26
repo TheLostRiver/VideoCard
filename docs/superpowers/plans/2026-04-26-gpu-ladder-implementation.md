@@ -1730,12 +1730,12 @@ These tasks implement the approved local admin-editor-first data maintenance des
 - Modify: `PROJECT_STATE.md`
 - Modify: `docs/superpowers/plans/2026-04-26-gpu-ladder-implementation.md`
 
-- [ ] **Step 1: Read project state**
-- [ ] **Step 2: Add failing admin render/form tests**
-- [ ] **Step 3: Build GPU search/list and grouped edit form**
-- [ ] **Step 4: Add save flow, validation errors, and success state**
-- [ ] **Step 5: Run `npm.cmd run verify` and browser smoke test**
-- [ ] **Step 6: Update docs, commit, push**
+- [x] **Step 1: Read project state**
+- [x] **Step 2: Add failing admin render/form tests**
+- [x] **Step 3: Build GPU search/list and grouped edit form**
+- [x] **Step 4: Add save flow, validation errors, and success state**
+- [x] **Step 5: Run `npm.cmd run verify` and browser smoke test**
+- [x] **Step 6: Update docs, commit, push**
 
 ## Task D: Admin Documentation and Final Browser Verification
 

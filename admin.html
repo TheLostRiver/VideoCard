@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>显卡数据后台编辑</title>
+    <link rel="stylesheet" href="./src/styles.css">
+  </head>
+  <body>
+    <main class="app-shell admin-shell">
+      <header class="toolbar admin-toolbar" aria-label="后台工具栏">
+        <div class="title-block">
+          <h1>显卡数据后台编辑</h1>
+          <p>本地维护工具，保存后会更新 JSON 主数据和前台 JS 数据。</p>
+        </div>
+        <label class="search-field">
+          <span>搜索</span>
+          <input id="adminSearch" type="search" placeholder="4070, Laptop, Radeon, Arc">
+        </label>
+        <a class="ghost-button admin-link" href="./index.html">返回天梯图</a>
+      </header>
+
+      <section class="admin-grid">
+        <aside class="admin-list-panel" aria-label="显卡列表">
+          <div id="adminStatus" class="admin-status">正在加载数据...</div>
+          <div id="adminList" class="admin-list"></div>
+        </aside>
+        <section id="adminEditor" class="admin-editor-panel" aria-label="显卡编辑表单"></section>
+      </section>
+    </main>
+    <script type="module" src="./src/admin.js"></script>
+  </body>
+</html>

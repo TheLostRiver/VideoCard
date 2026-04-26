@@ -146,16 +146,16 @@
       "coresLabel": "CUDA Cores",
       "cores": 4608,
       "baseClockMHz": null,
-      "boostClockMHz": null,
+      "boostClockMHz": 2175,
       "memorySizeGB": 8,
       "memoryType": "GDDR6",
       "memoryBusBit": 128,
       "bandwidthGBs": 256,
       "powerW": null,
-      "tgpRangeW": "35-115W"
+      "tgpRangeW": "45-115W"
     },
     "benchmarks": {
-      "timeSpyGraphics": null,
+      "timeSpyGraphics": 12345,
       "steelNomadGraphics": null,
       "passMarkG3D": null,
       "sourceNote": "移动版参考典型高 TGP 机型"

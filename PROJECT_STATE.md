@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Admin Task B 完成，本地数据保存 API 已创建。
+阶段：Admin Task C 完成，本地后台编辑页面已创建。
 
-当前任务：Admin Task B: Local Admin Save API。
+当前任务：Admin Task C: Local Admin Editor Page。
 
-下一步：从 Admin Task C: Local Admin Editor Page 开始。
+下一步：从 Admin Task D: Admin Documentation and Final Browser Verification 开始。
 
 ## 工作规则
 
@@ -56,6 +56,10 @@
 - Admin Task B 完成：`scripts/gpu-data.mjs` 新增记录替换、原子写入 JSON、同步生成 JS 的保存流程。
 - Admin Task B 完成：新增 `tests/admin-api.test.mjs` 覆盖读取、保存、移动版 TGP、非法性能指数和重复 id。
 - Admin Task B 计划 checkbox 已更新。
+- Admin Task C 完成：新增 `admin.html` 和 `src/admin.js`，提供本地后台搜索、选择、分组编辑和保存流程。
+- Admin Task C 完成：新增 `tests/admin-render.test.mjs` 覆盖后台搜索、列表选中、表单渲染、备注/来源格式化和表单解析。
+- Admin Task C 完成：追加后台布局样式，并将 4070 Laptop 烟测修改保存为 `boostClockMHz: 2175`、`tgpRangeW: "45-115W"`、`timeSpyGraphics: 12345`。
+- Admin Task C 计划 checkbox 已更新。
 
 ## 最近验证
 
@@ -93,9 +97,15 @@
 - Admin Task B RED：先新增 `tests/admin-api.test.mjs` 后运行 `npm.cmd test`，按预期因 `scripts/serve.mjs` 未导出 `createRequestHandler` 失败。
 - Admin Task B GREEN：实现本地 API 和保存流程后运行 `npm.cmd test`，26 个测试全部通过。
 - Admin Task B 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 26 pass / 0 fail。
+- Admin Task C RED：先新增 `tests/admin-render.test.mjs` 后运行 `npm.cmd test`，按预期因 `src/admin.js` 缺失失败。
+- Admin Task C GREEN：实现后台页面和表单逻辑后运行 `npm.cmd test`，31 个测试全部通过。
+- Admin Task C 浏览器验证：`http://localhost:4173/admin.html` 加载 12 条 GPU；搜索 `4070` 后列表为 2 条；选中 `GeForce RTX 4070 Laptop GPU` 后修改 boost/TGP/Time Spy 并保存成功；前台 `http://localhost:4173/#rtx-4070-laptop` 显示 `2,175 MHz`、`45-115W`、`12,345`；浏览器 console error 为空。
+- Admin Task C 修复：旧测试硬编码 4070 Laptop TGP 为 `35-115W`，已改为按当前数据记录断言。
+- Admin Task C 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 31 pass / 0 fail。
 
 ## 最近提交
 
+- `64baf7d feat: add local gpu admin api`
 - `e0b7a79 feat: add json gpu data sync pipeline`
 - `b3f212e chore: mark task6 push complete`
 - `a9c6b7c feat: render interactive gpu ladder`

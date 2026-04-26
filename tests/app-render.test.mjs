@@ -38,7 +38,7 @@ test("renderGpuRow marks the selected GPU and labels mobile records", () => {
   const html = renderGpuRow(gpu, 245, "rtx-4070-laptop");
   assert.match(html, /is-selected/);
   assert.match(html, /segment-badge mobile/);
-  assert.match(html, /35-115W/);
+  assert.match(html, new RegExp(gpu.specs.tgpRangeW));
 });
 
 test("renderDetailMarkup includes mobile warning and benchmark placeholders", () => {
