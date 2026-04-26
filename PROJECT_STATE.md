@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Task 2 完成，数据常量与格式化工具已创建。
+阶段：Task 3 完成，正在用恢复后的正式 Git 环境提交并推送。
 
-当前任务：Task 2: Data Constants and Formatting Utilities。
+当前任务：Task 3: Seed GPU Data。
 
-下一步：从 Task 3: Seed GPU Data 开始。
+下一步：完成 Task 3 的远程 push；推送成功后从 Task 4: Filtering, Sorting, and Performance Utilities 开始。
 
 ## 工作规则
 
@@ -38,6 +38,9 @@
 - Task 1 计划 checkbox 已更新。
 - Task 2 完成：创建 `src/data/constants.js`、`src/utils/format.js`、`tests/format.test.mjs`。
 - Task 2 计划 checkbox 已更新。
+- Task 3 完成：创建 `src/data/gpus.js` 和 `scripts/validate-data.mjs`。
+- Task 3 录入 12 条代表性 GPU 数据，包含桌面版和移动版。
+- Task 3 计划 checkbox 已更新。
 
 ## 最近验证
 
@@ -53,10 +56,17 @@
 - Task 1 推送：默认 DNS 指向的 `20.205.243.166` 不稳定；使用 `git -c http.sslBackend=schannel -c http.curloptResolve=github.com:443:140.82.112.4 push origin main` 成功推送。
 - Task 2 RED：先创建 `tests/format.test.mjs` 后运行 `npm.cmd test`，按预期因 `src/utils/format.js` 缺失失败。
 - Task 2 GREEN：实现格式化工具后运行 `npm.cmd test`，6 个测试全部通过。
+- Task 3 RED：运行 `npm.cmd run validate:data`，按预期因 `scripts/validate-data.mjs` 缺失失败。
+- Task 3 GREEN：实现数据和验证器后运行 `npm.cmd run validate:data`，输出 `Validated 12 GPU records.`。
+- 当前沙箱用户与仓库拥有者不同，git 命令需临时使用 `-c safe.directory=Q:/DEV/VideoCardProj`。
+- 当前沙箱用户下 `node --test` 默认隔离模式会因子进程 `spawn EPERM` 失败；已将 `package.json` 的 `test` 脚本改为 `node --test --test-isolation=none tests/*.test.mjs`。
+- Task 3 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 6 pass / 0 fail。
+- Task 3 之前的 push 阻塞已解除，当前恢复使用正式 `.git` 提交并推送。
 
 ## 最近提交
 
-- Task 2 将提交为：`feat: add data constants and format helpers`
+- Task 3 将提交为：`feat: add seed gpu data`
+- `9e34e69 feat: add data constants and format helpers`
 - `81e7e7c chore: record task1 push details`
 - `4d93b44 chore: add project runtime skeleton`
 - `ae624c2 docs: add atomic implementation plan`

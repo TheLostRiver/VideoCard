@@ -83,7 +83,7 @@ Create `package.json`:
   "type": "module",
   "scripts": {
     "serve": "node scripts/serve.mjs",
-    "test": "node --test tests/*.test.mjs",
+    "test": "node --test --test-isolation=none tests/*.test.mjs",
     "validate:data": "node scripts/validate-data.mjs",
     "verify": "npm run validate:data && npm test"
   }
@@ -324,10 +324,11 @@ Expected: Commit succeeds and push updates `origin/main`.
 
 - Create: `src/data/gpus.js`
 - Create: `scripts/validate-data.mjs`
+- Modify: `package.json`
 - Modify: `PROJECT_STATE.md`
 - Modify: `docs/superpowers/plans/2026-04-26-gpu-ladder-implementation.md`
 
-- [ ] **Step 1: Read project state**
+- [x] **Step 1: Read project state**
 
 Run:
 
@@ -337,7 +338,7 @@ Get-Content PROJECT_STATE.md
 
 Expected: Next step is Task 3.
 
-- [ ] **Step 2: Add seed GPU records**
+- [x] **Step 2: Add seed GPU records**
 
 Create `src/data/gpus.js` with 12 representative records:
 
@@ -682,7 +683,7 @@ export const gpus = [
 ];
 ```
 
-- [ ] **Step 3: Add data validator**
+- [x] **Step 3: Add data validator**
 
 Create `scripts/validate-data.mjs`:
 
@@ -719,7 +720,7 @@ if (errors.length) {
 console.log(`Validated ${gpus.length} GPU records.`);
 ```
 
-- [ ] **Step 4: Verify data**
+- [x] **Step 4: Verify data**
 
 Run:
 
@@ -729,7 +730,7 @@ npm run validate:data
 
 Expected: `Validated 12 GPU records.`
 
-- [ ] **Step 5: Update docs, commit, push**
+- [x] **Step 5: Update docs, commit, push**
 
 Update `PROJECT_STATE.md` with Task 3 completion, validation result, and next step Task 4.
 
