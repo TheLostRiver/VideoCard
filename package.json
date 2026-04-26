@@ -6,6 +6,7 @@
   "scripts": {
     "serve": "node scripts/serve.mjs",
     "test": "node --test --test-isolation=none tests/*.test.mjs",
+    "sync:data": "node scripts/sync-gpus.mjs",
     "validate:data": "node scripts/validate-data.mjs",
     "verify": "npm run validate:data && npm test"
   }

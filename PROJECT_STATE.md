@@ -1,18 +1,18 @@
 # Project State
 
-更新时间：2026-04-26
+更新时间：2026-04-27
 
 ## 当前目标
 
-构建一个静态 HTML 版交互式游戏显卡天梯图。首版覆盖 NVIDIA GTX 10 到 RTX 50、AMD RX 400 到 RX 9000、Intel Arc A/B，包含桌面版和移动版显卡。移动版必须独立标注。
+构建一个静态 HTML 版交互式游戏显卡天梯图。首版覆盖 NVIDIA GTX 10 到 RTX 50、AMD RX 400 到 RX 9000、Intel Arc A/B，包含桌面版和移动版显卡。移动版必须独立标注。当前新增目标是本地后台编辑器优先的数据维护能力，暂不引入 PostgreSQL。
 
 ## 当前阶段
 
-阶段：Task 6 完成，交互式天梯渲染、筛选、搜索、排序和详情抽屉已实现。
+阶段：Admin Task A 完成，JSON 主数据源和同步校验管线已创建。
 
-当前任务：Task 6: Render Ladder, Filters, and Details。
+当前任务：Admin Task A: JSON Source Data and Sync Pipeline。
 
-下一步：从 Task 7: Initial Modern NVIDIA Data Expansion 开始。
+下一步：从 Admin Task B: Local Admin Save API 开始。
 
 ## 工作规则
 
@@ -48,6 +48,10 @@
 - Task 6 完成：创建 `src/app.js`，追加组件样式，并新增 `tests/app-render.test.mjs`。
 - Task 6 实现列表渲染、品牌/桌面移动/世代筛选、搜索、排序、详情面板、URL hash 和移动端详情抽屉。
 - Task 6 计划 checkbox 已更新。
+- Admin Task A 完成：新增 `src/data/gpus.json` 作为主数据源。
+- Admin Task A 完成：新增 `scripts/gpu-data.mjs`、`scripts/sync-gpus.mjs`、`tests/data-sync.test.mjs`。
+- Admin Task A 完成：`src/data/gpus.js` 改为由 JSON 同步生成，`scripts/validate-data.mjs` 校验 JSON 与 JS 同步状态。
+- Admin Task A 计划 checkbox 已更新。
 
 ## 最近验证
 
@@ -79,9 +83,13 @@
 - Task 6 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 18 pass / 0 fail。
 - Task 6 浏览器验证：`http://localhost:4173` 渲染 12 条 GPU；点击显卡更新 URL hash 和详情；Mobile chip 激活后剩 2 条移动版；搜索 `4070` 后剩 1 条；点击 `GeForce RTX 4070 Laptop GPU` 后移动抽屉显示并包含移动版警告；浏览器 console error 为空。
 - Task 6 推送：默认 `github.com` 解析到 `20.205.243.166` 时 443 不通；普通 push 两次失败。改用 `git -c http.sslBackend=schannel -c http.version=HTTP/1.1 -c http.curloptResolve=github.com:443:140.82.114.4 push --no-thin --porcelain origin main` 成功推送。
+- Admin Task A RED：先新增 `tests/data-sync.test.mjs` 后运行 `npm.cmd test`，按预期因 `scripts/gpu-data.mjs` 缺失失败。
+- Admin Task A GREEN：新增 JSON 数据层、同步脚本和校验逻辑后运行 `npm.cmd test`，21 个测试全部通过。
+- Admin Task A 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 21 pass / 0 fail。
 
 ## 最近提交
 
+- `b3f212e chore: mark task6 push complete`
 - `a9c6b7c feat: render interactive gpu ladder`
 - `c24756f feat: add static app shell`
 - `4f61568 chore: mark task4 push complete`

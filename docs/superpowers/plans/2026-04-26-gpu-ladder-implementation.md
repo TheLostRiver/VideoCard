@@ -1677,6 +1677,80 @@ git push origin main
 
 Expected: Commit succeeds and push updates `origin/main`.
 
+## Admin Data Maintenance Plan
+
+These tasks implement the approved local admin-editor-first data maintenance design. They temporarily supersede the data expansion tasks below: finish Task A through Task D before resuming Task 7.
+
+## Task A: JSON Source Data and Sync Pipeline
+
+**Files:**
+
+- Create: `src/data/gpus.json`
+- Create: `scripts/gpu-data.mjs`
+- Create: `scripts/sync-gpus.mjs`
+- Create: `tests/data-sync.test.mjs`
+- Modify: `src/data/gpus.js`
+- Modify: `scripts/validate-data.mjs`
+- Modify: `package.json`
+- Modify: `PROJECT_STATE.md`
+- Modify: `docs/superpowers/plans/2026-04-26-gpu-ladder-implementation.md`
+
+- [x] **Step 1: Read project state**
+- [x] **Step 2: Add failing data sync tests**
+- [x] **Step 3: Add JSON source file and sync utilities**
+- [x] **Step 4: Update validation to require JSON/JS sync**
+- [x] **Step 5: Run `npm.cmd run verify`**
+- [x] **Step 6: Update docs, commit, push**
+
+## Task B: Local Admin Save API
+
+**Files:**
+
+- Modify: `scripts/serve.mjs`
+- Modify: `scripts/gpu-data.mjs`
+- Create: `tests/admin-api.test.mjs`
+- Modify: `PROJECT_STATE.md`
+- Modify: `docs/superpowers/plans/2026-04-26-gpu-ladder-implementation.md`
+
+- [ ] **Step 1: Read project state**
+- [ ] **Step 2: Add failing API/data update tests**
+- [ ] **Step 3: Add `GET /api/gpus` and `PUT /api/gpus/:id`**
+- [ ] **Step 4: Validate, atomically save JSON, and regenerate JS on PUT**
+- [ ] **Step 5: Run `npm.cmd run verify`**
+- [ ] **Step 6: Update docs, commit, push**
+
+## Task C: Local Admin Editor Page
+
+**Files:**
+
+- Create: `admin.html`
+- Create: `src/admin.js`
+- Modify: `src/styles.css`
+- Create: `tests/admin-render.test.mjs`
+- Modify: `PROJECT_STATE.md`
+- Modify: `docs/superpowers/plans/2026-04-26-gpu-ladder-implementation.md`
+
+- [ ] **Step 1: Read project state**
+- [ ] **Step 2: Add failing admin render/form tests**
+- [ ] **Step 3: Build GPU search/list and grouped edit form**
+- [ ] **Step 4: Add save flow, validation errors, and success state**
+- [ ] **Step 5: Run `npm.cmd run verify` and browser smoke test**
+- [ ] **Step 6: Update docs, commit, push**
+
+## Task D: Admin Documentation and Final Browser Verification
+
+**Files:**
+
+- Modify: `README.md`
+- Modify: `PROJECT_STATE.md`
+- Modify: `docs/superpowers/plans/2026-04-26-gpu-ladder-implementation.md`
+
+- [ ] **Step 1: Read project state**
+- [ ] **Step 2: Document local admin editor workflow**
+- [ ] **Step 3: Browser test editing `rtx-4070-laptop`**
+- [ ] **Step 4: Run `npm.cmd run verify`**
+- [ ] **Step 5: Update docs, commit, push**
+
 ## Task 7: Initial Modern NVIDIA Data Expansion
 
 **Files:**
