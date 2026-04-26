@@ -174,7 +174,7 @@ Expected: Commit succeeds and push updates `origin/main`.
 - Modify: `PROJECT_STATE.md`
 - Modify: `docs/superpowers/plans/2026-04-26-gpu-ladder-implementation.md`
 
-- [ ] **Step 1: Read project state**
+- [x] **Step 1: Read project state**
 
 Run:
 
@@ -184,7 +184,7 @@ Get-Content PROJECT_STATE.md
 
 Expected: Next step is Task 2.
 
-- [ ] **Step 2: Add constants**
+- [x] **Step 2: Add constants**
 
 Create `src/data/constants.js`:
 
@@ -219,7 +219,7 @@ export const SORT_OPTIONS = {
 };
 ```
 
-- [ ] **Step 3: Add formatting helpers**
+- [x] **Step 3: Add formatting helpers**
 
 Create `src/utils/format.js`:
 
@@ -255,7 +255,7 @@ export function formatBenchmark(value) {
 }
 ```
 
-- [ ] **Step 4: Add formatting tests**
+- [x] **Step 4: Add formatting tests**
 
 Create `tests/format.test.mjs`:
 
@@ -292,7 +292,7 @@ test("formatBenchmark renders score with separators", () => {
 });
 ```
 
-- [ ] **Step 5: Verify tests**
+- [x] **Step 5: Verify tests**
 
 Run:
 
@@ -302,7 +302,7 @@ npm test
 
 Expected: All formatting tests pass.
 
-- [ ] **Step 6: Update docs, commit, push**
+- [x] **Step 6: Update docs, commit, push**
 
 Update `PROJECT_STATE.md` with Task 2 completion, test result, and next step Task 3.
 

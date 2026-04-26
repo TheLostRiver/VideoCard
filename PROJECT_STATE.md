@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Task 1 完成，项目运行骨架已创建。
+阶段：Task 2 完成，数据常量与格式化工具已创建。
 
-当前任务：Task 1: Project Runtime Skeleton。
+当前任务：Task 2: Data Constants and Formatting Utilities。
 
-下一步：从 Task 2: Data Constants and Formatting Utilities 开始。
+下一步：从 Task 3: Seed GPU Data 开始。
 
 ## 工作规则
 
@@ -36,6 +36,8 @@
 - 成功推送 `main` 到 `origin/main`。
 - Task 1 完成：创建 `package.json` 和 `scripts/serve.mjs`。
 - Task 1 计划 checkbox 已更新。
+- Task 2 完成：创建 `src/data/constants.js`、`src/utils/format.js`、`tests/format.test.mjs`。
+- Task 2 计划 checkbox 已更新。
 
 ## 最近验证
 
@@ -49,9 +51,13 @@
 - Task 1 验证：PowerShell 阻止 `npm.ps1`，改用等价命令 `npm.cmd run`。
 - `npm.cmd run`：成功列出 `serve`、`test`、`validate:data`、`verify`。
 - Task 1 推送：默认 DNS 指向的 `20.205.243.166` 不稳定；使用 `git -c http.sslBackend=schannel -c http.curloptResolve=github.com:443:140.82.112.4 push origin main` 成功推送。
+- Task 2 RED：先创建 `tests/format.test.mjs` 后运行 `npm.cmd test`，按预期因 `src/utils/format.js` 缺失失败。
+- Task 2 GREEN：实现格式化工具后运行 `npm.cmd test`，6 个测试全部通过。
 
 ## 最近提交
 
+- Task 2 将提交为：`feat: add data constants and format helpers`
+- `81e7e7c chore: record task1 push details`
 - `4d93b44 chore: add project runtime skeleton`
 - `ae624c2 docs: add atomic implementation plan`
 - `248bc9c Add GPU ladder design spec`
