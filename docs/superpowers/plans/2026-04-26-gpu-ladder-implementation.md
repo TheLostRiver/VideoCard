@@ -1745,11 +1745,11 @@ These tasks implement the approved local admin-editor-first data maintenance des
 - Modify: `PROJECT_STATE.md`
 - Modify: `docs/superpowers/plans/2026-04-26-gpu-ladder-implementation.md`
 
-- [ ] **Step 1: Read project state**
-- [ ] **Step 2: Document local admin editor workflow**
-- [ ] **Step 3: Browser test editing `rtx-4070-laptop`**
-- [ ] **Step 4: Run `npm.cmd run verify`**
-- [ ] **Step 5: Update docs, commit, push**
+- [x] **Step 1: Read project state**
+- [x] **Step 2: Document local admin editor workflow**
+- [x] **Step 3: Browser test editing `rtx-4070-laptop`**
+- [x] **Step 4: Run `npm.cmd run verify`**
+- [x] **Step 5: Update docs, commit, push**
 
 ## Task 7: Initial Modern NVIDIA Data Expansion
 

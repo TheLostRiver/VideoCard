@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Admin Task C 完成，本地后台编辑页面已创建。
+阶段：Admin Task D 完成，本地后台编辑器文档与最终浏览器验证已完成。
 
-当前任务：Admin Task C: Local Admin Editor Page。
+当前任务：Admin Task D: Admin Documentation and Final Browser Verification。
 
-下一步：从 Admin Task D: Admin Documentation and Final Browser Verification 开始。
+下一步：后台编辑器任务 A-D 已完成；下一步可恢复 Task 7: Initial Modern NVIDIA Data Expansion，或继续增强后台字段体验。
 
 ## 工作规则
 
@@ -60,6 +60,9 @@
 - Admin Task C 完成：新增 `tests/admin-render.test.mjs` 覆盖后台搜索、列表选中、表单渲染、备注/来源格式化和表单解析。
 - Admin Task C 完成：追加后台布局样式，并将 4070 Laptop 烟测修改保存为 `boostClockMHz: 2175`、`tgpRangeW: "45-115W"`、`timeSpyGraphics: 12345`。
 - Admin Task C 计划 checkbox 已更新。
+- Admin Task D 完成：新增 `README.md`，记录本地运行、后台编辑、数据同步与验证流程。
+- Admin Task D 完成：完成 `rtx-4070-laptop` 后台保存与前台同步浏览器验证。
+- Admin Task D 计划 checkbox 已更新。
 
 ## 最近验证
 
@@ -102,9 +105,12 @@
 - Admin Task C 浏览器验证：`http://localhost:4173/admin.html` 加载 12 条 GPU；搜索 `4070` 后列表为 2 条；选中 `GeForce RTX 4070 Laptop GPU` 后修改 boost/TGP/Time Spy 并保存成功；前台 `http://localhost:4173/#rtx-4070-laptop` 显示 `2,175 MHz`、`45-115W`、`12,345`；浏览器 console error 为空。
 - Admin Task C 修复：旧测试硬编码 4070 Laptop TGP 为 `35-115W`，已改为按当前数据记录断言。
 - Admin Task C 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 31 pass / 0 fail。
+- Admin Task D 浏览器验证：`http://localhost:4173/admin.html` 搜索 `4070`、选择 `GeForce RTX 4070 Laptop GPU`、保存 boost/TGP/Time Spy；前台 `http://localhost:4173/#rtx-4070-laptop` 显示 `2,175 MHz`、`45-115W`、`12,345`；浏览器 console error 为空。
+- Admin Task D 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 31 pass / 0 fail。
 
 ## 最近提交
 
+- `6b4ec18 feat: add local gpu admin editor`
 - `64baf7d feat: add local gpu admin api`
 - `e0b7a79 feat: add json gpu data sync pipeline`
 - `b3f212e chore: mark task6 push complete`
