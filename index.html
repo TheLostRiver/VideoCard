@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>游戏显卡天梯图</title>
+    <link rel="stylesheet" href="./src/styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="toolbar" aria-label="显卡筛选">
+        <div class="title-block">
+          <h1>游戏显卡天梯图</h1>
+          <p>桌面版与移动版独立排序，RTX 4060 桌面版 = 100。</p>
+        </div>
+        <label class="search-field">
+          <span>搜索</span>
+          <input id="searchInput" type="search" placeholder="4070, RX 7800, Laptop, Arc">
+        </label>
+        <div id="filterBar" class="filter-bar"></div>
+        <label class="sort-field">
+          <span>排序</span>
+          <select id="sortSelect"></select>
+        </label>
+        <button id="resetButton" class="ghost-button" type="button" hidden>重置筛选</button>
+      </header>
+
+      <section class="content-grid">
+        <section class="ladder-panel" aria-label="显卡天梯列表">
+          <div id="ladderList" class="ladder-list"></div>
+        </section>
+        <aside id="detailPanel" class="detail-panel" aria-label="显卡详情"></aside>
+      </section>
+    </main>
+
+    <div id="mobileDrawer" class="mobile-drawer" hidden></div>
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>

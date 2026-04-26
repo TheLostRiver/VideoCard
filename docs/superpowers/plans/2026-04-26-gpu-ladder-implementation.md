@@ -935,7 +935,7 @@ Expected: Commit succeeds and push updates `origin/main`.
 - Modify: `PROJECT_STATE.md`
 - Modify: `docs/superpowers/plans/2026-04-26-gpu-ladder-implementation.md`
 
-- [ ] **Step 1: Read project state**
+- [x] **Step 1: Read project state**
 
 Run:
 
@@ -945,7 +945,7 @@ Get-Content PROJECT_STATE.md
 
 Expected: Next step is Task 5.
 
-- [ ] **Step 2: Add app shell**
+- [x] **Step 2: Add app shell**
 
 Create `index.html`:
 
@@ -991,7 +991,7 @@ Create `index.html`:
 </html>
 ```
 
-- [ ] **Step 3: Add base styles**
+- [x] **Step 3: Add base styles**
 
 Create `src/styles.css`:
 
@@ -1141,7 +1141,7 @@ select {
 }
 ```
 
-- [ ] **Step 4: Verify static files are present**
+- [x] **Step 4: Verify static files are present**
 
 Run:
 
@@ -1151,7 +1151,7 @@ Test-Path index.html; Test-Path src/styles.css
 
 Expected: Both commands return `True`.
 
-- [ ] **Step 5: Update docs, commit, push**
+- [x] **Step 5: Update docs, commit, push**
 
 Update `PROJECT_STATE.md` with Task 5 completion, verification result, and next step Task 6.
 
