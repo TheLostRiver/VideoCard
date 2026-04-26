@@ -1712,12 +1712,12 @@ These tasks implement the approved local admin-editor-first data maintenance des
 - Modify: `PROJECT_STATE.md`
 - Modify: `docs/superpowers/plans/2026-04-26-gpu-ladder-implementation.md`
 
-- [ ] **Step 1: Read project state**
-- [ ] **Step 2: Add failing API/data update tests**
-- [ ] **Step 3: Add `GET /api/gpus` and `PUT /api/gpus/:id`**
-- [ ] **Step 4: Validate, atomically save JSON, and regenerate JS on PUT**
-- [ ] **Step 5: Run `npm.cmd run verify`**
-- [ ] **Step 6: Update docs, commit, push**
+- [x] **Step 1: Read project state**
+- [x] **Step 2: Add failing API/data update tests**
+- [x] **Step 3: Add `GET /api/gpus` and `PUT /api/gpus/:id`**
+- [x] **Step 4: Validate, atomically save JSON, and regenerate JS on PUT**
+- [x] **Step 5: Run `npm.cmd run verify`**
+- [x] **Step 6: Update docs, commit, push**
 
 ## Task C: Local Admin Editor Page
 

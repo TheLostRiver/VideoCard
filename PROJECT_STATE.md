@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Admin Task A 完成，JSON 主数据源和同步校验管线已创建。
+阶段：Admin Task B 完成，本地数据保存 API 已创建。
 
-当前任务：Admin Task A: JSON Source Data and Sync Pipeline。
+当前任务：Admin Task B: Local Admin Save API。
 
-下一步：从 Admin Task B: Local Admin Save API 开始。
+下一步：从 Admin Task C: Local Admin Editor Page 开始。
 
 ## 工作规则
 
@@ -52,6 +52,10 @@
 - Admin Task A 完成：新增 `scripts/gpu-data.mjs`、`scripts/sync-gpus.mjs`、`tests/data-sync.test.mjs`。
 - Admin Task A 完成：`src/data/gpus.js` 改为由 JSON 同步生成，`scripts/validate-data.mjs` 校验 JSON 与 JS 同步状态。
 - Admin Task A 计划 checkbox 已更新。
+- Admin Task B 完成：`scripts/serve.mjs` 导出可测试请求处理器，并新增本地 `GET /api/gpus` 与 `PUT /api/gpus/:id`。
+- Admin Task B 完成：`scripts/gpu-data.mjs` 新增记录替换、原子写入 JSON、同步生成 JS 的保存流程。
+- Admin Task B 完成：新增 `tests/admin-api.test.mjs` 覆盖读取、保存、移动版 TGP、非法性能指数和重复 id。
+- Admin Task B 计划 checkbox 已更新。
 
 ## 最近验证
 
@@ -86,9 +90,13 @@
 - Admin Task A RED：先新增 `tests/data-sync.test.mjs` 后运行 `npm.cmd test`，按预期因 `scripts/gpu-data.mjs` 缺失失败。
 - Admin Task A GREEN：新增 JSON 数据层、同步脚本和校验逻辑后运行 `npm.cmd test`，21 个测试全部通过。
 - Admin Task A 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 21 pass / 0 fail。
+- Admin Task B RED：先新增 `tests/admin-api.test.mjs` 后运行 `npm.cmd test`，按预期因 `scripts/serve.mjs` 未导出 `createRequestHandler` 失败。
+- Admin Task B GREEN：实现本地 API 和保存流程后运行 `npm.cmd test`，26 个测试全部通过。
+- Admin Task B 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 26 pass / 0 fail。
 
 ## 最近提交
 
+- `e0b7a79 feat: add json gpu data sync pipeline`
 - `b3f212e chore: mark task6 push complete`
 - `a9c6b7c feat: render interactive gpu ladder`
 - `c24756f feat: add static app shell`

@@ -1,5 +1,5 @@
-import { readFile, writeFile } from "node:fs/promises";
-import { join } from "node:path";
+import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
 import { BRANDS, SEGMENTS, TIERS } from "../src/data/constants.js";
 
 export function getDataPaths(root = process.cwd()) {
@@ -26,6 +26,36 @@ export async function writeGpuModule(records, root = process.cwd()) {
 export async function writeGpuJson(records, root = process.cwd()) {
   const { jsonPath } = getDataPaths(root);
   await writeFile(jsonPath, `${JSON.stringify(records, null, 2)}\n`, "utf8");
+}
+
+export async function writeGpuJsonAtomic(records, root = process.cwd()) {
+  const { jsonPath } = getDataPaths(root);
+  await mkdir(dirname(jsonPath), { recursive: true });
+  const tempPath = `${jsonPath}.${Date.now()}.tmp`;
+  await writeFile(tempPath, `${JSON.stringify(records, null, 2)}\n`, "utf8");
+  await rename(tempPath, jsonPath);
+}
+
+export function replaceGpuRecord(records, id, nextRecord) {
+  const index = records.findIndex((gpu) => gpu.id === id);
+  if (index === -1) {
+    const error = new Error(`GPU not found: ${id}`);
+    error.statusCode = 404;
+    error.errors = [`GPU not found: ${id}`];
+    throw error;
+  }
+
+  const nextRecords = records.map((gpu, recordIndex) => recordIndex === index ? nextRecord : gpu);
+  assertValidGpuRecords(nextRecords);
+  return nextRecords;
+}
+
+export async function saveGpuRecord(id, nextRecord, root = process.cwd()) {
+  const records = await readGpuData(root);
+  const nextRecords = replaceGpuRecord(records, id, nextRecord);
+  await writeGpuJsonAtomic(nextRecords, root);
+  await writeGpuModule(nextRecords, root);
+  return nextRecords.find((gpu) => gpu.id === nextRecord.id);
 }
 
 export async function assertGeneratedModuleFresh(root = process.cwd()) {
