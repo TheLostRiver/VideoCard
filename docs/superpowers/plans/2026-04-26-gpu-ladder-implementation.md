@@ -61,7 +61,7 @@ Create and maintain these files:
 - Modify: `PROJECT_STATE.md`
 - Modify: `docs/superpowers/plans/2026-04-26-gpu-ladder-implementation.md`
 
-- [ ] **Step 1: Read project state**
+- [x] **Step 1: Read project state**
 
 Run:
 
@@ -71,7 +71,7 @@ Get-Content PROJECT_STATE.md
 
 Expected: The file says implementation has not started.
 
-- [ ] **Step 2: Create package scripts**
+- [x] **Step 2: Create package scripts**
 
 Create `package.json`:
 
@@ -90,7 +90,7 @@ Create `package.json`:
 }
 ```
 
-- [ ] **Step 3: Create local static server**
+- [x] **Step 3: Create local static server**
 
 Create `scripts/serve.mjs`:
 
@@ -134,7 +134,7 @@ server.listen(port, () => {
 });
 ```
 
-- [ ] **Step 4: Verify scripts are visible**
+- [x] **Step 4: Verify scripts are visible**
 
 Run:
 
@@ -144,7 +144,7 @@ npm run
 
 Expected: Output lists `serve`, `test`, `validate:data`, and `verify`.
 
-- [ ] **Step 5: Update docs, commit, push**
+- [x] **Step 5: Update docs, commit, push**
 
 Update `PROJECT_STATE.md` with:
 

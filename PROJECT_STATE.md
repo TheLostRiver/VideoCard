@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：实施计划已准备，并已推送到 `origin/main`。
+阶段：Task 1 完成，项目运行骨架已创建。
 
-当前任务：等待选择实施执行方式。
+当前任务：Task 1: Project Runtime Skeleton。
 
-下一步：按 `docs/superpowers/plans/2026-04-26-gpu-ladder-implementation.md` 选择执行方式，然后从 Task 1 开始。
+下一步：从 Task 2: Data Constants and Formatting Utilities 开始。
 
 ## 工作规则
 
@@ -34,6 +34,8 @@
 - 创建统一状态文件：`PROJECT_STATE.md`。
 - 本地提交计划文档：`ae624c2 docs: add atomic implementation plan`。
 - 成功推送 `main` 到 `origin/main`。
+- Task 1 完成：创建 `package.json` 和 `scripts/serve.mjs`。
+- Task 1 计划 checkbox 已更新。
 
 ## 最近验证
 
@@ -44,9 +46,12 @@
 - `git push -u origin main`：失败，HTTPS 无法连接 GitHub。
 - 重新测试 `github.com:443`：成功。
 - 重新执行 `git push -u origin main`：成功。
+- Task 1 验证：PowerShell 阻止 `npm.ps1`，改用等价命令 `npm.cmd run`。
+- `npm.cmd run`：成功列出 `serve`、`test`、`validate:data`、`verify`。
 
 ## 最近提交
 
+- Task 1 将提交为：`chore: add project runtime skeleton`
 - `ae624c2 docs: add atomic implementation plan`
 - `248bc9c Add GPU ladder design spec`
 
