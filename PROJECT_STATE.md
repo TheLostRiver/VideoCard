@@ -48,10 +48,11 @@
 - 重新执行 `git push -u origin main`：成功。
 - Task 1 验证：PowerShell 阻止 `npm.ps1`，改用等价命令 `npm.cmd run`。
 - `npm.cmd run`：成功列出 `serve`、`test`、`validate:data`、`verify`。
+- Task 1 推送：默认 DNS 指向的 `20.205.243.166` 不稳定；使用 `git -c http.sslBackend=schannel -c http.curloptResolve=github.com:443:140.82.112.4 push origin main` 成功推送。
 
 ## 最近提交
 
-- Task 1 将提交为：`chore: add project runtime skeleton`
+- `4d93b44 chore: add project runtime skeleton`
 - `ae624c2 docs: add atomic implementation plan`
 - `248bc9c Add GPU ladder design spec`
 
