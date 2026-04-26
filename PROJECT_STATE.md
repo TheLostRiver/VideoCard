@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Task 5 完成，静态 HTML 壳和基础响应式布局已创建。
+阶段：Task 6 完成，交互式天梯渲染、筛选、搜索、排序和详情抽屉已实现。
 
-当前任务：Task 5: Static HTML Shell and Base Layout。
+当前任务：Task 6: Render Ladder, Filters, and Details。
 
-下一步：从 Task 6: Render Ladder, Filters, and Details 开始。
+下一步：从 Task 7: Initial Modern NVIDIA Data Expansion 开始。
 
 ## 工作规则
 
@@ -45,6 +45,9 @@
 - Task 4 计划 checkbox 已更新。
 - Task 5 完成：创建 `index.html` 和 `src/styles.css`。
 - Task 5 计划 checkbox 已更新。
+- Task 6 完成：创建 `src/app.js`，追加组件样式，并新增 `tests/app-render.test.mjs`。
+- Task 6 实现列表渲染、品牌/桌面移动/世代筛选、搜索、排序、详情面板、URL hash 和移动端详情抽屉。
+- Task 6 计划 checkbox 已更新。
 
 ## 最近验证
 
@@ -70,9 +73,15 @@
 - Task 4 GREEN：实现过滤、排序、分组和性能宽度工具后运行 `npm.cmd run verify`，数据校验 12 条记录，测试 12 pass / 0 fail。
 - Task 5 验证：`Test-Path index.html; Test-Path src\styles.css` 均返回 `True`。
 - Task 5 回归验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 12 pass / 0 fail。
+- Task 6 RED：先新增 `tests/app-render.test.mjs` 后运行 `npm.cmd test`，按预期因 `src/app.js` 缺失失败。
+- Task 6 GREEN：实现 `src/app.js` 和组件样式后运行 `npm.cmd test`，18 个测试全部通过。
+- Task 6 修复：浏览器烟测发现移动端 `.mobile-drawer` 媒体查询覆盖 `hidden` 属性，已增加 `.mobile-drawer[hidden]` 并复测通过。
+- Task 6 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 18 pass / 0 fail。
+- Task 6 浏览器验证：`http://localhost:4173` 渲染 12 条 GPU；点击显卡更新 URL hash 和详情；Mobile chip 激活后剩 2 条移动版；搜索 `4070` 后剩 1 条；点击 `GeForce RTX 4070 Laptop GPU` 后移动抽屉显示并包含移动版警告；浏览器 console error 为空。
 
 ## 最近提交
 
+- `c24756f feat: add static app shell`
 - `4f61568 chore: mark task4 push complete`
 - `6728bb7 feat: add gpu filtering and performance helpers`
 - `f84e1ff chore: mark task3 push complete`

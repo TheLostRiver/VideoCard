@@ -1172,11 +1172,12 @@ Expected: Commit succeeds and push updates `origin/main`.
 **Files:**
 
 - Create: `src/app.js`
+- Create: `tests/app-render.test.mjs`
 - Modify: `src/styles.css`
 - Modify: `PROJECT_STATE.md`
 - Modify: `docs/superpowers/plans/2026-04-26-gpu-ladder-implementation.md`
 
-- [ ] **Step 1: Read project state**
+- [x] **Step 1: Read project state**
 
 Run:
 
@@ -1186,7 +1187,7 @@ Get-Content PROJECT_STATE.md
 
 Expected: Next step is Task 6.
 
-- [ ] **Step 2: Add app rendering**
+- [x] **Step 2: Add app rendering**
 
 Create `src/app.js`:
 
@@ -1411,7 +1412,7 @@ function detailSection(title, rows) {
 init();
 ```
 
-- [ ] **Step 3: Add component styles**
+- [x] **Step 3: Add component styles**
 
 Append to `src/styles.css`:
 
@@ -1634,7 +1635,7 @@ Append to `src/styles.css`:
 }
 ```
 
-- [ ] **Step 4: Verify app modules load in browser**
+- [x] **Step 4: Verify app modules load in browser**
 
 Run:
 
@@ -1660,7 +1661,7 @@ Open `http://localhost:4173` in the in-app browser and verify:
 - Search narrows results.
 - Mobile drawer appears below 1040px.
 
-- [ ] **Step 5: Update docs, commit, push**
+- [x] **Step 5: Update docs, commit, push**
 
 Update `PROJECT_STATE.md` with Task 6 completion, verification result, browser URL, and next step Task 7.
 
@@ -1669,7 +1670,7 @@ Update this task checkbox to checked.
 Run:
 
 ```bash
-git add src/app.js src/styles.css PROJECT_STATE.md docs/superpowers/plans/2026-04-26-gpu-ladder-implementation.md
+git add src/app.js src/styles.css tests/app-render.test.mjs PROJECT_STATE.md docs/superpowers/plans/2026-04-26-gpu-ladder-implementation.md
 git commit -m "feat: render interactive gpu ladder"
 git push origin main
 ```
