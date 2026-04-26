@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Task 3 完成，并已推送到 `origin/main`。
+阶段：Task 4 完成，过滤、排序和性能工具已创建。
 
-当前任务：Task 3: Seed GPU Data。
+当前任务：Task 4: Filtering, Sorting, and Performance Utilities。
 
-下一步：从 Task 4: Filtering, Sorting, and Performance Utilities 开始。
+下一步：从 Task 5: Static HTML Shell and Base Layout 开始。
 
 ## 工作规则
 
@@ -41,6 +41,8 @@
 - Task 3 完成：创建 `src/data/gpus.js` 和 `scripts/validate-data.mjs`。
 - Task 3 录入 12 条代表性 GPU 数据，包含桌面版和移动版。
 - Task 3 计划 checkbox 已更新。
+- Task 4 完成：创建 `src/utils/filters.js`、`src/utils/performance.js`、`tests/filters.test.mjs`、`tests/performance.test.mjs`。
+- Task 4 计划 checkbox 已更新。
 
 ## 最近验证
 
@@ -62,9 +64,12 @@
 - 当前沙箱用户下 `node --test` 默认隔离模式会因子进程 `spawn EPERM` 失败；已将 `package.json` 的 `test` 脚本改为 `node --test --test-isolation=none tests/*.test.mjs`。
 - Task 3 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 6 pass / 0 fail。
 - Task 3 之前的 push 阻塞已解除，已恢复使用正式 `.git` 提交并推送。
+- Task 4 RED：先创建 `tests/filters.test.mjs` 和 `tests/performance.test.mjs` 后运行 `npm.cmd test`，按预期因 `src/utils/filters.js` 与 `src/utils/performance.js` 缺失失败。
+- Task 4 GREEN：实现过滤、排序、分组和性能宽度工具后运行 `npm.cmd run verify`，数据校验 12 条记录，测试 12 pass / 0 fail。
 
 ## 最近提交
 
+- Task 4 将提交为：`feat: add gpu filtering and performance helpers`
 - `3f78077 feat: add seed gpu data`
 - `9e34e69 feat: add data constants and format helpers`
 - `81e7e7c chore: record task1 push details`

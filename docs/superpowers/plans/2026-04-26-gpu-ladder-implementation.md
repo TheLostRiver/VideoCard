@@ -757,7 +757,7 @@ Expected: Commit succeeds and push updates `origin/main`.
 - Modify: `PROJECT_STATE.md`
 - Modify: `docs/superpowers/plans/2026-04-26-gpu-ladder-implementation.md`
 
-- [ ] **Step 1: Read project state**
+- [x] **Step 1: Read project state**
 
 Run:
 
@@ -767,7 +767,7 @@ Get-Content PROJECT_STATE.md
 
 Expected: Next step is Task 4.
 
-- [ ] **Step 2: Add filter and sort helpers**
+- [x] **Step 2: Add filter and sort helpers**
 
 Create `src/utils/filters.js`:
 
@@ -813,7 +813,7 @@ function parseMobileTgp(value) {
 }
 ```
 
-- [ ] **Step 3: Add performance helpers**
+- [x] **Step 3: Add performance helpers**
 
 Create `src/utils/performance.js`:
 
@@ -839,7 +839,7 @@ export function getMaxPerformanceIndex(gpus) {
 }
 ```
 
-- [ ] **Step 4: Add tests**
+- [x] **Step 4: Add tests**
 
 Create `tests/filters.test.mjs`:
 
@@ -900,7 +900,7 @@ test("getMaxPerformanceIndex returns strongest index", () => {
 });
 ```
 
-- [ ] **Step 5: Verify utilities**
+- [x] **Step 5: Verify utilities**
 
 Run:
 
@@ -910,7 +910,7 @@ npm run verify
 
 Expected: Data validation passes and all tests pass.
 
-- [ ] **Step 6: Update docs, commit, push**
+- [x] **Step 6: Update docs, commit, push**
 
 Update `PROJECT_STATE.md` with Task 4 completion, verification result, and next step Task 5.
 
