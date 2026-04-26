@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Task 3 完成，正在用恢复后的正式 Git 环境提交并推送。
+阶段：Task 3 完成，并已推送到 `origin/main`。
 
 当前任务：Task 3: Seed GPU Data。
 
-下一步：完成 Task 3 的远程 push；推送成功后从 Task 4: Filtering, Sorting, and Performance Utilities 开始。
+下一步：从 Task 4: Filtering, Sorting, and Performance Utilities 开始。
 
 ## 工作规则
 
@@ -61,11 +61,11 @@
 - 当前沙箱用户与仓库拥有者不同，git 命令需临时使用 `-c safe.directory=Q:/DEV/VideoCardProj`。
 - 当前沙箱用户下 `node --test` 默认隔离模式会因子进程 `spawn EPERM` 失败；已将 `package.json` 的 `test` 脚本改为 `node --test --test-isolation=none tests/*.test.mjs`。
 - Task 3 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 6 pass / 0 fail。
-- Task 3 之前的 push 阻塞已解除，当前恢复使用正式 `.git` 提交并推送。
+- Task 3 之前的 push 阻塞已解除，已恢复使用正式 `.git` 提交并推送。
 
 ## 最近提交
 
-- Task 3 将提交为：`feat: add seed gpu data`
+- `3f78077 feat: add seed gpu data`
 - `9e34e69 feat: add data constants and format helpers`
 - `81e7e7c chore: record task1 push details`
 - `4d93b44 chore: add project runtime skeleton`
