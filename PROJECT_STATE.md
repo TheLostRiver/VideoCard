@@ -78,9 +78,11 @@
 - Task 6 修复：浏览器烟测发现移动端 `.mobile-drawer` 媒体查询覆盖 `hidden` 属性，已增加 `.mobile-drawer[hidden]` 并复测通过。
 - Task 6 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 18 pass / 0 fail。
 - Task 6 浏览器验证：`http://localhost:4173` 渲染 12 条 GPU；点击显卡更新 URL hash 和详情；Mobile chip 激活后剩 2 条移动版；搜索 `4070` 后剩 1 条；点击 `GeForce RTX 4070 Laptop GPU` 后移动抽屉显示并包含移动版警告；浏览器 console error 为空。
+- Task 6 推送：默认 `github.com` 解析到 `20.205.243.166` 时 443 不通；普通 push 两次失败。改用 `git -c http.sslBackend=schannel -c http.version=HTTP/1.1 -c http.curloptResolve=github.com:443:140.82.114.4 push --no-thin --porcelain origin main` 成功推送。
 
 ## 最近提交
 
+- `a9c6b7c feat: render interactive gpu ladder`
 - `c24756f feat: add static app shell`
 - `4f61568 chore: mark task4 push complete`
 - `6728bb7 feat: add gpu filtering and performance helpers`
