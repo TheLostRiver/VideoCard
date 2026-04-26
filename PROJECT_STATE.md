@@ -69,7 +69,7 @@
 
 ## 最近提交
 
-- Task 4 将提交为：`feat: add gpu filtering and performance helpers`
+- `6728bb7 feat: add gpu filtering and performance helpers`
 - `3f78077 feat: add seed gpu data`
 - `9e34e69 feat: add data constants and format helpers`
 - `81e7e7c chore: record task1 push details`
