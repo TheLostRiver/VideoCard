@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 3.2 完成验证，等待 commit/push。
+阶段：Multi-Hardware Platform Implementation Task 3.2 完成并已推送，schema-driven detail renderer 已新增。
 
-当前任务：Task 3.2: Add Schema-Driven Detail Renderer。
+当前任务：准备进入 Task 3.3: Wire GPU Page To Hardware Query Service。
 
-下一步：提交并推送 Task 3.2；随后记录 push 完成并进入 Task 3.3。
+下一步：进入 Task 3.3。开始前必须读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、`task_plan.md`、`findings.md`、`progress.md` 和实现计划。
 
 ## 工作规则
 
@@ -114,7 +114,8 @@
 - Task 3.2 RED 完成：新增 `tests/hardware-detail-render.test.mjs`，先运行 `npm.cmd test`，按预期因 `src/features/hardware-detail/render-detail.js` 缺失失败。
 - Task 3.2 GREEN 完成：新增 `src/features/hardware-detail/render-detail.js`，实现只依赖 `HardwareDetailViewModel` 的 schema-driven 详情 renderer。
 - Task 3.2 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 66 pass / 0 fail。
-- Task 3.2 计划 checkbox 已更新到验证完成。
+- Task 3.2 推送完成：`b2c9445 feat: add schema-driven hardware detail renderer` 已推送到 `origin/main`。
+- Task 3.2 计划 checkbox 已更新完成。
 
 ## 最近验证
 
@@ -198,6 +199,7 @@
 
 ## 最近提交
 
+- `b2c9445 feat: add schema-driven hardware detail renderer`
 - `a6ca841 chore: record task3.1 push completion`
 - `9297f1a feat: add schema-driven hardware list renderer`
 - `b442252 chore: record task2.4 push completion`

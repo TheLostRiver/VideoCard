@@ -102,6 +102,7 @@
 | Treat `9297f1a` as Task 3.1 implementation commit | The schema-driven hardware list renderer task is implemented, verified, and pushed; the next task is Task 3.2. |
 | Treat `a6ca841` as Task 3.1 push completion record commit | Task 3.2 starts only after the Task 3.1 record commit is also pushed. |
 | Keep schema-driven detail renderer view-model-only | `render-detail.js` renders only generic item, warnings, groups, rows, and display values; it does not read legacy GPU data fields. |
+| Treat `b2c9445` as Task 3.2 implementation commit | The schema-driven hardware detail renderer task is implemented, verified, and pushed; the next task is Task 3.3. |
 
 ## Issues Encountered
 

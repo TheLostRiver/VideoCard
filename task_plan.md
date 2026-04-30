@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Phase 20: Task 3.2 Schema-Driven Detail Renderer
+Phase 22: Next Task Readiness After Task 3.2
 
 ## Phases
 
@@ -177,8 +177,14 @@ Phase 20: Task 3.2 Schema-Driven Detail Renderer
 - [x] Run `npm.cmd run verify`.
 - [x] Update implementation plan checkboxes.
 - [x] Update recovery records.
-- [ ] Commit and push Task 3.2.
-- **Status:** in_progress
+- [x] Commit and push Task 3.2.
+- **Status:** complete
+
+### Phase 22: Next Task Readiness After Task 3.2
+
+- [x] Confirm clean git status after Task 3.2 push.
+- [x] Record next task as Task 3.3.
+- **Status:** complete
 
 ## Key Questions
 
@@ -209,6 +215,7 @@ Phase 20: Task 3.2 Schema-Driven Detail Renderer
 | Start Task 3.2 next | Task 3.1 is implemented, verified, committed, and pushed as `9297f1a`. |
 | Start Task 3.2 detail renderer with view-model-only input | It should consume `HardwareDetailViewModel` from the query service and avoid legacy GPU field assumptions. |
 | Keep detail renderer as pure HTML functions | This keeps Task 3.3 wiring focused on data flow instead of mixing rendering and query logic. |
+| Start Task 3.3 next | Task 3.2 is implemented, verified, committed, and pushed as `b2c9445`. |
 
 ## Errors Encountered
 

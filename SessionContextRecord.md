@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 3.2: Add Schema-Driven Detail Renderer
+Task: Ready for Task 3.3: Wire GPU Page To Hardware Query Service
 
-Status: Task 3.2 implementation and full verification are complete. `tests/hardware-detail-render.test.mjs` failed as expected before `src/features/hardware-detail/render-detail.js` existed. The schema-driven detail renderer now renders generic `HardwareDetailViewModel` fields without GPU-specific source assumptions. `npm.cmd run verify` passes with data validation and 66 pass / 0 fail. Commit and push are still pending.
+Status: Task 3.2 is complete, verified, committed, and pushed to `origin/main` as `b2c9445`. The schema-driven detail renderer renders generic `HardwareDetailViewModel` fields without GPU-specific source assumptions. Next implementation task is Task 3.3: Wire GPU Page To Hardware Query Service.
 
 ## Current Date
 
@@ -71,13 +71,13 @@ Core model:
 
 ## Next Step
 
-1. Commit `feat: add schema-driven hardware detail renderer`.
-2. Push the commit to `origin/main`.
-3. Record push completion, then prepare Task 3.3.
+1. Start Task 3.3 only after reading this file, `PROJECT_STATE.md`, the implementation plan, `task_plan.md`, `findings.md`, `progress.md`, and `git status -sb`.
+2. Update tests to assert current GPU page behavior still works through the new service.
+3. Refactor `src/app.js` to use `JsonHardwareRepository` and `HardwareQueryService` internally while preserving current UI.
 
 ## Verification Status
 
-Task 3.2 full verification passed. Commit and push are pending.
+Task 3.2 full verification passed and the implementation commit was pushed.
 
 Latest result:
 
