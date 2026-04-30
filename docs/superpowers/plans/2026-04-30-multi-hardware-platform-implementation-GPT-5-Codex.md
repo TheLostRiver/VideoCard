@@ -575,7 +575,7 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add failing render tests**
+- [x] **Step 1: Add failing render tests**
 
 Test that a `HardwareListItemViewModel` renders:
 
@@ -585,11 +585,11 @@ Test that a `HardwareListItemViewModel` renders:
 - secondary facts;
 - selected state.
 
-- [ ] **Step 2: Implement renderer**
+- [x] **Step 2: Implement renderer**
 
 Renderer must not mention GPU-specific field names.
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 

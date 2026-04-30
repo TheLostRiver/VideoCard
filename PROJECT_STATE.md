@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 2.4 完成并已推送，Hardware Query Service 已新增。
+阶段：Multi-Hardware Platform Implementation Task 3.1 完成验证，等待 commit/push。
 
-当前任务：准备进入 Task 3.1: Add Schema-Driven List Renderer。
+当前任务：Task 3.1: Add Schema-Driven List Renderer。
 
-下一步：进入 Task 3.1。开始前必须读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、`task_plan.md`、`findings.md`、`progress.md` 和实现计划。
+下一步：提交并推送 Task 3.1；随后记录 push 完成并进入 Task 3.2。
 
 ## 工作规则
 
@@ -102,6 +102,12 @@
 - Task 2.4 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 57 pass / 0 fail。
 - Task 2.4 推送完成：`2c18375 feat: add hardware query service` 已推送到 `origin/main`。
 - Task 2.4 计划 checkbox 已更新完成。
+- Task 2.4 push 记录完成：`b442252 chore: record task2.4 push completion` 已推送到 `origin/main`。
+- Task 3.1 启动检查完成：已读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、`task_plan.md`、`findings.md`、`progress.md`、实现计划 Task 3.1 和 `git status -sb`。
+- Task 3.1 RED 完成：新增 `tests/hardware-list-render.test.mjs`，先运行 `npm.cmd test`，按预期因 `src/features/hardware-list/render-list.js` 缺失失败。
+- Task 3.1 GREEN 完成：新增 `src/features/hardware-list/render-list.js`，实现只依赖 `HardwareListItemViewModel` 的 schema-driven 列表 renderer。
+- Task 3.1 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 61 pass / 0 fail。
+- Task 3.1 计划 checkbox 已更新到验证完成。
 
 ## 最近验证
 
@@ -176,9 +182,13 @@
 - Task 2.4 RED 验证：`npm.cmd test` 失败，错误为 `ERR_MODULE_NOT_FOUND`，目标模块 `src/application/hardware-query-service.js` 不存在，符合预期。
 - Task 2.4 GREEN 验证：`npm.cmd test` 通过，测试 57 pass / 0 fail。
 - Task 2.4 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 57 pass / 0 fail。
+- Task 3.1 RED 验证：`npm.cmd test` 失败，错误为 `ERR_MODULE_NOT_FOUND`，目标模块 `src/features/hardware-list/render-list.js` 不存在，符合预期。
+- Task 3.1 GREEN 验证：`npm.cmd test` 通过，测试 61 pass / 0 fail。
+- Task 3.1 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 61 pass / 0 fail。
 
 ## 最近提交
 
+- `b442252 chore: record task2.4 push completion`
 - `2c18375 feat: add hardware query service`
 - `87c96bc chore: record task2.3 push completion`
 - `4cfb7af feat: add read-only json hardware repository`

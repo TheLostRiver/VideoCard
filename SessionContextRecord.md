@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Ready for Task 3.1: Add Schema-Driven List Renderer
+Task: Task 3.1: Add Schema-Driven List Renderer
 
-Status: Task 2.4 is complete, verified, committed, and pushed to `origin/main` as `2c18375`. The query service builds list/detail view models from a repository without importing `gpus.js`, and GPU mobile warnings are now schema-driven through `detailView.warnings`. Next implementation task is Task 3.1: Add Schema-Driven List Renderer.
+Status: Task 3.1 implementation and full verification are complete. `tests/hardware-list-render.test.mjs` failed as expected before `src/features/hardware-list/render-list.js` existed. The schema-driven list renderer now renders generic `HardwareListItemViewModel` fields without GPU-specific source assumptions. `npm.cmd run verify` passes with data validation and 61 pass / 0 fail. Commit and push are still pending.
 
 ## Current Date
 
@@ -66,22 +66,25 @@ Core model:
 - Modified `findings.md`
 - Modified `progress.md`
 - Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
+- Created `tests/hardware-list-render.test.mjs`
+- Created `src/features/hardware-list/render-list.js`
+- Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
 
 ## Next Step
 
-1. Start Task 3.1 only after reading this file, `PROJECT_STATE.md`, the implementation plan, `task_plan.md`, `findings.md`, `progress.md`, and `git status -sb`.
-2. Add failing schema-driven list renderer tests in `tests/hardware-list-render.test.mjs`.
-3. Confirm RED failure before `src/features/hardware-list/render-list.js` exists.
+1. Commit `feat: add schema-driven hardware list renderer`.
+2. Push the commit to `origin/main`.
+3. Record push completion, then prepare Task 3.2.
 
 ## Verification Status
 
-Task 2.4 full verification passed and the implementation commit was pushed.
+Task 3.1 full verification passed. Commit and push are pending.
 
 Latest result:
 
 - command: `npm.cmd run verify`
 - data validation: `Validated 12 GPU records.`
-- tests: 57 pass / 0 fail
+- tests: 61 pass / 0 fail
 
 ## Important Commands
 

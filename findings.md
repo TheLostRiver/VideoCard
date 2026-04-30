@@ -55,6 +55,12 @@
   - test that the mobile GPU warning appears from schema-driven behavior;
   - ensure the service accepts a repository object and does not import `gpus.js` directly;
   - commit message should be `feat: add hardware query service`.
+- Implementation plan Task 3.1 requires:
+  - create `src/features/hardware-list/render-list.js`;
+  - create `tests/hardware-list-render.test.mjs`;
+  - test that a `HardwareListItemViewModel` renders title, badges, primary score, secondary facts, and selected state;
+  - ensure the renderer contains no GPU-specific field names;
+  - commit message should be `feat: add schema-driven hardware list renderer`.
 - Architecture model fields read from the architecture document:
   - `HardwareItem` includes `id`, `categoryId`, `name`, `manufacturerId`, `generation`, `architecture`, `releaseDate`, `marketSegmentIds`, `status`, `notes`, `createdAt`, and `updatedAt`.
   - `MetricValue` includes `id`, `itemId`, `metricId`, value fields, `confidence`, `sourceIds`, optional `note`, and `updatedAt`.
@@ -83,6 +89,8 @@
 | Treat `87c96bc` as Task 2.3 push completion record commit | Task 2.4 starts only after the Task 2.3 record commit is also pushed. |
 | Represent mobile warnings as schema rules | `gpu.schema.json` now exposes `detailView.warnings`, and the query service applies matching rules from repository category data. |
 | Treat `2c18375` as Task 2.4 implementation commit | The hardware query service task is implemented, verified, and pushed; the next implementation task is Task 3.1. |
+| Treat `b442252` as Task 2.4 push completion record commit | Task 3.1 starts only after the Task 2.4 record commit is also pushed. |
+| Keep schema-driven list renderer view-model-only | `render-list.js` renders only generic title, badges, score, facts, and selected state fields; it does not read legacy GPU data fields. |
 
 ## Issues Encountered
 
@@ -112,6 +120,8 @@
 - `tests/json-hardware-repository.test.mjs`
 - `src/application/hardware-query-service.js`
 - `tests/hardware-query-service.test.mjs`
+- `src/features/hardware-list/render-list.js`
+- `tests/hardware-list-render.test.mjs`
 
 ## Visual/Browser Findings
 

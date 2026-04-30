@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Phase 16: Next Task Readiness After Task 2.4
+Phase 17: Task 3.1 Schema-Driven List Renderer
 
 ## Phases
 
@@ -140,6 +140,23 @@ Phase 16: Next Task Readiness After Task 2.4
 - [x] Record next task as Task 3.1.
 - **Status:** complete
 
+### Phase 17: Task 3.1 Schema-Driven List Renderer
+
+- [x] Read Task 3.1 implementation plan details.
+- [x] Add failing renderer tests.
+- [x] Confirm RED failure before renderer exists.
+- [x] Implement schema-driven list renderer without GPU-specific field names.
+- [x] Confirm `npm.cmd test` passes.
+- **Status:** complete
+
+### Phase 18: Task 3.1 Verification And Records
+
+- [x] Run `npm.cmd run verify`.
+- [x] Update implementation plan checkboxes.
+- [x] Update recovery records.
+- [ ] Commit and push Task 3.1.
+- **Status:** in_progress
+
 ## Key Questions
 
 1. What is the repository contract surface for future JSON and PostgreSQL adapters?
@@ -164,6 +181,8 @@ Phase 16: Next Task Readiness After Task 2.4
 | Correct Task 2.3 push completion state before Task 2.4 | Task 2.3 record commit `87c96bc` is already pushed, so recovery files must not say it is pending. |
 | Add mobile warning as `detailView.warnings` schema data | This keeps the query service data-driven and prepares the current hardcoded UI warning for later schema-driven rendering. |
 | Start Task 3.1 next | Task 2.4 is implemented, verified, committed, and pushed as `2c18375`. |
+| Start Task 3.1 renderer with view-model-only input | Task 3.1 is the first frontend piece that should stop knowing GPU-specific data field names. |
+| Keep list renderer as pure HTML functions | This makes it easy for Task 3.3 to wire into the existing app without coupling rendering to repository/data loading. |
 
 ## Errors Encountered
 
@@ -175,3 +194,4 @@ Phase 16: Next Task Readiness After Task 2.4
 | Windows sandbox `CreateProcessWithLogonW failed: 1326` during recovery reads | 1 | Re-ran the same read-only recovery commands with escalation and continued. |
 | `ERR_MODULE_NOT_FOUND` for `src/infrastructure/json/json-hardware-repository.js` | 1 | Expected RED for Task 2.3; implement the read-only JSON repository next. |
 | `ERR_MODULE_NOT_FOUND` for `src/application/hardware-query-service.js` | 1 | Expected RED for Task 2.4; implement the repository-backed query service next. |
+| `ERR_MODULE_NOT_FOUND` for `src/features/hardware-list/render-list.js` | 1 | Expected RED for Task 3.1; implement the schema-driven list renderer next. |

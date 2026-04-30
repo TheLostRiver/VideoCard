@@ -83,6 +83,11 @@
 | Task 2.4 GREEN | `npm.cmd test` | Hardware query service tests pass and suite remains green | 57 pass / 0 fail | Pass |
 | Task 2.4 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 57 pass / 0 fail | Pass |
 | Task 2.4 push | `git push --porcelain origin main` | Push Task 2.4 to origin/main | `87c96bc..2c18375` pushed | Pass |
+| Task 2.4 push-record push | `git push --porcelain origin main` | Push Task 2.4 record commit to origin/main | `2c18375..b442252` pushed | Pass |
+| Resume Task 3.1 | Read recovery records and implementation plan | Clean workspace and Task 3.1 requirements known | `git status -sb` returned `## main...origin/main`; Task 3.1 requirements captured | Pass |
+| Task 3.1 RED | `npm.cmd test` | Fail because `render-list.js` does not exist | Failed with `ERR_MODULE_NOT_FOUND` for `src/features/hardware-list/render-list.js` | Pass |
+| Task 3.1 GREEN | `npm.cmd test` | Schema-driven list renderer tests pass and suite remains green | 61 pass / 0 fail | Pass |
+| Task 3.1 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 61 pass / 0 fail | Pass |
 
 ## Error Log
 
@@ -98,13 +103,14 @@
 | 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/infrastructure/json/json-hardware-repository.js` | 1 | Expected RED; implement read-only JSON repository next. |
 | 2026-05-01 | Task 2.3 recovery files still described the record commit as pending after it was pushed | 1 | Corrected the startup records before adding Task 2.4 code. |
 | 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/application/hardware-query-service.js` | 1 | Expected RED; implement query service next. |
+| 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/features/hardware-list/render-list.js` | 1 | Expected RED; implement schema-driven list renderer next. |
 
 ## 5-Question Reboot Check
 
 | Question | Answer |
 |----------|--------|
-| Where am I? | Ready for Task 3.1 Schema-Driven List Renderer. |
-| Where am I going? | Start Task 3.1 after reading recovery files and implementation plan details. |
+| Where am I? | Task 3.1 Schema-Driven List Renderer. |
+| Where am I going? | Add RED renderer tests, implement a view-model-only list renderer, verify, then commit and push. |
 | What's the goal? | Continue the multi-hardware implementation one atomic task at a time. |
 | What have I learned? | See `findings.md`. |
 | What have I done? | Bootstrapped planning-with-files records and read Task 1.3. |
