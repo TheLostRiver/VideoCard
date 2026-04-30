@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Ready for Task 3.2: Add Schema-Driven Detail Renderer
+Task: Task 3.2: Add Schema-Driven Detail Renderer
 
-Status: Task 3.1 is complete, verified, committed, and pushed to `origin/main` as `9297f1a`. The schema-driven list renderer renders generic `HardwareListItemViewModel` fields without GPU-specific source assumptions. Next implementation task is Task 3.2: Add Schema-Driven Detail Renderer.
+Status: Task 3.2 implementation and full verification are complete. `tests/hardware-detail-render.test.mjs` failed as expected before `src/features/hardware-detail/render-detail.js` existed. The schema-driven detail renderer now renders generic `HardwareDetailViewModel` fields without GPU-specific source assumptions. `npm.cmd run verify` passes with data validation and 66 pass / 0 fail. Commit and push are still pending.
 
 ## Current Date
 
@@ -66,25 +66,24 @@ Core model:
 - Modified `findings.md`
 - Modified `progress.md`
 - Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
-- Created `tests/hardware-list-render.test.mjs`
-- Created `src/features/hardware-list/render-list.js`
-- Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
+- Created `tests/hardware-detail-render.test.mjs`
+- Created `src/features/hardware-detail/render-detail.js`
 
 ## Next Step
 
-1. Start Task 3.2 only after reading this file, `PROJECT_STATE.md`, the implementation plan, `task_plan.md`, `findings.md`, `progress.md`, and `git status -sb`.
-2. Add failing schema-driven detail renderer tests in `tests/hardware-detail-render.test.mjs`.
-3. Confirm RED failure before `src/features/hardware-detail/render-detail.js` exists.
+1. Commit `feat: add schema-driven hardware detail renderer`.
+2. Push the commit to `origin/main`.
+3. Record push completion, then prepare Task 3.3.
 
 ## Verification Status
 
-Task 3.1 full verification passed and the implementation commit was pushed.
+Task 3.2 full verification passed. Commit and push are pending.
 
 Latest result:
 
 - command: `npm.cmd run verify`
 - data validation: `Validated 12 GPU records.`
-- tests: 61 pass / 0 fail
+- tests: 66 pass / 0 fail
 
 ## Important Commands
 

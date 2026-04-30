@@ -61,6 +61,14 @@
   - test that a `HardwareListItemViewModel` renders title, badges, primary score, secondary facts, and selected state;
   - ensure the renderer contains no GPU-specific field names;
   - commit message should be `feat: add schema-driven hardware list renderer`.
+- Implementation plan Task 3.2 requires:
+  - create `src/features/hardware-detail/render-detail.js`;
+  - create `tests/hardware-detail-render.test.mjs`;
+  - test grouped detail sections render;
+  - test warnings render when provided;
+  - test missing metrics display `待补充`;
+  - ensure the renderer contains no GPU-only assumptions;
+  - commit message should be `feat: add schema-driven hardware detail renderer`.
 - Architecture model fields read from the architecture document:
   - `HardwareItem` includes `id`, `categoryId`, `name`, `manufacturerId`, `generation`, `architecture`, `releaseDate`, `marketSegmentIds`, `status`, `notes`, `createdAt`, and `updatedAt`.
   - `MetricValue` includes `id`, `itemId`, `metricId`, value fields, `confidence`, `sourceIds`, optional `note`, and `updatedAt`.
@@ -92,6 +100,8 @@
 | Treat `b442252` as Task 2.4 push completion record commit | Task 3.1 starts only after the Task 2.4 record commit is also pushed. |
 | Keep schema-driven list renderer view-model-only | `render-list.js` renders only generic title, badges, score, facts, and selected state fields; it does not read legacy GPU data fields. |
 | Treat `9297f1a` as Task 3.1 implementation commit | The schema-driven hardware list renderer task is implemented, verified, and pushed; the next task is Task 3.2. |
+| Treat `a6ca841` as Task 3.1 push completion record commit | Task 3.2 starts only after the Task 3.1 record commit is also pushed. |
+| Keep schema-driven detail renderer view-model-only | `render-detail.js` renders only generic item, warnings, groups, rows, and display values; it does not read legacy GPU data fields. |
 
 ## Issues Encountered
 
@@ -123,6 +133,8 @@
 - `tests/hardware-query-service.test.mjs`
 - `src/features/hardware-list/render-list.js`
 - `tests/hardware-list-render.test.mjs`
+- `src/features/hardware-detail/render-detail.js`
+- `tests/hardware-detail-render.test.mjs`
 
 ## Visual/Browser Findings
 

@@ -619,7 +619,7 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add failing render tests**
+- [x] **Step 1: Add failing render tests**
 
 Test:
 
@@ -628,11 +628,11 @@ Test:
 - missing metric displays `待补充`;
 - renderer contains no GPU-only assumptions.
 
-- [ ] **Step 2: Implement renderer**
+- [x] **Step 2: Implement renderer**
 
 Use `HardwareDetailViewModel` only.
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 

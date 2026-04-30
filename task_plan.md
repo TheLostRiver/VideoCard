@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Phase 19: Next Task Readiness After Task 3.1
+Phase 20: Task 3.2 Schema-Driven Detail Renderer
 
 ## Phases
 
@@ -163,6 +163,23 @@ Phase 19: Next Task Readiness After Task 3.1
 - [x] Record next task as Task 3.2.
 - **Status:** complete
 
+### Phase 20: Task 3.2 Schema-Driven Detail Renderer
+
+- [x] Read Task 3.2 implementation plan details.
+- [x] Add failing renderer tests.
+- [x] Confirm RED failure before renderer exists.
+- [x] Implement schema-driven detail renderer without GPU-specific field names.
+- [x] Confirm `npm.cmd test` passes.
+- **Status:** complete
+
+### Phase 21: Task 3.2 Verification And Records
+
+- [x] Run `npm.cmd run verify`.
+- [x] Update implementation plan checkboxes.
+- [x] Update recovery records.
+- [ ] Commit and push Task 3.2.
+- **Status:** in_progress
+
 ## Key Questions
 
 1. What is the repository contract surface for future JSON and PostgreSQL adapters?
@@ -190,6 +207,8 @@ Phase 19: Next Task Readiness After Task 3.1
 | Start Task 3.1 renderer with view-model-only input | Task 3.1 is the first frontend piece that should stop knowing GPU-specific data field names. |
 | Keep list renderer as pure HTML functions | This makes it easy for Task 3.3 to wire into the existing app without coupling rendering to repository/data loading. |
 | Start Task 3.2 next | Task 3.1 is implemented, verified, committed, and pushed as `9297f1a`. |
+| Start Task 3.2 detail renderer with view-model-only input | It should consume `HardwareDetailViewModel` from the query service and avoid legacy GPU field assumptions. |
+| Keep detail renderer as pure HTML functions | This keeps Task 3.3 wiring focused on data flow instead of mixing rendering and query logic. |
 
 ## Errors Encountered
 
@@ -202,3 +221,4 @@ Phase 19: Next Task Readiness After Task 3.1
 | `ERR_MODULE_NOT_FOUND` for `src/infrastructure/json/json-hardware-repository.js` | 1 | Expected RED for Task 2.3; implement the read-only JSON repository next. |
 | `ERR_MODULE_NOT_FOUND` for `src/application/hardware-query-service.js` | 1 | Expected RED for Task 2.4; implement the repository-backed query service next. |
 | `ERR_MODULE_NOT_FOUND` for `src/features/hardware-list/render-list.js` | 1 | Expected RED for Task 3.1; implement the schema-driven list renderer next. |
+| `ERR_MODULE_NOT_FOUND` for `src/features/hardware-detail/render-detail.js` | 1 | Expected RED for Task 3.2; implement the schema-driven detail renderer next. |

@@ -89,6 +89,11 @@
 | Task 3.1 GREEN | `npm.cmd test` | Schema-driven list renderer tests pass and suite remains green | 61 pass / 0 fail | Pass |
 | Task 3.1 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 61 pass / 0 fail | Pass |
 | Task 3.1 push | `git push --porcelain origin main` | Push Task 3.1 to origin/main | `b442252..9297f1a` pushed | Pass |
+| Task 3.1 push-record push | `git push --porcelain origin main` | Push Task 3.1 record commit to origin/main | `9297f1a..a6ca841` pushed | Pass |
+| Resume Task 3.2 | Read recovery records and implementation plan | Clean workspace and Task 3.2 requirements known | `git status -sb` returned `## main...origin/main`; Task 3.2 requirements captured | Pass |
+| Task 3.2 RED | `npm.cmd test` | Fail because `render-detail.js` does not exist | Failed with `ERR_MODULE_NOT_FOUND` for `src/features/hardware-detail/render-detail.js` | Pass |
+| Task 3.2 GREEN | `npm.cmd test` | Schema-driven detail renderer tests pass and suite remains green | 66 pass / 0 fail | Pass |
+| Task 3.2 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 66 pass / 0 fail | Pass |
 
 ## Error Log
 
@@ -105,13 +110,14 @@
 | 2026-05-01 | Task 2.3 recovery files still described the record commit as pending after it was pushed | 1 | Corrected the startup records before adding Task 2.4 code. |
 | 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/application/hardware-query-service.js` | 1 | Expected RED; implement query service next. |
 | 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/features/hardware-list/render-list.js` | 1 | Expected RED; implement schema-driven list renderer next. |
+| 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/features/hardware-detail/render-detail.js` | 1 | Expected RED; implement schema-driven detail renderer next. |
 
 ## 5-Question Reboot Check
 
 | Question | Answer |
 |----------|--------|
-| Where am I? | Ready for Task 3.2 Schema-Driven Detail Renderer. |
-| Where am I going? | Start Task 3.2 after reading recovery files and implementation plan details. |
+| Where am I? | Task 3.2 Schema-Driven Detail Renderer. |
+| Where am I going? | Add RED detail renderer tests, implement a view-model-only detail renderer, verify, then commit and push. |
 | What's the goal? | Continue the multi-hardware implementation one atomic task at a time. |
 | What have I learned? | See `findings.md`. |
 | What have I done? | Bootstrapped planning-with-files records and read Task 1.3. |
