@@ -662,7 +662,7 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add behavior tests**
+- [x] **Step 1: Add behavior tests**
 
 Update tests to assert current GPU page behavior still works through the new service:
 
@@ -671,11 +671,11 @@ Update tests to assert current GPU page behavior still works through the new ser
 - render mobile warning;
 - render Time Spy value.
 
-- [ ] **Step 2: Refactor app data path**
+- [x] **Step 2: Refactor app data path**
 
 Use `JsonHardwareRepository` and `HardwareQueryService` internally while preserving current UI.
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 

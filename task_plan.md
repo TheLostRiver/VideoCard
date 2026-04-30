@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Phase 22: Next Task Readiness After Task 3.2
+Phase 24: Task 3.3 Verification And Records
 
 ## Phases
 
@@ -186,6 +186,23 @@ Phase 22: Next Task Readiness After Task 3.2
 - [x] Record next task as Task 3.3.
 - **Status:** complete
 
+### Phase 23: Task 3.3 Wire GPU Page To Hardware Query Service
+
+- [x] Read Task 3.3 implementation plan details.
+- [x] Add failing service-backed page behavior tests.
+- [x] Confirm RED failure before app service-backed helpers exist.
+- [x] Refactor app data path to use Hardware Query Service while preserving current UI.
+- [x] Confirm `npm.cmd test` passes.
+- **Status:** complete
+
+### Phase 24: Task 3.3 Verification And Records
+
+- [x] Run `npm.cmd run verify`.
+- [x] Update implementation plan checkboxes.
+- [x] Update recovery records.
+- [ ] Commit and push Task 3.3.
+- **Status:** in_progress
+
 ## Key Questions
 
 1. What is the repository contract surface for future JSON and PostgreSQL adapters?
@@ -216,6 +233,7 @@ Phase 22: Next Task Readiness After Task 3.2
 | Start Task 3.2 detail renderer with view-model-only input | It should consume `HardwareDetailViewModel` from the query service and avoid legacy GPU field assumptions. |
 | Keep detail renderer as pure HTML functions | This keeps Task 3.3 wiring focused on data flow instead of mixing rendering and query logic. |
 | Start Task 3.3 next | Task 3.2 is implemented, verified, committed, and pushed as `b2c9445`. |
+| Use dynamic local JSON repository loading in app helpers | `JsonHardwareRepository` imports Node `fs`, so app code must not statically import it into the browser bundle. |
 
 ## Errors Encountered
 
@@ -229,3 +247,5 @@ Phase 22: Next Task Readiness After Task 3.2
 | `ERR_MODULE_NOT_FOUND` for `src/application/hardware-query-service.js` | 1 | Expected RED for Task 2.4; implement the repository-backed query service next. |
 | `ERR_MODULE_NOT_FOUND` for `src/features/hardware-list/render-list.js` | 1 | Expected RED for Task 3.1; implement the schema-driven list renderer next. |
 | `ERR_MODULE_NOT_FOUND` for `src/features/hardware-detail/render-detail.js` | 1 | Expected RED for Task 3.2; implement the schema-driven detail renderer next. |
+| Missing export `createGpuPageHardwareModel` from `src/app.js` | 1 | Expected RED for Task 3.3; add service-backed page model helpers next. |
+| User-profile `planning-with-files` catchup path was missing | 1 | Reran catchup with the workspace-installed `.codex\skills\planning-with-files\scripts\session-catchup.py` path. |

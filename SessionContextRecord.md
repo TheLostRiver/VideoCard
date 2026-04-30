@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Ready for Task 3.3: Wire GPU Page To Hardware Query Service
+Task: Task 3.3: Wire GPU Page To Hardware Query Service
 
-Status: Task 3.2 is complete, verified, committed, and pushed to `origin/main` as `b2c9445`. The schema-driven detail renderer renders generic `HardwareDetailViewModel` fields without GPU-specific source assumptions. Next implementation task is Task 3.3: Wire GPU Page To Hardware Query Service.
+Status: Task 3.2 is complete and pushed. Implementation commit: `b2c9445 feat: add schema-driven hardware detail renderer`. Push-completion record commit: `7ccefa2 chore: record task3.2 push completion`. Task 3.3 implementation, full verification, and browser smoke test are complete. Commit and push are pending.
 
 ## Current Date
 
@@ -66,24 +66,25 @@ Core model:
 - Modified `findings.md`
 - Modified `progress.md`
 - Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
-- Created `tests/hardware-detail-render.test.mjs`
-- Created `src/features/hardware-detail/render-detail.js`
+- Modified `src/app.js`
+- Modified `tests/app-render.test.mjs`
 
 ## Next Step
 
-1. Start Task 3.3 only after reading this file, `PROJECT_STATE.md`, the implementation plan, `task_plan.md`, `findings.md`, `progress.md`, and `git status -sb`.
-2. Update tests to assert current GPU page behavior still works through the new service.
-3. Refactor `src/app.js` to use `JsonHardwareRepository` and `HardwareQueryService` internally while preserving current UI.
+1. Commit and push `refactor: route gpu page through hardware query service`.
+2. Record Task 3.3 push completion, verify, commit, and push the record update.
+3. Start Task 4.1 only after Task 3.3 push-completion record commit is also pushed.
 
 ## Verification Status
 
-Task 3.2 full verification passed and the implementation commit was pushed.
+Task 3.3 full verification and browser smoke test passed. Commit and push are pending.
 
 Latest result:
 
 - command: `npm.cmd run verify`
 - data validation: `Validated 12 GPU records.`
-- tests: 66 pass / 0 fail
+- tests: 67 pass / 0 fail
+- browser smoke: `http://localhost:4173/#rtx-4070-laptop` rendered 4070 Laptop, mobile warning, Time Spy value, and 0 console errors
 
 ## Important Commands
 

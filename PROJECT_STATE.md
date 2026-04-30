@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 3.2 完成并已推送，schema-driven detail renderer 已新增。
+阶段：Multi-Hardware Platform Implementation Task 3.3 完整验证完成，准备提交推送。
 
-当前任务：准备进入 Task 3.3: Wire GPU Page To Hardware Query Service。
+当前任务：Task 3.3: Wire GPU Page To Hardware Query Service。
 
-下一步：进入 Task 3.3。开始前必须读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、`task_plan.md`、`findings.md`、`progress.md` 和实现计划。
+下一步：提交并推送 `refactor: route gpu page through hardware query service`，随后记录 Task 3.3 push completion。
 
 ## 工作规则
 
@@ -116,6 +116,12 @@
 - Task 3.2 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 66 pass / 0 fail。
 - Task 3.2 推送完成：`b2c9445 feat: add schema-driven hardware detail renderer` 已推送到 `origin/main`。
 - Task 3.2 计划 checkbox 已更新完成。
+- Task 3.2 push 记录完成：`7ccefa2 chore: record task3.2 push completion` 已推送到 `origin/main`。
+- Task 3.3 启动检查完成：已读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、`task_plan.md`、`findings.md`、`progress.md`、实现计划 Task 3.3、`src/app.js`、`tests/app-render.test.mjs` 和 `git status -sb`。
+- Task 3.3 RED 完成：新增 service-backed GPU 页面行为测试，先运行 `npm.cmd test`，按预期因 `src/app.js` 缺少 `createGpuPageHardwareModel` 导出失败。
+- Task 3.3 GREEN 完成：`src/app.js` 新增基于 `HardwareQueryService` 的页面模型 helper，并用动态 import 加载本地 JSON repository，避免浏览器静态导入 Node `fs` repository。
+- Task 3.3 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 67 pass / 0 fail。
+- Task 3.3 浏览器烟测完成：`http://localhost:4173/#rtx-4070-laptop` 显示 4070 Laptop、移动版提示和 Time Spy 分数，浏览器 console error 为 0。
 
 ## 最近验证
 
@@ -196,9 +202,14 @@
 - Task 3.2 RED 验证：`npm.cmd test` 失败，错误为 `ERR_MODULE_NOT_FOUND`，目标模块 `src/features/hardware-detail/render-detail.js` 不存在，符合预期。
 - Task 3.2 GREEN 验证：`npm.cmd test` 通过，测试 66 pass / 0 fail。
 - Task 3.2 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 66 pass / 0 fail。
+- Task 3.3 RED 验证：`npm.cmd test` 失败，错误为 `src/app.js` 未导出 `createGpuPageHardwareModel`，符合预期。
+- Task 3.3 GREEN 验证：`npm.cmd test` 通过，测试 67 pass / 0 fail。
+- Task 3.3 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 67 pass / 0 fail。
+- Task 3.3 浏览器烟测：`http://localhost:4173/#rtx-4070-laptop` 渲染 `GeForce RTX 4070 Laptop GPU`、移动版提示和 `12,345`，console error 为空。
 
 ## 最近提交
 
+- `7ccefa2 chore: record task3.2 push completion`
 - `b2c9445 feat: add schema-driven hardware detail renderer`
 - `a6ca841 chore: record task3.1 push completion`
 - `9297f1a feat: add schema-driven hardware list renderer`

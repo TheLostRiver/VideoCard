@@ -1,5 +1,6 @@
 import { BRANDS, SEGMENTS, SORT_OPTIONS, TIERS } from "./data/constants.js";
 import { gpus } from "./data/gpus.js";
+import { createHardwareQueryService } from "./application/hardware-query-service.js";
 import { filterGpus, sortGpus } from "./utils/filters.js";
 import { formatBenchmark, formatClock, formatMemory, formatNumber, formatPower } from "./utils/format.js";
 import { getMaxPerformanceIndex, getPerformanceWidth, groupByTier } from "./utils/performance.js";
@@ -23,6 +24,51 @@ export function shouldShowMobileDrawer(gpu, state) {
 
 export function getUniqueValues(items, key) {
   return [...new Set(items.map((item) => item[key]).filter(Boolean))].sort();
+}
+
+export async function createGpuPageHardwareModel(options = {}) {
+  const repository = options.repository || await createDefaultHardwareRepository();
+  const service = options.service || createHardwareQueryService(repository);
+  const listViewModel = await service.getListViewModel("gpu");
+  const detailViewModels = new Map();
+
+  await Promise.all(listViewModel.items.map(async (item) => {
+    detailViewModels.set(item.id, await service.getDetailViewModel(item.id));
+  }));
+
+  return {
+    listViewModel,
+    getDetailViewModel(id) {
+      return detailViewModels.get(id) || null;
+    }
+  };
+}
+
+export function searchHardwareListItems(items = [], query = "") {
+  const normalizedQuery = query.trim().toLowerCase();
+  if (!normalizedQuery) return items;
+
+  return items.filter((item) => getHardwareListSearchText(item).includes(normalizedQuery));
+}
+
+async function createDefaultHardwareRepository() {
+  const { createJsonHardwareRepository } = await import("./infrastructure/json/json-hardware-repository.js");
+  return createJsonHardwareRepository();
+}
+
+function getHardwareListSearchText(item) {
+  return [
+    item.title,
+    item.subtitle,
+    item.primaryScore?.displayValue,
+    item.power?.displayValue,
+    item.recommendation?.displayValue,
+    ...(item.badges || []).flatMap((badge) => [badge.id, badge.label]),
+    ...(item.facts || []).flatMap((fact) => [fact.label, fact.displayValue])
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
 }
 
 export function renderFilterChips(items = gpus) {

@@ -95,6 +95,12 @@
 | Task 3.2 GREEN | `npm.cmd test` | Schema-driven detail renderer tests pass and suite remains green | 66 pass / 0 fail | Pass |
 | Task 3.2 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 66 pass / 0 fail | Pass |
 | Task 3.2 push | `git push --porcelain origin main` | Push Task 3.2 to origin/main | `a6ca841..b2c9445` pushed | Pass |
+| Task 3.2 push-record push | `git push --porcelain origin main` | Push Task 3.2 record commit to origin/main | `b2c9445..7ccefa2` pushed | Pass |
+| Resume Task 3.3 | Read recovery records, app files, and implementation plan | Clean workspace and Task 3.3 requirements known | `git status -sb` returned `## main...origin/main`; Task 3.3 requirements captured | Pass |
+| Task 3.3 RED | `npm.cmd test` | Fail because app service-backed helpers do not exist | Failed because `src/app.js` does not export `createGpuPageHardwareModel` | Pass |
+| Task 3.3 GREEN | `npm.cmd test` | Service-backed GPU page behavior passes and suite remains green | 67 pass / 0 fail | Pass |
+| Task 3.3 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 67 pass / 0 fail | Pass |
+| Task 3.3 browser smoke | Browser Use at `http://localhost:4173/#rtx-4070-laptop` | Current browser UI still renders | 4070 Laptop, mobile warning, `12,345`, and 0 console errors | Pass |
 
 ## Error Log
 
@@ -112,13 +118,15 @@
 | 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/application/hardware-query-service.js` | 1 | Expected RED; implement query service next. |
 | 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/features/hardware-list/render-list.js` | 1 | Expected RED; implement schema-driven list renderer next. |
 | 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/features/hardware-detail/render-detail.js` | 1 | Expected RED; implement schema-driven detail renderer next. |
+| 2026-05-01 | Missing export `createGpuPageHardwareModel` from `src/app.js` | 1 | Expected RED; implement service-backed page model helpers next. |
+| 2026-05-01 | User-profile `planning-with-files` catchup path did not exist | 1 | Reran catchup with the workspace-installed `.codex\skills\planning-with-files\scripts\session-catchup.py` path. |
 
 ## 5-Question Reboot Check
 
 | Question | Answer |
 |----------|--------|
-| Where am I? | Ready for Task 3.3 Wire GPU Page To Hardware Query Service. |
-| Where am I going? | Start Task 3.3 after reading recovery files and implementation plan details. |
+| Where am I? | Task 3.3 Wire GPU Page To Hardware Query Service. |
+| Where am I going? | Add RED app behavior tests, route service-backed page data through HardwareQueryService, verify, then commit and push. |
 | What's the goal? | Continue the multi-hardware implementation one atomic task at a time. |
 | What have I learned? | See `findings.md`. |
 | What have I done? | Bootstrapped planning-with-files records and read Task 1.3. |

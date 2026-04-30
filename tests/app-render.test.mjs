@@ -2,13 +2,17 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { gpus } from "../src/data/gpus.js";
 import {
+  createGpuPageHardwareModel,
   createInitialState,
   getUniqueValues,
   renderDetailMarkup,
   renderFilterChips,
   renderGpuRow,
+  searchHardwareListItems,
   shouldShowMobileDrawer
 } from "../src/app.js";
+import { renderHardwareDetail } from "../src/features/hardware-detail/render-detail.js";
+import { renderHardwareListItem } from "../src/features/hardware-list/render-list.js";
 
 test("createInitialState selects GPU id from hash", () => {
   const state = createInitialState("#rtx-4070-desktop", "rtx-4090-desktop");
@@ -54,4 +58,23 @@ test("renderFilterChips renders brands, segments, and generations", () => {
   assert.match(html, /data-filter-value="nvidia"/);
   assert.match(html, /data-filter-value="mobile"/);
   assert.match(html, /data-filter-value="RTX 40"/);
+});
+
+test("service-backed GPU page model preserves search, mobile badge, warning, and benchmark rendering", async () => {
+  const pageModel = await createGpuPageHardwareModel();
+  const matches = searchHardwareListItems(pageModel.listViewModel.items, "4070");
+  const laptop4070 = matches.find((item) => item.id === "rtx-4070-laptop");
+
+  assert.equal(matches.length, 2);
+  assert.ok(laptop4070);
+
+  const rowHtml = renderHardwareListItem(laptop4070, { selectedId: laptop4070.id });
+  assert.match(rowHtml, /GeForce RTX 4070 Laptop GPU/);
+  assert.match(rowHtml, /hardware-list-badge/);
+  assert.match(rowHtml, /mobile/);
+
+  const detailHtml = renderHardwareDetail(pageModel.getDetailViewModel(laptop4070.id));
+  assert.match(detailHtml, /移动版性能受 TGP、散热和厂商调校影响/);
+  assert.match(detailHtml, /Time Spy Graphics/);
+  assert.match(detailHtml, /12,345/);
 });

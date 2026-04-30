@@ -69,6 +69,12 @@
   - test missing metrics display `待补充`;
   - ensure the renderer contains no GPU-only assumptions;
   - commit message should be `feat: add schema-driven hardware detail renderer`.
+- Implementation plan Task 3.3 requires:
+  - modify `src/app.js`;
+  - modify `tests/app-render.test.mjs`;
+  - update tests to assert current GPU page behavior still works through the new service: search `4070`, mobile badge, mobile warning, Time Spy value;
+  - use `JsonHardwareRepository` and `HardwareQueryService` internally while preserving current UI;
+  - commit message should be `refactor: route gpu page through hardware query service`.
 - Architecture model fields read from the architecture document:
   - `HardwareItem` includes `id`, `categoryId`, `name`, `manufacturerId`, `generation`, `architecture`, `releaseDate`, `marketSegmentIds`, `status`, `notes`, `createdAt`, and `updatedAt`.
   - `MetricValue` includes `id`, `itemId`, `metricId`, value fields, `confidence`, `sourceIds`, optional `note`, and `updatedAt`.
@@ -103,6 +109,9 @@
 | Treat `a6ca841` as Task 3.1 push completion record commit | Task 3.2 starts only after the Task 3.1 record commit is also pushed. |
 | Keep schema-driven detail renderer view-model-only | `render-detail.js` renders only generic item, warnings, groups, rows, and display values; it does not read legacy GPU data fields. |
 | Treat `b2c9445` as Task 3.2 implementation commit | The schema-driven hardware detail renderer task is implemented, verified, and pushed; the next task is Task 3.3. |
+| Treat `7ccefa2` as Task 3.2 push completion record commit | Task 3.3 starts only after the Task 3.2 record commit is also pushed. |
+| Avoid static `JsonHardwareRepository` import in browser app code | The repository uses Node `fs`, so Task 3.3 should load it dynamically only for local/service-backed data helpers. |
+| Keep Task 3.3 browser UI path conservative for now | `initApp()` still uses the existing static GPU array while the new exported page model proves the service-backed path; later browser repository work can replace the runtime UI data path without importing Node `fs`. |
 
 ## Issues Encountered
 
@@ -117,6 +126,7 @@
 | Context nearing full before Task 2.3 | Wrote this checkpoint before editing Task 2.3 files. |
 | Windows sandbox blocked recovery reads with `CreateProcessWithLogonW failed: 1326` | Re-ran the same read-only commands with escalation and completed the required recovery-file reread. |
 | Task 2.3 recovery files still said record commit was pending after `87c96bc` was pushed | Corrected the recovery files at Task 2.4 startup before adding Task 2.4 code. |
+| User-profile `planning-with-files` catchup script path was absent | Reran catchup with the workspace-installed `.codex\skills\planning-with-files\scripts\session-catchup.py` path and continued. |
 
 ## Resources
 
@@ -139,4 +149,4 @@
 
 ## Visual/Browser Findings
 
-- No browser or image findings in this phase.
+- Task 3.3 browser smoke passed on `http://localhost:4173/#rtx-4070-laptop`: page title was `游戏显卡天梯图`, the DOM contained `GeForce RTX 4070 Laptop GPU`, the mobile warning, and the `12,345` Time Spy value, with 0 browser console errors.
