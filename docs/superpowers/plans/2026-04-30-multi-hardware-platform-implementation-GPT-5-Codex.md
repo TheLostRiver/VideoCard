@@ -256,7 +256,7 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add failing tests**
+- [x] **Step 1: Add failing tests**
 
 Test `validateCategorySchema(schema)` with:
 
@@ -274,7 +274,7 @@ npm.cmd test
 
 Expected: fails because `category-schema.js` does not exist.
 
-- [ ] **Step 2: Implement validation**
+- [x] **Step 2: Implement validation**
 
 Implement:
 
@@ -310,7 +310,7 @@ export function assertValidCategorySchema(schema) {
 }
 ```
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 
@@ -321,7 +321,7 @@ npm.cmd run verify
 
 Expected: all tests pass.
 
-- [ ] **Step 4: Update records, commit, push**
+- [x] **Step 4: Update records, commit, push**
 
 Commit:
 

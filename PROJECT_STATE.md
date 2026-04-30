@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 1.1 完成，硬件领域类型常量已新增。
+阶段：Multi-Hardware Platform Implementation Task 1.2 完成，类别 schema 验证器已新增。
 
-当前任务：Task 1.1: Add Hardware Domain Types。
+当前任务：Task 1.2: Add Category Schema Validation。
 
-下一步：进入 Task 1.2: Add Category Schema Validation；开始前必须读取 `SessionContextRecord.md`、`PROJECT_STATE.md` 和实现计划。
+下一步：进入 Task 1.3: Add Repository Contract Tests；开始前必须读取 `SessionContextRecord.md`、`PROJECT_STATE.md` 和实现计划。
 
 ## 工作规则
 
@@ -73,6 +73,9 @@
 - Task 1.1 RED 完成：新增 `tests/hardware-types.test.mjs`，先运行 `npm.cmd test`，按预期因 `src/domain/hardware/types.js` 缺失失败。
 - Task 1.1 GREEN 完成：新增 `src/domain/hardware/types.js`，导出 `HARDWARE_CATEGORY_IDS`、`METRIC_VALUE_TYPES` 和 `ITEM_STATUSES`。
 - Task 1.1 计划 checkbox 已更新。
+- Task 1.2 RED 完成：新增 `tests/hardware-schema.test.mjs`，先运行 `npm.cmd test`，按预期因 `src/domain/hardware/category-schema.js` 缺失失败。
+- Task 1.2 GREEN 完成：新增 `src/domain/hardware/category-schema.js`，导出 `validateCategorySchema` 和 `assertValidCategorySchema`。
+- Task 1.2 计划 checkbox 已更新。
 
 ## 最近验证
 
@@ -127,9 +130,13 @@
 - Task 1.1 RED 验证：`npm.cmd test` 失败，错误为 `ERR_MODULE_NOT_FOUND`，目标模块 `src/domain/hardware/types.js` 不存在，符合预期。
 - Task 1.1 GREEN 验证：`npm.cmd test` 通过，测试 34 pass / 0 fail。
 - Task 1.1 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 34 pass / 0 fail。
+- Task 1.2 RED 验证：`npm.cmd test` 失败，错误为 `ERR_MODULE_NOT_FOUND`，目标模块 `src/domain/hardware/category-schema.js` 不存在，符合预期。
+- Task 1.2 GREEN 验证：`npm.cmd test` 通过，测试 41 pass / 0 fail。
+- Task 1.2 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 41 pass / 0 fail。
 
 ## 最近提交
 
+- `539c486 feat: add hardware domain type constants`
 - `2151325 docs: activate session context workflow`
 - `c136c88 docs: design multi-hardware platform architecture`
 - `dd962e7 docs: analyze multi-hardware architecture`

@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 1.1 - Add Hardware Domain Types
+Task: Task 1.2 - Add Category Schema Validation
 
-Status: complete; verification passed; commit/push pending for Task 1.1.
+Status: complete; verification passed; Task 1.2 commit/push workflow is in progress.
 
 ## Current Date
 
@@ -60,26 +60,26 @@ Core model:
 
 ## Current Files Changed In This Task
 
-- Created `src/domain/hardware/types.js`
-- Created `tests/hardware-types.test.mjs`
+- Created `src/domain/hardware/category-schema.js`
+- Created `tests/hardware-schema.test.mjs`
 - Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
 - Modified `SessionContextRecord.md`
 - Modified `PROJECT_STATE.md`
 
 ## Next Step
 
-1. Commit and push Task 1.1.
-2. Start Task 1.2 only after push succeeds.
+1. Commit and push Task 1.2.
+2. Start Task 1.3 only after push succeeds.
 
 ## Verification Status
 
-Task 1.1 verification passed.
+Task 1.2 verification passed.
 
 Latest result:
 
 - command: `npm.cmd run verify`
 - data validation: `Validated 12 GPU records.`
-- tests: 34 pass / 0 fail
+- tests: 41 pass / 0 fail
 
 ## Important Commands
 
@@ -99,4 +99,4 @@ If resuming after compression:
 4. Check `git status -sb`.
 5. Continue from `Next Step`.
 
-Do not start Task 1.2 until the Task 1.1 commit has been pushed to `origin main`.
+Do not start Task 1.3 until the Task 1.2 commit has been pushed to `origin main`.
