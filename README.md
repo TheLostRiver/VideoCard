@@ -38,6 +38,19 @@
 4. 如果上下文接近爆满或任务状态变复杂，必须先把当前状态写入 `SessionContextRecord.md`。
 5. 上下文压缩或恢复后，第一步必须读取 `SessionContextRecord.md`，再继续执行。
 
+## Codex 工作区规划工具
+
+本仓库已按 workspace installation 方式安装
+[planning-with-files](https://github.com/OthmanAdi/planning-with-files) 的 Codex 集成，来源提交为 `9fb5529`。
+
+- Skill 入口：`.codex/skills/planning-with-files/SKILL.md`
+- Hooks 配置：`.codex/hooks.json`
+- Hook 脚本：`.codex/hooks/`
+
+该工具用于通过 `task_plan.md`、`findings.md`、`progress.md` 维护长期任务上下文。当前项目仍优先遵守 `SessionContextRecord.md` 铁律；后续若启用 planning-with-files，可让两套记录互相引用，避免上下文断层。
+
+注意：上游文档说明当前 Codex hooks 在 Windows 环境存在限制。仓库已保留 hooks 文件，方便支持 hooks 的环境直接使用；在本机 Windows 环境中，至少可以使用已提交的 skill 文件和模板。
+
 ## 本地运行
 
 ```powershell

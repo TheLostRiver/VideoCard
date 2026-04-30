@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 1.2 - Add Category Schema Validation
+Task: Workspace Tooling - Install planning-with-files Codex Integration
 
-Status: complete; verification passed; pushed to `origin/main` as `1aabb38`.
+Status: complete; `.codex/` copied from planning-with-files source commit `9fb5529`; verification passed; confirm git status before continuing.
 
 ## Current Date
 
@@ -60,20 +60,21 @@ Core model:
 
 ## Current Files Changed In This Task
 
-- Created `src/domain/hardware/category-schema.js`
-- Created `tests/hardware-schema.test.mjs`
-- Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
+- Created `.codex/hooks.json`
+- Created `.codex/hooks/`
+- Created `.codex/skills/planning-with-files/`
+- Modified `README.md`
 - Modified `SessionContextRecord.md`
 - Modified `PROJECT_STATE.md`
 
 ## Next Step
 
-1. Start Task 1.3: Add Repository Contract Tests.
-2. Before editing, read `SessionContextRecord.md`, `PROJECT_STATE.md`, and the implementation plan.
+1. Confirm the workspace tooling installation has been committed and pushed to `origin/main`.
+2. Return to Task 1.3: Add Repository Contract Tests.
 
 ## Verification Status
 
-Task 1.2 verification passed.
+Workspace tooling installation verification passed.
 
 Latest result:
 
