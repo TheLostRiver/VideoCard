@@ -105,7 +105,7 @@ scripts/export-postgres-to-json.mjs
 - Create or modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Read project state**
+- [x] **Step 1: Read project state**
 
 Run:
 
@@ -115,7 +115,7 @@ Get-Content -Encoding UTF8 PROJECT_STATE.md
 
 Expected: It mentions the multi-hardware architecture design work.
 
-- [ ] **Step 2: Create `SessionContextRecord.md`**
+- [x] **Step 2: Create `SessionContextRecord.md`**
 
 Content must include:
 
@@ -150,7 +150,7 @@ No code changes in this task yet.
 Finish Task 0.1, run npm.cmd run verify, update PROJECT_STATE.md, commit, and push.
 ```
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 
@@ -160,7 +160,7 @@ npm.cmd run verify
 
 Expected: data validation passes and all tests pass.
 
-- [ ] **Step 4: Update records and commit**
+- [x] **Step 4: Update records and commit**
 
 Update `PROJECT_STATE.md` and `SessionContextRecord.md`.
 

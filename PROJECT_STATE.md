@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：多硬件平台优秀架构设计完成，已新增架构设计文档、原子化实现文档和 SessionContextRecord 机制。
+阶段：Multi-Hardware Platform Implementation Task 0.1 完成，上下文恢复执行机制已正式启用。
 
-当前任务：Multi-Hardware Platform Architecture Design and Atomic Implementation Planning。
+当前任务：Task 0.1: Create Session Context Record。
 
-下一步：从 `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md` 的 Task 0.1 开始执行；任何编码前必须先读取 `SessionContextRecord.md`。
+下一步：进入 Task 1.1: Add Hardware Domain Types；开始前必须读取 `SessionContextRecord.md`、`PROJECT_STATE.md` 和实现计划。
 
 ## 工作规则
 
@@ -69,6 +69,7 @@
 - Implementation Plan 完成：新增 `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`，将架构迁移拆分为多个小型原子任务。
 - Session Context 完成：新增 `SessionContextRecord.md`，记录上下文压缩后的恢复规则、当前架构决策、关键文件和下一步。
 - README 更新：补充多硬件平台架构演进方向、关键文档链接和编码铁律。
+- Task 0.1 完成：已读取 `SessionContextRecord.md`、`PROJECT_STATE.md` 和实现计划，已将 Task 0.1 checkbox 标记为完成，并正式启用上下文恢复执行机制。
 
 ## 最近验证
 
@@ -118,9 +119,12 @@
 - Architecture Design 文档自检：确认新架构文档覆盖 GPU、CPU、手机 SoC、Apple Silicon、国产显卡、同类型对比、复杂后台、接口优先、数据驱动和 PostgreSQL。
 - Implementation Plan 文档自检：确认实现文档包含 `SessionContextRecord.md` 铁律、原子任务执行循环、逐任务验证和 commit/push 要求。
 - Multi-Hardware Architecture 文档验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 31 pass / 0 fail。
+- Task 0.1 启动检查：`git status -sb` 显示 `main...origin/main`，工作区在任务开始前为干净状态。
+- Task 0.1 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 31 pass / 0 fail。
 
 ## 最近提交
 
+- `c136c88 docs: design multi-hardware platform architecture`
 - `dd962e7 docs: analyze multi-hardware architecture`
 - `05ebf40 docs: add local admin editor workflow`
 - `6b4ec18 feat: add local gpu admin editor`
