@@ -113,6 +113,9 @@
 | Avoid static `JsonHardwareRepository` import in browser app code | The repository uses Node `fs`, so Task 3.3 should load it dynamically only for local/service-backed data helpers. |
 | Keep Task 3.3 browser UI path conservative for now | `initApp()` still uses the existing static GPU array while the new exported page model proves the service-backed path; later browser repository work can replace the runtime UI data path without importing Node `fs`. |
 | Treat `e1b6380` as Task 3.3 implementation commit | The GPU page service-backed helper task is implemented, verified, browser-smoked, and pushed; the next task is Task 4.1. |
+| Treat `afd2c66` as Task 3.3 push completion record commit | Task 4.1 starts only after the Task 3.3 record commit is also pushed. |
+| Task 4.1 renderer should accept richer synthetic schema fields | Current `gpu.schema.json` has minimal admin fields, so tests should prove generic support for text, number, select, textarea, range, required markers, and stable names without mutating the production schema in this atomic task. |
+| Task 4.1 renderer remains a pure HTML renderer | It reads only `{ schema, detail }`, maps property and metric fields to controls, and does not depend on the legacy GPU admin implementation. |
 
 ## Issues Encountered
 
@@ -147,6 +150,8 @@
 - `tests/hardware-list-render.test.mjs`
 - `src/features/hardware-detail/render-detail.js`
 - `tests/hardware-detail-render.test.mjs`
+- `src/features/schema-form/render-schema-form.js`
+- `tests/schema-form-render.test.mjs`
 
 ## Visual/Browser Findings
 

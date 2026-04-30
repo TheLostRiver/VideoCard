@@ -103,6 +103,11 @@
 | Task 3.3 browser smoke | Browser Use at `http://localhost:4173/#rtx-4070-laptop` | Current browser UI still renders | 4070 Laptop, mobile warning, `12,345`, and 0 console errors | Pass |
 | Task 3.3 push | `git push --porcelain origin main` | Push Task 3.3 to origin/main | `7ccefa2..e1b6380` pushed | Pass |
 | Task 3.3 push-record verify | `npm.cmd run verify` | Data validation and all tests pass before the push-completion record commit | `Validated 12 GPU records.` and 67 pass / 0 fail | Pass |
+| Task 3.3 push-record push | `git push --porcelain origin main` | Push Task 3.3 record commit to origin/main | `e1b6380..afd2c66` pushed | Pass |
+| Resume Task 4.1 | Read recovery records, schema/admin files, and implementation plan | Clean workspace and Task 4.1 requirements known | `git status -sb` returned `## main...origin/main`; Task 4.1 requirements captured | Pass |
+| Task 4.1 RED | `npm.cmd test` | Fail because schema form renderer does not exist | Failed with `ERR_MODULE_NOT_FOUND` for `src/features/schema-form/render-schema-form.js` | Pass |
+| Task 4.1 GREEN | `npm.cmd test` | Schema form renderer tests pass and suite remains green | 70 pass / 0 fail | Pass |
+| Task 4.1 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 70 pass / 0 fail | Pass |
 
 ## Error Log
 
@@ -122,13 +127,14 @@
 | 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/features/hardware-detail/render-detail.js` | 1 | Expected RED; implement schema-driven detail renderer next. |
 | 2026-05-01 | Missing export `createGpuPageHardwareModel` from `src/app.js` | 1 | Expected RED; implement service-backed page model helpers next. |
 | 2026-05-01 | User-profile `planning-with-files` catchup path did not exist | 1 | Reran catchup with the workspace-installed `.codex\skills\planning-with-files\scripts\session-catchup.py` path. |
+| 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/features/schema-form/render-schema-form.js` | 1 | Expected RED; implement schema form renderer next. |
 
 ## 5-Question Reboot Check
 
 | Question | Answer |
 |----------|--------|
-| Where am I? | Task 3.3 Wire GPU Page To Hardware Query Service. |
-| Where am I going? | Add RED app behavior tests, route service-backed page data through HardwareQueryService, verify, then commit and push. |
+| Where am I? | Task 4.1 Add Schema Form Renderer. |
+| Where am I going? | Add RED schema form renderer tests, implement the renderer, verify, then commit and push. |
 | What's the goal? | Continue the multi-hardware implementation one atomic task at a time. |
 | What have I learned? | See `findings.md`. |
-| What have I done? | Bootstrapped planning-with-files records and read Task 1.3. |
+| What have I done? | Completed and pushed Task 3.3, then read Task 4.1 recovery and implementation context. |

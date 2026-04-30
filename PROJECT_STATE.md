@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 3.3 已推送，正在记录 push completion。
+阶段：Multi-Hardware Platform Implementation Task 4.1 完整验证完成，准备提交推送。
 
-当前任务：Task 3.3 push completion 记录。
+当前任务：Task 4.1: Add Schema Form Renderer。
 
-下一步：验证并推送 Task 3.3 push completion 记录，然后启动 Task 4.1: Add Schema Form Renderer。
+下一步：提交并推送 `feat: add schema-driven admin form renderer`，随后记录 Task 4.1 push completion。
 
 ## 工作规则
 
@@ -125,6 +125,11 @@
 - Task 3.3 推送完成：`e1b6380 refactor: route gpu page through hardware query service` 已推送到 `origin/main`。
 - Task 3.3 计划 checkbox 已更新完成。
 - Task 3.3 push completion 验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 67 pass / 0 fail。
+- Task 3.3 push 记录完成：`afd2c66 chore: record task3.3 push completion` 已推送到 `origin/main`。
+- Task 4.1 启动检查完成：已读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、`task_plan.md`、`findings.md`、`progress.md`、实现计划 Task 4.1、GPU schema、旧后台表单渲染器和 `git status -sb`。
+- Task 4.1 RED 完成：新增 `tests/schema-form-render.test.mjs`，先运行 `npm.cmd test`，按预期因 `src/features/schema-form/render-schema-form.js` 缺失失败。
+- Task 4.1 GREEN 完成：新增 `src/features/schema-form/render-schema-form.js`，实现 schema-driven 表单、字段组、文本/数字/下拉/多行文本/range 控件、required 标记和稳定字段名。
+- Task 4.1 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 70 pass / 0 fail。
 
 ## 最近验证
 
@@ -210,11 +215,15 @@
 - Task 3.3 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 67 pass / 0 fail。
 - Task 3.3 浏览器烟测：`http://localhost:4173/#rtx-4070-laptop` 渲染 `GeForce RTX 4070 Laptop GPU`、移动版提示和 `12,345`，console error 为空。
 - Task 3.3 push-record 验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 67 pass / 0 fail。
+- Task 4.1 RED 验证：`npm.cmd test` 失败，错误为 `ERR_MODULE_NOT_FOUND`，目标模块 `src/features/schema-form/render-schema-form.js` 不存在，符合预期。
+- Task 4.1 GREEN 验证：`npm.cmd test` 通过，测试 70 pass / 0 fail。
+- Task 4.1 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 70 pass / 0 fail。
 
 ## 最近提交
 
-- `7ccefa2 chore: record task3.2 push completion`
+- `afd2c66 chore: record task3.3 push completion`
 - `e1b6380 refactor: route gpu page through hardware query service`
+- `7ccefa2 chore: record task3.2 push completion`
 - `b2c9445 feat: add schema-driven hardware detail renderer`
 - `a6ca841 chore: record task3.1 push completion`
 - `9297f1a feat: add schema-driven hardware list renderer`

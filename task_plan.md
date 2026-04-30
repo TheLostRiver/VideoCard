@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Phase 25: Next Task Readiness After Task 3.3
+Phase 27: Task 4.1 Verification And Records
 
 ## Phases
 
@@ -211,12 +211,20 @@ Phase 25: Next Task Readiness After Task 3.3
 
 ### Phase 26: Task 4.1 Schema Form Renderer
 
-- [ ] Read Task 4.1 implementation plan details.
-- [ ] Add failing schema form renderer tests.
-- [ ] Confirm RED failure before renderer exists.
-- [ ] Implement schema form renderer from schema fields.
-- [ ] Confirm `npm.cmd test` passes.
-- **Status:** pending
+- [x] Read Task 4.1 implementation plan details.
+- [x] Add failing schema form renderer tests.
+- [x] Confirm RED failure before renderer exists.
+- [x] Implement schema form renderer from schema fields.
+- [x] Confirm `npm.cmd test` passes.
+- **Status:** complete
+
+### Phase 27: Task 4.1 Verification And Records
+
+- [x] Run `npm.cmd run verify`.
+- [x] Update implementation plan checkboxes.
+- [x] Update recovery records.
+- [ ] Commit and push Task 4.1.
+- **Status:** in_progress
 
 ## Key Questions
 
@@ -250,6 +258,8 @@ Phase 25: Next Task Readiness After Task 3.3
 | Start Task 3.3 next | Task 3.2 is implemented, verified, committed, and pushed as `b2c9445`. |
 | Use dynamic local JSON repository loading in app helpers | `JsonHardwareRepository` imports Node `fs`, so app code must not statically import it into the browser bundle. |
 | Start Task 4.1 next | Task 3.3 is implemented, verified, browser-smoked, committed, and pushed as `e1b6380`. |
+| Treat `afd2c66` as Task 3.3 push completion record commit | Task 4.1 starts only after the Task 3.3 record commit is also pushed. |
+| Keep schema form renderer pure and schema-only | Task 4.1 should not wire the admin UI yet; it establishes a reusable renderer before mutation service/admin integration tasks. |
 
 ## Errors Encountered
 
@@ -265,3 +275,4 @@ Phase 25: Next Task Readiness After Task 3.3
 | `ERR_MODULE_NOT_FOUND` for `src/features/hardware-detail/render-detail.js` | 1 | Expected RED for Task 3.2; implement the schema-driven detail renderer next. |
 | Missing export `createGpuPageHardwareModel` from `src/app.js` | 1 | Expected RED for Task 3.3; add service-backed page model helpers next. |
 | User-profile `planning-with-files` catchup path was missing | 1 | Reran catchup with the workspace-installed `.codex\skills\planning-with-files\scripts\session-catchup.py` path. |
+| `ERR_MODULE_NOT_FOUND` for `src/features/schema-form/render-schema-form.js` | 1 | Expected RED for Task 4.1; implement the schema form renderer next. |

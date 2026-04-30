@@ -707,7 +707,7 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add failing tests**
+- [x] **Step 1: Add failing tests**
 
 Test:
 
@@ -715,11 +715,11 @@ Test:
 - required marker renders;
 - field names use stable keys.
 
-- [ ] **Step 2: Implement renderer**
+- [x] **Step 2: Implement renderer**
 
 Renderer must accept `{ schema, detail }` and return HTML.
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 
