@@ -183,7 +183,7 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add failing tests**
+- [x] **Step 1: Add failing tests**
 
 Create tests that import constants/factory helpers from `src/domain/hardware/types.js` and assert:
 
@@ -199,7 +199,7 @@ npm.cmd test
 
 Expected: fails because `src/domain/hardware/types.js` does not exist.
 
-- [ ] **Step 2: Implement minimal type constants**
+- [x] **Step 2: Implement minimal type constants**
 
 Create `src/domain/hardware/types.js` with exported frozen constants:
 
@@ -224,7 +224,7 @@ export const METRIC_VALUE_TYPES = Object.freeze([
 export const ITEM_STATUSES = Object.freeze(["draft", "published", "archived"]);
 ```
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 
@@ -235,7 +235,7 @@ npm.cmd run verify
 
 Expected: all tests pass.
 
-- [ ] **Step 4: Update records, commit, push**
+- [x] **Step 4: Update records, commit, push**
 
 Update `SessionContextRecord.md`, `PROJECT_STATE.md`, and this checkbox.
 

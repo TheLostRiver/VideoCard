@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 0.1 完成，上下文恢复执行机制已正式启用。
+阶段：Multi-Hardware Platform Implementation Task 1.1 完成，硬件领域类型常量已新增。
 
-当前任务：Task 0.1: Create Session Context Record。
+当前任务：Task 1.1: Add Hardware Domain Types。
 
-下一步：进入 Task 1.1: Add Hardware Domain Types；开始前必须读取 `SessionContextRecord.md`、`PROJECT_STATE.md` 和实现计划。
+下一步：进入 Task 1.2: Add Category Schema Validation；开始前必须读取 `SessionContextRecord.md`、`PROJECT_STATE.md` 和实现计划。
 
 ## 工作规则
 
@@ -70,6 +70,9 @@
 - Session Context 完成：新增 `SessionContextRecord.md`，记录上下文压缩后的恢复规则、当前架构决策、关键文件和下一步。
 - README 更新：补充多硬件平台架构演进方向、关键文档链接和编码铁律。
 - Task 0.1 完成：已读取 `SessionContextRecord.md`、`PROJECT_STATE.md` 和实现计划，已将 Task 0.1 checkbox 标记为完成，并正式启用上下文恢复执行机制。
+- Task 1.1 RED 完成：新增 `tests/hardware-types.test.mjs`，先运行 `npm.cmd test`，按预期因 `src/domain/hardware/types.js` 缺失失败。
+- Task 1.1 GREEN 完成：新增 `src/domain/hardware/types.js`，导出 `HARDWARE_CATEGORY_IDS`、`METRIC_VALUE_TYPES` 和 `ITEM_STATUSES`。
+- Task 1.1 计划 checkbox 已更新。
 
 ## 最近验证
 
@@ -121,9 +124,13 @@
 - Multi-Hardware Architecture 文档验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 31 pass / 0 fail。
 - Task 0.1 启动检查：`git status -sb` 显示 `main...origin/main`，工作区在任务开始前为干净状态。
 - Task 0.1 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 31 pass / 0 fail。
+- Task 1.1 RED 验证：`npm.cmd test` 失败，错误为 `ERR_MODULE_NOT_FOUND`，目标模块 `src/domain/hardware/types.js` 不存在，符合预期。
+- Task 1.1 GREEN 验证：`npm.cmd test` 通过，测试 34 pass / 0 fail。
+- Task 1.1 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 34 pass / 0 fail。
 
 ## 最近提交
 
+- `2151325 docs: activate session context workflow`
 - `c136c88 docs: design multi-hardware platform architecture`
 - `dd962e7 docs: analyze multi-hardware architecture`
 - `05ebf40 docs: add local admin editor workflow`
