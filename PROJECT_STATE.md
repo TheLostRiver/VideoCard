@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 2.3 完成验证，read-only JSON hardware repository 已新增，等待 commit/push。
+阶段：Multi-Hardware Platform Implementation Task 2.3 完成并已推送，read-only JSON hardware repository 已新增。
 
-当前任务：Task 2.3: Add JSON Hardware Repository Read Path。
+当前任务：准备进入 Task 2.4: Add Hardware Query Service。
 
-下一步：提交并推送 Task 2.3；随后记录 push 完成并进入 Task 2.4: Add Hardware Query Service。
+下一步：完成 Task 2.3 push 记录提交；随后进入 Task 2.4: Add Hardware Query Service。开始前必须读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、`task_plan.md`、`findings.md`、`progress.md` 和实现计划。
 
 ## 工作规则
 
@@ -92,7 +92,8 @@
 - Task 2.3 RED 完成：新增 `tests/json-hardware-repository.test.mjs`，先运行 `npm.cmd test`，按预期因 `src/infrastructure/json/json-hardware-repository.js` 缺失失败。
 - Task 2.3 GREEN 完成：新增 `src/infrastructure/json/json-hardware-repository.js`，实现基于 `src/data/gpus.json`、`gpu.schema.json` 和 legacy mapper 的只读 JSON repository。
 - Task 2.3 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 53 pass / 0 fail。
-- Task 2.3 计划 checkbox 已更新到验证完成。
+- Task 2.3 推送完成：`4cfb7af feat: add read-only json hardware repository` 已推送到 `origin/main`。
+- Task 2.3 计划 checkbox 已更新完成。
 
 ## 最近验证
 
@@ -167,6 +168,8 @@
 
 ## 最近提交
 
+- `4cfb7af feat: add read-only json hardware repository`
+- `82be9b9 chore: record task2.2 push completion`
 - `d1eba06 feat: map legacy gpu records to hardware model`
 - `ddce92c chore: record task2.1 push completion`
 - `12527a2 data: add gpu category schema`

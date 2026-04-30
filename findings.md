@@ -71,6 +71,7 @@
 | Treat `SessionContextRecord.md` plus planning files as the compression recovery source | There is no exposed manual context-compression tool, so recovery must rely on local files. |
 | Keep Task 2.3 repository read-only | The task exists to establish the adapter read path; write/edit behavior remains in the existing local admin API until later migration tasks. |
 | Use closure functions inside `createJsonHardwareRepository` | Avoids coupling method behavior to `this`, so repository methods still work if destructured by future services or tests. |
+| Treat `4cfb7af` as Task 2.3 implementation commit | The read-only JSON repository task is implemented, verified, and pushed; the following commit only records push completion. |
 
 ## Issues Encountered
 

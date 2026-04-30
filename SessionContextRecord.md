@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 2.3: Add JSON Hardware Repository Read Path
+Task: Ready for Task 2.4: Add Hardware Query Service
 
-Status: Task 2.3 implementation and full verification are complete. `tests/json-hardware-repository.test.mjs` was added first and failed as expected because `src/infrastructure/json/json-hardware-repository.js` did not exist. The read-only JSON repository was then implemented. `npm.cmd run verify` passes with data validation and 53 pass / 0 fail. Commit and push are still pending.
+Status: Task 2.3 is complete, verified, committed, and pushed to `origin/main` as `4cfb7af`. Push-completion record verification also passed. A push-completion record commit is being prepared now. Next implementation task is Task 2.4: Add Hardware Query Service.
 
 ## Current Date
 
@@ -71,13 +71,13 @@ Core model:
 
 ## Next Step
 
-1. Commit `feat: add read-only json hardware repository`.
-2. Push the commit to `origin/main`.
-3. Record push completion, then prepare Task 2.4.
+1. Commit `chore: record task2.3 push completion`.
+2. Push to `origin/main`.
+3. Start Task 2.4 only after reading this file, `PROJECT_STATE.md`, the implementation plan, `task_plan.md`, `findings.md`, `progress.md`, and `git status -sb`.
 
 ## Verification Status
 
-Task 2.3 full verification passed. Commit and push are pending.
+Task 2.3 full verification passed and implementation commit was pushed. Push-completion record commit is pending.
 
 Latest result:
 
