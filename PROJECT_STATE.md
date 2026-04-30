@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 4.3 已提交并 push，准备记录 push completion。
+阶段：Multi-Hardware Platform Implementation Task 5.1 就绪。
 
 当前任务：Task 5.1: Add Read-Only Hardware API Routes。
 
-下一步：提交并 push `chore: record task4.3 push completion`，然后从 Task 5.1 开始。
+下一步：按实现文档开始 Task 5.1: Add Read-Only Hardware API Routes。
 
 ## 工作规则
 
@@ -149,6 +149,7 @@
 - Task 4.3 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 74 pass / 0 fail。
 - Task 4.3 浏览器烟测完成：`http://localhost:4173/admin.html` 搜索并选择 `GeForce RTX 4070 Laptop GPU`，保存当前 schema form 值成功；前台 `http://localhost:4173/#rtx-4070-laptop` 显示 `45-115W`、`2,175 MHz`、`12,345`，浏览器 console error 为 0。
 - Task 4.3 推送完成：`2858013 refactor: render admin editor from category schema` 已推送到 `origin/main`。
+- Task 4.3 push 记录完成：`4578eea chore: record task4.3 push completion` 已推送到 `origin/main`。
 
 ## 最近验证
 
@@ -251,6 +252,7 @@
 
 ## 最近提交
 
+- `4578eea chore: record task4.3 push completion`
 - `2858013 refactor: render admin editor from category schema`
 - `afd2c66 chore: record task3.3 push completion`
 - `d5b0742 feat: add schema-driven admin form renderer`

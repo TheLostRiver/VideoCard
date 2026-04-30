@@ -19,7 +19,7 @@ The user explicitly required:
 
 Task: Task 5.1: Add Read-Only Hardware API Routes
 
-Status: Task 4.3 is complete and pushed. Implementation commit: `2858013 refactor: render admin editor from category schema`. Push-completion record commit is pending. Task 4.3 changed the local admin editor to render from GPU category schema, parse `property:*` / `metric:*` fields back to legacy GPU records, preserve TGP range units, and serve `.mjs` modules with JavaScript MIME for browser imports. Next implementation task is Task 5.1, adding read-only generic hardware API routes.
+Status: Task 4.3 is complete and pushed. Implementation commit: `2858013 refactor: render admin editor from category schema`. Push-completion record commit: `4578eea chore: record task4.3 push completion`. Task 4.3 changed the local admin editor to render from GPU category schema, parse `property:*` / `metric:*` fields back to legacy GPU records, preserve TGP range units, and serve `.mjs` modules with JavaScript MIME for browser imports. Next implementation task is Task 5.1, adding read-only generic hardware API routes.
 
 ## Current Date
 
@@ -69,14 +69,13 @@ Core model:
 
 ## Next Step
 
-1. Run `npm.cmd run verify` for the push-completion record.
-2. Commit `chore: record task4.3 push completion`.
-3. Push to `origin/main`.
-4. Confirm clean git status.
+1. Read Task 5.1 implementation plan details.
+2. Add failing API tests for generic hardware routes.
+3. Keep the RED/GREEN/verify/commit/push loop.
 
 ## Verification Status
 
-Task 4.3 full verification, browser smoke, implementation commit, and push passed. Push-completion record commit is pending.
+Task 4.3 full verification, browser smoke, implementation commit, push, and push-completion record commit passed.
 
 Latest result:
 

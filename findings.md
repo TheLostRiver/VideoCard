@@ -126,6 +126,7 @@
 | Schema range values should preserve units in form controls | TGP ranges mapped from `valueMin`/`valueMax` need their unit appended so saving the current admin form does not degrade `45-115W` to `45-115`. |
 | Local static service must serve `.mjs` as JavaScript | The browser admin page imports `/scripts/import-legacy-gpus.mjs`; without `text/javascript`, Chrome refuses the module and the admin UI stays in the loading state. |
 | Treat `2858013` as Task 4.3 implementation commit | The schema-form admin editor task is implemented, verified, browser-smoked, and pushed; the next task is Task 5.1. |
+| Treat `4578eea` as Task 4.3 push completion record commit | Task 5.1 starts only after the Task 4.3 record commit is also pushed. |
 
 ## Issues Encountered
 

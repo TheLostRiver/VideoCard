@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Phase 34: Next Task Readiness After Task 4.3
+Ready for Task 5.1: Add Read-Only Hardware API Routes
 
 ## Phases
 
@@ -277,8 +277,8 @@ Phase 34: Next Task Readiness After Task 4.3
 
 - [x] Confirm Task 4.3 implementation commit is pushed.
 - [x] Record next task as Task 5.1.
-- [ ] Confirm clean git status after push-completion record.
-- **Status:** in_progress
+- [x] Confirm clean git status after push-completion record.
+- **Status:** complete
 
 ## Key Questions
 
@@ -322,6 +322,7 @@ Phase 34: Next Task Readiness After Task 4.3
 | Keep Task 4.3 API compatibility with `PUT /api/gpus/:id` | The admin form now renders schema fields, but `buildGpuFromForm` still produces the legacy GPU record expected by the existing local API. |
 | Serve `.mjs` as JavaScript in the local server | The browser admin page imports the legacy mapper module from `/scripts`, so module MIME must be `text/javascript` instead of `application/octet-stream`. |
 | Start Task 5.1 next | Task 4.3 is implemented, verified, browser-smoked, committed, and pushed as `2858013`. |
+| Treat `4578eea` as Task 4.3 push completion record commit | Task 5.1 starts only after the Task 4.3 record commit is also pushed. |
 
 ## Errors Encountered
 
