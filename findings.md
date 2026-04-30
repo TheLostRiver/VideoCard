@@ -125,6 +125,7 @@
 | Task 4.3 should keep the existing legacy GPU API stable | The admin UI can render and parse schema-form fields while still sending a legacy GPU record to `PUT /api/gpus/:id`; generic API routes come later in Phase 5. |
 | Schema range values should preserve units in form controls | TGP ranges mapped from `valueMin`/`valueMax` need their unit appended so saving the current admin form does not degrade `45-115W` to `45-115`. |
 | Local static service must serve `.mjs` as JavaScript | The browser admin page imports `/scripts/import-legacy-gpus.mjs`; without `text/javascript`, Chrome refuses the module and the admin UI stays in the loading state. |
+| Treat `2858013` as Task 4.3 implementation commit | The schema-form admin editor task is implemented, verified, browser-smoked, and pushed; the next task is Task 5.1. |
 
 ## Issues Encountered
 

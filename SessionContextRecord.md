@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 4.3: Replace Admin GPU Form With Schema Form
+Task: Task 5.1: Add Read-Only Hardware API Routes
 
-Status: Task 4.2 is complete and pushed. Implementation commit: `22cd61c feat: add hardware mutation service for json data`. Push-completion record commit: `a1fc662 chore: record task4.2 push completion`. Task 4.3 RED, GREEN, full verify, and browser smoke are complete: admin renderer tests expect schema form fields, `src/admin.js` renders schema-backed admin fields and parses `property:*` / `metric:*` form names back to legacy GPU records, `src/features/schema-form/render-schema-form.js` preserves range units, `scripts/serve.mjs` serves `.mjs` modules as JavaScript for browser imports, and the admin save flow successfully preserved 4070 Laptop values on the front page. Commit and push are pending.
+Status: Task 4.3 is complete and pushed. Implementation commit: `2858013 refactor: render admin editor from category schema`. Push-completion record commit is pending. Task 4.3 changed the local admin editor to render from GPU category schema, parse `property:*` / `metric:*` fields back to legacy GPU records, preserve TGP range units, and serve `.mjs` modules with JavaScript MIME for browser imports. Next implementation task is Task 5.1, adding read-only generic hardware API routes.
 
 ## Current Date
 
@@ -66,22 +66,17 @@ Core model:
 - Modified `findings.md`
 - Modified `progress.md`
 - Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
-- Modified `tests/admin-render.test.mjs`
-- Modified `tests/admin-api.test.mjs`
-- Modified `src/admin.js`
-- Modified `src/features/schema-form/render-schema-form.js`
-- Modified `scripts/serve.mjs`
 
 ## Next Step
 
-1. Stage Task 4.3 files.
-2. Commit `refactor: render admin editor from category schema`.
+1. Run `npm.cmd run verify` for the push-completion record.
+2. Commit `chore: record task4.3 push completion`.
 3. Push to `origin/main`.
-4. Record Task 4.3 push completion and set next task to Task 5.1.
+4. Confirm clean git status.
 
 ## Verification Status
 
-Task 4.3 full verification and browser smoke passed. Task 4.3 commit and push are pending.
+Task 4.3 full verification, browser smoke, implementation commit, and push passed. Push-completion record commit is pending.
 
 Latest result:
 

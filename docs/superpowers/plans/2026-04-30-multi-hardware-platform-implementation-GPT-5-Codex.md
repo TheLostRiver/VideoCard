@@ -830,7 +830,7 @@ Run local server and verify:
 - open `http://localhost:4173/#rtx-4070-laptop`;
 - verify values remain visible.
 
-- [ ] **Step 5: Update records, commit, push**
+- [x] **Step 5: Update records, commit, push**
 
 Commit:
 

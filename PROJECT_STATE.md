@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 4.3 验证和浏览器烟测完成，准备提交和 push。
+阶段：Multi-Hardware Platform Implementation Task 4.3 已提交并 push，准备记录 push completion。
 
-当前任务：Task 4.3: Replace Admin GPU Form With Schema Form。
+当前任务：Task 5.1: Add Read-Only Hardware API Routes。
 
-下一步：提交并 push `refactor: render admin editor from category schema`，随后记录 Task 4.3 push completion。
+下一步：提交并 push `chore: record task4.3 push completion`，然后从 Task 5.1 开始。
 
 ## 工作规则
 
@@ -148,6 +148,7 @@
 - Task 4.3 浏览器修复完成：`scripts/serve.mjs` 新增 `.mjs` JavaScript MIME，避免后台浏览器导入 `/scripts/import-legacy-gpus.mjs` 时停在加载状态；`tests/admin-api.test.mjs` 新增 MIME 回归测试。
 - Task 4.3 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 74 pass / 0 fail。
 - Task 4.3 浏览器烟测完成：`http://localhost:4173/admin.html` 搜索并选择 `GeForce RTX 4070 Laptop GPU`，保存当前 schema form 值成功；前台 `http://localhost:4173/#rtx-4070-laptop` 显示 `45-115W`、`2,175 MHz`、`12,345`，浏览器 console error 为 0。
+- Task 4.3 推送完成：`2858013 refactor: render admin editor from category schema` 已推送到 `origin/main`。
 
 ## 最近验证
 
@@ -246,9 +247,11 @@
 - Task 4.3 MIME 回归验证：`npm.cmd test` 通过，测试 74 pass / 0 fail。
 - Task 4.3 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 74 pass / 0 fail。
 - Task 4.3 浏览器烟测：后台保存 4070 Laptop 当前值成功，前台详情同步显示 `45-115W`、`2,175 MHz`、`12,345`，console error 为空。
+- Task 4.3 push-record 验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 74 pass / 0 fail。
 
 ## 最近提交
 
+- `2858013 refactor: render admin editor from category schema`
 - `afd2c66 chore: record task3.3 push completion`
 - `d5b0742 feat: add schema-driven admin form renderer`
 - `eb18068 chore: record task4.1 push completion`
