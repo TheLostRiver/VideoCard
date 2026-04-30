@@ -91,6 +91,7 @@
 | Treat `2c18375` as Task 2.4 implementation commit | The hardware query service task is implemented, verified, and pushed; the next implementation task is Task 3.1. |
 | Treat `b442252` as Task 2.4 push completion record commit | Task 3.1 starts only after the Task 2.4 record commit is also pushed. |
 | Keep schema-driven list renderer view-model-only | `render-list.js` renders only generic title, badges, score, facts, and selected state fields; it does not read legacy GPU data fields. |
+| Treat `9297f1a` as Task 3.1 implementation commit | The schema-driven hardware list renderer task is implemented, verified, and pushed; the next task is Task 3.2. |
 
 ## Issues Encountered
 

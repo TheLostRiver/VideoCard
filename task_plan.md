@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Phase 17: Task 3.1 Schema-Driven List Renderer
+Phase 19: Next Task Readiness After Task 3.1
 
 ## Phases
 
@@ -154,8 +154,14 @@ Phase 17: Task 3.1 Schema-Driven List Renderer
 - [x] Run `npm.cmd run verify`.
 - [x] Update implementation plan checkboxes.
 - [x] Update recovery records.
-- [ ] Commit and push Task 3.1.
-- **Status:** in_progress
+- [x] Commit and push Task 3.1.
+- **Status:** complete
+
+### Phase 19: Next Task Readiness After Task 3.1
+
+- [x] Confirm clean git status after Task 3.1 push.
+- [x] Record next task as Task 3.2.
+- **Status:** complete
 
 ## Key Questions
 
@@ -183,6 +189,7 @@ Phase 17: Task 3.1 Schema-Driven List Renderer
 | Start Task 3.1 next | Task 2.4 is implemented, verified, committed, and pushed as `2c18375`. |
 | Start Task 3.1 renderer with view-model-only input | Task 3.1 is the first frontend piece that should stop knowing GPU-specific data field names. |
 | Keep list renderer as pure HTML functions | This makes it easy for Task 3.3 to wire into the existing app without coupling rendering to repository/data loading. |
+| Start Task 3.2 next | Task 3.1 is implemented, verified, committed, and pushed as `9297f1a`. |
 
 ## Errors Encountered
 

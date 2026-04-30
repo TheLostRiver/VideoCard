@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 3.1: Add Schema-Driven List Renderer
+Task: Ready for Task 3.2: Add Schema-Driven Detail Renderer
 
-Status: Task 3.1 implementation and full verification are complete. `tests/hardware-list-render.test.mjs` failed as expected before `src/features/hardware-list/render-list.js` existed. The schema-driven list renderer now renders generic `HardwareListItemViewModel` fields without GPU-specific source assumptions. `npm.cmd run verify` passes with data validation and 61 pass / 0 fail. Commit and push are still pending.
+Status: Task 3.1 is complete, verified, committed, and pushed to `origin/main` as `9297f1a`. The schema-driven list renderer renders generic `HardwareListItemViewModel` fields without GPU-specific source assumptions. Next implementation task is Task 3.2: Add Schema-Driven Detail Renderer.
 
 ## Current Date
 
@@ -72,13 +72,13 @@ Core model:
 
 ## Next Step
 
-1. Commit `feat: add schema-driven hardware list renderer`.
-2. Push the commit to `origin/main`.
-3. Record push completion, then prepare Task 3.2.
+1. Start Task 3.2 only after reading this file, `PROJECT_STATE.md`, the implementation plan, `task_plan.md`, `findings.md`, `progress.md`, and `git status -sb`.
+2. Add failing schema-driven detail renderer tests in `tests/hardware-detail-render.test.mjs`.
+3. Confirm RED failure before `src/features/hardware-detail/render-detail.js` exists.
 
 ## Verification Status
 
-Task 3.1 full verification passed. Commit and push are pending.
+Task 3.1 full verification passed and the implementation commit was pushed.
 
 Latest result:
 
