@@ -19,7 +19,7 @@ The user explicitly required:
 
 Task: Task 2.2 - Add Legacy GPU Import Mapper
 
-Status: complete; verification passed; commit/push pending for Task 2.2.
+Status: complete; verification passed; pushed to `origin/main` as `d1eba06`.
 
 ## Current Date
 
@@ -71,8 +71,8 @@ Core model:
 
 ## Next Step
 
-1. Commit and push Task 2.2.
-2. Start Task 2.3 only after push succeeds.
+1. Start Task 2.3: Add JSON Hardware Repository Read Path.
+2. Before editing, read `SessionContextRecord.md`, `PROJECT_STATE.md`, `task_plan.md`, `findings.md`, `progress.md`, and the implementation plan.
 
 ## Verification Status
 

@@ -77,8 +77,14 @@ Phase 7: Task 2.2 Legacy GPU Import Mapper
 - [x] Run `npm.cmd run verify`.
 - [x] Update implementation plan checkboxes.
 - [x] Update `SessionContextRecord.md`, `PROJECT_STATE.md`, `task_plan.md`, `findings.md`, and `progress.md`.
-- [ ] Commit and push Task 2.2.
-- **Status:** in_progress
+- [x] Commit and push Task 2.2.
+- **Status:** complete
+
+### Phase 9: Next Task Readiness
+
+- [x] Confirm clean git status after Task 2.2 push.
+- [x] Record next task as Task 2.3.
+- **Status:** complete
 
 ## Key Questions
 

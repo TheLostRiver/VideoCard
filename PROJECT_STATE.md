@@ -12,7 +12,7 @@
 
 当前任务：Task 2.2: Add Legacy GPU Import Mapper。
 
-下一步：提交并 push Task 2.2 后，进入 Task 2.3: Add JSON Hardware Repository Read Path；开始前必须读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、`task_plan.md`、`findings.md`、`progress.md` 和实现计划。
+下一步：进入 Task 2.3: Add JSON Hardware Repository Read Path；开始前必须读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、`task_plan.md`、`findings.md`、`progress.md` 和实现计划。
 
 ## 工作规则
 
@@ -160,6 +160,7 @@
 
 ## 最近提交
 
+- `d1eba06 feat: map legacy gpu records to hardware model`
 - `ddce92c chore: record task2.1 push completion`
 - `12527a2 data: add gpu category schema`
 - `e06b12b chore: record task1.3 push completion`
