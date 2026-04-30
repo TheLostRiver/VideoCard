@@ -17,13 +17,13 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Workspace Tooling - Install planning-with-files Codex Integration
+Task: Task 1.3 - Add Repository Contract Tests
 
-Status: complete; `.codex/` copied from planning-with-files source commit `9fb5529`; verification passed; confirm git status before continuing.
+Status: complete; verification passed; commit/push pending for Task 1.3.
 
 ## Current Date
 
-2026-04-30
+2026-05-01
 
 ## Current Branch
 
@@ -60,27 +60,29 @@ Core model:
 
 ## Current Files Changed In This Task
 
-- Created `.codex/hooks.json`
-- Created `.codex/hooks/`
-- Created `.codex/skills/planning-with-files/`
-- Modified `README.md`
+- Created `src/domain/hardware/repository-contract.js`
+- Created `tests/hardware-repository-contract.test.mjs`
+- Created `task_plan.md`
+- Created `findings.md`
+- Created `progress.md`
+- Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
 - Modified `SessionContextRecord.md`
 - Modified `PROJECT_STATE.md`
 
 ## Next Step
 
-1. Confirm the workspace tooling installation has been committed and pushed to `origin/main`.
-2. Return to Task 1.3: Add Repository Contract Tests.
+1. Commit and push Task 1.3.
+2. Start Task 2.1 only after push succeeds.
 
 ## Verification Status
 
-Workspace tooling installation verification passed.
+Task 1.3 verification passed.
 
 Latest result:
 
 - command: `npm.cmd run verify`
 - data validation: `Validated 12 GPU records.`
-- tests: 41 pass / 0 fail
+- tests: 45 pass / 0 fail
 
 ## Important Commands
 
@@ -100,4 +102,4 @@ If resuming after compression:
 4. Check `git status -sb`.
 5. Continue from `Next Step`.
 
-Do not start Task 1.3 until the Task 1.2 commit has been pushed to `origin main`.
+Do not start Task 2.1 until the Task 1.3 commit has been pushed to `origin main`.

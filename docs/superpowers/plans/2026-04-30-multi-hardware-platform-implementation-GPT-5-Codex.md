@@ -340,7 +340,7 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add failing tests**
+- [x] **Step 1: Add failing tests**
 
 Test that `createHardwareRepositoryContractTestSuite` can run against a fake repository with these methods:
 
@@ -352,11 +352,11 @@ Test that `createHardwareRepositoryContractTestSuite` can run against a fake rep
 
 Expected: fails because the contract helper does not exist.
 
-- [ ] **Step 2: Implement contract helper**
+- [x] **Step 2: Implement contract helper**
 
 Implement a helper that accepts `{ name, createRepository }` and defines tests for method presence and basic list/detail behavior.
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 
@@ -367,7 +367,7 @@ npm.cmd run verify
 
 Expected: all tests pass.
 
-- [ ] **Step 4: Update records, commit, push**
+- [x] **Step 4: Update records, commit, push**
 
 Commit:
 
