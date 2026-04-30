@@ -19,7 +19,7 @@ The user explicitly required:
 
 Task: Task 1.2 - Add Category Schema Validation
 
-Status: complete; verification passed; Task 1.2 commit/push workflow is in progress.
+Status: complete; verification passed; pushed to `origin/main` as `1aabb38`.
 
 ## Current Date
 
@@ -68,8 +68,8 @@ Core model:
 
 ## Next Step
 
-1. Commit and push Task 1.2.
-2. Start Task 1.3 only after push succeeds.
+1. Start Task 1.3: Add Repository Contract Tests.
+2. Before editing, read `SessionContextRecord.md`, `PROJECT_STATE.md`, and the implementation plan.
 
 ## Verification Status
 

@@ -136,6 +136,7 @@
 
 ## 最近提交
 
+- `1aabb38 feat: add category schema validation`
 - `539c486 feat: add hardware domain type constants`
 - `2151325 docs: activate session context workflow`
 - `c136c88 docs: design multi-hardware platform architecture`
