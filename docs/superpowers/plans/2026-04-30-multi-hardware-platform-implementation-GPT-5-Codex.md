@@ -750,7 +750,7 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add failing save tests**
+- [x] **Step 1: Add failing save tests**
 
 Test:
 
@@ -758,11 +758,11 @@ Test:
 - mobile GPU without TGP range fails validation;
 - invalid ranking score fails validation.
 
-- [ ] **Step 2: Implement JSON save adapter**
+- [x] **Step 2: Implement JSON save adapter**
 
 Keep compatibility with `scripts/gpu-data.mjs`. Do not introduce PostgreSQL yet.
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 

@@ -117,6 +117,9 @@
 | Task 4.1 renderer should accept richer synthetic schema fields | Current `gpu.schema.json` has minimal admin fields, so tests should prove generic support for text, number, select, textarea, range, required markers, and stable names without mutating the production schema in this atomic task. |
 | Task 4.1 renderer remains a pure HTML renderer | It reads only `{ schema, detail }`, maps property and metric fields to controls, and does not depend on the legacy GPU admin implementation. |
 | Treat `d5b0742` as Task 4.1 implementation commit | The schema-driven admin form renderer task is implemented, verified, and pushed; the next task is Task 4.2. |
+| Treat `eb18068` as Task 4.1 push completion record commit | Task 4.2 starts only after the Task 4.1 record commit is also pushed. |
+| Task 4.2 should reuse `scripts/gpu-data.mjs` for physical writes | Existing admin save already validates, atomically writes `gpus.json`, and regenerates `gpus.js`; JSON repository save should adapt hardware details to a legacy GPU record and delegate the actual write. |
+| Hardware mutation service is intentionally thin | It exposes `saveItemDetail(detail)` and lets the repository perform category-specific persistence, which keeps future PostgreSQL and JSON adapters interchangeable behind the same application use case. |
 
 ## Issues Encountered
 

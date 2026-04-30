@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Phase 28: Next Task Readiness After Task 4.1
+Phase 30: Task 4.2 Verification And Records
 
 ## Phases
 
@@ -234,12 +234,20 @@ Phase 28: Next Task Readiness After Task 4.1
 
 ### Phase 29: Task 4.2 Hardware Mutation Service For JSON
 
-- [ ] Read Task 4.2 implementation plan details.
-- [ ] Add failing save tests.
-- [ ] Confirm RED failure before mutation service exists.
-- [ ] Implement JSON save adapter compatibility layer.
-- [ ] Confirm `npm.cmd test` passes.
-- **Status:** pending
+- [x] Read Task 4.2 implementation plan details.
+- [x] Add failing save tests.
+- [x] Confirm RED failure before mutation service exists.
+- [x] Implement JSON save adapter compatibility layer.
+- [x] Confirm `npm.cmd test` passes.
+- **Status:** complete
+
+### Phase 30: Task 4.2 Verification And Records
+
+- [x] Run `npm.cmd run verify`.
+- [x] Update implementation plan checkboxes.
+- [x] Update recovery records.
+- [ ] Commit and push Task 4.2.
+- **Status:** in_progress
 
 ## Key Questions
 
@@ -276,6 +284,8 @@ Phase 28: Next Task Readiness After Task 4.1
 | Treat `afd2c66` as Task 3.3 push completion record commit | Task 4.1 starts only after the Task 3.3 record commit is also pushed. |
 | Keep schema form renderer pure and schema-only | Task 4.1 should not wire the admin UI yet; it establishes a reusable renderer before mutation service/admin integration tasks. |
 | Start Task 4.2 next | Task 4.1 is implemented, verified, committed, and pushed as `d5b0742`. |
+| Treat `eb18068` as Task 4.1 push completion record commit | Task 4.2 starts only after the Task 4.1 record commit is also pushed. |
+| Use mutation service as a thin application layer | The service exposes `saveItemDetail` and delegates persistence to the repository, keeping validation/write details inside the JSON adapter. |
 
 ## Errors Encountered
 
@@ -292,3 +302,4 @@ Phase 28: Next Task Readiness After Task 4.1
 | Missing export `createGpuPageHardwareModel` from `src/app.js` | 1 | Expected RED for Task 3.3; add service-backed page model helpers next. |
 | User-profile `planning-with-files` catchup path was missing | 1 | Reran catchup with the workspace-installed `.codex\skills\planning-with-files\scripts\session-catchup.py` path. |
 | `ERR_MODULE_NOT_FOUND` for `src/features/schema-form/render-schema-form.js` | 1 | Expected RED for Task 4.1; implement the schema form renderer next. |
+| `ERR_MODULE_NOT_FOUND` for `src/application/hardware-mutation-service.js` | 1 | Expected RED for Task 4.2; implement the mutation service next. |

@@ -110,6 +110,11 @@
 | Task 4.1 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 70 pass / 0 fail | Pass |
 | Task 4.1 push | `git push --porcelain origin main` | Push Task 4.1 to origin/main | `afd2c66..d5b0742` pushed | Pass |
 | Task 4.1 push-record verify | `npm.cmd run verify` | Data validation and all tests pass before the push-completion record commit | `Validated 12 GPU records.` and 70 pass / 0 fail | Pass |
+| Task 4.1 push-record push | `git push --porcelain origin main` | Push Task 4.1 record commit to origin/main | `d5b0742..eb18068` pushed | Pass |
+| Resume Task 4.2 | Read recovery records, JSON repository, gpu-data save path, and implementation plan | Clean workspace and Task 4.2 requirements known | `git status -sb` returned `## main...origin/main`; Task 4.2 requirements captured | Pass |
+| Task 4.2 RED | `npm.cmd test` | Fail because hardware mutation service does not exist | Failed with `ERR_MODULE_NOT_FOUND` for `src/application/hardware-mutation-service.js` | Pass |
+| Task 4.2 GREEN | `npm.cmd test` | Hardware mutation service tests pass and suite remains green | 73 pass / 0 fail | Pass |
+| Task 4.2 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 73 pass / 0 fail | Pass |
 
 ## Error Log
 
@@ -130,13 +135,14 @@
 | 2026-05-01 | Missing export `createGpuPageHardwareModel` from `src/app.js` | 1 | Expected RED; implement service-backed page model helpers next. |
 | 2026-05-01 | User-profile `planning-with-files` catchup path did not exist | 1 | Reran catchup with the workspace-installed `.codex\skills\planning-with-files\scripts\session-catchup.py` path. |
 | 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/features/schema-form/render-schema-form.js` | 1 | Expected RED; implement schema form renderer next. |
+| 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/application/hardware-mutation-service.js` | 1 | Expected RED; implement mutation service next. |
 
 ## 5-Question Reboot Check
 
 | Question | Answer |
 |----------|--------|
-| Where am I? | Task 4.1 Add Schema Form Renderer. |
-| Where am I going? | Add RED schema form renderer tests, implement the renderer, verify, then commit and push. |
+| Where am I? | Task 4.2 Add Hardware Mutation Service For JSON. |
+| Where am I going? | Add RED save tests, implement mutation service and JSON repository save adapter, verify, then commit and push. |
 | What's the goal? | Continue the multi-hardware implementation one atomic task at a time. |
 | What have I learned? | See `findings.md`. |
-| What have I done? | Completed and pushed Task 3.3, then read Task 4.1 recovery and implementation context. |
+| What have I done? | Completed and pushed Task 4.1, then read Task 4.2 recovery and implementation context. |

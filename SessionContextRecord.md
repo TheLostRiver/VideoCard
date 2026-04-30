@@ -19,7 +19,7 @@ The user explicitly required:
 
 Task: Task 4.2: Add Hardware Mutation Service For JSON
 
-Status: Task 4.1 is complete and pushed. Implementation commit: `d5b0742 feat: add schema-driven admin form renderer`. Task 4.1 full verification and push-completion record verification passed. The next atomic task is Task 4.2: Add Hardware Mutation Service For JSON.
+Status: Task 4.1 is complete and pushed. Implementation commit: `d5b0742 feat: add schema-driven admin form renderer`. Push-completion record commit: `eb18068 chore: record task4.1 push completion`. Task 4.2 implementation and full verification are complete. Commit and push are pending.
 
 ## Current Date
 
@@ -66,6 +66,10 @@ Core model:
 - Modified `findings.md`
 - Modified `progress.md`
 - Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
+
+- Created `tests/hardware-mutation-service.test.mjs`
+- Created `src/application/hardware-mutation-service.js`
+- Modified `src/infrastructure/json/json-hardware-repository.js`
 - Modified `SessionContextRecord.md`
 - Modified `PROJECT_STATE.md`
 - Modified `task_plan.md`
@@ -75,19 +79,19 @@ Core model:
 
 ## Next Step
 
-1. Verify and push this Task 4.1 push-completion record update.
-2. Start Task 4.2 only after this push-completion record commit is pushed.
-3. For Task 4.2, read the implementation plan, add failing save tests, then implement the JSON mutation service.
+1. Commit and push `feat: add hardware mutation service for json data`.
+2. Record Task 4.2 push completion, verify, commit, and push the record update.
+3. Start Task 4.3 only after Task 4.2 push-completion record commit is also pushed.
 
 ## Verification Status
 
-Task 4.1 full verification and push-completion record verification passed. Implementation commit `d5b0742` is pushed.
+Task 4.1 full verification and push-completion record verification passed. Implementation commit `d5b0742` and record commit `eb18068` are pushed.
 
 Latest result:
 
 - command: `npm.cmd run verify`
 - data validation: `Validated 12 GPU records.`
-- tests: 70 pass / 0 fail
+- tests: 73 pass / 0 fail
 
 ## Important Commands
 
