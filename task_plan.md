@@ -31,14 +31,14 @@ Phase 1: Task 1.3 Repository Contract Tests
 - [x] Run `npm.cmd run verify`.
 - [x] Update implementation plan checkboxes.
 - [x] Update `SessionContextRecord.md`, `PROJECT_STATE.md`, and `progress.md`.
-- [ ] Commit and push Task 1.3.
-- **Status:** in_progress
+- [x] Commit and push Task 1.3.
+- **Status:** complete
 
 ### Phase 3: Next Task Readiness
 
-- [ ] Confirm clean git status.
-- [ ] Record next task as Task 2.1.
-- **Status:** pending
+- [x] Confirm clean git status.
+- [x] Record next task as Task 2.1.
+- **Status:** complete
 
 ## Key Questions
 

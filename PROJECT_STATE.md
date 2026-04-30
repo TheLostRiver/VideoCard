@@ -12,7 +12,7 @@
 
 当前任务：Task 1.3: Add Repository Contract Tests。
 
-下一步：提交并 push Task 1.3 后，进入 Task 2.1: Add GPU Category Schema；开始前必须读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、`task_plan.md`、`findings.md`、`progress.md` 和实现计划。
+下一步：进入 Task 2.1: Add GPU Category Schema；开始前必须读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、`task_plan.md`、`findings.md`、`progress.md` 和实现计划。
 
 ## 工作规则
 
@@ -148,6 +148,7 @@
 
 ## 最近提交
 
+- `fa7bd57 test: add hardware repository contract`
 - `cf8d52e chore: install planning-with-files codex integration`
 - `b2bc3fd chore: record task1.2 push completion`
 - `1aabb38 feat: add category schema validation`

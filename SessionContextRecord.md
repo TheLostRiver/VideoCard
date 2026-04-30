@@ -19,7 +19,7 @@ The user explicitly required:
 
 Task: Task 1.3 - Add Repository Contract Tests
 
-Status: complete; verification passed; commit/push pending for Task 1.3.
+Status: complete; verification passed; pushed to `origin/main` as `fa7bd57`.
 
 ## Current Date
 
@@ -71,8 +71,8 @@ Core model:
 
 ## Next Step
 
-1. Commit and push Task 1.3.
-2. Start Task 2.1 only after push succeeds.
+1. Start Task 2.1: Add GPU Category Schema.
+2. Before editing, read `SessionContextRecord.md`, `PROJECT_STATE.md`, `task_plan.md`, `findings.md`, `progress.md`, and the implementation plan.
 
 ## Verification Status
 
