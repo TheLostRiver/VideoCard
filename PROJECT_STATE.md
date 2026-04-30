@@ -1,6 +1,6 @@
 # Project State
 
-更新时间：2026-04-27
+更新时间：2026-04-30
 
 ## 当前目标
 
@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Admin Task D 完成，本地后台编辑器文档与最终浏览器验证已完成。
+阶段：多硬件平台扩展架构审计完成，已新增 GPT-5-Codex 架构分析文档。
 
-当前任务：Admin Task D: Admin Documentation and Final Browser Verification。
+当前任务：Architecture Scalability Review for Multi-Hardware Platform。
 
-下一步：后台编辑器任务 A-D 已完成；下一步可恢复 Task 7: Initial Modern NVIDIA Data Expansion，或继续增强后台字段体验。
+下一步：按 `docs/architecture/2026-04-30-architecture-scalability-review-GPT-5-Codex.md` 的建议，优先拆分 Task E/F：硬件平台领域模型、接口和 schema-driven 数据维护方案。
 
 ## 工作规则
 
@@ -63,6 +63,8 @@
 - Admin Task D 完成：新增 `README.md`，记录本地运行、后台编辑、数据同步与验证流程。
 - Admin Task D 完成：完成 `rtx-4070-laptop` 后台保存与前台同步浏览器验证。
 - Admin Task D 计划 checkbox 已更新。
+- Architecture Review 完成：新增 `docs/architecture/2026-04-30-architecture-scalability-review-GPT-5-Codex.md`。
+- Architecture Review 完成：记录当前 GPU-only 架构不足、多硬件品类目标架构、接口优先设计、schema-driven UI、PostgreSQL 建模方向和分阶段迁移路线。
 
 ## 最近验证
 
@@ -107,9 +109,12 @@
 - Admin Task C 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 31 pass / 0 fail。
 - Admin Task D 浏览器验证：`http://localhost:4173/admin.html` 搜索 `4070`、选择 `GeForce RTX 4070 Laptop GPU`、保存 boost/TGP/Time Spy；前台 `http://localhost:4173/#rtx-4070-laptop` 显示 `2,175 MHz`、`45-115W`、`12,345`；浏览器 console error 为空。
 - Admin Task D 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 31 pass / 0 fail。
+- Architecture Review 文档自检：确认新文档文件名包含 `GPT-5-Codex`，并覆盖 CPU、手机 SoC、对比功能、后台复杂化、接口抽象、数据驱动和 PostgreSQL 演进方向。
+- Architecture Review 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 31 pass / 0 fail。
 
 ## 最近提交
 
+- `05ebf40 docs: add local admin editor workflow`
 - `6b4ec18 feat: add local gpu admin editor`
 - `64baf7d feat: add local gpu admin api`
 - `e0b7a79 feat: add json gpu data sync pipeline`
