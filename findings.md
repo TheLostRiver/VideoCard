@@ -121,6 +121,10 @@
 | Task 4.2 should reuse `scripts/gpu-data.mjs` for physical writes | Existing admin save already validates, atomically writes `gpus.json`, and regenerates `gpus.js`; JSON repository save should adapt hardware details to a legacy GPU record and delegate the actual write. |
 | Hardware mutation service is intentionally thin | It exposes `saveItemDetail(detail)` and lets the repository perform category-specific persistence, which keeps future PostgreSQL and JSON adapters interchangeable behind the same application use case. |
 | Treat `22cd61c` as Task 4.2 implementation commit | The hardware mutation service for JSON data is implemented, verified, and pushed; the next task is Task 4.3. |
+| Treat `a1fc662` as Task 4.2 push completion record commit | Task 4.3 starts only after the Task 4.2 record commit is also pushed. |
+| Task 4.3 should keep the existing legacy GPU API stable | The admin UI can render and parse schema-form fields while still sending a legacy GPU record to `PUT /api/gpus/:id`; generic API routes come later in Phase 5. |
+| Schema range values should preserve units in form controls | TGP ranges mapped from `valueMin`/`valueMax` need their unit appended so saving the current admin form does not degrade `45-115W` to `45-115`. |
+| Local static service must serve `.mjs` as JavaScript | The browser admin page imports `/scripts/import-legacy-gpus.mjs`; without `text/javascript`, Chrome refuses the module and the admin UI stays in the loading state. |
 
 ## Issues Encountered
 
@@ -136,6 +140,7 @@
 | Windows sandbox blocked recovery reads with `CreateProcessWithLogonW failed: 1326` | Re-ran the same read-only commands with escalation and completed the required recovery-file reread. |
 | Task 2.3 recovery files still said record commit was pending after `87c96bc` was pushed | Corrected the recovery files at Task 2.4 startup before adding Task 2.4 code. |
 | User-profile `planning-with-files` catchup script path was absent | Reran catchup with the workspace-installed `.codex\skills\planning-with-files\scripts\session-catchup.py` path and continued. |
+| Task 4.3 browser smoke initially stayed at `正在加载数据...` | Added `.mjs` MIME support to `scripts/serve.mjs`, covered it in `tests/admin-api.test.mjs`, restarted the local server, and reran the smoke successfully. |
 
 ## Resources
 
@@ -157,7 +162,10 @@
 - `tests/hardware-detail-render.test.mjs`
 - `src/features/schema-form/render-schema-form.js`
 - `tests/schema-form-render.test.mjs`
+- `scripts/serve.mjs`
+- `tests/admin-api.test.mjs`
 
 ## Visual/Browser Findings
 
 - Task 3.3 browser smoke passed on `http://localhost:4173/#rtx-4070-laptop`: page title was `游戏显卡天梯图`, the DOM contained `GeForce RTX 4070 Laptop GPU`, the mobile warning, and the `12,345` Time Spy value, with 0 browser console errors.
+- Task 4.3 browser smoke passed on `http://localhost:4173/admin.html`: searched `4070`, selected `GeForce RTX 4070 Laptop GPU`, saved current schema-form values `45-115W`, `2175`, and `12345`, then confirmed `http://localhost:4173/#rtx-4070-laptop` still showed `45-115W`, `2,175 MHz`, and `12,345` with 0 browser console errors.

@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Phase 31: Next Task Readiness After Task 4.2
+Phase 33: Task 4.3 Verification And Records
 
 ## Phases
 
@@ -257,12 +257,21 @@ Phase 31: Next Task Readiness After Task 4.2
 
 ### Phase 32: Task 4.3 Replace Admin GPU Form With Schema Form
 
-- [ ] Read Task 4.3 implementation plan details.
-- [ ] Update admin renderer tests.
-- [ ] Refactor admin renderer to use schema form and mutation service.
-- [ ] Run browser smoke for admin editing flow.
-- [ ] Confirm `npm.cmd test` passes.
-- **Status:** pending
+- [x] Read Task 4.3 implementation plan details.
+- [x] Update admin renderer tests.
+- [x] Refactor admin renderer to use schema form and mutation service.
+- [x] Run browser smoke for admin editing flow.
+- [x] Confirm `npm.cmd test` passes.
+- [x] Fix `.mjs` static module MIME for browser imports.
+- **Status:** complete
+
+### Phase 33: Task 4.3 Verification And Records
+
+- [x] Run `npm.cmd run verify`.
+- [x] Update implementation plan checkboxes.
+- [x] Update recovery records with verify and browser smoke results.
+- [ ] Commit and push Task 4.3.
+- **Status:** in_progress
 
 ## Key Questions
 
@@ -302,6 +311,9 @@ Phase 31: Next Task Readiness After Task 4.2
 | Treat `eb18068` as Task 4.1 push completion record commit | Task 4.2 starts only after the Task 4.1 record commit is also pushed. |
 | Use mutation service as a thin application layer | The service exposes `saveItemDetail` and delegates persistence to the repository, keeping validation/write details inside the JSON adapter. |
 | Start Task 4.3 next | Task 4.2 is implemented, verified, committed, and pushed as `22cd61c`. |
+| Treat `a1fc662` as Task 4.2 push completion record commit | Task 4.3 starts only after the Task 4.2 record commit is also pushed. |
+| Keep Task 4.3 API compatibility with `PUT /api/gpus/:id` | The admin form now renders schema fields, but `buildGpuFromForm` still produces the legacy GPU record expected by the existing local API. |
+| Serve `.mjs` as JavaScript in the local server | The browser admin page imports the legacy mapper module from `/scripts`, so module MIME must be `text/javascript` instead of `application/octet-stream`. |
 
 ## Errors Encountered
 
@@ -319,3 +331,5 @@ Phase 31: Next Task Readiness After Task 4.2
 | User-profile `planning-with-files` catchup path was missing | 1 | Reran catchup with the workspace-installed `.codex\skills\planning-with-files\scripts\session-catchup.py` path. |
 | `ERR_MODULE_NOT_FOUND` for `src/features/schema-form/render-schema-form.js` | 1 | Expected RED for Task 4.1; implement the schema form renderer next. |
 | `ERR_MODULE_NOT_FOUND` for `src/application/hardware-mutation-service.js` | 1 | Expected RED for Task 4.2; implement the mutation service next. |
+| Admin renderer still emits hardcoded fields | 1 | Expected RED for Task 4.3; refactor `src/admin.js` to render schema form fields next. |
+| Admin browser smoke stayed at loading state because `.mjs` modules were served as `application/octet-stream` | 1 | Added `.mjs` MIME support to `scripts/serve.mjs` and a static server regression test. |

@@ -19,7 +19,7 @@ The user explicitly required:
 
 Task: Task 4.3: Replace Admin GPU Form With Schema Form
 
-Status: Task 4.2 is complete and pushed. Implementation commit: `22cd61c feat: add hardware mutation service for json data`. Task 4.2 full verification and push-completion record verification passed. The next atomic task is Task 4.3: Replace Admin GPU Form With Schema Form.
+Status: Task 4.2 is complete and pushed. Implementation commit: `22cd61c feat: add hardware mutation service for json data`. Push-completion record commit: `a1fc662 chore: record task4.2 push completion`. Task 4.3 RED, GREEN, full verify, and browser smoke are complete: admin renderer tests expect schema form fields, `src/admin.js` renders schema-backed admin fields and parses `property:*` / `metric:*` form names back to legacy GPU records, `src/features/schema-form/render-schema-form.js` preserves range units, `scripts/serve.mjs` serves `.mjs` modules as JavaScript for browser imports, and the admin save flow successfully preserved 4070 Laptop values on the front page. Commit and push are pending.
 
 ## Current Date
 
@@ -66,35 +66,29 @@ Core model:
 - Modified `findings.md`
 - Modified `progress.md`
 - Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
-
-- Modified `SessionContextRecord.md`
-- Modified `PROJECT_STATE.md`
-- Modified `task_plan.md`
-- Modified `findings.md`
-- Modified `progress.md`
-- Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
-- Modified `SessionContextRecord.md`
-- Modified `PROJECT_STATE.md`
-- Modified `task_plan.md`
-- Modified `findings.md`
-- Modified `progress.md`
-- Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
+- Modified `tests/admin-render.test.mjs`
+- Modified `tests/admin-api.test.mjs`
+- Modified `src/admin.js`
+- Modified `src/features/schema-form/render-schema-form.js`
+- Modified `scripts/serve.mjs`
 
 ## Next Step
 
-1. Verify and push this Task 4.2 push-completion record update.
-2. Start Task 4.3 only after this push-completion record commit is pushed.
-3. For Task 4.3, read the implementation plan, update admin tests, then refactor the admin renderer to use the schema form and mutation service.
+1. Stage Task 4.3 files.
+2. Commit `refactor: render admin editor from category schema`.
+3. Push to `origin/main`.
+4. Record Task 4.3 push completion and set next task to Task 5.1.
 
 ## Verification Status
 
-Task 4.2 full verification and push-completion record verification passed. Implementation commit `22cd61c` is pushed.
+Task 4.3 full verification and browser smoke passed. Task 4.3 commit and push are pending.
 
 Latest result:
 
 - command: `npm.cmd run verify`
 - data validation: `Validated 12 GPU records.`
-- tests: 73 pass / 0 fail
+- tests: 74 pass / 0 fail
+- browser smoke: admin search/select/save for `GeForce RTX 4070 Laptop GPU` passed; front page showed `45-115W`, `2,175 MHz`, and `12,345`; console errors 0.
 
 ## Important Commands
 
@@ -114,4 +108,4 @@ If resuming after compression:
 4. Check `git status -sb`.
 5. Continue from `Next Step`.
 
-If compression happens during Task 2.4, continue from `Next Step` and preserve the RED/GREEN/verify/commit/push cycle.
+If compression happens during Task 4.3, continue from `Next Step` and preserve the RED/GREEN/verify/commit/push cycle.

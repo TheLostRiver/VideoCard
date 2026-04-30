@@ -117,6 +117,13 @@
 | Task 4.2 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 73 pass / 0 fail | Pass |
 | Task 4.2 push | `git push --porcelain origin main` | Push Task 4.2 to origin/main | `eb18068..22cd61c` pushed | Pass |
 | Task 4.2 push-record verify | `npm.cmd run verify` | Data validation and all tests pass before the push-completion record commit | `Validated 12 GPU records.` and 73 pass / 0 fail | Pass |
+| Task 4.2 push-record push | `git push --porcelain origin main` | Push Task 4.2 record commit to origin/main | `22cd61c..a1fc662` pushed | Pass |
+| Resume Task 4.3 | Read recovery records, admin renderer tests, admin frontend code, and implementation plan | Clean workspace and Task 4.3 requirements known | `git status -sb` returned `## main...origin/main`; Task 4.3 requirements captured | Pass |
+| Task 4.3 RED | `npm.cmd test` | Fail because admin renderer still uses hardcoded fields | Failed on schema-form class/field assertions and schema-form parsing | Pass |
+| Task 4.3 GREEN | `npm.cmd test` | Admin schema form rendering and parsing pass | 73 pass / 0 fail | Pass |
+| Task 4.3 MIME regression | `npm.cmd test` | `.mjs` static modules served as browser-loadable JavaScript | 74 pass / 0 fail; new MIME test passes | Pass |
+| Task 4.3 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 74 pass / 0 fail | Pass |
+| Task 4.3 browser smoke | Browser Use at `http://localhost:4173/admin.html` and `/#rtx-4070-laptop` | Schema admin save works and front page keeps values visible | Saved current 4070 Laptop values; front page showed `45-115W`, `2,175 MHz`, `12,345`; console errors 0 | Pass |
 
 ## Error Log
 
@@ -138,13 +145,15 @@
 | 2026-05-01 | User-profile `planning-with-files` catchup path did not exist | 1 | Reran catchup with the workspace-installed `.codex\skills\planning-with-files\scripts\session-catchup.py` path. |
 | 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/features/schema-form/render-schema-form.js` | 1 | Expected RED; implement schema form renderer next. |
 | 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/application/hardware-mutation-service.js` | 1 | Expected RED; implement mutation service next. |
+| 2026-05-01 | Admin renderer still emitted hardcoded fields | 1 | Expected RED; refactor admin renderer to use schema form fields next. |
+| 2026-05-01 | Browser admin smoke stayed at `正在加载数据...` | 1 | Diagnosed `.mjs` static responses as `application/octet-stream`; added `.mjs` MIME support and regression coverage. |
 
 ## 5-Question Reboot Check
 
 | Question | Answer |
 |----------|--------|
-| Where am I? | Task 4.2 Add Hardware Mutation Service For JSON. |
-| Where am I going? | Add RED save tests, implement mutation service and JSON repository save adapter, verify, then commit and push. |
+| Where am I? | Task 4.3 Verification And Records. |
+| Where am I going? | Commit and push the schema-form admin editor implementation, then record push completion. |
 | What's the goal? | Continue the multi-hardware implementation one atomic task at a time. |
 | What have I learned? | See `findings.md`. |
-| What have I done? | Completed and pushed Task 4.1, then read Task 4.2 recovery and implementation context. |
+| What have I done? | Completed Task 4.3 RED/GREEN, fixed `.mjs` browser MIME, ran full verify, and passed the admin save/front page browser smoke. |

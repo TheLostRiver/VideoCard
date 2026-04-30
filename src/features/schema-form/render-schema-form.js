@@ -86,7 +86,7 @@ function getMetricValue(metricValues, metricId) {
   if (metricValue.valueText !== undefined) return metricValue.valueText;
   if (metricValue.valueBoolean !== undefined) return metricValue.valueBoolean ? "true" : "false";
   if (metricValue.valueMin !== undefined && metricValue.valueMax !== undefined) {
-    return `${metricValue.valueMin}-${metricValue.valueMax}`;
+    return `${metricValue.valueMin}-${metricValue.valueMax}${metricValue.unit || ""}`;
   }
   return "";
 }

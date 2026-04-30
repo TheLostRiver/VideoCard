@@ -1,4 +1,6 @@
 import { BRANDS, SEGMENTS, TIERS } from "./data/constants.js";
+import { renderSchemaForm } from "./features/schema-form/render-schema-form.js";
+import { mapLegacyGpuToMetricValues } from "../scripts/import-legacy-gpus.mjs";
 
 const numberFields = new Set([
   "performanceIndex",
@@ -15,6 +17,27 @@ const numberFields = new Set([
 ]);
 
 const requiredNumberFields = new Set(["performanceIndex"]);
+const schemaMetricFieldPaths = new Map([
+  ["gpu.release.date", "releaseDate"],
+  ["gpu.performance.index", "performanceIndex"],
+  ["gpu.confidence", "confidence"],
+  ["gpu.core.count", "specs.cores"],
+  ["gpu.clock.base", "specs.baseClockMHz"],
+  ["gpu.clock.boost", "specs.boostClockMHz"],
+  ["gpu.memory.size", "specs.memorySizeGB"],
+  ["gpu.memory.type", "specs.memoryType"],
+  ["gpu.memory.bus", "specs.memoryBusBit"],
+  ["gpu.memory.bandwidth", "specs.bandwidthGBs"],
+  ["gpu.power.board", "specs.powerW"],
+  ["gpu.power.tgpRange", "specs.tgpRangeW"],
+  ["gpu.benchmark.timeSpyGraphics", "benchmarks.timeSpyGraphics"],
+  ["gpu.benchmark.steelNomadGraphics", "benchmarks.steelNomadGraphics"],
+  ["gpu.benchmark.passMarkG3D", "benchmarks.passMarkG3D"],
+  ["gpu.benchmark.sourceNote", "benchmarks.sourceNote"],
+  ["gpu.gaming.recommendedResolution", "gaming.recommendedResolution"],
+  ["gpu.gaming.rayTracingLevel", "gaming.rayTracingLevel"],
+  ["gpu.gaming.efficiencyNote", "gaming.efficiencyNote"]
+]);
 
 export function filterAdminGpus(items, query) {
   const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
@@ -46,9 +69,32 @@ export function renderAdminList(items, selectedId) {
   `).join("");
 }
 
-export function renderAdminEditor(gpu) {
+export function renderAdminEditor(gpu, schema) {
   if (!gpu) return `<p class="empty-state">请选择一张显卡。</p>`;
+  if (schema) return renderSchemaAdminEditor(gpu, schema);
 
+  return renderLegacyAdminEditor(gpu);
+}
+
+function renderSchemaAdminEditor(gpu, schema) {
+  const mobileHint = gpu.segment === "mobile"
+    ? `<p class="warning">移动版必须填写 TGP 范围；保存时会校验该字段。</p>`
+    : "";
+  const schemaBody = renderSchemaForm({ schema, detail: createSchemaAdminDetail(gpu) })
+    .replace(/^\s*<form[^>]*>/, "")
+    .replace(/<\/form>\s*$/, "");
+
+  return `
+    <form id="gpuForm" class="admin-form schema-form" data-category-id="${escapeHtml(schema.id)}">
+      ${renderAdminHeading(gpu)}
+      ${mobileHint}
+      ${schemaBody}
+      <div id="adminFormMessage" class="admin-form-message" role="status"></div>
+    </form>
+  `;
+}
+
+function renderLegacyAdminEditor(gpu) {
   const value = stringifyGpuForForm(gpu);
   const mobileHint = gpu.segment === "mobile"
     ? `<p class="warning">移动版必须填写 TGP 范围；保存时会校验该字段。</p>`
@@ -111,6 +157,33 @@ export function renderAdminEditor(gpu) {
   `;
 }
 
+function renderAdminHeading(gpu) {
+  return `
+    <div class="admin-editor-heading">
+      <div>
+        <h2>${escapeHtml(gpu.name)}</h2>
+        <p>${escapeHtml(gpu.id)}</p>
+      </div>
+      <button class="ghost-button save-button" type="submit">保存</button>
+    </div>
+  `;
+}
+
+function createSchemaAdminDetail(gpu) {
+  return {
+    item: gpu,
+    metricValues: [
+      ...mapLegacyGpuToMetricValues(gpu),
+      {
+        id: `${gpu.id}:metric:gpu.performance.index`,
+        itemId: gpu.id,
+        metricId: "gpu.performance.index",
+        valueNumber: gpu.performanceIndex
+      }
+    ]
+  };
+}
+
 export function stringifyGpuForForm(gpu) {
   return {
     id: gpu.id,
@@ -147,13 +220,36 @@ export function stringifyGpuForForm(gpu) {
 
 export function buildGpuFromForm(original, fields) {
   const gpu = structuredClone(original);
+  let notesText = fields.notesText;
+  let sourcesText = fields.sourcesText;
+
   for (const [name, rawValue] of Object.entries(fields)) {
+    const schemaField = parseSchemaFieldName(name);
+    if (schemaField?.kind === "property") {
+      if (schemaField.key === "notes") {
+        notesText = rawValue;
+        continue;
+      }
+      if (schemaField.key === "sources") {
+        sourcesText = rawValue;
+        continue;
+      }
+      setPath(gpu, schemaField.key, parseFieldValue(schemaField.key, rawValue));
+      continue;
+    }
+
+    if (schemaField?.kind === "metric") {
+      const legacyPath = schemaMetricFieldPaths.get(schemaField.key);
+      if (legacyPath) setPath(gpu, legacyPath, parseFieldValue(legacyPath, rawValue));
+      continue;
+    }
+
     if (name === "notesText" || name === "sourcesText") continue;
     setPath(gpu, name, parseFieldValue(name, rawValue));
   }
 
-  gpu.notes = parseLines(fields.notesText);
-  gpu.sources = parseLines(fields.sourcesText).map((line) => {
+  gpu.notes = parseLines(notesText);
+  gpu.sources = parseLines(sourcesText).map((line) => {
     const [label, ...urlParts] = line.split("|");
     return { label: label.trim(), url: urlParts.join("|").trim() };
   }).filter((source) => source.label && source.url);
@@ -176,14 +272,19 @@ async function initAdmin() {
   const state = {
     gpus: [],
     query: "",
-    selectedId: ""
+    selectedId: "",
+    schema: null
   };
 
   async function load() {
     try {
-      const response = await fetch("/api/gpus");
+      const [response, schemaResponse] = await Promise.all([
+        fetch("/api/gpus"),
+        fetch("/src/data/categories/gpu.schema.json")
+      ]);
       const body = await response.json();
       state.gpus = body.gpus;
+      state.schema = await schemaResponse.json();
       state.selectedId = state.gpus.find((gpu) => gpu.id === "rtx-4070-laptop")?.id || state.gpus[0]?.id || "";
       elements.status.textContent = `已加载 ${state.gpus.length} 张显卡`;
       render();
@@ -198,7 +299,7 @@ async function initAdmin() {
       state.selectedId = filtered[0]?.id || state.gpus[0]?.id || "";
     }
     elements.list.innerHTML = renderAdminList(filtered, state.selectedId);
-    elements.editor.innerHTML = renderAdminEditor(state.gpus.find((gpu) => gpu.id === state.selectedId));
+    elements.editor.innerHTML = renderAdminEditor(state.gpus.find((gpu) => gpu.id === state.selectedId), state.schema);
   }
 
   elements.search.addEventListener("input", (event) => {
@@ -297,6 +398,16 @@ function parseFieldValue(name, rawValue) {
   if (!numberFields.has(name)) return rawValue;
   if (rawValue === "" && !requiredNumberFields.has(name)) return null;
   return Number(rawValue);
+}
+
+function parseSchemaFieldName(name) {
+  const separatorIndex = name.indexOf(":");
+  if (separatorIndex === -1) return null;
+
+  const kind = name.slice(0, separatorIndex);
+  const key = name.slice(separatorIndex + 1);
+  if (kind !== "property" && kind !== "metric") return null;
+  return { kind, key };
 }
 
 function parseLines(value) {

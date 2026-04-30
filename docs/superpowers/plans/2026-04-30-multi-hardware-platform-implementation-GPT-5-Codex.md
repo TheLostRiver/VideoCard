@@ -788,11 +788,14 @@ git push origin main
 **Files:**
 
 - Modify: `src/admin.js`
+- Modify: `src/features/schema-form/render-schema-form.js`
+- Modify: `scripts/serve.mjs`
 - Modify: `tests/admin-render.test.mjs`
+- Modify: `tests/admin-api.test.mjs`
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Update tests**
+- [x] **Step 1: Update tests**
 
 Tests must still assert:
 
@@ -801,11 +804,11 @@ Tests must still assert:
 - form parses boost/TGP/Time Spy correctly;
 - save success message appears.
 
-- [ ] **Step 2: Refactor admin renderer**
+- [x] **Step 2: Refactor admin renderer**
 
 Use schema form renderer and hardware mutation service. Keep `GET /api/gpus` and `PUT /api/gpus/:id` working.
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 
@@ -816,7 +819,7 @@ npm.cmd run verify
 
 Expected: all tests pass.
 
-- [ ] **Step 4: Browser smoke**
+- [x] **Step 4: Browser smoke**
 
 Run local server and verify:
 
@@ -832,7 +835,7 @@ Run local server and verify:
 Commit:
 
 ```powershell
-git add src/admin.js tests/admin-render.test.mjs SessionContextRecord.md PROJECT_STATE.md docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md
+git add src/admin.js src/features/schema-form/render-schema-form.js scripts/serve.mjs tests/admin-render.test.mjs tests/admin-api.test.mjs SessionContextRecord.md PROJECT_STATE.md docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md task_plan.md findings.md progress.md
 git commit -m "refactor: render admin editor from category schema"
 git push origin main
 ```

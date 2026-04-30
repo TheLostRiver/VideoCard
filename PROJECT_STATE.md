@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 4.2 已推送，正在记录 push completion。
+阶段：Multi-Hardware Platform Implementation Task 4.3 验证和浏览器烟测完成，准备提交和 push。
 
-当前任务：Task 4.2 push completion 记录。
+当前任务：Task 4.3: Replace Admin GPU Form With Schema Form。
 
-下一步：验证并推送 Task 4.2 push completion 记录，然后启动 Task 4.3: Replace Admin GPU Form With Schema Form。
+下一步：提交并 push `refactor: render admin editor from category schema`，随后记录 Task 4.3 push completion。
 
 ## 工作规则
 
@@ -141,6 +141,13 @@
 - Task 4.2 推送完成：`22cd61c feat: add hardware mutation service for json data` 已推送到 `origin/main`。
 - Task 4.2 计划 checkbox 已更新完成。
 - Task 4.2 push completion 验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 73 pass / 0 fail。
+- Task 4.2 push 记录完成：`a1fc662 chore: record task4.2 push completion` 已推送到 `origin/main`。
+- Task 4.3 启动检查完成：已读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、`task_plan.md`、实现计划 Task 4.3、后台渲染测试、当前后台前端代码和 `git status -sb`。
+- Task 4.3 RED 完成：更新 `tests/admin-render.test.mjs` 要求 schema form 字段名，先运行 `npm.cmd test`，按预期因 `src/admin.js` 仍输出硬编码字段且未解析 `metric:*` 字段失败。
+- Task 4.3 GREEN 完成：`src/admin.js` 改为传入 GPU schema 后渲染 schema form，并将 `property:*` / `metric:*` 字段解析回 legacy GPU 记录；`render-schema-form.js` 修正 range unit 显示。
+- Task 4.3 浏览器修复完成：`scripts/serve.mjs` 新增 `.mjs` JavaScript MIME，避免后台浏览器导入 `/scripts/import-legacy-gpus.mjs` 时停在加载状态；`tests/admin-api.test.mjs` 新增 MIME 回归测试。
+- Task 4.3 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 74 pass / 0 fail。
+- Task 4.3 浏览器烟测完成：`http://localhost:4173/admin.html` 搜索并选择 `GeForce RTX 4070 Laptop GPU`，保存当前 schema form 值成功；前台 `http://localhost:4173/#rtx-4070-laptop` 显示 `45-115W`、`2,175 MHz`、`12,345`，浏览器 console error 为 0。
 
 ## 最近验证
 
@@ -234,6 +241,11 @@
 - Task 4.2 GREEN 验证：`npm.cmd test` 通过，测试 73 pass / 0 fail。
 - Task 4.2 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 73 pass / 0 fail。
 - Task 4.2 push-record 验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 73 pass / 0 fail。
+- Task 4.3 RED 验证：`npm.cmd test` 失败，错误显示后台仍输出旧 `admin-form` 字段，且 `metric:gpu.performance.index` 未更新 `performanceIndex`，符合预期。
+- Task 4.3 GREEN 验证：`npm.cmd test` 通过，测试 73 pass / 0 fail。
+- Task 4.3 MIME 回归验证：`npm.cmd test` 通过，测试 74 pass / 0 fail。
+- Task 4.3 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 74 pass / 0 fail。
+- Task 4.3 浏览器烟测：后台保存 4070 Laptop 当前值成功，前台详情同步显示 `45-115W`、`2,175 MHz`、`12,345`，console error 为空。
 
 ## 最近提交
 
@@ -241,6 +253,7 @@
 - `d5b0742 feat: add schema-driven admin form renderer`
 - `eb18068 chore: record task4.1 push completion`
 - `22cd61c feat: add hardware mutation service for json data`
+- `a1fc662 chore: record task4.2 push completion`
 - `e1b6380 refactor: route gpu page through hardware query service`
 - `7ccefa2 chore: record task3.2 push completion`
 - `b2c9445 feat: add schema-driven hardware detail renderer`

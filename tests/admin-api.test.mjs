@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createServer } from "node:http";
-import { mkdtemp, mkdir, readFile, rm } from "node:fs/promises";
+import { mkdtemp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { gpus } from "../src/data/gpus.js";
@@ -78,6 +78,18 @@ test("admin API rejects duplicate ids", async () => {
 
     assert.equal(response.status, 400);
     assert.ok(body.errors.some((error) => error.includes("Duplicate id")));
+  });
+});
+
+test("static server sends JavaScript MIME for mjs modules", async () => {
+  await withApi(async ({ baseUrl, root }) => {
+    await mkdir(join(root, "scripts"), { recursive: true });
+    await writeFile(join(root, "scripts", "probe.mjs"), "export const ok = true;\n");
+
+    const response = await fetch(`${baseUrl}/scripts/probe.mjs`);
+
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get("content-type"), "text/javascript; charset=utf-8");
   });
 });
 
