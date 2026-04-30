@@ -70,6 +70,11 @@
 | Task 2.2 GREEN | `npm.cmd test` | Legacy GPU mapper tests pass | 50 pass / 0 fail | Pass |
 | Task 2.2 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 50 pass / 0 fail | Pass |
 | Task 2.2 push | `git push --porcelain origin main` | Push Task 2.2 to origin/main | `ddce92c..d1eba06` pushed | Pass |
+| Context checkpoint | Local record update | Recovery files name Task 2.3 as next | `SessionContextRecord.md`, `task_plan.md`, `findings.md`, and `progress.md` updated | Pass |
+| Post-compaction recovery | Read recovery files | `SessionContextRecord.md` and planning files read before Task 2.3 edits | Recovery files, implementation plan Task 2.3, catchup, and git diff stat read | Pass |
+| Task 2.3 RED | `npm.cmd test` | Fail because `json-hardware-repository.js` does not exist | Failed with `ERR_MODULE_NOT_FOUND` for `src/infrastructure/json/json-hardware-repository.js` | Pass |
+| Task 2.3 GREEN | `npm.cmd test` | JSON repository tests pass and suite remains green | 53 pass / 0 fail | Pass |
+| Task 2.3 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 53 pass / 0 fail | Pass |
 
 ## Error Log
 
@@ -80,13 +85,16 @@
 | 2026-05-01 | `ENOENT` for `src/data/categories/gpu.schema.json` | 1 | Expected RED; create schema next. |
 | 2026-05-01 | `session-catchup.py` reported unsynced Task 2.1 context | 1 | Confirmed clean git status and updated planning records before Task 2.2. |
 | 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `scripts/import-legacy-gpus.mjs` | 1 | Expected RED; implement mapper next. |
+| 2026-05-01 | Context nearly full before Task 2.3 | 1 | Recorded recovery checkpoint before editing Task 2.3 files. |
+| 2026-05-01 | Windows sandbox `CreateProcessWithLogonW failed: 1326` while reading recovery files | 1 | Re-ran the same read-only recovery commands with escalation. |
+| 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/infrastructure/json/json-hardware-repository.js` | 1 | Expected RED; implement read-only JSON repository next. |
 
 ## 5-Question Reboot Check
 
 | Question | Answer |
 |----------|--------|
-| Where am I? | Task 2.2 complete and pushed. |
-| Where am I going? | Task 2.3: Add JSON Hardware Repository Read Path. |
+| Where am I? | Task 2.3 JSON Hardware Repository Read Path. |
+| Where am I going? | Add RED repository tests, implement the read-only JSON repository, verify, then commit and push. |
 | What's the goal? | Continue the multi-hardware implementation one atomic task at a time. |
 | What have I learned? | See `findings.md`. |
 | What have I done? | Bootstrapped planning-with-files records and read Task 1.3. |

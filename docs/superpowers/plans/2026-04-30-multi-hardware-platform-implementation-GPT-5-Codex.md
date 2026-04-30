@@ -487,7 +487,7 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add failing repository tests**
+- [x] **Step 1: Add failing repository tests**
 
 Test:
 
@@ -497,11 +497,11 @@ Test:
 
 Expected: fails before repository exists.
 
-- [ ] **Step 2: Implement read-only JSON repository**
+- [x] **Step 2: Implement read-only JSON repository**
 
 Use current `src/data/gpus.json` and `gpu.schema.json`. Internally call legacy mapper from Task 2.2.
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 

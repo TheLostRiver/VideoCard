@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 2.2 - Add Legacy GPU Import Mapper
+Task: Task 2.3: Add JSON Hardware Repository Read Path
 
-Status: complete; verification passed; pushed to `origin/main` as `d1eba06`.
+Status: Task 2.3 implementation and full verification are complete. `tests/json-hardware-repository.test.mjs` was added first and failed as expected because `src/infrastructure/json/json-hardware-repository.js` did not exist. The read-only JSON repository was then implemented. `npm.cmd run verify` passes with data validation and 53 pass / 0 fail. Commit and push are still pending.
 
 ## Current Date
 
@@ -60,8 +60,8 @@ Core model:
 
 ## Current Files Changed In This Task
 
-- Created `scripts/import-legacy-gpus.mjs`
-- Created `tests/legacy-gpu-import.test.mjs`
+- Created `tests/json-hardware-repository.test.mjs`
+- Created `src/infrastructure/json/json-hardware-repository.js`
 - Modified `task_plan.md`
 - Modified `findings.md`
 - Modified `progress.md`
@@ -71,18 +71,19 @@ Core model:
 
 ## Next Step
 
-1. Start Task 2.3: Add JSON Hardware Repository Read Path.
-2. Before editing, read `SessionContextRecord.md`, `PROJECT_STATE.md`, `task_plan.md`, `findings.md`, `progress.md`, and the implementation plan.
+1. Commit `feat: add read-only json hardware repository`.
+2. Push the commit to `origin/main`.
+3. Record push completion, then prepare Task 2.4.
 
 ## Verification Status
 
-Task 2.2 verification passed.
+Task 2.3 full verification passed. Commit and push are pending.
 
 Latest result:
 
 - command: `npm.cmd run verify`
 - data validation: `Validated 12 GPU records.`
-- tests: 50 pass / 0 fail
+- tests: 53 pass / 0 fail
 
 ## Important Commands
 
@@ -102,4 +103,4 @@ If resuming after compression:
 4. Check `git status -sb`.
 5. Continue from `Next Step`.
 
-Do not start Task 2.3 until the Task 2.2 commit has been pushed to `origin main`.
+If compression happens before commit, do not skip the full `npm.cmd run verify` and record finalization steps.

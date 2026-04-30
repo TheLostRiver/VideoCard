@@ -8,6 +8,8 @@
 - Task 1.3 must add repository contract tests and a contract helper.
 - Continue next with Task 2.1: Add GPU Category Schema.
 - Continue next with Task 2.2: Add Legacy GPU Import Mapper.
+- Continue next with Task 2.3: Add JSON Hardware Repository Read Path.
+- User explicitly warned that context is nearly full and asked to record task information before continuing.
 
 ## Research Findings
 
@@ -37,6 +39,14 @@
   - export `mapLegacyGpuToHardwareItem(gpu)`, `mapLegacyGpuToMetricValues(gpu)`, `mapLegacyGpuToRankingScore(gpu)`, and `mapLegacyGpuToSources(gpu)`;
   - keep this task pure and do not write generated files;
   - commit message should be `feat: map legacy gpu records to hardware model`.
+- Implementation plan Task 2.3 requires:
+  - create `src/infrastructure/json/json-hardware-repository.js`;
+  - create `tests/json-hardware-repository.test.mjs`;
+  - test that `listCategories()` includes `gpu`;
+  - test that `listItems({ categoryId: "gpu" })` returns the current GPU count;
+  - test that `getItemDetail("rtx-4070-laptop")` returns mapped item, metric values, sources, and ranking score;
+  - implement a read-only JSON repository using `src/data/gpus.json`, `src/data/categories/gpu.schema.json`, and the legacy GPU mapper;
+  - commit message should be `feat: add read-only json hardware repository`.
 - Architecture model fields read from the architecture document:
   - `HardwareItem` includes `id`, `categoryId`, `name`, `manufacturerId`, `generation`, `architecture`, `releaseDate`, `marketSegmentIds`, `status`, `notes`, `createdAt`, and `updatedAt`.
   - `MetricValue` includes `id`, `itemId`, `metricId`, value fields, `confidence`, `sourceIds`, optional `note`, and `updatedAt`.
@@ -58,6 +68,9 @@
 | Treat `performanceIndex` as `RankingScore.score` | Architecture mapping explicitly separates ranking score from general metric values. |
 | Treat benchmarks as metric values for now | Task 2.1 modeled Time Spy, Steel Nomad, and PassMark as GPU metrics; dedicated benchmark entities can come later. |
 | Use deterministic `legacy-import` timestamps | Keeps tests stable until a real migration/audit timestamp strategy exists. |
+| Treat `SessionContextRecord.md` plus planning files as the compression recovery source | There is no exposed manual context-compression tool, so recovery must rely on local files. |
+| Keep Task 2.3 repository read-only | The task exists to establish the adapter read path; write/edit behavior remains in the existing local admin API until later migration tasks. |
+| Use closure functions inside `createJsonHardwareRepository` | Avoids coupling method behavior to `this`, so repository methods still work if destructured by future services or tests. |
 
 ## Issues Encountered
 
@@ -69,6 +82,8 @@
 | GPU schema file was absent | Added `src/data/categories/gpu.schema.json` after the expected RED failure. |
 | session-catchup reported unsynced Task 2.1 final response | Verified clean git status and updated planning records before starting Task 2.2. |
 | Legacy GPU mapper module was absent | Added it after confirming the expected RED failure. |
+| Context nearing full before Task 2.3 | Wrote this checkpoint before editing Task 2.3 files. |
+| Windows sandbox blocked recovery reads with `CreateProcessWithLogonW failed: 1326` | Re-ran the same read-only commands with escalation and completed the required recovery-file reread. |
 
 ## Resources
 
@@ -80,6 +95,8 @@
 - `tests/gpu-category-schema.test.mjs`
 - `scripts/import-legacy-gpus.mjs`
 - `tests/legacy-gpu-import.test.mjs`
+- `src/infrastructure/json/json-hardware-repository.js`
+- `tests/json-hardware-repository.test.mjs`
 
 ## Visual/Browser Findings
 

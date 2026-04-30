@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Phase 7: Task 2.2 Legacy GPU Import Mapper
+Phase 11: Task 2.3 JSON Hardware Repository Read Path
 
 ## Phases
 
@@ -86,6 +86,31 @@ Phase 7: Task 2.2 Legacy GPU Import Mapper
 - [x] Record next task as Task 2.3.
 - **Status:** complete
 
+### Phase 10: Context Safety Checkpoint Before Task 2.3
+
+- [x] Confirm Task 2.2 was pushed.
+- [x] Record that Task 2.3 is next.
+- [x] Record recovery files to read after compression.
+- [x] Re-read recovery files before editing Task 2.3 files.
+- **Status:** complete
+
+### Phase 11: Task 2.3 JSON Hardware Repository Read Path
+
+- [x] Read Task 2.3 implementation plan details.
+- [x] Add failing repository tests.
+- [x] Confirm RED failure before repository exists.
+- [x] Implement read-only JSON hardware repository.
+- [x] Confirm `npm.cmd test` passes.
+- **Status:** complete
+
+### Phase 12: Task 2.3 Verification And Records
+
+- [x] Run `npm.cmd run verify`.
+- [x] Update implementation plan checkboxes.
+- [x] Update recovery records.
+- [ ] Commit and push Task 2.3.
+- **Status:** in_progress
+
 ## Key Questions
 
 1. What is the repository contract surface for future JSON and PostgreSQL adapters?
@@ -103,6 +128,9 @@ Phase 7: Task 2.2 Legacy GPU Import Mapper
 | Start Task 2.1 as the next atomic task | Task 1.3 is complete, pushed, and `SessionContextRecord.md` points to Task 2.1. |
 | Keep Task 2.1 limited to schema data and tests | Task 2.2 owns legacy mapping; mixing it here would break the atomic-task boundary. |
 | Keep Task 2.2 mapper pure and side-effect free | The implementation plan says this task should not write files; it only prepares reusable adapter functions. |
+| Create an explicit checkpoint before Task 2.3 | User warned the context is nearly full, so local recovery records must be sufficient before continuing. |
+| Start Task 2.3 after recovery-file reread | The user required compression recovery through `SessionContextRecord.md`; the recovery files have now been read after compaction. |
+| Implement JSON repository as a thin adapter over legacy mapper | Keeps Task 2.3 scoped to the read path and avoids duplicating mapping rules before the query service exists. |
 
 ## Errors Encountered
 
@@ -111,3 +139,5 @@ Phase 7: Task 2.2 Legacy GPU Import Mapper
 | `ERR_MODULE_NOT_FOUND` for `src/domain/hardware/repository-contract.js` | 1 | Expected RED for Task 1.3; implement the contract helper next. |
 | `ENOENT` for `src/data/categories/gpu.schema.json` | 1 | Expected RED for Task 2.1; create the GPU category schema next. |
 | `ERR_MODULE_NOT_FOUND` for `scripts/import-legacy-gpus.mjs` | 1 | Expected RED for Task 2.2; implement the pure mapper functions next. |
+| Windows sandbox `CreateProcessWithLogonW failed: 1326` during recovery reads | 1 | Re-ran the same read-only recovery commands with escalation and continued. |
+| `ERR_MODULE_NOT_FOUND` for `src/infrastructure/json/json-hardware-repository.js` | 1 | Expected RED for Task 2.3; implement the read-only JSON repository next. |
