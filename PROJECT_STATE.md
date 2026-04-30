@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 2.4 完成验证，等待 commit/push。
+阶段：Multi-Hardware Platform Implementation Task 2.4 完成并已推送，Hardware Query Service 已新增。
 
-当前任务：Task 2.4: Add Hardware Query Service。
+当前任务：准备进入 Task 3.1: Add Schema-Driven List Renderer。
 
-下一步：提交并推送 Task 2.4；随后记录 push 完成并进入 Task 3.1。
+下一步：进入 Task 3.1。开始前必须读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、`task_plan.md`、`findings.md`、`progress.md` 和实现计划。
 
 ## 工作规则
 
@@ -100,7 +100,8 @@
 - Task 2.4 GREEN 完成：新增 `src/application/hardware-query-service.js`，实现 repository-backed list/detail view model 服务，不直接导入 `gpus.js`。
 - Task 2.4 Schema 更新：`src/data/categories/gpu.schema.json` 新增 `detailView.warnings`，移动版提示由 schema 规则驱动。
 - Task 2.4 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 57 pass / 0 fail。
-- Task 2.4 计划 checkbox 已更新到验证完成。
+- Task 2.4 推送完成：`2c18375 feat: add hardware query service` 已推送到 `origin/main`。
+- Task 2.4 计划 checkbox 已更新完成。
 
 ## 最近验证
 
@@ -178,6 +179,7 @@
 
 ## 最近提交
 
+- `2c18375 feat: add hardware query service`
 - `87c96bc chore: record task2.3 push completion`
 - `4cfb7af feat: add read-only json hardware repository`
 - `82be9b9 chore: record task2.2 push completion`

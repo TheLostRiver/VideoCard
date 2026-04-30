@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Phase 14: Task 2.4 Hardware Query Service
+Phase 16: Next Task Readiness After Task 2.4
 
 ## Phases
 
@@ -131,8 +131,14 @@ Phase 14: Task 2.4 Hardware Query Service
 - [x] Run `npm.cmd run verify`.
 - [x] Update implementation plan checkboxes.
 - [x] Update recovery records.
-- [ ] Commit and push Task 2.4.
-- **Status:** in_progress
+- [x] Commit and push Task 2.4.
+- **Status:** complete
+
+### Phase 16: Next Task Readiness After Task 2.4
+
+- [x] Confirm clean git status after Task 2.4 push.
+- [x] Record next task as Task 3.1.
+- **Status:** complete
 
 ## Key Questions
 
@@ -157,6 +163,7 @@ Phase 14: Task 2.4 Hardware Query Service
 | Start Task 2.4 next | Task 2.3 is implemented, verified, committed, and pushed as `4cfb7af`. |
 | Correct Task 2.3 push completion state before Task 2.4 | Task 2.3 record commit `87c96bc` is already pushed, so recovery files must not say it is pending. |
 | Add mobile warning as `detailView.warnings` schema data | This keeps the query service data-driven and prepares the current hardcoded UI warning for later schema-driven rendering. |
+| Start Task 3.1 next | Task 2.4 is implemented, verified, committed, and pushed as `2c18375`. |
 
 ## Errors Encountered
 

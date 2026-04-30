@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 2.4: Add Hardware Query Service
+Task: Ready for Task 3.1: Add Schema-Driven List Renderer
 
-Status: Task 2.4 implementation and full verification are complete. `tests/hardware-query-service.test.mjs` failed as expected before `src/application/hardware-query-service.js` existed. The query service now builds list/detail view models from a repository without importing `gpus.js`. `npm.cmd run verify` passes with data validation and 57 pass / 0 fail. Commit and push are still pending.
+Status: Task 2.4 is complete, verified, committed, and pushed to `origin/main` as `2c18375`. The query service builds list/detail view models from a repository without importing `gpus.js`, and GPU mobile warnings are now schema-driven through `detailView.warnings`. Next implementation task is Task 3.1: Add Schema-Driven List Renderer.
 
 ## Current Date
 
@@ -66,19 +66,16 @@ Core model:
 - Modified `findings.md`
 - Modified `progress.md`
 - Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
-- Modified `src/data/categories/gpu.schema.json`
-- Created `tests/hardware-query-service.test.mjs`
-- Created `src/application/hardware-query-service.js`
 
 ## Next Step
 
-1. Commit `feat: add hardware query service`.
-2. Push the commit to `origin/main`.
-3. Record push completion, then prepare Task 3.1.
+1. Start Task 3.1 only after reading this file, `PROJECT_STATE.md`, the implementation plan, `task_plan.md`, `findings.md`, `progress.md`, and `git status -sb`.
+2. Add failing schema-driven list renderer tests in `tests/hardware-list-render.test.mjs`.
+3. Confirm RED failure before `src/features/hardware-list/render-list.js` exists.
 
 ## Verification Status
 
-Task 2.4 full verification passed. Commit and push are pending.
+Task 2.4 full verification passed and the implementation commit was pushed.
 
 Latest result:
 

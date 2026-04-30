@@ -82,6 +82,7 @@
 | Treat `4cfb7af` as Task 2.3 implementation commit | The read-only JSON repository task is implemented, verified, and pushed; the following commit only records push completion. |
 | Treat `87c96bc` as Task 2.3 push completion record commit | Task 2.4 starts only after the Task 2.3 record commit is also pushed. |
 | Represent mobile warnings as schema rules | `gpu.schema.json` now exposes `detailView.warnings`, and the query service applies matching rules from repository category data. |
+| Treat `2c18375` as Task 2.4 implementation commit | The hardware query service task is implemented, verified, and pushed; the next implementation task is Task 3.1. |
 
 ## Issues Encountered
 
