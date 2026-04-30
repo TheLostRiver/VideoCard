@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 2.1 - Add GPU Category Schema
+Task: Task 2.2 - Add Legacy GPU Import Mapper
 
-Status: complete; verification passed; pushed to `origin/main` as `12527a2`.
+Status: complete; verification passed; commit/push pending for Task 2.2.
 
 ## Current Date
 
@@ -60,8 +60,8 @@ Core model:
 
 ## Current Files Changed In This Task
 
-- Created `src/data/categories/gpu.schema.json`
-- Created `tests/gpu-category-schema.test.mjs`
+- Created `scripts/import-legacy-gpus.mjs`
+- Created `tests/legacy-gpu-import.test.mjs`
 - Modified `task_plan.md`
 - Modified `findings.md`
 - Modified `progress.md`
@@ -71,18 +71,18 @@ Core model:
 
 ## Next Step
 
-1. Start Task 2.2: Add Legacy GPU Import Mapper.
-2. Before editing, read `SessionContextRecord.md`, `PROJECT_STATE.md`, `task_plan.md`, `findings.md`, `progress.md`, and the implementation plan.
+1. Commit and push Task 2.2.
+2. Start Task 2.3 only after push succeeds.
 
 ## Verification Status
 
-Task 2.1 verification passed.
+Task 2.2 verification passed.
 
 Latest result:
 
 - command: `npm.cmd run verify`
 - data validation: `Validated 12 GPU records.`
-- tests: 46 pass / 0 fail
+- tests: 50 pass / 0 fail
 
 ## Important Commands
 
@@ -102,4 +102,4 @@ If resuming after compression:
 4. Check `git status -sb`.
 5. Continue from `Next Step`.
 
-Do not start Task 2.2 until the Task 2.1 commit has been pushed to `origin main`.
+Do not start Task 2.3 until the Task 2.2 commit has been pushed to `origin main`.

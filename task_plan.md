@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Phase 4: Task 2.1 GPU Category Schema
+Phase 7: Task 2.2 Legacy GPU Import Mapper
 
 ## Phases
 
@@ -63,11 +63,29 @@ Phase 4: Task 2.1 GPU Category Schema
 - [x] Record next task as Task 2.2.
 - **Status:** complete
 
+### Phase 7: Task 2.2 Legacy GPU Import Mapper
+
+- [x] Read Task 2.2 implementation plan details.
+- [x] Add failing tests for legacy GPU import mapper.
+- [x] Confirm RED failure before `scripts/import-legacy-gpus.mjs` exists.
+- [x] Implement pure mapper functions.
+- [x] Confirm `npm.cmd test` passes.
+- **Status:** complete
+
+### Phase 8: Task 2.2 Verification And Records
+
+- [x] Run `npm.cmd run verify`.
+- [x] Update implementation plan checkboxes.
+- [x] Update `SessionContextRecord.md`, `PROJECT_STATE.md`, `task_plan.md`, `findings.md`, and `progress.md`.
+- [ ] Commit and push Task 2.2.
+- **Status:** in_progress
+
 ## Key Questions
 
 1. What is the repository contract surface for future JSON and PostgreSQL adapters?
 2. How small can Task 1.3 stay while still proving the contract helper works?
 3. Which current GPU fields must become schema metrics in Task 2.1?
+4. Which legacy GPU values should map to metric values versus ranking scores?
 
 ## Decisions Made
 
@@ -78,6 +96,7 @@ Phase 4: Task 2.1 GPU Category Schema
 | Limit this coding pass to Task 1.3 only | Atomic-task rule requires one small task per cycle. |
 | Start Task 2.1 as the next atomic task | Task 1.3 is complete, pushed, and `SessionContextRecord.md` points to Task 2.1. |
 | Keep Task 2.1 limited to schema data and tests | Task 2.2 owns legacy mapping; mixing it here would break the atomic-task boundary. |
+| Keep Task 2.2 mapper pure and side-effect free | The implementation plan says this task should not write files; it only prepares reusable adapter functions. |
 
 ## Errors Encountered
 
@@ -85,3 +104,4 @@ Phase 4: Task 2.1 GPU Category Schema
 |-------|---------|------------|
 | `ERR_MODULE_NOT_FOUND` for `src/domain/hardware/repository-contract.js` | 1 | Expected RED for Task 1.3; implement the contract helper next. |
 | `ENOENT` for `src/data/categories/gpu.schema.json` | 1 | Expected RED for Task 2.1; create the GPU category schema next. |
+| `ERR_MODULE_NOT_FOUND` for `scripts/import-legacy-gpus.mjs` | 1 | Expected RED for Task 2.2; implement the pure mapper functions next. |
