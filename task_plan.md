@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Phase 1: Task 1.3 Repository Contract Tests
+Phase 4: Task 2.1 GPU Category Schema
 
 ## Phases
 
@@ -40,10 +40,28 @@ Phase 1: Task 1.3 Repository Contract Tests
 - [x] Record next task as Task 2.1.
 - **Status:** complete
 
+### Phase 4: Task 2.1 GPU Category Schema
+
+- [x] Read Task 2.1 implementation plan details.
+- [x] Add failing test for `src/data/categories/gpu.schema.json`.
+- [x] Confirm RED failure before schema exists.
+- [x] Create GPU category schema JSON.
+- [x] Confirm `npm.cmd test` passes.
+- **Status:** complete
+
+### Phase 5: Task 2.1 Verification And Records
+
+- [x] Run `npm.cmd run verify`.
+- [x] Update implementation plan checkboxes.
+- [x] Update `SessionContextRecord.md`, `PROJECT_STATE.md`, `task_plan.md`, `findings.md`, and `progress.md`.
+- [ ] Commit and push Task 2.1.
+- **Status:** in_progress
+
 ## Key Questions
 
 1. What is the repository contract surface for future JSON and PostgreSQL adapters?
 2. How small can Task 1.3 stay while still proving the contract helper works?
+3. Which current GPU fields must become schema metrics in Task 2.1?
 
 ## Decisions Made
 
@@ -52,9 +70,12 @@ Phase 1: Task 1.3 Repository Contract Tests
 | Keep `SessionContextRecord.md` as the highest-priority recovery record | This is the user's explicit iron law for context recovery. |
 | Use planning-with-files as complementary working memory | It adds task, finding, and progress logs without replacing existing project records. |
 | Limit this coding pass to Task 1.3 only | Atomic-task rule requires one small task per cycle. |
+| Start Task 2.1 as the next atomic task | Task 1.3 is complete, pushed, and `SessionContextRecord.md` points to Task 2.1. |
+| Keep Task 2.1 limited to schema data and tests | Task 2.2 owns legacy mapping; mixing it here would break the atomic-task boundary. |
 
 ## Errors Encountered
 
 | Error | Attempt | Resolution |
 |-------|---------|------------|
 | `ERR_MODULE_NOT_FOUND` for `src/domain/hardware/repository-contract.js` | 1 | Expected RED for Task 1.3; implement the contract helper next. |
+| `ENOENT` for `src/data/categories/gpu.schema.json` | 1 | Expected RED for Task 2.1; create the GPU category schema next. |

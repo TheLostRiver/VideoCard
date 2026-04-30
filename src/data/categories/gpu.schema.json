@@ -1,0 +1,395 @@
+{
+  "id": "gpu",
+  "label": "GPU",
+  "description": "Graphics processing units for desktop and mobile gaming ladders.",
+  "itemName": {
+    "singular": "GPU",
+    "plural": "GPUs"
+  },
+  "listView": {
+    "titleField": "name",
+    "subtitleFields": [
+      "brand",
+      "generation",
+      "gpu.memory.size",
+      "gpu.memory.type"
+    ],
+    "badgeField": "segment",
+    "scoreField": "gpu.performance.index",
+    "powerField": "gpu.power.display",
+    "recommendationField": "gpu.gaming.recommendedResolution"
+  },
+  "detailView": {
+    "groups": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "metricIds": [
+          "gpu.performance.index",
+          "gpu.release.date",
+          "gpu.gaming.recommendedResolution",
+          "gpu.confidence"
+        ]
+      },
+      {
+        "id": "core",
+        "title": "Core Specs",
+        "metricIds": [
+          "gpu.core.count",
+          "gpu.clock.base",
+          "gpu.clock.boost"
+        ]
+      },
+      {
+        "id": "memoryPower",
+        "title": "Memory And Power",
+        "metricIds": [
+          "gpu.memory.size",
+          "gpu.memory.type",
+          "gpu.memory.bus",
+          "gpu.memory.bandwidth",
+          "gpu.power.board",
+          "gpu.power.tgpRange"
+        ]
+      },
+      {
+        "id": "benchmarks",
+        "title": "Benchmarks",
+        "metricIds": [
+          "gpu.benchmark.timeSpyGraphics",
+          "gpu.benchmark.steelNomadGraphics",
+          "gpu.benchmark.passMarkG3D"
+        ]
+      },
+      {
+        "id": "notes",
+        "title": "Notes",
+        "metricIds": [
+          "gpu.benchmark.sourceNote",
+          "gpu.gaming.rayTracingLevel",
+          "gpu.gaming.efficiencyNote"
+        ]
+      }
+    ]
+  },
+  "adminForm": {
+    "groups": [
+      {
+        "id": "basic",
+        "title": "Basic",
+        "fields": [
+          {
+            "kind": "property",
+            "key": "id",
+            "label": "ID"
+          },
+          {
+            "kind": "property",
+            "key": "name",
+            "label": "Name"
+          },
+          {
+            "kind": "property",
+            "key": "brand",
+            "label": "Brand"
+          },
+          {
+            "kind": "property",
+            "key": "segment",
+            "label": "Segment"
+          },
+          {
+            "kind": "property",
+            "key": "generation",
+            "label": "Generation"
+          },
+          {
+            "kind": "property",
+            "key": "architecture",
+            "label": "Architecture"
+          },
+          {
+            "kind": "metric",
+            "metricId": "gpu.release.date"
+          },
+          {
+            "kind": "metric",
+            "metricId": "gpu.performance.index"
+          },
+          {
+            "kind": "property",
+            "key": "tier",
+            "label": "Tier"
+          },
+          {
+            "kind": "metric",
+            "metricId": "gpu.confidence"
+          }
+        ]
+      },
+      {
+        "id": "core",
+        "title": "Core Specs",
+        "fields": [
+          {
+            "kind": "property",
+            "key": "specs.coresLabel",
+            "label": "Core Label"
+          },
+          {
+            "kind": "metric",
+            "metricId": "gpu.core.count"
+          },
+          {
+            "kind": "metric",
+            "metricId": "gpu.clock.base"
+          },
+          {
+            "kind": "metric",
+            "metricId": "gpu.clock.boost"
+          }
+        ]
+      },
+      {
+        "id": "memoryPower",
+        "title": "Memory And Power",
+        "fields": [
+          {
+            "kind": "metric",
+            "metricId": "gpu.memory.size"
+          },
+          {
+            "kind": "metric",
+            "metricId": "gpu.memory.type"
+          },
+          {
+            "kind": "metric",
+            "metricId": "gpu.memory.bus"
+          },
+          {
+            "kind": "metric",
+            "metricId": "gpu.memory.bandwidth"
+          },
+          {
+            "kind": "metric",
+            "metricId": "gpu.power.board"
+          },
+          {
+            "kind": "metric",
+            "metricId": "gpu.power.tgpRange"
+          }
+        ]
+      },
+      {
+        "id": "benchmarksGaming",
+        "title": "Benchmarks And Gaming",
+        "fields": [
+          {
+            "kind": "metric",
+            "metricId": "gpu.benchmark.timeSpyGraphics"
+          },
+          {
+            "kind": "metric",
+            "metricId": "gpu.benchmark.steelNomadGraphics"
+          },
+          {
+            "kind": "metric",
+            "metricId": "gpu.benchmark.passMarkG3D"
+          },
+          {
+            "kind": "metric",
+            "metricId": "gpu.benchmark.sourceNote"
+          },
+          {
+            "kind": "metric",
+            "metricId": "gpu.gaming.recommendedResolution"
+          },
+          {
+            "kind": "metric",
+            "metricId": "gpu.gaming.rayTracingLevel"
+          },
+          {
+            "kind": "metric",
+            "metricId": "gpu.gaming.efficiencyNote"
+          }
+        ]
+      },
+      {
+        "id": "notesSources",
+        "title": "Notes And Sources",
+        "fields": [
+          {
+            "kind": "property",
+            "key": "notes",
+            "label": "Notes"
+          },
+          {
+            "kind": "property",
+            "key": "sources",
+            "label": "Sources"
+          }
+        ]
+      }
+    ]
+  },
+  "metrics": [
+    {
+      "id": "gpu.performance.index",
+      "label": "Performance Index",
+      "valueType": "number",
+      "formatterId": "index"
+    },
+    {
+      "id": "gpu.release.date",
+      "label": "Release Date",
+      "valueType": "date",
+      "formatterId": "release-month"
+    },
+    {
+      "id": "gpu.confidence",
+      "label": "Confidence",
+      "valueType": "enum",
+      "formatterId": "confidence"
+    },
+    {
+      "id": "gpu.core.count",
+      "label": "Core Count",
+      "valueType": "number",
+      "formatterId": "number"
+    },
+    {
+      "id": "gpu.clock.base",
+      "label": "Base Clock",
+      "valueType": "number",
+      "formatterId": "clock-mhz"
+    },
+    {
+      "id": "gpu.clock.boost",
+      "label": "Boost Clock",
+      "valueType": "number",
+      "formatterId": "clock-mhz"
+    },
+    {
+      "id": "gpu.memory.size",
+      "label": "Memory Size",
+      "valueType": "number",
+      "formatterId": "capacity-gb"
+    },
+    {
+      "id": "gpu.memory.type",
+      "label": "Memory Type",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "gpu.memory.bus",
+      "label": "Memory Bus",
+      "valueType": "number",
+      "formatterId": "bus-bit"
+    },
+    {
+      "id": "gpu.memory.bandwidth",
+      "label": "Memory Bandwidth",
+      "valueType": "number",
+      "formatterId": "bandwidth-gbs"
+    },
+    {
+      "id": "gpu.power.board",
+      "label": "Board Power",
+      "valueType": "number",
+      "formatterId": "watts"
+    },
+    {
+      "id": "gpu.power.tgpRange",
+      "label": "Mobile TGP Range",
+      "valueType": "range",
+      "formatterId": "tgp-range"
+    },
+    {
+      "id": "gpu.power.display",
+      "label": "Power Display",
+      "valueType": "text",
+      "formatterId": "power"
+    },
+    {
+      "id": "gpu.benchmark.timeSpyGraphics",
+      "label": "Time Spy Graphics",
+      "valueType": "number",
+      "formatterId": "benchmark-score"
+    },
+    {
+      "id": "gpu.benchmark.steelNomadGraphics",
+      "label": "Steel Nomad Graphics",
+      "valueType": "number",
+      "formatterId": "benchmark-score"
+    },
+    {
+      "id": "gpu.benchmark.passMarkG3D",
+      "label": "PassMark G3D",
+      "valueType": "number",
+      "formatterId": "benchmark-score"
+    },
+    {
+      "id": "gpu.benchmark.sourceNote",
+      "label": "Benchmark Source Note",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "gpu.gaming.recommendedResolution",
+      "label": "Recommended Resolution",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "gpu.gaming.rayTracingLevel",
+      "label": "Ray Tracing Level",
+      "valueType": "enum",
+      "formatterId": "ray-tracing-level"
+    },
+    {
+      "id": "gpu.gaming.efficiencyNote",
+      "label": "Efficiency Note",
+      "valueType": "text",
+      "formatterId": "text"
+    }
+  ],
+  "comparePresets": [
+    {
+      "id": "specs",
+      "label": "Specs",
+      "metricIds": [
+        "gpu.core.count",
+        "gpu.clock.base",
+        "gpu.clock.boost"
+      ]
+    },
+    {
+      "id": "memory",
+      "label": "Memory",
+      "metricIds": [
+        "gpu.memory.size",
+        "gpu.memory.type",
+        "gpu.memory.bus",
+        "gpu.memory.bandwidth"
+      ]
+    },
+    {
+      "id": "power",
+      "label": "Power",
+      "metricIds": [
+        "gpu.power.board",
+        "gpu.power.tgpRange"
+      ]
+    },
+    {
+      "id": "benchmarks",
+      "label": "Benchmarks",
+      "metricIds": [
+        "gpu.benchmark.timeSpyGraphics",
+        "gpu.benchmark.steelNomadGraphics",
+        "gpu.benchmark.passMarkG3D"
+      ]
+    }
+  ]
+}

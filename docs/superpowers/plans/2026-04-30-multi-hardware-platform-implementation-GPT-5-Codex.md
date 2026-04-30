@@ -388,13 +388,13 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add failing test**
+- [x] **Step 1: Add failing test**
 
 Test that `gpu.schema.json` passes `assertValidCategorySchema`.
 
 Expected: fails before the schema exists.
 
-- [ ] **Step 2: Create GPU schema**
+- [x] **Step 2: Create GPU schema**
 
 Include:
 
@@ -405,7 +405,7 @@ Include:
 - admin form matching current admin form groups;
 - compare presets for specs, memory, power, benchmarks.
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 
@@ -416,7 +416,7 @@ npm.cmd run verify
 
 Expected: all tests pass.
 
-- [ ] **Step 4: Update records, commit, push**
+- [x] **Step 4: Update records, commit, push**
 
 Commit:
 

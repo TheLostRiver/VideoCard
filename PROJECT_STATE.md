@@ -1,6 +1,6 @@
 # Project State
 
-更新时间：2026-04-30
+更新时间：2026-05-01
 
 ## 当前目标
 
@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 1.3 完成，硬件 Repository contract helper 已新增并通过验证。
+阶段：Multi-Hardware Platform Implementation Task 2.1 完成，GPU category schema 已新增并通过验证。
 
-当前任务：Task 1.3: Add Repository Contract Tests。
+当前任务：Task 2.1: Add GPU Category Schema。
 
-下一步：进入 Task 2.1: Add GPU Category Schema；开始前必须读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、`task_plan.md`、`findings.md`、`progress.md` 和实现计划。
+下一步：提交并 push Task 2.1 后，进入 Task 2.2: Add Legacy GPU Import Mapper；开始前必须读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、`task_plan.md`、`findings.md`、`progress.md` 和实现计划。
 
 ## 工作规则
 
@@ -83,6 +83,9 @@
 - Task 1.3 RED 完成：新增 `tests/hardware-repository-contract.test.mjs`，先运行 `npm.cmd test`，按预期因 `src/domain/hardware/repository-contract.js` 缺失失败。
 - Task 1.3 GREEN 完成：新增 `src/domain/hardware/repository-contract.js`，导出 `HARDWARE_REPOSITORY_METHODS` 和 `createHardwareRepositoryContractTestSuite`。
 - Task 1.3 计划 checkbox 已更新。
+- Task 2.1 RED 完成：新增 `tests/gpu-category-schema.test.mjs`，先运行 `npm.cmd test`，按预期因 `src/data/categories/gpu.schema.json` 缺失失败。
+- Task 2.1 GREEN 完成：新增 `src/data/categories/gpu.schema.json`，覆盖当前 GPU 列表、详情、后台表单和规格/显存/功耗/跑分对比预设。
+- Task 2.1 计划 checkbox 已更新。
 
 ## 最近验证
 
@@ -145,9 +148,13 @@
 - Task 1.3 RED 验证：`npm.cmd test` 失败，错误为 `ERR_MODULE_NOT_FOUND`，目标模块 `src/domain/hardware/repository-contract.js` 不存在，符合预期。
 - Task 1.3 GREEN 验证：`npm.cmd test` 通过，测试 45 pass / 0 fail。
 - Task 1.3 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 45 pass / 0 fail。
+- Task 2.1 RED 验证：`npm.cmd test` 失败，错误为 `ENOENT`，目标文件 `src/data/categories/gpu.schema.json` 不存在，符合预期。
+- Task 2.1 GREEN 验证：`npm.cmd test` 通过，测试 46 pass / 0 fail。
+- Task 2.1 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 46 pass / 0 fail。
 
 ## 最近提交
 
+- `e06b12b chore: record task1.3 push completion`
 - `fa7bd57 test: add hardware repository contract`
 - `cf8d52e chore: install planning-with-files codex integration`
 - `b2bc3fd chore: record task1.2 push completion`

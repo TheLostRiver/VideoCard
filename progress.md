@@ -58,19 +58,26 @@
 | Task 1.3 GREEN | `npm.cmd test` | All tests pass | 45 pass / 0 fail | Pass |
 | Task 1.3 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 45 pass / 0 fail | Pass |
 | Task 1.3 push | `git push --porcelain origin main` | Push Task 1.3 to origin/main | `cf8d52e..fa7bd57` pushed | Pass |
+| Resume Task 2.1 | `git status -sb` | Clean workspace | `## main...origin/main` | Pass |
+| Task 2.1 plan read | `Select-String ... 'Task 2.1'` | Read task requirements | Requirements captured in `findings.md` | Pass |
+| Task 2.1 RED | `npm.cmd test` | Fail because `gpu.schema.json` does not exist | Failed with `ENOENT` for `src/data/categories/gpu.schema.json` | Pass |
+| Task 2.1 GREEN | `npm.cmd test` | GPU schema test passes | 46 pass / 0 fail | Pass |
+| Task 2.1 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 46 pass / 0 fail | Pass |
 
 ## Error Log
 
 | Timestamp | Error | Attempt | Resolution |
 |-----------|-------|---------|------------|
 | 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/domain/hardware/repository-contract.js` | 1 | Expected RED; implement helper next. |
+| 2026-05-01 | `session-catchup.py` reported unsynced context | 1 | Confirmed clean git status and updated planning records before Task 2.1. |
+| 2026-05-01 | `ENOENT` for `src/data/categories/gpu.schema.json` | 1 | Expected RED; create schema next. |
 
 ## 5-Question Reboot Check
 
 | Question | Answer |
 |----------|--------|
-| Where am I? | Task 1.3 complete and pushed. |
-| Where am I going? | Task 2.1: Add GPU Category Schema. |
+| Where am I? | Task 2.1 complete locally, commit/push pending. |
+| Where am I going? | Commit and push Task 2.1, then prepare Task 2.2. |
 | What's the goal? | Continue the multi-hardware implementation one atomic task at a time. |
 | What have I learned? | See `findings.md`. |
 | What have I done? | Bootstrapped planning-with-files records and read Task 1.3. |

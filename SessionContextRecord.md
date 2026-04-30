@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 1.3 - Add Repository Contract Tests
+Task: Task 2.1 - Add GPU Category Schema
 
-Status: complete; verification passed; pushed to `origin/main` as `fa7bd57`.
+Status: complete; verification passed; commit/push pending for Task 2.1.
 
 ## Current Date
 
@@ -60,29 +60,29 @@ Core model:
 
 ## Current Files Changed In This Task
 
-- Created `src/domain/hardware/repository-contract.js`
-- Created `tests/hardware-repository-contract.test.mjs`
-- Created `task_plan.md`
-- Created `findings.md`
-- Created `progress.md`
+- Created `src/data/categories/gpu.schema.json`
+- Created `tests/gpu-category-schema.test.mjs`
+- Modified `task_plan.md`
+- Modified `findings.md`
+- Modified `progress.md`
 - Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
 - Modified `SessionContextRecord.md`
 - Modified `PROJECT_STATE.md`
 
 ## Next Step
 
-1. Start Task 2.1: Add GPU Category Schema.
-2. Before editing, read `SessionContextRecord.md`, `PROJECT_STATE.md`, `task_plan.md`, `findings.md`, `progress.md`, and the implementation plan.
+1. Commit and push Task 2.1.
+2. Start Task 2.2 only after push succeeds.
 
 ## Verification Status
 
-Task 1.3 verification passed.
+Task 2.1 verification passed.
 
 Latest result:
 
 - command: `npm.cmd run verify`
 - data validation: `Validated 12 GPU records.`
-- tests: 45 pass / 0 fail
+- tests: 46 pass / 0 fail
 
 ## Important Commands
 
@@ -102,4 +102,4 @@ If resuming after compression:
 4. Check `git status -sb`.
 5. Continue from `Next Step`.
 
-Do not start Task 2.1 until the Task 1.3 commit has been pushed to `origin main`.
+Do not start Task 2.2 until the Task 2.1 commit has been pushed to `origin main`.
