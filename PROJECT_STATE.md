@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：多硬件平台扩展架构审计完成，已新增 GPT-5-Codex 架构分析文档。
+阶段：多硬件平台优秀架构设计完成，已新增架构设计文档、原子化实现文档和 SessionContextRecord 机制。
 
-当前任务：Architecture Scalability Review for Multi-Hardware Platform。
+当前任务：Multi-Hardware Platform Architecture Design and Atomic Implementation Planning。
 
-下一步：按 `docs/architecture/2026-04-30-architecture-scalability-review-GPT-5-Codex.md` 的建议，优先拆分 Task E/F：硬件平台领域模型、接口和 schema-driven 数据维护方案。
+下一步：从 `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md` 的 Task 0.1 开始执行；任何编码前必须先读取 `SessionContextRecord.md`。
 
 ## 工作规则
 
@@ -65,6 +65,10 @@
 - Admin Task D 计划 checkbox 已更新。
 - Architecture Review 完成：新增 `docs/architecture/2026-04-30-architecture-scalability-review-GPT-5-Codex.md`。
 - Architecture Review 完成：记录当前 GPU-only 架构不足、多硬件品类目标架构、接口优先设计、schema-driven UI、PostgreSQL 建模方向和分阶段迁移路线。
+- Architecture Design 完成：新增 `docs/architecture/2026-04-30-multi-hardware-platform-architecture-GPT-5-Codex.md`，详细定义多硬件平台目标、领域模型、repository 接口、schema-driven UI、后台、API、PostgreSQL 和迁移路线。
+- Implementation Plan 完成：新增 `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`，将架构迁移拆分为多个小型原子任务。
+- Session Context 完成：新增 `SessionContextRecord.md`，记录上下文压缩后的恢复规则、当前架构决策、关键文件和下一步。
+- README 更新：补充多硬件平台架构演进方向、关键文档链接和编码铁律。
 
 ## 最近验证
 
@@ -111,9 +115,13 @@
 - Admin Task D 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 31 pass / 0 fail。
 - Architecture Review 文档自检：确认新文档文件名包含 `GPT-5-Codex`，并覆盖 CPU、手机 SoC、对比功能、后台复杂化、接口抽象、数据驱动和 PostgreSQL 演进方向。
 - Architecture Review 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 31 pass / 0 fail。
+- Architecture Design 文档自检：确认新架构文档覆盖 GPU、CPU、手机 SoC、Apple Silicon、国产显卡、同类型对比、复杂后台、接口优先、数据驱动和 PostgreSQL。
+- Implementation Plan 文档自检：确认实现文档包含 `SessionContextRecord.md` 铁律、原子任务执行循环、逐任务验证和 commit/push 要求。
+- Multi-Hardware Architecture 文档验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 31 pass / 0 fail。
 
 ## 最近提交
 
+- `dd962e7 docs: analyze multi-hardware architecture`
 - `05ebf40 docs: add local admin editor workflow`
 - `6b4ec18 feat: add local gpu admin editor`
 - `64baf7d feat: add local gpu admin api`

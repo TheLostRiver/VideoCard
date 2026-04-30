@@ -1,6 +1,6 @@
 # 游戏显卡天梯图
 
-一个静态 HTML 版交互式游戏显卡天梯图，覆盖 NVIDIA、AMD、Intel 的桌面版和移动版显卡。
+一个正在从静态 HTML 显卡天梯图演进为多硬件品类性能与参数数据库的项目。当前可用版本覆盖 NVIDIA、AMD、Intel 的桌面版和移动版显卡；下一代架构会扩展到 CPU、手机 SoC、Apple Silicon、国产显卡和同类型硬件参数对比。
 
 ## 功能
 
@@ -9,6 +9,34 @@
 - 点击显卡查看架构、核心、显存、带宽、功耗、TGP、跑分参考和备注。
 - 移动版显卡独立标注，避免与桌面同名卡混淆。
 - 本地后台编辑器可维护 GPU 参数并保存回项目数据文件。
+
+## 架构演进
+
+项目的长期方向是从 GPU-only 静态工具升级为 schema-driven 的多硬件平台：
+
+- `HardwareCategory` 抽象 GPU、桌面 CPU、移动 CPU、手机 SoC、Apple Silicon 等品类。
+- `MetricDefinition` 抽象规格、跑分、功耗、平台能力和对比字段。
+- `RankingProfile` 抽象不同天梯口径，例如 GPU 游戏综合、CPU 单核、多核、手机 SoC 综合性能。
+- 前台列表、详情、后台表单和对比表由 category schema 驱动，减少硬编码。
+- 短期保留 JSON 数据源和静态导出；长期引入 PostgreSQL 作为主数据库。
+- 业务层面向 `HardwareRepository` 等接口编程，JSON 与 PostgreSQL 都只是 adapter。
+
+关键文档：
+
+- [多硬件平台架构设计](docs/architecture/2026-04-30-multi-hardware-platform-architecture-GPT-5-Codex.md)
+- [多硬件平台实现计划](docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md)
+- [架构扩展性审计](docs/architecture/2026-04-30-architecture-scalability-review-GPT-5-Codex.md)
+- [上下文恢复记录](SessionContextRecord.md)
+
+## 编码铁律
+
+后续架构迁移和功能实现必须遵守 `SessionContextRecord.md` 机制：
+
+1. 每个原子任务开始前读取 `PROJECT_STATE.md` 和 `SessionContextRecord.md`。
+2. 每个原子任务必须足够小，能在一次上下文中完成、验证、记录、提交和 push。
+3. 每个原子任务结束前必须更新 `SessionContextRecord.md`。
+4. 如果上下文接近爆满或任务状态变复杂，必须先把当前状态写入 `SessionContextRecord.md`。
+5. 上下文压缩或恢复后，第一步必须读取 `SessionContextRecord.md`，再继续执行。
 
 ## 本地运行
 
