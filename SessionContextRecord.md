@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Ready for Task 2.4: Add Hardware Query Service
+Task: Task 2.4: Add Hardware Query Service
 
-Status: Task 2.3 is complete, verified, committed, and pushed to `origin/main` as `4cfb7af`. Push-completion record verification also passed. A push-completion record commit is being prepared now. Next implementation task is Task 2.4: Add Hardware Query Service.
+Status: Task 2.4 implementation and full verification are complete. `tests/hardware-query-service.test.mjs` failed as expected before `src/application/hardware-query-service.js` existed. The query service now builds list/detail view models from a repository without importing `gpus.js`. `npm.cmd run verify` passes with data validation and 57 pass / 0 fail. Commit and push are still pending.
 
 ## Current Date
 
@@ -60,30 +60,31 @@ Core model:
 
 ## Current Files Changed In This Task
 
-- Created `tests/json-hardware-repository.test.mjs`
-- Created `src/infrastructure/json/json-hardware-repository.js`
+- Modified `SessionContextRecord.md`
+- Modified `PROJECT_STATE.md`
 - Modified `task_plan.md`
 - Modified `findings.md`
 - Modified `progress.md`
 - Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
-- Modified `SessionContextRecord.md`
-- Modified `PROJECT_STATE.md`
+- Modified `src/data/categories/gpu.schema.json`
+- Created `tests/hardware-query-service.test.mjs`
+- Created `src/application/hardware-query-service.js`
 
 ## Next Step
 
-1. Commit `chore: record task2.3 push completion`.
-2. Push to `origin/main`.
-3. Start Task 2.4 only after reading this file, `PROJECT_STATE.md`, the implementation plan, `task_plan.md`, `findings.md`, `progress.md`, and `git status -sb`.
+1. Commit `feat: add hardware query service`.
+2. Push the commit to `origin/main`.
+3. Record push completion, then prepare Task 3.1.
 
 ## Verification Status
 
-Task 2.3 full verification passed and implementation commit was pushed. Push-completion record commit is pending.
+Task 2.4 full verification passed. Commit and push are pending.
 
 Latest result:
 
 - command: `npm.cmd run verify`
 - data validation: `Validated 12 GPU records.`
-- tests: 53 pass / 0 fail
+- tests: 57 pass / 0 fail
 
 ## Important Commands
 
@@ -103,4 +104,4 @@ If resuming after compression:
 4. Check `git status -sb`.
 5. Continue from `Next Step`.
 
-If compression happens before commit, do not skip the full `npm.cmd run verify` and record finalization steps.
+If compression happens during Task 2.4, continue from `Next Step` and preserve the RED/GREEN/verify/commit/push cycle.

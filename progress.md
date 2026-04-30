@@ -77,6 +77,11 @@
 | Task 2.3 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 53 pass / 0 fail | Pass |
 | Task 2.3 push | `git push --porcelain origin main` | Push Task 2.3 to origin/main | `82be9b9..4cfb7af` pushed | Pass |
 | Task 2.3 push-record verify | `npm.cmd run verify` | Data validation and all tests pass before the push-completion record commit | `Validated 12 GPU records.` and 53 pass / 0 fail | Pass |
+| Task 2.3 push-record push | `git push --porcelain origin main` | Push Task 2.3 record commit to origin/main | `4cfb7af..87c96bc` pushed | Pass |
+| Resume Task 2.4 | Read recovery records and implementation plan | Clean workspace and Task 2.4 requirements known | `git status -sb` returned `## main...origin/main`; Task 2.4 requirements captured | Pass |
+| Task 2.4 RED | `npm.cmd test` | Fail because `hardware-query-service.js` does not exist | Failed with `ERR_MODULE_NOT_FOUND` for `src/application/hardware-query-service.js` | Pass |
+| Task 2.4 GREEN | `npm.cmd test` | Hardware query service tests pass and suite remains green | 57 pass / 0 fail | Pass |
+| Task 2.4 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 57 pass / 0 fail | Pass |
 
 ## Error Log
 
@@ -90,13 +95,15 @@
 | 2026-05-01 | Context nearly full before Task 2.3 | 1 | Recorded recovery checkpoint before editing Task 2.3 files. |
 | 2026-05-01 | Windows sandbox `CreateProcessWithLogonW failed: 1326` while reading recovery files | 1 | Re-ran the same read-only recovery commands with escalation. |
 | 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/infrastructure/json/json-hardware-repository.js` | 1 | Expected RED; implement read-only JSON repository next. |
+| 2026-05-01 | Task 2.3 recovery files still described the record commit as pending after it was pushed | 1 | Corrected the startup records before adding Task 2.4 code. |
+| 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/application/hardware-query-service.js` | 1 | Expected RED; implement query service next. |
 
 ## 5-Question Reboot Check
 
 | Question | Answer |
 |----------|--------|
-| Where am I? | Task 2.3 JSON Hardware Repository Read Path. |
-| Where am I going? | Start Task 2.4 after reading recovery files and implementation plan details. |
+| Where am I? | Task 2.4 Hardware Query Service. |
+| Where am I going? | Add RED service tests, implement repository-backed view-model assembly, verify, then commit and push. |
 | What's the goal? | Continue the multi-hardware implementation one atomic task at a time. |
 | What have I learned? | See `findings.md`. |
 | What have I done? | Bootstrapped planning-with-files records and read Task 1.3. |

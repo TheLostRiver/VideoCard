@@ -47,6 +47,14 @@
   - test that `getItemDetail("rtx-4070-laptop")` returns mapped item, metric values, sources, and ranking score;
   - implement a read-only JSON repository using `src/data/gpus.json`, `src/data/categories/gpu.schema.json`, and the legacy GPU mapper;
   - commit message should be `feat: add read-only json hardware repository`.
+- Implementation plan Task 2.4 requires:
+  - create `src/application/hardware-query-service.js`;
+  - create `tests/hardware-query-service.test.mjs`;
+  - test that the list view model for `gpu` includes `rtx-4070-laptop`;
+  - test that the detail view model contains grouped metric display values;
+  - test that the mobile GPU warning appears from schema-driven behavior;
+  - ensure the service accepts a repository object and does not import `gpus.js` directly;
+  - commit message should be `feat: add hardware query service`.
 - Architecture model fields read from the architecture document:
   - `HardwareItem` includes `id`, `categoryId`, `name`, `manufacturerId`, `generation`, `architecture`, `releaseDate`, `marketSegmentIds`, `status`, `notes`, `createdAt`, and `updatedAt`.
   - `MetricValue` includes `id`, `itemId`, `metricId`, value fields, `confidence`, `sourceIds`, optional `note`, and `updatedAt`.
@@ -72,6 +80,8 @@
 | Keep Task 2.3 repository read-only | The task exists to establish the adapter read path; write/edit behavior remains in the existing local admin API until later migration tasks. |
 | Use closure functions inside `createJsonHardwareRepository` | Avoids coupling method behavior to `this`, so repository methods still work if destructured by future services or tests. |
 | Treat `4cfb7af` as Task 2.3 implementation commit | The read-only JSON repository task is implemented, verified, and pushed; the following commit only records push completion. |
+| Treat `87c96bc` as Task 2.3 push completion record commit | Task 2.4 starts only after the Task 2.3 record commit is also pushed. |
+| Represent mobile warnings as schema rules | `gpu.schema.json` now exposes `detailView.warnings`, and the query service applies matching rules from repository category data. |
 
 ## Issues Encountered
 
@@ -85,6 +95,7 @@
 | Legacy GPU mapper module was absent | Added it after confirming the expected RED failure. |
 | Context nearing full before Task 2.3 | Wrote this checkpoint before editing Task 2.3 files. |
 | Windows sandbox blocked recovery reads with `CreateProcessWithLogonW failed: 1326` | Re-ran the same read-only commands with escalation and completed the required recovery-file reread. |
+| Task 2.3 recovery files still said record commit was pending after `87c96bc` was pushed | Corrected the recovery files at Task 2.4 startup before adding Task 2.4 code. |
 
 ## Resources
 
@@ -98,6 +109,8 @@
 - `tests/legacy-gpu-import.test.mjs`
 - `src/infrastructure/json/json-hardware-repository.js`
 - `tests/json-hardware-repository.test.mjs`
+- `src/application/hardware-query-service.js`
+- `tests/hardware-query-service.test.mjs`
 
 ## Visual/Browser Findings
 

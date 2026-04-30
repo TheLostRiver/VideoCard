@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Phase 13: Next Task Readiness After Task 2.3
+Phase 14: Task 2.4 Hardware Query Service
 
 ## Phases
 
@@ -117,6 +117,23 @@ Phase 13: Next Task Readiness After Task 2.3
 - [x] Record next task as Task 2.4.
 - **Status:** complete
 
+### Phase 14: Task 2.4 Hardware Query Service
+
+- [x] Read Task 2.4 implementation plan details.
+- [x] Add failing service tests.
+- [x] Confirm RED failure before service exists.
+- [x] Implement query service without importing `gpus.js` directly.
+- [x] Confirm `npm.cmd test` passes.
+- **Status:** complete
+
+### Phase 15: Task 2.4 Verification And Records
+
+- [x] Run `npm.cmd run verify`.
+- [x] Update implementation plan checkboxes.
+- [x] Update recovery records.
+- [ ] Commit and push Task 2.4.
+- **Status:** in_progress
+
 ## Key Questions
 
 1. What is the repository contract surface for future JSON and PostgreSQL adapters?
@@ -138,6 +155,8 @@ Phase 13: Next Task Readiness After Task 2.3
 | Start Task 2.3 after recovery-file reread | The user required compression recovery through `SessionContextRecord.md`; the recovery files have now been read after compaction. |
 | Implement JSON repository as a thin adapter over legacy mapper | Keeps Task 2.3 scoped to the read path and avoids duplicating mapping rules before the query service exists. |
 | Start Task 2.4 next | Task 2.3 is implemented, verified, committed, and pushed as `4cfb7af`. |
+| Correct Task 2.3 push completion state before Task 2.4 | Task 2.3 record commit `87c96bc` is already pushed, so recovery files must not say it is pending. |
+| Add mobile warning as `detailView.warnings` schema data | This keeps the query service data-driven and prepares the current hardcoded UI warning for later schema-driven rendering. |
 
 ## Errors Encountered
 
@@ -148,3 +167,4 @@ Phase 13: Next Task Readiness After Task 2.3
 | `ERR_MODULE_NOT_FOUND` for `scripts/import-legacy-gpus.mjs` | 1 | Expected RED for Task 2.2; implement the pure mapper functions next. |
 | Windows sandbox `CreateProcessWithLogonW failed: 1326` during recovery reads | 1 | Re-ran the same read-only recovery commands with escalation and continued. |
 | `ERR_MODULE_NOT_FOUND` for `src/infrastructure/json/json-hardware-repository.js` | 1 | Expected RED for Task 2.3; implement the read-only JSON repository next. |
+| `ERR_MODULE_NOT_FOUND` for `src/application/hardware-query-service.js` | 1 | Expected RED for Task 2.4; implement the repository-backed query service next. |

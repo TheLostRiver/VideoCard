@@ -70,6 +70,16 @@
           "gpu.gaming.efficiencyNote"
         ]
       }
+    ],
+    "warnings": [
+      {
+        "id": "gpu-mobile-performance-variance",
+        "severity": "warning",
+        "when": {
+          "marketSegmentId": "mobile"
+        },
+        "message": "移动版性能受 TGP、散热和厂商调校影响，不能直接等同桌面版。"
+      }
     ]
   },
   "adminForm": {

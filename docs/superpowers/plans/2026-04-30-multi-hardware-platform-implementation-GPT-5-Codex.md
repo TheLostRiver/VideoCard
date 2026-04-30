@@ -531,7 +531,7 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add failing service tests**
+- [x] **Step 1: Add failing service tests**
 
 Test:
 
@@ -539,11 +539,11 @@ Test:
 - detail view model contains grouped metric display values;
 - mobile GPU warning appears from schema rule.
 
-- [ ] **Step 2: Implement query service**
+- [x] **Step 2: Implement query service**
 
 The service accepts a repository object and returns view models. It must not import `gpus.js` directly.
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 
