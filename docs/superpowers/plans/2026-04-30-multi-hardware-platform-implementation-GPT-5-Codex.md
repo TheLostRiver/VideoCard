@@ -686,7 +686,7 @@ npm.cmd run verify
 
 Expected: all tests pass, current browser UI still renders.
 
-- [ ] **Step 4: Update records, commit, push**
+- [x] **Step 4: Update records, commit, push**
 
 Commit:
 

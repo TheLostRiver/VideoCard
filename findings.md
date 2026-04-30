@@ -112,6 +112,7 @@
 | Treat `7ccefa2` as Task 3.2 push completion record commit | Task 3.3 starts only after the Task 3.2 record commit is also pushed. |
 | Avoid static `JsonHardwareRepository` import in browser app code | The repository uses Node `fs`, so Task 3.3 should load it dynamically only for local/service-backed data helpers. |
 | Keep Task 3.3 browser UI path conservative for now | `initApp()` still uses the existing static GPU array while the new exported page model proves the service-backed path; later browser repository work can replace the runtime UI data path without importing Node `fs`. |
+| Treat `e1b6380` as Task 3.3 implementation commit | The GPU page service-backed helper task is implemented, verified, browser-smoked, and pushed; the next task is Task 4.1. |
 
 ## Issues Encountered
 

@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 3.3: Wire GPU Page To Hardware Query Service
+Task: Task 4.1: Add Schema Form Renderer
 
-Status: Task 3.2 is complete and pushed. Implementation commit: `b2c9445 feat: add schema-driven hardware detail renderer`. Push-completion record commit: `7ccefa2 chore: record task3.2 push completion`. Task 3.3 implementation, full verification, and browser smoke test are complete. Commit and push are pending.
+Status: Task 3.3 is complete and pushed. Implementation commit: `e1b6380 refactor: route gpu page through hardware query service`. Task 3.3 full verification, browser smoke, and push-completion record verification passed. The next atomic task is Task 4.1: Add Schema Form Renderer.
 
 ## Current Date
 
@@ -71,13 +71,13 @@ Core model:
 
 ## Next Step
 
-1. Commit and push `refactor: route gpu page through hardware query service`.
-2. Record Task 3.3 push completion, verify, commit, and push the record update.
-3. Start Task 4.1 only after Task 3.3 push-completion record commit is also pushed.
+1. Verify and push this Task 3.3 push-completion record update.
+2. Start Task 4.1 only after this push-completion record commit is pushed.
+3. For Task 4.1, read the implementation plan, add failing tests for `src/features/schema-form/render-schema-form.js`, then implement the renderer.
 
 ## Verification Status
 
-Task 3.3 full verification and browser smoke test passed. Commit and push are pending.
+Task 3.3 full verification, browser smoke test, and push-completion record verification passed. Implementation commit `e1b6380` is pushed.
 
 Latest result:
 
