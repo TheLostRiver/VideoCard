@@ -12,7 +12,7 @@
 
 当前任务：Task 2.1: Add GPU Category Schema。
 
-下一步：提交并 push Task 2.1 后，进入 Task 2.2: Add Legacy GPU Import Mapper；开始前必须读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、`task_plan.md`、`findings.md`、`progress.md` 和实现计划。
+下一步：进入 Task 2.2: Add Legacy GPU Import Mapper；开始前必须读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、`task_plan.md`、`findings.md`、`progress.md` 和实现计划。
 
 ## 工作规则
 
@@ -154,6 +154,7 @@
 
 ## 最近提交
 
+- `12527a2 data: add gpu category schema`
 - `e06b12b chore: record task1.3 push completion`
 - `fa7bd57 test: add hardware repository contract`
 - `cf8d52e chore: install planning-with-files codex integration`

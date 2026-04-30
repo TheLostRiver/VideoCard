@@ -19,7 +19,7 @@ The user explicitly required:
 
 Task: Task 2.1 - Add GPU Category Schema
 
-Status: complete; verification passed; commit/push pending for Task 2.1.
+Status: complete; verification passed; pushed to `origin/main` as `12527a2`.
 
 ## Current Date
 
@@ -71,8 +71,8 @@ Core model:
 
 ## Next Step
 
-1. Commit and push Task 2.1.
-2. Start Task 2.2 only after push succeeds.
+1. Start Task 2.2: Add Legacy GPU Import Mapper.
+2. Before editing, read `SessionContextRecord.md`, `PROJECT_STATE.md`, `task_plan.md`, `findings.md`, `progress.md`, and the implementation plan.
 
 ## Verification Status
 

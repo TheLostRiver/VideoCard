@@ -63,6 +63,7 @@
 | Task 2.1 RED | `npm.cmd test` | Fail because `gpu.schema.json` does not exist | Failed with `ENOENT` for `src/data/categories/gpu.schema.json` | Pass |
 | Task 2.1 GREEN | `npm.cmd test` | GPU schema test passes | 46 pass / 0 fail | Pass |
 | Task 2.1 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 46 pass / 0 fail | Pass |
+| Task 2.1 push | `git push --porcelain origin main` | Push Task 2.1 to origin/main | `e06b12b..12527a2` pushed | Pass |
 
 ## Error Log
 
@@ -76,8 +77,8 @@
 
 | Question | Answer |
 |----------|--------|
-| Where am I? | Task 2.1 complete locally, commit/push pending. |
-| Where am I going? | Commit and push Task 2.1, then prepare Task 2.2. |
+| Where am I? | Task 2.1 complete and pushed. |
+| Where am I going? | Task 2.2: Add Legacy GPU Import Mapper. |
 | What's the goal? | Continue the multi-hardware implementation one atomic task at a time. |
 | What have I learned? | See `findings.md`. |
 | What have I done? | Bootstrapped planning-with-files records and read Task 1.3. |
