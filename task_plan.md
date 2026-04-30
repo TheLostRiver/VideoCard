@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Phase 30: Task 4.2 Verification And Records
+Phase 31: Next Task Readiness After Task 4.2
 
 ## Phases
 
@@ -246,8 +246,23 @@ Phase 30: Task 4.2 Verification And Records
 - [x] Run `npm.cmd run verify`.
 - [x] Update implementation plan checkboxes.
 - [x] Update recovery records.
-- [ ] Commit and push Task 4.2.
-- **Status:** in_progress
+- [x] Commit and push Task 4.2.
+- **Status:** complete
+
+### Phase 31: Next Task Readiness After Task 4.2
+
+- [x] Confirm clean git status after Task 4.2 push.
+- [x] Record next task as Task 4.3.
+- **Status:** complete
+
+### Phase 32: Task 4.3 Replace Admin GPU Form With Schema Form
+
+- [ ] Read Task 4.3 implementation plan details.
+- [ ] Update admin renderer tests.
+- [ ] Refactor admin renderer to use schema form and mutation service.
+- [ ] Run browser smoke for admin editing flow.
+- [ ] Confirm `npm.cmd test` passes.
+- **Status:** pending
 
 ## Key Questions
 
@@ -286,6 +301,7 @@ Phase 30: Task 4.2 Verification And Records
 | Start Task 4.2 next | Task 4.1 is implemented, verified, committed, and pushed as `d5b0742`. |
 | Treat `eb18068` as Task 4.1 push completion record commit | Task 4.2 starts only after the Task 4.1 record commit is also pushed. |
 | Use mutation service as a thin application layer | The service exposes `saveItemDetail` and delegates persistence to the repository, keeping validation/write details inside the JSON adapter. |
+| Start Task 4.3 next | Task 4.2 is implemented, verified, committed, and pushed as `22cd61c`. |
 
 ## Errors Encountered
 

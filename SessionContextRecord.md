@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 4.2: Add Hardware Mutation Service For JSON
+Task: Task 4.3: Replace Admin GPU Form With Schema Form
 
-Status: Task 4.1 is complete and pushed. Implementation commit: `d5b0742 feat: add schema-driven admin form renderer`. Push-completion record commit: `eb18068 chore: record task4.1 push completion`. Task 4.2 implementation and full verification are complete. Commit and push are pending.
+Status: Task 4.2 is complete and pushed. Implementation commit: `22cd61c feat: add hardware mutation service for json data`. Task 4.2 full verification and push-completion record verification passed. The next atomic task is Task 4.3: Replace Admin GPU Form With Schema Form.
 
 ## Current Date
 
@@ -67,9 +67,12 @@ Core model:
 - Modified `progress.md`
 - Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
 
-- Created `tests/hardware-mutation-service.test.mjs`
-- Created `src/application/hardware-mutation-service.js`
-- Modified `src/infrastructure/json/json-hardware-repository.js`
+- Modified `SessionContextRecord.md`
+- Modified `PROJECT_STATE.md`
+- Modified `task_plan.md`
+- Modified `findings.md`
+- Modified `progress.md`
+- Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
 - Modified `SessionContextRecord.md`
 - Modified `PROJECT_STATE.md`
 - Modified `task_plan.md`
@@ -79,13 +82,13 @@ Core model:
 
 ## Next Step
 
-1. Commit and push `feat: add hardware mutation service for json data`.
-2. Record Task 4.2 push completion, verify, commit, and push the record update.
-3. Start Task 4.3 only after Task 4.2 push-completion record commit is also pushed.
+1. Verify and push this Task 4.2 push-completion record update.
+2. Start Task 4.3 only after this push-completion record commit is pushed.
+3. For Task 4.3, read the implementation plan, update admin tests, then refactor the admin renderer to use the schema form and mutation service.
 
 ## Verification Status
 
-Task 4.1 full verification and push-completion record verification passed. Implementation commit `d5b0742` and record commit `eb18068` are pushed.
+Task 4.2 full verification and push-completion record verification passed. Implementation commit `22cd61c` is pushed.
 
 Latest result:
 
