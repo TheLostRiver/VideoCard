@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Phase 27: Task 4.1 Verification And Records
+Phase 28: Next Task Readiness After Task 4.1
 
 ## Phases
 
@@ -223,8 +223,23 @@ Phase 27: Task 4.1 Verification And Records
 - [x] Run `npm.cmd run verify`.
 - [x] Update implementation plan checkboxes.
 - [x] Update recovery records.
-- [ ] Commit and push Task 4.1.
-- **Status:** in_progress
+- [x] Commit and push Task 4.1.
+- **Status:** complete
+
+### Phase 28: Next Task Readiness After Task 4.1
+
+- [x] Confirm clean git status after Task 4.1 push.
+- [x] Record next task as Task 4.2.
+- **Status:** complete
+
+### Phase 29: Task 4.2 Hardware Mutation Service For JSON
+
+- [ ] Read Task 4.2 implementation plan details.
+- [ ] Add failing save tests.
+- [ ] Confirm RED failure before mutation service exists.
+- [ ] Implement JSON save adapter compatibility layer.
+- [ ] Confirm `npm.cmd test` passes.
+- **Status:** pending
 
 ## Key Questions
 
@@ -260,6 +275,7 @@ Phase 27: Task 4.1 Verification And Records
 | Start Task 4.1 next | Task 3.3 is implemented, verified, browser-smoked, committed, and pushed as `e1b6380`. |
 | Treat `afd2c66` as Task 3.3 push completion record commit | Task 4.1 starts only after the Task 3.3 record commit is also pushed. |
 | Keep schema form renderer pure and schema-only | Task 4.1 should not wire the admin UI yet; it establishes a reusable renderer before mutation service/admin integration tasks. |
+| Start Task 4.2 next | Task 4.1 is implemented, verified, committed, and pushed as `d5b0742`. |
 
 ## Errors Encountered
 

@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 4.1: Add Schema Form Renderer
+Task: Task 4.2: Add Hardware Mutation Service For JSON
 
-Status: Task 3.3 is complete and pushed. Implementation commit: `e1b6380 refactor: route gpu page through hardware query service`. Push-completion record commit: `afd2c66 chore: record task3.3 push completion`. Task 4.1 implementation and full verification are complete. Commit and push are pending.
+Status: Task 4.1 is complete and pushed. Implementation commit: `d5b0742 feat: add schema-driven admin form renderer`. Task 4.1 full verification and push-completion record verification passed. The next atomic task is Task 4.2: Add Hardware Mutation Service For JSON.
 
 ## Current Date
 
@@ -66,23 +66,22 @@ Core model:
 - Modified `findings.md`
 - Modified `progress.md`
 - Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
-- Created `tests/schema-form-render.test.mjs`
-- Created `src/features/schema-form/render-schema-form.js`
 - Modified `SessionContextRecord.md`
 - Modified `PROJECT_STATE.md`
 - Modified `task_plan.md`
 - Modified `findings.md`
 - Modified `progress.md`
+- Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
 
 ## Next Step
 
-1. Commit and push `feat: add schema-driven admin form renderer`.
-2. Record Task 4.1 push completion, verify, commit, and push the record update.
-3. Start Task 4.2 only after Task 4.1 push-completion record commit is also pushed.
+1. Verify and push this Task 4.1 push-completion record update.
+2. Start Task 4.2 only after this push-completion record commit is pushed.
+3. For Task 4.2, read the implementation plan, add failing save tests, then implement the JSON mutation service.
 
 ## Verification Status
 
-Task 3.3 full verification, browser smoke test, and push-completion record verification passed. Implementation commit `e1b6380` and record commit `afd2c66` are pushed.
+Task 4.1 full verification and push-completion record verification passed. Implementation commit `d5b0742` is pushed.
 
 Latest result:
 

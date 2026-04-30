@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 4.1 完整验证完成，准备提交推送。
+阶段：Multi-Hardware Platform Implementation Task 4.1 已推送，正在记录 push completion。
 
-当前任务：Task 4.1: Add Schema Form Renderer。
+当前任务：Task 4.1 push completion 记录。
 
-下一步：提交并推送 `feat: add schema-driven admin form renderer`，随后记录 Task 4.1 push completion。
+下一步：验证并推送 Task 4.1 push completion 记录，然后启动 Task 4.2: Add Hardware Mutation Service For JSON。
 
 ## 工作规则
 
@@ -130,6 +130,9 @@
 - Task 4.1 RED 完成：新增 `tests/schema-form-render.test.mjs`，先运行 `npm.cmd test`，按预期因 `src/features/schema-form/render-schema-form.js` 缺失失败。
 - Task 4.1 GREEN 完成：新增 `src/features/schema-form/render-schema-form.js`，实现 schema-driven 表单、字段组、文本/数字/下拉/多行文本/range 控件、required 标记和稳定字段名。
 - Task 4.1 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 70 pass / 0 fail。
+- Task 4.1 推送完成：`d5b0742 feat: add schema-driven admin form renderer` 已推送到 `origin/main`。
+- Task 4.1 计划 checkbox 已更新完成。
+- Task 4.1 push completion 验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 70 pass / 0 fail。
 
 ## 最近验证
 
@@ -218,10 +221,12 @@
 - Task 4.1 RED 验证：`npm.cmd test` 失败，错误为 `ERR_MODULE_NOT_FOUND`，目标模块 `src/features/schema-form/render-schema-form.js` 不存在，符合预期。
 - Task 4.1 GREEN 验证：`npm.cmd test` 通过，测试 70 pass / 0 fail。
 - Task 4.1 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 70 pass / 0 fail。
+- Task 4.1 push-record 验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 70 pass / 0 fail。
 
 ## 最近提交
 
 - `afd2c66 chore: record task3.3 push completion`
+- `d5b0742 feat: add schema-driven admin form renderer`
 - `e1b6380 refactor: route gpu page through hardware query service`
 - `7ccefa2 chore: record task3.2 push completion`
 - `b2c9445 feat: add schema-driven hardware detail renderer`

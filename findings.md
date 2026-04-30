@@ -116,6 +116,7 @@
 | Treat `afd2c66` as Task 3.3 push completion record commit | Task 4.1 starts only after the Task 3.3 record commit is also pushed. |
 | Task 4.1 renderer should accept richer synthetic schema fields | Current `gpu.schema.json` has minimal admin fields, so tests should prove generic support for text, number, select, textarea, range, required markers, and stable names without mutating the production schema in this atomic task. |
 | Task 4.1 renderer remains a pure HTML renderer | It reads only `{ schema, detail }`, maps property and metric fields to controls, and does not depend on the legacy GPU admin implementation. |
+| Treat `d5b0742` as Task 4.1 implementation commit | The schema-driven admin form renderer task is implemented, verified, and pushed; the next task is Task 4.2. |
 
 ## Issues Encountered
 
