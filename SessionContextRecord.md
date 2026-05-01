@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 6.3: Add GPU Compare Page Entry
+Task: Task 7.1: Add Desktop CPU Category Schema
 
-Status: Task 6.3 is complete. Modified `src/app.js` to wire compare mode into the browser UI: `createInitialState` parses compare hash, `render()` is now async and handles compare mode by hiding content-grid and showing comparePanel with rendered compare table. Added CSS styles for `.compare-table`, `.compare-group-row`, `.compare-value.is-best`, `.compare-empty` in `src/styles.css`. Full verify passed: 12 data records, 95 tests / 0 fail.
+Status: Task 7.1 is complete. Created `src/data/categories/desktop-cpu.schema.json` with 20 metrics covering cores, threads, clocks, L3 cache, socket, memory, TDP, Cinebench, Geekbench, and gaming recommendations. Schema follows the same listView/detailView/adminForm/comparePresets structure as the GPU schema. Full verify passed: 12 data records, 96 tests / 0 fail.
 
 ## Current Date
 
@@ -69,20 +69,19 @@ Core model:
 
 ## Next Step
 
-1. 读取实现计划中 Task 7.1 的详细要求。
-2. 添加桌面 CPU 品类 schema 测试。
+1. 读取实现计划中 Task 7.2 的详细要求。
+2. 添加桌面 CPU 种子数据和 JSON repository 支持。
 3. 保持 RED/GREEN/验证/提交/推送 循环。
 
 ## Verification Status
 
-Task 6.3 完整验证、浏览器烟测、实现提交、推送通过。
+Task 7.1 完整验证、实现提交、推送通过。
 
 最新结果：
 
 - 命令：`npm.cmd run verify`
 - 数据校验：`Validated 12 GPU records.`
-- 测试：95 pass / 0 fail
-- 浏览器烟测：服务器和静态文件正常访问（200）
+- 测试：96 pass / 0 fail
 
 ## Important Commands
 

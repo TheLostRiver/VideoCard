@@ -1,0 +1,393 @@
+{
+  "id": "desktop-cpu",
+  "label": "Desktop CPU",
+  "description": "Desktop processors for performance comparison and ranking.",
+  "itemName": {
+    "singular": "CPU",
+    "plural": "CPUs"
+  },
+  "listView": {
+    "titleField": "name",
+    "subtitleFields": [
+      "brand",
+      "generation",
+      "cpu.socket"
+    ],
+    "badgeField": "segment",
+    "scoreField": "cpu.performance.index",
+    "powerField": "cpu.power.tdp.display",
+    "recommendationField": "cpu.gaming.recommendedTier"
+  },
+  "detailView": {
+    "groups": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "metricIds": [
+          "cpu.performance.index",
+          "cpu.release.date",
+          "cpu.socket",
+          "cpu.confidence"
+        ]
+      },
+      {
+        "id": "core",
+        "title": "Core Specs",
+        "metricIds": [
+          "cpu.core.count",
+          "cpu.core.threads",
+          "cpu.clock.base",
+          "cpu.clock.boost"
+        ]
+      },
+      {
+        "id": "cacheMemory",
+        "title": "Cache And Memory",
+        "metricIds": [
+          "cpu.cache.l3",
+          "cpu.memory.type",
+          "cpu.memory.maxSpeed"
+        ]
+      },
+      {
+        "id": "power",
+        "title": "Power",
+        "metricIds": [
+          "cpu.power.tdp",
+          "cpu.power.tdp.display"
+        ]
+      },
+      {
+        "id": "benchmarks",
+        "title": "Benchmarks",
+        "metricIds": [
+          "cpu.benchmark.cinebenchSingle",
+          "cpu.benchmark.cinebenchMulti",
+          "cpu.benchmark.geekbenchSingle",
+          "cpu.benchmark.geekbenchMulti"
+        ]
+      },
+      {
+        "id": "notes",
+        "title": "Notes",
+        "metricIds": [
+          "cpu.benchmark.sourceNote",
+          "cpu.gaming.recommendedTier",
+          "cpu.gaming.efficiencyNote"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "adminForm": {
+    "groups": [
+      {
+        "id": "basic",
+        "title": "Basic",
+        "fields": [
+          {
+            "kind": "property",
+            "key": "id",
+            "label": "ID"
+          },
+          {
+            "kind": "property",
+            "key": "name",
+            "label": "Name"
+          },
+          {
+            "kind": "property",
+            "key": "brand",
+            "label": "Brand"
+          },
+          {
+            "kind": "property",
+            "key": "segment",
+            "label": "Segment"
+          },
+          {
+            "kind": "property",
+            "key": "generation",
+            "label": "Generation"
+          },
+          {
+            "kind": "property",
+            "key": "architecture",
+            "label": "Architecture"
+          },
+          {
+            "kind": "metric",
+            "metricId": "cpu.release.date"
+          },
+          {
+            "kind": "metric",
+            "metricId": "cpu.performance.index"
+          },
+          {
+            "kind": "metric",
+            "metricId": "cpu.confidence"
+          }
+        ]
+      },
+      {
+        "id": "core",
+        "title": "Core Specs",
+        "fields": [
+          {
+            "kind": "metric",
+            "metricId": "cpu.core.count"
+          },
+          {
+            "kind": "metric",
+            "metricId": "cpu.core.threads"
+          },
+          {
+            "kind": "metric",
+            "metricId": "cpu.clock.base"
+          },
+          {
+            "kind": "metric",
+            "metricId": "cpu.clock.boost"
+          },
+          {
+            "kind": "metric",
+            "metricId": "cpu.socket"
+          }
+        ]
+      },
+      {
+        "id": "cacheMemoryPower",
+        "title": "Cache, Memory And Power",
+        "fields": [
+          {
+            "kind": "metric",
+            "metricId": "cpu.cache.l3"
+          },
+          {
+            "kind": "metric",
+            "metricId": "cpu.memory.type"
+          },
+          {
+            "kind": "metric",
+            "metricId": "cpu.memory.maxSpeed"
+          },
+          {
+            "kind": "metric",
+            "metricId": "cpu.power.tdp"
+          }
+        ]
+      },
+      {
+        "id": "benchmarks",
+        "title": "Benchmarks",
+        "fields": [
+          {
+            "kind": "metric",
+            "metricId": "cpu.benchmark.cinebenchSingle"
+          },
+          {
+            "kind": "metric",
+            "metricId": "cpu.benchmark.cinebenchMulti"
+          },
+          {
+            "kind": "metric",
+            "metricId": "cpu.benchmark.geekbenchSingle"
+          },
+          {
+            "kind": "metric",
+            "metricId": "cpu.benchmark.geekbenchMulti"
+          },
+          {
+            "kind": "metric",
+            "metricId": "cpu.benchmark.sourceNote"
+          }
+        ]
+      },
+      {
+        "id": "gamingNotes",
+        "title": "Gaming And Notes",
+        "fields": [
+          {
+            "kind": "metric",
+            "metricId": "cpu.gaming.recommendedTier"
+          },
+          {
+            "kind": "metric",
+            "metricId": "cpu.gaming.efficiencyNote"
+          },
+          {
+            "kind": "property",
+            "key": "notes",
+            "label": "Notes"
+          },
+          {
+            "kind": "property",
+            "key": "sources",
+            "label": "Sources"
+          }
+        ]
+      }
+    ]
+  },
+  "metrics": [
+    {
+      "id": "cpu.performance.index",
+      "label": "Performance Index",
+      "valueType": "number",
+      "formatterId": "index"
+    },
+    {
+      "id": "cpu.release.date",
+      "label": "Release Date",
+      "valueType": "date",
+      "formatterId": "release-month"
+    },
+    {
+      "id": "cpu.confidence",
+      "label": "Confidence",
+      "valueType": "enum",
+      "formatterId": "confidence"
+    },
+    {
+      "id": "cpu.core.count",
+      "label": "Core Count",
+      "valueType": "number",
+      "formatterId": "number"
+    },
+    {
+      "id": "cpu.core.threads",
+      "label": "Thread Count",
+      "valueType": "number",
+      "formatterId": "number"
+    },
+    {
+      "id": "cpu.clock.base",
+      "label": "Base Clock",
+      "valueType": "number",
+      "formatterId": "clock-mhz"
+    },
+    {
+      "id": "cpu.clock.boost",
+      "label": "Boost Clock",
+      "valueType": "number",
+      "formatterId": "clock-mhz"
+    },
+    {
+      "id": "cpu.cache.l3",
+      "label": "L3 Cache",
+      "valueType": "number",
+      "formatterId": "capacity-mb"
+    },
+    {
+      "id": "cpu.socket",
+      "label": "Socket",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "cpu.memory.type",
+      "label": "Memory Type",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "cpu.memory.maxSpeed",
+      "label": "Max Memory Speed",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "cpu.power.tdp",
+      "label": "TDP",
+      "valueType": "number",
+      "formatterId": "watts"
+    },
+    {
+      "id": "cpu.power.tdp.display",
+      "label": "TDP Display",
+      "valueType": "text",
+      "formatterId": "power"
+    },
+    {
+      "id": "cpu.benchmark.cinebenchSingle",
+      "label": "Cinebench R23 Single",
+      "valueType": "number",
+      "formatterId": "benchmark-score"
+    },
+    {
+      "id": "cpu.benchmark.cinebenchMulti",
+      "label": "Cinebench R23 Multi",
+      "valueType": "number",
+      "formatterId": "benchmark-score"
+    },
+    {
+      "id": "cpu.benchmark.geekbenchSingle",
+      "label": "Geekbench 6 Single",
+      "valueType": "number",
+      "formatterId": "benchmark-score"
+    },
+    {
+      "id": "cpu.benchmark.geekbenchMulti",
+      "label": "Geekbench 6 Multi",
+      "valueType": "number",
+      "formatterId": "benchmark-score"
+    },
+    {
+      "id": "cpu.benchmark.sourceNote",
+      "label": "Benchmark Source Note",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "cpu.gaming.recommendedTier",
+      "label": "Gaming Recommendation",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "cpu.gaming.efficiencyNote",
+      "label": "Efficiency Note",
+      "valueType": "text",
+      "formatterId": "text"
+    }
+  ],
+  "comparePresets": [
+    {
+      "id": "specs",
+      "label": "Specs",
+      "metricIds": [
+        "cpu.core.count",
+        "cpu.core.threads",
+        "cpu.clock.base",
+        "cpu.clock.boost",
+        "cpu.socket"
+      ]
+    },
+    {
+      "id": "cacheMemory",
+      "label": "Cache And Memory",
+      "metricIds": [
+        "cpu.cache.l3",
+        "cpu.memory.type",
+        "cpu.memory.maxSpeed"
+      ]
+    },
+    {
+      "id": "power",
+      "label": "Power",
+      "metricIds": [
+        "cpu.power.tdp"
+      ]
+    },
+    {
+      "id": "benchmarks",
+      "label": "Benchmarks",
+      "metricIds": [
+        "cpu.benchmark.cinebenchSingle",
+        "cpu.benchmark.cinebenchMulti",
+        "cpu.benchmark.geekbenchSingle",
+        "cpu.benchmark.geekbenchMulti"
+      ]
+    }
+  ]
+}

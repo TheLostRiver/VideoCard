@@ -185,12 +185,23 @@
   - `src/app.js` modified
   - `src/styles.css` modified
 
+### Phase: Task 7.1 Desktop CPU Category Schema
+
+- **Status:** complete
+- Actions taken:
+  - 新增 `tests/desktop-cpu-schema.test.mjs`，RED 确认因 schema 文件缺失失败
+  - 新增 `src/data/categories/desktop-cpu.schema.json`，包含 20 个 metrics
+  - `npm.cmd run verify` 通过：96 tests / 0 fail
+- Files created/modified:
+  - `tests/desktop-cpu-schema.test.mjs` created
+  - `src/data/categories/desktop-cpu.schema.json` created
+
 ## 5-Question Reboot Check
 
 | Question | Answer |
 |----------|--------|
-| 我在哪？ | Task 6.3 完成。准备进入 Phase 7: Desktop CPU Category Schema。 |
-| 去哪？ | 下一个原子任务是 Task 7.1。 |
+| 我在哪？ | Task 7.1 完成。准备进入 Task 7.2: Desktop CPU Seed Data。 |
+| 去哪？ | 下一个原子任务是 Task 7.2。 |
 | 目标？ | 继续多硬件平台实现计划，一个原子任务一个原子任务推进。 |
 | 学到了什么？ | 见 `findings.md`。 |
-| 做了什么？ | 完成、验证、提交、推送 Task 6.3（GPU 对比页面入口）。 |
+| 做了什么？ | 完成、验证、提交、推送 Task 7.1（Desktop CPU Category Schema）。 |

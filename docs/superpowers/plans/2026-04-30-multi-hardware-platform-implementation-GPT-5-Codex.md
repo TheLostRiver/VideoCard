@@ -1073,7 +1073,7 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add failing schema test**
+- [x] **Step 1: Add failing schema test**
 
 Test that desktop CPU schema passes category validation and includes metrics:
 
@@ -1089,11 +1089,11 @@ Test that desktop CPU schema passes category validation and includes metrics:
 - Geekbench single;
 - Geekbench multi.
 
-- [ ] **Step 2: Create schema**
+- [x] **Step 2: Create schema**
 
 Do not add CPU items yet.
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 
@@ -1104,7 +1104,7 @@ npm.cmd run verify
 
 Expected: all tests pass.
 
-- [ ] **Step 4: Update records, commit, push**
+- [x] **Step 4: Update records, commit, push**
 
 Commit:
 

@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 6.3 完成。
+阶段：Multi-Hardware Platform Implementation Task 7.1 完成。
 
-当前任务：Task 6.3: Add GPU Compare Page Entry — 完成。
+当前任务：Task 7.1: Add Desktop CPU Category Schema — 完成。
 
-下一步：Task 7.1: Desktop CPU Category Schema。
+下一步：Task 7.2: Add Desktop CPU Seed Data。
 
 ## 工作规则
 
@@ -176,6 +176,10 @@
 - Task 6.3 浏览器接线完成：`src/app.js` 的 `render()` 改为 async 处理 compare mode（隐藏 content-grid、显示 comparePanel），`createInitialState` 支持 compare hash 初始化，`getElements` 新增 `comparePanel`，所有事件处理 `render()` 加 `.catch(console.error)`。
 - Task 6.3 样式完成：`src/styles.css` 新增 `.compare-panel`、`.compare-table`、`.compare-group-row`、`.compare-label`、`.compare-value.is-best`、`.compare-empty` 样式。
 - Task 6.3 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 95 pass / 0 fail。
+- Task 7.1 启动检查完成：已读取实现计划 Task 7.1、GPU schema 模板和 `git status -sb`。
+- Task 7.1 RED 完成：新增 `tests/desktop-cpu-schema.test.mjs`，先运行 `npm.cmd test`，按预期因 `desktop-cpu.schema.json` 缺失失败。
+- Task 7.1 GREEN 完成：新增 `src/data/categories/desktop-cpu.schema.json`，包含 20 个 metrics（cores、threads、clocks、L3 cache、socket、memory、TDP、Cinebench、Geekbench、gaming recommendation）。
+- Task 7.1 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 96 pass / 0 fail。
 
 ## 最近验证
 

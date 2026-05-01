@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Task 6.3 complete. Ready for Task 7.1: Desktop CPU Category Schema
+Task 7.1 complete. Ready for Task 7.2: Desktop CPU Seed Data
 
 ## Phases
 
@@ -398,6 +398,23 @@ Task 6.3 complete. Ready for Task 7.1: Desktop CPU Category Schema
 - [x] 确认 Task 6.3 实现提交已推送
 - [x] 记录下一个任务为 Task 7.1
 - [x] 确认推送后 git 状态干净
+- **Status:** complete
+
+### Phase 50: Task 7.1 Desktop CPU Category Schema
+
+- [x] 读取 Task 7.1 实现计划详情
+- [x] 新增 `tests/desktop-cpu-schema.test.mjs` 失败测试（RED）
+- [x] 确认 RED 因 schema 文件不存在失败
+- [x] 新增 `src/data/categories/desktop-cpu.schema.json`
+- [x] 确认 `npm.cmd test` 通过（96 pass / 0 fail）
+- **Status:** complete
+
+### Phase 51: Task 7.1 验证与记录
+
+- [x] 运行 `npm.cmd run verify` 通过
+- [x] 更新实现计划 checkbox
+- [x] 更新记录文件
+- [x] 提交并推送 Task 7.1
 - **Status:** complete
 
 ## Key Questions

@@ -154,6 +154,9 @@
 | `createInitialState` 需解析 compare hash | 浏览器初始加载时可能直接访问 `#compare/gpu?ids=...` URL，状态初始化必须设置 `compareMode`/`compareParams`。 |
 | 对比模式下隐藏 content-grid 并显示 comparePanel | 对比页面与天梯列表/详情面板互斥，需切换 DOM 可见性。 |
 | Treat Task 6.3 as the final Phase 6 task | GPU 对比功能完整闭环：对比服务（6.1）→ 对比渲染器（6.2）→ 对比页面入口（6.3）。 |
+| Desktop CPU schema 遵循 GPU schema 结构 | 使用相同的 listView/detailView/adminForm/comparePresets/metrics 模式，保持跨品类一致性。 |
+| Desktop CPU metrics 使用 `cpu.` 前缀 | 与 `gpu.` 前缀区分，支持未来跨品类查询和对比。 |
+| Desktop CPU 暂无 warnings | 桌面 CPU 没有类似移动版 TGP 的变异性问题，warnings 为空数组。 |
 
 ## Issues Encountered
 
