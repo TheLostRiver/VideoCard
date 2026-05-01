@@ -297,8 +297,8 @@
 
 ## 最近提交
 
+- `8e67f98 data: 添加 Apple Silicon 品类 schema`
 - `10ae624 data: 添加手机 SoC 品类 schema`
-- `bdcfc0e data: 添加桌面 CPU 种子数据`
 - `2858013 refactor: render admin editor from category schema`
 - `afd2c66 chore: record task3.3 push completion`
 - `d5b0742 feat: add schema-driven admin form renderer`
