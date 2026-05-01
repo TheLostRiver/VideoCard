@@ -93,6 +93,11 @@
   - test `PUT /api/admin/hardware/gpu/items/rtx-4070-laptop` success, invalid metric value returns 400, missing item returns 404;
   - route must call `HardwareMutationService`;
   - commit message should be `feat: add generic hardware admin save route`.
+- Implementation plan Task 8.1 requires:
+  - create `docs/architecture/2026-04-30-postgresql-schema-design-GPT-5-Codex.md`;
+  - document 13 tables: hardware_categories, manufacturers, product_families, hardware_items, hardware_variants, metric_definitions, metric_values, benchmark_definitions, benchmark_scores, ranking_profiles, ranking_scores, source_documents, audit_logs;
+  - include ER relationships, JSON-to-PostgreSQL mapping, and migration strategy;
+  - commit message should be `docs: add postgres schema design`.
 
 ## Technical Decisions
 
@@ -161,6 +166,9 @@
 | JSON repository 按品类分别加载数据 | GPU 使用 legacy mapper，desktop-cpu 直接读取 hardware model 格式；`listCategories` 返回所有已注册品类。 |
 | Mobile SoC schema 包含手机特有 metrics | 进程节点、CPU 集群配置、GPU 名称、NPU/AI 引擎、基带、AnTuTu、3DMark Wild Life 等手机 SoC 专属字段。 |
 | Apple Silicon schema 独立于 desktop-cpu 和 mobile-soc | Apple M/A 系列是 SoC 架构，不适合归入桌面 CPU 或手机 SoC 品类；包含统一内存、Neural Engine、Metal 跑分等 Apple 专属字段。 |
+| PostgreSQL schema 使用 13 个核心表 | hardware_categories、manufacturers、product_families、hardware_items、hardware_variants、metric_definitions、metric_values、benchmark_definitions、benchmark_scores、ranking_profiles、ranking_scores、source_documents、audit_logs 覆盖完整领域模型。 |
+| PostgreSQL 表设计遵循品类无关原则 | 核心表不包含品类特定字段，通过 category_id 区分；metric_definitions 存储在数据库中，与 category schema 对应。 |
+| PostgreSQL 采用渐进迁移策略 | JSON repository 继续作为短期适配器，PostgreSQL 作为长期主数据源；JSON 保留为 import/export 格式。 |
 
 ## Issues Encountered
 

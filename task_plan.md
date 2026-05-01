@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Task 7.4 complete. Ready for Task 7.5: Desktop CPU Query Service Integration
+Phase 59 complete. Ready for Task 8.2: Add Initial SQL Migration
 
 ## Phases
 
@@ -467,6 +467,21 @@ Task 7.4 complete. Ready for Task 7.5: Desktop CPU Query Service Integration
 - [x] 更新实现计划 checkbox
 - [x] 更新记录文件
 - [x] 提交并推送 Task 7.4
+- **Status:** complete
+
+### Phase 58: Task 8.1 Database Schema Document
+
+- [x] 读取 Task 8.1 实现计划详情
+- [x] 创建 `docs/architecture/2026-04-30-postgresql-schema-design-GPT-5-Codex.md`（13 个 PostgreSQL 表）
+- [x] 确认 `npm.cmd run verify` 通过（101 pass / 0 fail）
+- **Status:** complete
+
+### Phase 59: Task 8.1 验证与记录
+
+- [x] 运行 `npm.cmd run verify` 通过
+- [x] 更新实现计划 checkbox
+- [x] 更新记录文件
+- [x] 提交并推送 Task 8.1
 - **Status:** complete
 
 ## Key Questions

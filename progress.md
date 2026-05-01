@@ -148,6 +148,7 @@
 | Task 6.2 RED | `npm.cmd test` | Fail because compare renderer does not exist | Failed with `ERR_MODULE_NOT_FOUND` for `src/features/compare/render-compare.js` | Pass |
 | Task 6.2 GREEN | `npm.cmd test` | Compare renderer tests pass and suite remains green | 91 pass / 0 fail | Pass |
 | Task 6.2 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 91 pass / 0 fail | Pass |
+| Task 8.1 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 101 pass / 0 fail | Pass |
 
 ## Error Log
 
@@ -233,12 +234,21 @@
   - `tests/apple-silicon-schema.test.mjs` created
   - `src/data/categories/apple-silicon.schema.json` created
 
+### Phase: Task 8.1 Database Schema Document
+
+- **Status:** complete
+- Actions taken:
+  - 新增 `docs/architecture/2026-04-30-postgresql-schema-design-GPT-5-Codex.md`，包含 13 个 PostgreSQL 表定义、ER 关系、JSON 映射表和迁移策略
+  - `npm.cmd run verify` 通过：101 tests / 0 fail
+- Files created/modified:
+  - `docs/architecture/2026-04-30-postgresql-schema-design-GPT-5-Codex.md` created
+
 ## 5-Question Reboot Check
 
 | Question | Answer |
 |----------|--------|
-| 我在哪？ | Task 7.4 完成。准备进入 Task 7.5: Desktop CPU Query Service Integration。 |
-| 去哪？ | 下一个原子任务是 Task 7.5。 |
+| 我在哪？ | Task 8.1 完成。准备进入 Task 8.2: Add Initial SQL Migration。 |
+| 去哪？ | 下一个原子任务是 Task 8.2。 |
 | 目标？ | 继续多硬件平台实现计划，一个原子任务一个原子任务推进。 |
 | 学到了什么？ | 见 `findings.md`。 |
-| 做了什么？ | 完成、验证、提交、推送 Task 7.4（Apple Silicon Category Schema）。 |
+| 做了什么？ | 完成、验证 Task 8.1（Database Schema Document）。 |

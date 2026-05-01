@@ -1261,7 +1261,7 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Write database design**
+- [x] **Step 1: Write database design**
 
 Document exact tables:
 
@@ -1279,7 +1279,7 @@ Document exact tables:
 - source_documents;
 - audit_logs.
 
-- [ ] **Step 2: Verify docs and app**
+- [x] **Step 2: Verify docs and app**
 
 Run:
 
@@ -1289,7 +1289,7 @@ npm.cmd run verify
 
 Expected: all tests pass.
 
-- [ ] **Step 3: Update records, commit, push**
+- [x] **Step 3: Update records, commit, push**
 
 Commit:
 

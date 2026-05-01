@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 7.4 完成。
+阶段：Multi-Hardware Platform Implementation Task 8.1 完成。
 
-当前任务：Task 7.4: Add Apple Silicon Category Schema — 完成。
+当前任务：Task 8.1: Add Database Schema Document — 完成。
 
-下一步：Task 7.5: Desktop CPU Query Service Integration。
+下一步：Task 8.2: Add Initial SQL Migration。
 
 ## 工作规则
 
@@ -193,6 +193,9 @@
 - Task 7.4 RED 完成：新增 `tests/apple-silicon-schema.test.mjs`，先运行 `npm.cmd test`，按预期因 `apple-silicon.schema.json` 缺失失败。
 - Task 7.4 GREEN 完成：新增 `src/data/categories/apple-silicon.schema.json`，包含 22 个 metrics（性能/效率 CPU 核心、GPU 核心、Neural Engine、统一内存、带宽、TDP、Geekbench、Metal 跑分、设备等级等）。
 - Task 7.4 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 101 pass / 0 fail。
+- Task 8.1 启动检查完成：已读取实现计划 Task 8.1 和 PostgreSQL schema 设计文档。
+- Task 8.1 完成：新增 `docs/architecture/2026-04-30-postgresql-schema-design-GPT-5-Codex.md`，包含 13 个 PostgreSQL 表（hardware_categories、manufacturers、product_families、hardware_items、hardware_variants、metric_definitions、metric_values、benchmark_definitions、benchmark_scores、ranking_profiles、ranking_scores、source_documents、audit_logs）、ER 关系、JSON 映射表和迁移策略。
+- Task 8.1 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 101 pass / 0 fail。
 
 ## 最近验证
 
@@ -294,6 +297,7 @@
 - Task 4.3 push-record 验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 74 pass / 0 fail。
 - Task 6.3 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 95 pass / 0 fail。
 - Task 6.3 浏览器烟测：服务器和静态文件正常访问（200），对比页面客户端渲染依赖测试覆盖。
+- Task 8.1 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 101 pass / 0 fail。
 
 ## 最近提交
 

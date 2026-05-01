@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 7.4: Add Apple Silicon Category Schema
+Task: Task 8.1: Add Database Schema Document
 
-Status: Task 7.4 is complete. Created `src/data/categories/apple-silicon.schema.json` with 22 metrics covering performance/efficiency CPU cores, GPU cores, Neural Engine, unified memory, bandwidth, TDP, Geekbench, Metal benchmark, and device tier. Apple chips are separate from desktop-cpu and mobile-soc because M/A series are SoC-like with unified memory architecture. Full verify passed: 12 data records, 101 tests / 0 fail.
+Status: Task 8.1 is complete. Created `docs/architecture/2026-04-30-postgresql-schema-design-GPT-5-Codex.md` with 13 PostgreSQL tables (hardware_categories, manufacturers, product_families, hardware_items, hardware_variants, metric_definitions, metric_values, benchmark_definitions, benchmark_scores, ranking_profiles, ranking_scores, source_documents, audit_logs). Document includes ER relationships, JSON-to-PostgreSQL mapping, and migration strategy. Full verify passed: 12 data records, 101 tests / 0 fail.
 
 ## Current Date
 
@@ -60,6 +60,7 @@ Core model:
 
 ## Current Files Changed In This Task
 
+- Created `docs/architecture/2026-04-30-postgresql-schema-design-GPT-5-Codex.md`
 - Modified `SessionContextRecord.md`
 - Modified `PROJECT_STATE.md`
 - Modified `task_plan.md`
@@ -69,13 +70,13 @@ Core model:
 
 ## Next Step
 
-1. 读取实现计划中 Task 7.5 的详细要求。
-2. 将桌面 CPU 查询集成到硬件查询服务。
+1. 读取实现计划中 Task 8.2 的详细要求。
+2. 创建初始 SQL 迁移文件。
 3. 保持 RED/GREEN/验证/提交/推送 循环。
 
 ## Verification Status
 
-Task 7.4 完整验证、实现提交、推送通过。
+Task 8.1 完整验证通过。
 
 最新结果：
 
