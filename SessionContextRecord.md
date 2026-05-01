@@ -19,7 +19,7 @@ The user explicitly required:
 
 Task: Task 5.1: Add Read-Only Hardware API Routes
 
-Status: Task 4.3 is complete and pushed. Implementation commit: `2858013 refactor: render admin editor from category schema`. Push-completion record commit: `4578eea chore: record task4.3 push completion`. Task 4.3 changed the local admin editor to render from GPU category schema, parse `property:*` / `metric:*` fields back to legacy GPU records, preserve TGP range units, and serve `.mjs` modules with JavaScript MIME for browser imports. Next implementation task is Task 5.1, adding read-only generic hardware API routes.
+Status: Task 5.1 is complete and ready to push. Added three read-only generic hardware API routes to `scripts/serve.mjs`: `GET /api/hardware/categories`, `GET /api/hardware/:categoryId/items`, and `GET /api/hardware/:categoryId/items/:itemId`. All routes use `HardwareQueryService` backed by `JsonHardwareRepository`. New test file `tests/hardware-api.test.mjs` covers category listing, list view models, detail view models, missing item 404, and unknown category 404. Full verify passed: 12 data records, 79 tests / 0 fail.
 
 ## Current Date
 

@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 5.1 就绪。
+阶段：Multi-Hardware Platform Implementation Task 5.1 完成。
 
-当前任务：Task 5.1: Add Read-Only Hardware API Routes。
+当前任务：Task 5.1: Add Read-Only Hardware API Routes — 完成。
 
-下一步：按实现文档开始 Task 5.1: Add Read-Only Hardware API Routes。
+下一步：Task 5.2: Add Generic Admin Save API Route。
 
 ## 工作规则
 
@@ -150,6 +150,10 @@
 - Task 4.3 浏览器烟测完成：`http://localhost:4173/admin.html` 搜索并选择 `GeForce RTX 4070 Laptop GPU`，保存当前 schema form 值成功；前台 `http://localhost:4173/#rtx-4070-laptop` 显示 `45-115W`、`2,175 MHz`、`12,345`，浏览器 console error 为 0。
 - Task 4.3 推送完成：`2858013 refactor: render admin editor from category schema` 已推送到 `origin/main`。
 - Task 4.3 push 记录完成：`4578eea chore: record task4.3 push completion` 已推送到 `origin/main`。
+- Task 5.1 启动检查完成：已读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、实现计划 Task 5.1、`scripts/serve.mjs`、`hardware-query-service.js`、`json-hardware-repository.js` 和 `git status -sb`。
+- Task 5.1 RED 完成：新增 `tests/hardware-api.test.mjs`，先运行 `npm.cmd test`，按预期因 `/api/hardware/` 路由不存在返回 404 失败。
+- Task 5.1 GREEN 完成：`scripts/serve.mjs` 新增 `GET /api/hardware/categories`、`GET /api/hardware/:categoryId/items` 和 `GET /api/hardware/:categoryId/items/:itemId`，均通过 `HardwareQueryService` 调用。
+- Task 5.1 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 79 pass / 0 fail。
 
 ## 最近验证
 

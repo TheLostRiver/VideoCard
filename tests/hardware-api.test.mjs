@@ -1,0 +1,93 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { createServer } from "node:http";
+import { mkdtemp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { gpus } from "../src/data/gpus.js";
+import { createRequestHandler } from "../scripts/serve.mjs";
+import { writeGpuJson, writeGpuModule } from "../scripts/gpu-data.mjs";
+
+const gpuSchema = JSON.parse(
+  await readFile(new URL("../src/data/categories/gpu.schema.json", import.meta.url), "utf8")
+);
+
+test("GET /api/hardware/categories returns category list", async () => {
+  await withApi(async ({ baseUrl }) => {
+    const response = await fetch(`${baseUrl}/api/hardware/categories`);
+    const body = await response.json();
+
+    assert.equal(response.status, 200);
+    assert.ok(Array.isArray(body.categories));
+    assert.ok(body.categories.length >= 1);
+    assert.equal(body.categories[0].id, "gpu");
+  });
+});
+
+test("GET /api/hardware/gpu/items returns list view models", async () => {
+  await withApi(async ({ baseUrl }) => {
+    const response = await fetch(`${baseUrl}/api/hardware/gpu/items`);
+    const body = await response.json();
+
+    assert.equal(response.status, 200);
+    assert.ok(Array.isArray(body.items));
+    assert.equal(body.items.length, gpus.length);
+    assert.ok(body.items[0].id);
+    assert.ok(body.items[0].title);
+  });
+});
+
+test("GET /api/hardware/gpu/items/:id returns detail view model", async () => {
+  await withApi(async ({ baseUrl }) => {
+    const response = await fetch(`${baseUrl}/api/hardware/gpu/items/rtx-4070-laptop`);
+    const body = await response.json();
+
+    assert.equal(response.status, 200);
+    assert.ok(body.detail);
+    assert.equal(body.detail.item.id, "rtx-4070-laptop");
+    assert.ok(Array.isArray(body.detail.groups));
+  });
+});
+
+test("GET /api/hardware/gpu/items/:id returns 404 for missing item", async () => {
+  await withApi(async ({ baseUrl }) => {
+    const response = await fetch(`${baseUrl}/api/hardware/gpu/items/nonexistent-gpu`);
+    const body = await response.json();
+
+    assert.equal(response.status, 404);
+    assert.ok(body.errors);
+  });
+});
+
+test("GET /api/hardware/unknown-category/items returns 404", async () => {
+  await withApi(async ({ baseUrl }) => {
+    const response = await fetch(`${baseUrl}/api/hardware/desktop-cpu/items`);
+    const body = await response.json();
+
+    assert.equal(response.status, 404);
+    assert.ok(body.errors);
+  });
+});
+
+async function withApi(callback) {
+  const root = await mkdtemp(join(tmpdir(), "hardware-api-"));
+  await mkdir(join(root, "src", "data", "categories"), { recursive: true });
+  await writeGpuJson(gpus, root);
+  await writeGpuModule(gpus, root);
+  await writeFile(
+    join(root, "src", "data", "categories", "gpu.schema.json"),
+    JSON.stringify(gpuSchema, null, 2)
+  );
+
+  const server = createServer(createRequestHandler({ root }));
+  await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
+  const address = server.address();
+  const baseUrl = `http://127.0.0.1:${address.port}`;
+
+  try {
+    await callback({ baseUrl, root });
+  } finally {
+    await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+    await rm(root, { recursive: true, force: true });
+  }
+}

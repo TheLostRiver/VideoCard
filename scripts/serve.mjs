@@ -3,6 +3,8 @@ import { readFile } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
 import { pathToFileURL } from "node:url";
 import { readGpuData, saveGpuRecord } from "./gpu-data.mjs";
+import { createJsonHardwareRepository } from "../src/infrastructure/json/json-hardware-repository.js";
+import { createHardwareQueryService } from "../src/application/hardware-query-service.js";
 
 const root = process.cwd();
 const port = Number(process.env.PORT || 4173);
@@ -43,6 +45,47 @@ export function createRequestHandler({ root: serverRoot = root } = {}) {
 }
 
 async function handleApiRequest(req, res, url, serverRoot) {
+  if (req.method === "GET" && url.pathname === "/api/hardware/categories") {
+    try {
+      const repo = createJsonHardwareRepository({ root: serverRoot });
+      const service = createHardwareQueryService(repo);
+      const categories = await repo.listCategories();
+      sendJson(res, 200, { categories });
+    } catch (error) {
+      sendJson(res, 500, { errors: [error.message] });
+    }
+    return;
+  }
+
+  const hardwareItemsMatch = url.pathname.match(/^\/api\/hardware\/([^/]+)\/items(?:\/(.*))?$/);
+  if (req.method === "GET" && hardwareItemsMatch) {
+    const categoryId = decodeURIComponent(hardwareItemsMatch[1]);
+    const itemId = hardwareItemsMatch[2] ? decodeURIComponent(hardwareItemsMatch[2]) : null;
+    try {
+      const repo = createJsonHardwareRepository({ root: serverRoot });
+      const service = createHardwareQueryService(repo);
+      const category = await repo.getCategory(categoryId);
+      if (!category) {
+        sendJson(res, 404, { errors: [`category not found: ${categoryId}`] });
+        return;
+      }
+      if (itemId) {
+        const detail = await service.getDetailViewModel(itemId);
+        if (!detail) {
+          sendJson(res, 404, { errors: [`item not found: ${itemId}`] });
+          return;
+        }
+        sendJson(res, 200, { detail });
+      } else {
+        const list = await service.getListViewModel(categoryId);
+        sendJson(res, 200, list);
+      }
+    } catch (error) {
+      sendJson(res, 500, { errors: [error.message] });
+    }
+    return;
+  }
+
   if (req.method === "GET" && url.pathname === "/api/gpus") {
     sendJson(res, 200, { gpus: await readGpuData(serverRoot) });
     return;
