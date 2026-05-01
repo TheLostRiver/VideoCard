@@ -5,6 +5,7 @@ import { pathToFileURL } from "node:url";
 import { readGpuData, saveGpuRecord } from "./gpu-data.mjs";
 import { createJsonHardwareRepository } from "../src/infrastructure/json/json-hardware-repository.js";
 import { createHardwareQueryService } from "../src/application/hardware-query-service.js";
+import { createHardwareMutationService } from "../src/application/hardware-mutation-service.js";
 
 const root = process.cwd();
 const port = Number(process.env.PORT || 4173);
@@ -82,6 +83,29 @@ async function handleApiRequest(req, res, url, serverRoot) {
       }
     } catch (error) {
       sendJson(res, 500, { errors: [error.message] });
+    }
+    return;
+  }
+
+  const adminHardwareMatch = url.pathname.match(/^\/api\/admin\/hardware\/([^/]+)\/items\/(.+)$/);
+  if (req.method === "PUT" && adminHardwareMatch) {
+    const categoryId = decodeURIComponent(adminHardwareMatch[1]);
+    const itemId = decodeURIComponent(adminHardwareMatch[2]);
+    try {
+      const repo = createJsonHardwareRepository({ root: serverRoot });
+      const mutationService = createHardwareMutationService(repo);
+      const queryService = createHardwareQueryService(repo);
+      const category = await repo.getCategory(categoryId);
+      if (!category) {
+        sendJson(res, 404, { errors: [`category not found: ${categoryId}`] });
+        return;
+      }
+      const detail = await readJsonBody(req);
+      await mutationService.saveItemDetail(detail);
+      const saved = await queryService.getDetailViewModel(itemId);
+      sendJson(res, 200, { detail: saved });
+    } catch (error) {
+      sendJson(res, error.statusCode || 400, { errors: error.errors || [error.message] });
     }
     return;
   }

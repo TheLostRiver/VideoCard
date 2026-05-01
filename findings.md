@@ -87,6 +87,12 @@
   - test `GET /api/hardware/categories`, `GET /api/hardware/gpu/items`, `GET /api/hardware/gpu/items/rtx-4070-laptop`;
   - routes must call `HardwareQueryService`, not `readGpuData` directly;
   - commit message should be `feat: add generic hardware api read routes`.
+- Implementation plan Task 5.2 requires:
+  - modify `scripts/serve.mjs`;
+  - modify `tests/hardware-api.test.mjs`;
+  - test `PUT /api/admin/hardware/gpu/items/rtx-4070-laptop` success, invalid metric value returns 400, missing item returns 404;
+  - route must call `HardwareMutationService`;
+  - commit message should be `feat: add generic hardware admin save route`.
 
 ## Technical Decisions
 
@@ -137,6 +143,9 @@
 | Hardware API routes use regex matching for category/item path extraction | Avoids adding a routing framework; pattern `^/api/hardware/([^/]+)/items(?:/(.*))?$` captures categoryId and optional itemId. |
 | Hardware API creates repository per request | `createJsonHardwareRepository({ root: serverRoot })` ensures each request reads from the correct server root, matching the test pattern with temp directories. |
 | Treat `6fbed35` as Task 5.1 implementation commit | The read-only hardware API routes task is implemented, verified, and pushed; the next task is Task 5.2. |
+| Detail view model must expose raw metric values for admin round-trip | `getDetailViewModel` now returns `metricValues`, `rankingScore`, and `sources` alongside the display groups, so admin save can send the full detail back. |
+| Admin save test must modify `metricValues` not display `value` | The view model's `groups[].rows[].value` is a display primitive; the repository's save path reads `metricValues[].valueText`/`valueMin`/`valueMax`, so the TGP rejection test must clear the metric value fields. |
+| Treat `6fbed35..959fcff` as Task 5.1 record commits | Task 5.2 starts only after both the implementation and planning record commits are pushed. |
 
 ## Issues Encountered
 
@@ -153,6 +162,7 @@
 | Task 2.3 recovery files still said record commit was pending after `87c96bc` was pushed | Corrected the recovery files at Task 2.4 startup before adding Task 2.4 code. |
 | User-profile `planning-with-files` catchup script path was absent | Reran catchup with the workspace-installed `.codex\skills\planning-with-files\scripts\session-catchup.py` path and continued. |
 | Task 4.3 browser smoke initially stayed at `正在加载数据...` | Added `.mjs` MIME support to `scripts/serve.mjs`, covered it in `tests/admin-api.test.mjs`, restarted the local server, and reran the smoke successfully. |
+| TGP rejection test expected 400 but got 200 | View model `value` is a display primitive; must modify `metricValues[].valueText` instead. Extended `getDetailViewModel` to expose raw `metricValues`. |
 
 ## Resources
 

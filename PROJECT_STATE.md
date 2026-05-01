@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 5.1 完成。
+阶段：Multi-Hardware Platform Implementation Task 5.2 完成。
 
-当前任务：Task 5.1: Add Read-Only Hardware API Routes — 完成。
+当前任务：Task 5.2: Add Generic Admin Save API Route — 完成。
 
-下一步：Task 5.2: Add Generic Admin Save API Route。
+下一步：Task 6.1: Add Comparison Service。
 
 ## 工作规则
 
@@ -154,6 +154,12 @@
 - Task 5.1 RED 完成：新增 `tests/hardware-api.test.mjs`，先运行 `npm.cmd test`，按预期因 `/api/hardware/` 路由不存在返回 404 失败。
 - Task 5.1 GREEN 完成：`scripts/serve.mjs` 新增 `GET /api/hardware/categories`、`GET /api/hardware/:categoryId/items` 和 `GET /api/hardware/:categoryId/items/:itemId`，均通过 `HardwareQueryService` 调用。
 - Task 5.1 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 79 pass / 0 fail。
+- Task 5.1 推送完成：`6fbed35 feat: add generic hardware api read routes` 已推送到 `origin/main`。
+- Task 5.1 planning 记录更新完成：`959fcff chore: update planning records for task5.1` 已推送到 `origin/main`。
+- Task 5.2 启动检查完成：已读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、实现计划 Task 5.2、`scripts/serve.mjs`、`hardware-mutation-service.js` 和 `git status -sb`。
+- Task 5.2 RED 完成：更新 `tests/hardware-api.test.mjs` 新增 admin save 测试，先运行 `npm.cmd test`，按预期因 `/api/admin/hardware/` PUT 路由不存在返回 404 失败。
+- Task 5.2 GREEN 完成：`scripts/serve.mjs` 新增 `PUT /api/admin/hardware/:categoryId/items/:itemId`，通过 `HardwareMutationService` 写入，`HardwareQueryService` 返回保存后详情；`hardware-query-service.js` 的 `getDetailViewModel` 新增 `metricValues`、`rankingScore`、`sources` 以支持 admin 往返保存。
+- Task 5.2 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 82 pass / 0 fail。
 
 ## 最近验证
 

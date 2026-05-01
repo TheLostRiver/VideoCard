@@ -22,6 +22,9 @@ export function createHardwareQueryService(repository) {
     return {
       category: summarizeCategory(category),
       item: detail.item,
+      metricValues: detail.metricValues,
+      rankingScore: detail.rankingScore,
+      sources: detail.sources,
       warnings: createWarnings(category, detail),
       groups: (category.detailView?.groups || []).map((group) => ({
         id: group.id,

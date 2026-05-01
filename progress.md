@@ -132,6 +132,12 @@
 | Task 5.1 GREEN | `npm.cmd test` | Hardware API route tests pass and suite remains green | 79 pass / 0 fail | Pass |
 | Task 5.1 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 79 pass / 0 fail | Pass |
 | Task 5.1 push | `git push --porcelain origin main` | Push Task 5.1 to origin/main | `95195c6..6fbed35` pushed | Pass |
+| Task 5.1 planning records push | `git push --porcelain origin main` | Push planning file updates | `6fbed35..959fcff` pushed | Pass |
+| Resume Task 5.2 | Read recovery records, serve.mjs, mutation service, and implementation plan | Clean workspace and Task 5.2 requirements known | `git status -sb` returned `## main...origin/main`; Task 5.2 requirements captured | Pass |
+| Task 5.2 RED | `npm.cmd test` | Fail because admin save PUT route does not exist | 2 new tests failed with status 404 | Pass |
+| Task 5.2 GREEN v1 | `npm.cmd test` | TGP rejection test passes | Test still fails (200 !== 400) because view model `value` is a display primitive, not the underlying metric value | Fail |
+| Task 5.2 GREEN v2 | `npm.cmd test` | All tests pass after exposing `metricValues` in detail view model | 82 pass / 0 fail | Pass |
+| Task 5.2 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 82 pass / 0 fail | Pass |
 
 ## Error Log
 
@@ -155,13 +161,14 @@
 | 2026-05-01 | `ERR_MODULE_NOT_FOUND` for `src/application/hardware-mutation-service.js` | 1 | Expected RED; implement mutation service next. |
 | 2026-05-01 | Admin renderer still emitted hardcoded fields | 1 | Expected RED; refactor admin renderer to use schema form fields next. |
 | 2026-05-01 | Browser admin smoke stayed at `正在加载数据...` | 1 | Diagnosed `.mjs` static responses as `application/octet-stream`; added `.mjs` MIME support and regression coverage. |
+| TGP rejection test expected 400 but got 200 | 1 | View model `value` is a display primitive; must modify `metricValues[].valueText` instead. Extended `getDetailViewModel` to expose `metricValues`. |
 
 ## 5-Question Reboot Check
 
 | Question | Answer |
 |----------|--------|
-| Where am I? | Task 5.1 complete. Ready for Task 5.2 Add Generic Admin Save API Route. |
-| Where am I going? | Start Task 5.2 with failing admin save API tests. |
+| Where am I? | Task 5.2 complete. Ready for Task 6.1 Add Comparison Service. |
+| Where am I going? | Start Task 6.1 with failing comparison service tests. |
 | What's the goal? | Continue the multi-hardware implementation one atomic task at a time. |
 | What have I learned? | See `findings.md`. |
-| What have I done? | Completed, verified, committed, pushed, and recorded Task 5.1 (read-only hardware API routes). |
+| What have I done? | Completed, verified, committed, pushed, and recorded Task 5.2 (generic admin save API route). |

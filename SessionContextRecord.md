@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 5.1: Add Read-Only Hardware API Routes
+Task: Task 5.2: Add Generic Admin Save API Route
 
-Status: Task 5.1 is complete and ready to push. Added three read-only generic hardware API routes to `scripts/serve.mjs`: `GET /api/hardware/categories`, `GET /api/hardware/:categoryId/items`, and `GET /api/hardware/:categoryId/items/:itemId`. All routes use `HardwareQueryService` backed by `JsonHardwareRepository`. New test file `tests/hardware-api.test.mjs` covers category listing, list view models, detail view models, missing item 404, and unknown category 404. Full verify passed: 12 data records, 79 tests / 0 fail.
+Status: Task 5.2 is complete and ready to push. Added `PUT /api/admin/hardware/:categoryId/items/:itemId` route to `scripts/serve.mjs`, using `HardwareMutationService` for writes and `HardwareQueryService` to return the saved detail. Extended `getDetailViewModel` to expose `metricValues`, `rankingScore`, and `sources` for admin round-trip. Tests cover save success, mobile TGP rejection (400), and missing item (404). Full verify passed: 12 data records, 82 tests / 0 fail.
 
 ## Current Date
 

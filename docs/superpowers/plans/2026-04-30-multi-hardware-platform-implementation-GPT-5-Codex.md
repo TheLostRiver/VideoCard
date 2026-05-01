@@ -893,7 +893,7 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add failing API save tests**
+- [x] **Step 1: Add failing API save tests**
 
 Test:
 
@@ -901,11 +901,11 @@ Test:
 - invalid metric value returns 400;
 - missing item returns 404.
 
-- [ ] **Step 2: Implement route**
+- [x] **Step 2: Implement route**
 
 Route must call `HardwareMutationService`.
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 
@@ -916,7 +916,7 @@ npm.cmd run verify
 
 Expected: all tests pass.
 
-- [ ] **Step 4: Update records, commit, push**
+- [x] **Step 4: Update records, commit, push**
 
 Commit:
 

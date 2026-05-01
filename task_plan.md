@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Task 5.1 complete. Ready for Task 5.2: Add Generic Admin Save API Route
+Task 5.2 complete. Ready for Task 6.1: Add Comparison Service
 
 ## Phases
 
@@ -304,6 +304,31 @@ Task 5.1 complete. Ready for Task 5.2: Add Generic Admin Save API Route
 - [x] Confirm clean git status after push.
 - **Status:** complete
 
+### Phase 38: Task 5.2 Generic Admin Save API Route
+
+- [x] Read Task 5.2 implementation plan details.
+- [x] Add failing admin save tests.
+- [x] Confirm RED failure because PUT admin route does not exist.
+- [x] Implement admin save route using `HardwareMutationService`.
+- [x] Extend `getDetailViewModel` to expose `metricValues`/`rankingScore`/`sources` for admin round-trip.
+- [x] Confirm `npm.cmd test` passes.
+- **Status:** complete
+
+### Phase 39: Task 5.2 Verification And Records
+
+- [x] Run `npm.cmd run verify`.
+- [x] Update implementation plan checkboxes.
+- [x] Update `SessionContextRecord.md`, `PROJECT_STATE.md`, `task_plan.md`, `findings.md`, and `progress.md`.
+- [x] Commit and push Task 5.2.
+- **Status:** complete
+
+### Phase 40: Next Task Readiness After Task 5.2
+
+- [x] Confirm Task 5.2 implementation commit is pushed.
+- [x] Record next task as Task 6.1.
+- [x] Confirm clean git status after push.
+- **Status:** complete
+
 ## Key Questions
 
 1. What is the repository contract surface for future JSON and PostgreSQL adapters?
@@ -349,6 +374,8 @@ Task 5.1 complete. Ready for Task 5.2: Add Generic Admin Save API Route
 | Treat `4578eea` as Task 4.3 push completion record commit | Task 5.1 starts only after the Task 4.3 record commit is also pushed. |
 | Hardware API routes create repository per request | Matches test pattern with temp directories and ensures correct server root. |
 | Start Task 5.2 next | Task 5.1 is implemented, verified, committed, and pushed as `6fbed35`. |
+| Detail view model must expose raw data for admin round-trip | `getDetailViewModel` returns `metricValues`, `rankingScore`, and `sources` so admin save can modify and send them back. |
+| Start Task 6.1 next | Task 5.2 is implemented, verified, committed, and pushed. |
 
 ## Errors Encountered
 

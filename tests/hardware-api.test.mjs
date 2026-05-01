@@ -69,6 +69,65 @@ test("GET /api/hardware/unknown-category/items returns 404", async () => {
   });
 });
 
+test("PUT /api/admin/hardware/gpu/items/:id saves and returns detail", async () => {
+  await withApi(async ({ baseUrl }) => {
+    const getResponse = await fetch(`${baseUrl}/api/hardware/gpu/items/rtx-4070-laptop`);
+    const { detail } = await getResponse.json();
+    const timeSpy = detail.groups
+      .flatMap((g) => g.rows)
+      .find((r) => r.id === "gpu.benchmark.timeSpyGraphics");
+    if (timeSpy) timeSpy.value = 99999;
+
+    const response = await fetch(`${baseUrl}/api/admin/hardware/gpu/items/rtx-4070-laptop`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(detail)
+    });
+    const body = await response.json();
+
+    assert.equal(response.status, 200);
+    assert.ok(body.detail);
+    assert.equal(body.detail.item.id, "rtx-4070-laptop");
+  });
+});
+
+test("PUT /api/admin/hardware/gpu/items/:id rejects mobile GPU without TGP", async () => {
+  await withApi(async ({ baseUrl }) => {
+    const getResponse = await fetch(`${baseUrl}/api/hardware/gpu/items/rtx-4070-laptop`);
+    const { detail } = await getResponse.json();
+    const tgpMetric = (detail.metricValues || []).find((mv) => mv.metricId === "gpu.power.tgpRange");
+    if (tgpMetric) {
+      delete tgpMetric.valueMin;
+      delete tgpMetric.valueMax;
+      tgpMetric.valueText = "";
+    }
+
+    const response = await fetch(`${baseUrl}/api/admin/hardware/gpu/items/rtx-4070-laptop`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(detail)
+    });
+    const body = await response.json();
+
+    assert.equal(response.status, 400);
+    assert.ok(body.errors.some((e) => e.includes("tgpRangeW")));
+  });
+});
+
+test("PUT /api/admin/hardware/gpu/items/:id returns 404 for missing item", async () => {
+  await withApi(async ({ baseUrl }) => {
+    const response = await fetch(`${baseUrl}/api/admin/hardware/gpu/items/nonexistent-gpu`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ item: { id: "nonexistent-gpu" } })
+    });
+    const body = await response.json();
+
+    assert.equal(response.status, 404);
+    assert.ok(body.errors);
+  });
+});
+
 async function withApi(callback) {
   const root = await mkdtemp(join(tmpdir(), "hardware-api-"));
   await mkdir(join(root, "src", "data", "categories"), { recursive: true });
