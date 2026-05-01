@@ -196,6 +196,7 @@
 - Task 8.1 启动检查完成：已读取实现计划 Task 8.1 和 PostgreSQL schema 设计文档。
 - Task 8.1 完成：新增 `docs/architecture/2026-04-30-postgresql-schema-design-GPT-5-Codex.md`，包含 13 个 PostgreSQL 表（hardware_categories、manufacturers、product_families、hardware_items、hardware_variants、metric_definitions、metric_values、benchmark_definitions、benchmark_scores、ranking_profiles、ranking_scores、source_documents、audit_logs）、ER 关系、JSON 映射表和迁移策略。
 - Task 8.1 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 101 pass / 0 fail。
+- Task 8.1 推送完成：`494ec9f docs: 添加 PostgreSQL schema 设计文档` 已推送到 `origin/main`。
 
 ## 最近验证
 
@@ -301,6 +302,7 @@
 
 ## 最近提交
 
+- `494ec9f docs: 添加 PostgreSQL schema 设计文档`
 - `8e67f98 data: 添加 Apple Silicon 品类 schema`
 - `10ae624 data: 添加手机 SoC 品类 schema`
 - `2858013 refactor: render admin editor from category schema`
