@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Task 7.3 complete. Ready for Task 7.4: Apple Silicon Category Schema
+Task 7.4 complete. Ready for Task 7.5: Desktop CPU Query Service Integration
 
 ## Phases
 
@@ -450,6 +450,23 @@ Task 7.3 complete. Ready for Task 7.4: Apple Silicon Category Schema
 - [x] 更新实现计划 checkbox
 - [x] 更新记录文件
 - [x] 提交并推送 Task 7.3
+- **Status:** complete
+
+### Phase 56: Task 7.4 Apple Silicon Category Schema
+
+- [x] 读取 Task 7.4 实现计划详情
+- [x] 新增 `tests/apple-silicon-schema.test.mjs` 失败测试（RED）
+- [x] 确认 RED 因 schema 文件不存在失败
+- [x] 新增 `src/data/categories/apple-silicon.schema.json`（22 个 metrics）
+- [x] 确认 `npm.cmd test` 通过（101 pass / 0 fail）
+- **Status:** complete
+
+### Phase 57: Task 7.4 验证与记录
+
+- [x] 运行 `npm.cmd run verify` 通过
+- [x] 更新实现计划 checkbox
+- [x] 更新记录文件
+- [x] 提交并推送 Task 7.4
 - **Status:** complete
 
 ## Key Questions

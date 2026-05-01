@@ -1,0 +1,421 @@
+{
+  "id": "apple-silicon",
+  "label": "Apple Silicon",
+  "description": "Apple M-series and A-series chips for Mac, iPad, and iPhone.",
+  "itemName": {
+    "singular": "Apple Chip",
+    "plural": "Apple Chips"
+  },
+  "listView": {
+    "titleField": "name",
+    "subtitleFields": [
+      "brand",
+      "generation",
+      "apple.process.node"
+    ],
+    "badgeField": "segment",
+    "scoreField": "apple.performance.index",
+    "powerField": "apple.power.display",
+    "recommendationField": "apple.device.tier"
+  },
+  "detailView": {
+    "groups": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "metricIds": [
+          "apple.performance.index",
+          "apple.release.date",
+          "apple.process.node",
+          "apple.confidence"
+        ]
+      },
+      {
+        "id": "cpu",
+        "title": "CPU",
+        "metricIds": [
+          "apple.cpu.performanceCores",
+          "apple.cpu.efficiencyCores",
+          "apple.cpu.totalCores",
+          "apple.cpu.maxClock"
+        ]
+      },
+      {
+        "id": "gpuNeural",
+        "title": "GPU And Neural Engine",
+        "metricIds": [
+          "apple.gpu.cores",
+          "apple.gpu.maxClock",
+          "apple.neuralEngine.cores"
+        ]
+      },
+      {
+        "id": "memory",
+        "title": "Memory",
+        "metricIds": [
+          "apple.memory.unified",
+          "apple.memory.bandwidth",
+          "apple.memory.type"
+        ]
+      },
+      {
+        "id": "power",
+        "title": "Power",
+        "metricIds": [
+          "apple.power.tdp",
+          "apple.power.display"
+        ]
+      },
+      {
+        "id": "benchmarks",
+        "title": "Benchmarks",
+        "metricIds": [
+          "apple.benchmark.geekbenchSingle",
+          "apple.benchmark.geekbenchMulti",
+          "apple.benchmark.metal",
+          "apple.benchmark.sourceNote"
+        ]
+      },
+      {
+        "id": "notes",
+        "title": "Notes",
+        "metricIds": [
+          "apple.device.tier",
+          "apple.device.efficiencyNote"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "adminForm": {
+    "groups": [
+      {
+        "id": "basic",
+        "title": "Basic",
+        "fields": [
+          {
+            "kind": "property",
+            "key": "id",
+            "label": "ID"
+          },
+          {
+            "kind": "property",
+            "key": "name",
+            "label": "Name"
+          },
+          {
+            "kind": "property",
+            "key": "brand",
+            "label": "Brand"
+          },
+          {
+            "kind": "property",
+            "key": "segment",
+            "label": "Segment"
+          },
+          {
+            "kind": "property",
+            "key": "generation",
+            "label": "Generation"
+          },
+          {
+            "kind": "property",
+            "key": "architecture",
+            "label": "Architecture"
+          },
+          {
+            "kind": "metric",
+            "metricId": "apple.release.date"
+          },
+          {
+            "kind": "metric",
+            "metricId": "apple.performance.index"
+          },
+          {
+            "kind": "metric",
+            "metricId": "apple.process.node"
+          },
+          {
+            "kind": "metric",
+            "metricId": "apple.confidence"
+          }
+        ]
+      },
+      {
+        "id": "cpu",
+        "title": "CPU",
+        "fields": [
+          {
+            "kind": "metric",
+            "metricId": "apple.cpu.performanceCores"
+          },
+          {
+            "kind": "metric",
+            "metricId": "apple.cpu.efficiencyCores"
+          },
+          {
+            "kind": "metric",
+            "metricId": "apple.cpu.totalCores"
+          },
+          {
+            "kind": "metric",
+            "metricId": "apple.cpu.maxClock"
+          }
+        ]
+      },
+      {
+        "id": "gpuNeural",
+        "title": "GPU And Neural Engine",
+        "fields": [
+          {
+            "kind": "metric",
+            "metricId": "apple.gpu.cores"
+          },
+          {
+            "kind": "metric",
+            "metricId": "apple.gpu.maxClock"
+          },
+          {
+            "kind": "metric",
+            "metricId": "apple.neuralEngine.cores"
+          }
+        ]
+      },
+      {
+        "id": "memoryPower",
+        "title": "Memory And Power",
+        "fields": [
+          {
+            "kind": "metric",
+            "metricId": "apple.memory.unified"
+          },
+          {
+            "kind": "metric",
+            "metricId": "apple.memory.bandwidth"
+          },
+          {
+            "kind": "metric",
+            "metricId": "apple.memory.type"
+          },
+          {
+            "kind": "metric",
+            "metricId": "apple.power.tdp"
+          }
+        ]
+      },
+      {
+        "id": "benchmarksDevice",
+        "title": "Benchmarks And Device",
+        "fields": [
+          {
+            "kind": "metric",
+            "metricId": "apple.benchmark.geekbenchSingle"
+          },
+          {
+            "kind": "metric",
+            "metricId": "apple.benchmark.geekbenchMulti"
+          },
+          {
+            "kind": "metric",
+            "metricId": "apple.benchmark.metal"
+          },
+          {
+            "kind": "metric",
+            "metricId": "apple.benchmark.sourceNote"
+          },
+          {
+            "kind": "metric",
+            "metricId": "apple.device.tier"
+          },
+          {
+            "kind": "metric",
+            "metricId": "apple.device.efficiencyNote"
+          },
+          {
+            "kind": "property",
+            "key": "notes",
+            "label": "Notes"
+          },
+          {
+            "kind": "property",
+            "key": "sources",
+            "label": "Sources"
+          }
+        ]
+      }
+    ]
+  },
+  "metrics": [
+    {
+      "id": "apple.performance.index",
+      "label": "Performance Index",
+      "valueType": "number",
+      "formatterId": "index"
+    },
+    {
+      "id": "apple.release.date",
+      "label": "Release Date",
+      "valueType": "date",
+      "formatterId": "release-month"
+    },
+    {
+      "id": "apple.process.node",
+      "label": "Process Node",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "apple.confidence",
+      "label": "Confidence",
+      "valueType": "enum",
+      "formatterId": "confidence"
+    },
+    {
+      "id": "apple.cpu.performanceCores",
+      "label": "Performance Cores",
+      "valueType": "number",
+      "formatterId": "number"
+    },
+    {
+      "id": "apple.cpu.efficiencyCores",
+      "label": "Efficiency Cores",
+      "valueType": "number",
+      "formatterId": "number"
+    },
+    {
+      "id": "apple.cpu.totalCores",
+      "label": "Total CPU Cores",
+      "valueType": "number",
+      "formatterId": "number"
+    },
+    {
+      "id": "apple.cpu.maxClock",
+      "label": "Max CPU Clock",
+      "valueType": "number",
+      "formatterId": "clock-mhz"
+    },
+    {
+      "id": "apple.gpu.cores",
+      "label": "GPU Cores",
+      "valueType": "number",
+      "formatterId": "number"
+    },
+    {
+      "id": "apple.gpu.maxClock",
+      "label": "Max GPU Clock",
+      "valueType": "number",
+      "formatterId": "clock-mhz"
+    },
+    {
+      "id": "apple.neuralEngine.cores",
+      "label": "Neural Engine Cores",
+      "valueType": "number",
+      "formatterId": "number"
+    },
+    {
+      "id": "apple.memory.unified",
+      "label": "Unified Memory",
+      "valueType": "number",
+      "formatterId": "capacity-gb"
+    },
+    {
+      "id": "apple.memory.bandwidth",
+      "label": "Memory Bandwidth",
+      "valueType": "number",
+      "formatterId": "bandwidth-gbs"
+    },
+    {
+      "id": "apple.memory.type",
+      "label": "Memory Type",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "apple.power.tdp",
+      "label": "TDP",
+      "valueType": "number",
+      "formatterId": "watts"
+    },
+    {
+      "id": "apple.power.display",
+      "label": "Power Display",
+      "valueType": "text",
+      "formatterId": "power"
+    },
+    {
+      "id": "apple.benchmark.geekbenchSingle",
+      "label": "Geekbench 6 Single",
+      "valueType": "number",
+      "formatterId": "benchmark-score"
+    },
+    {
+      "id": "apple.benchmark.geekbenchMulti",
+      "label": "Geekbench 6 Multi",
+      "valueType": "number",
+      "formatterId": "benchmark-score"
+    },
+    {
+      "id": "apple.benchmark.metal",
+      "label": "Metal Benchmark",
+      "valueType": "number",
+      "formatterId": "benchmark-score"
+    },
+    {
+      "id": "apple.benchmark.sourceNote",
+      "label": "Benchmark Source Note",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "apple.device.tier",
+      "label": "Device Tier",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "apple.device.efficiencyNote",
+      "label": "Efficiency Note",
+      "valueType": "text",
+      "formatterId": "text"
+    }
+  ],
+  "comparePresets": [
+    {
+      "id": "cpu",
+      "label": "CPU",
+      "metricIds": [
+        "apple.cpu.performanceCores",
+        "apple.cpu.efficiencyCores",
+        "apple.cpu.totalCores",
+        "apple.cpu.maxClock"
+      ]
+    },
+    {
+      "id": "gpuNeural",
+      "label": "GPU And Neural Engine",
+      "metricIds": [
+        "apple.gpu.cores",
+        "apple.gpu.maxClock",
+        "apple.neuralEngine.cores"
+      ]
+    },
+    {
+      "id": "memoryPower",
+      "label": "Memory And Power",
+      "metricIds": [
+        "apple.memory.unified",
+        "apple.memory.bandwidth",
+        "apple.power.tdp"
+      ]
+    },
+    {
+      "id": "benchmarks",
+      "label": "Benchmarks",
+      "metricIds": [
+        "apple.benchmark.geekbenchSingle",
+        "apple.benchmark.geekbenchMulti",
+        "apple.benchmark.metal"
+      ]
+    }
+  ]
+}

@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 7.3 完成。
+阶段：Multi-Hardware Platform Implementation Task 7.4 完成。
 
-当前任务：Task 7.3: Add Mobile SoC Category Schema — 完成。
+当前任务：Task 7.4: Add Apple Silicon Category Schema — 完成。
 
-下一步：Task 7.4: Add Apple Silicon Category Schema。
+下一步：Task 7.5: Desktop CPU Query Service Integration。
 
 ## 工作规则
 
@@ -189,6 +189,10 @@
 - Task 7.3 RED 完成：新增 `tests/mobile-soc-schema.test.mjs`，先运行 `npm.cmd test`，按预期因 `mobile-soc.schema.json` 缺失失败。
 - Task 7.3 GREEN 完成：新增 `src/data/categories/mobile-soc.schema.json`，包含 21 个 metrics（进程节点、CPU 集群、GPU 名称、NPU/AI、基带、内存、Geekbench、AnTuTu、3DMark Wild Life 等）。
 - Task 7.3 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 100 pass / 0 fail。
+- Task 7.4 启动检查完成：已读取实现计划 Task 7.4、GPU/desktop-cpu/mobile-soc schema 模板和 `git status -sb`。
+- Task 7.4 RED 完成：新增 `tests/apple-silicon-schema.test.mjs`，先运行 `npm.cmd test`，按预期因 `apple-silicon.schema.json` 缺失失败。
+- Task 7.4 GREEN 完成：新增 `src/data/categories/apple-silicon.schema.json`，包含 22 个 metrics（性能/效率 CPU 核心、GPU 核心、Neural Engine、统一内存、带宽、TDP、Geekbench、Metal 跑分、设备等级等）。
+- Task 7.4 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 101 pass / 0 fail。
 
 ## 最近验证
 

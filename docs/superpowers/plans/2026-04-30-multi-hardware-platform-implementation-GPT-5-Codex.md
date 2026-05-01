@@ -1214,7 +1214,7 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add failing schema test**
+- [x] **Step 1: Add failing schema test**
 
 Test schema includes:
 
@@ -1226,11 +1226,11 @@ Test schema includes:
 - Geekbench;
 - Metal benchmark.
 
-- [ ] **Step 2: Create schema**
+- [x] **Step 2: Create schema**
 
 Apple chips are separate because M/A series are SoC-like and do not map cleanly to desktop CPU only.
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 
@@ -1241,7 +1241,7 @@ npm.cmd run verify
 
 Expected: all tests pass.
 
-- [ ] **Step 4: Update records, commit, push**
+- [x] **Step 4: Update records, commit, push**
 
 Commit:
 

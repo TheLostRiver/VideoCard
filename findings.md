@@ -160,6 +160,7 @@
 | Desktop CPU 种子数据直接使用 hardware model 格式 | 无 legacy 格式需要迁移，数据直接存储为 `{ item, metricValues, rankingScore, sources }` 结构。 |
 | JSON repository 按品类分别加载数据 | GPU 使用 legacy mapper，desktop-cpu 直接读取 hardware model 格式；`listCategories` 返回所有已注册品类。 |
 | Mobile SoC schema 包含手机特有 metrics | 进程节点、CPU 集群配置、GPU 名称、NPU/AI 引擎、基带、AnTuTu、3DMark Wild Life 等手机 SoC 专属字段。 |
+| Apple Silicon schema 独立于 desktop-cpu 和 mobile-soc | Apple M/A 系列是 SoC 架构，不适合归入桌面 CPU 或手机 SoC 品类；包含统一内存、Neural Engine、Metal 跑分等 Apple 专属字段。 |
 
 ## Issues Encountered
 
