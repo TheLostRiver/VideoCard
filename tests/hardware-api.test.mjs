@@ -11,6 +11,12 @@ import { writeGpuJson, writeGpuModule } from "../scripts/gpu-data.mjs";
 const gpuSchema = JSON.parse(
   await readFile(new URL("../src/data/categories/gpu.schema.json", import.meta.url), "utf8")
 );
+const desktopCpuSchema = JSON.parse(
+  await readFile(new URL("../src/data/categories/desktop-cpu.schema.json", import.meta.url), "utf8")
+);
+const desktopCpuItems = JSON.parse(
+  await readFile(new URL("../src/data/hardware/desktop-cpu.items.json", import.meta.url), "utf8")
+);
 
 test("GET /api/hardware/categories returns category list", async () => {
   await withApi(async ({ baseUrl }) => {
@@ -61,7 +67,7 @@ test("GET /api/hardware/gpu/items/:id returns 404 for missing item", async () =>
 
 test("GET /api/hardware/unknown-category/items returns 404", async () => {
   await withApi(async ({ baseUrl }) => {
-    const response = await fetch(`${baseUrl}/api/hardware/desktop-cpu/items`);
+    const response = await fetch(`${baseUrl}/api/hardware/unknown-category/items`);
     const body = await response.json();
 
     assert.equal(response.status, 404);
@@ -131,11 +137,20 @@ test("PUT /api/admin/hardware/gpu/items/:id returns 404 for missing item", async
 async function withApi(callback) {
   const root = await mkdtemp(join(tmpdir(), "hardware-api-"));
   await mkdir(join(root, "src", "data", "categories"), { recursive: true });
+  await mkdir(join(root, "src", "data", "hardware"), { recursive: true });
   await writeGpuJson(gpus, root);
   await writeGpuModule(gpus, root);
   await writeFile(
     join(root, "src", "data", "categories", "gpu.schema.json"),
     JSON.stringify(gpuSchema, null, 2)
+  );
+  await writeFile(
+    join(root, "src", "data", "categories", "desktop-cpu.schema.json"),
+    JSON.stringify(desktopCpuSchema, null, 2)
+  );
+  await writeFile(
+    join(root, "src", "data", "hardware", "desktop-cpu.items.json"),
+    JSON.stringify(desktopCpuItems, null, 2)
   );
 
   const server = createServer(createRequestHandler({ root }));

@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 7.1: Add Desktop CPU Category Schema
+Task: Task 7.2: Add Desktop CPU Seed Data
 
-Status: Task 7.1 is complete. Created `src/data/categories/desktop-cpu.schema.json` with 20 metrics covering cores, threads, clocks, L3 cache, socket, memory, TDP, Cinebench, Geekbench, and gaming recommendations. Schema follows the same listView/detailView/adminForm/comparePresets structure as the GPU schema. Full verify passed: 12 data records, 96 tests / 0 fail.
+Status: Task 7.2 is complete. Created `src/data/hardware/desktop-cpu.items.json` with 3 desktop CPU seed records (Ryzen 7 7800X3D, Core i9-14900K, Ryzen 5 7600X). Modified `json-hardware-repository.js` to support the desktop-cpu category alongside GPU. Updated hardware-api tests to include desktop-cpu files in test setup. Full verify passed: 12 data records, 99 tests / 0 fail.
 
 ## Current Date
 
@@ -69,19 +69,19 @@ Core model:
 
 ## Next Step
 
-1. 读取实现计划中 Task 7.2 的详细要求。
-2. 添加桌面 CPU 种子数据和 JSON repository 支持。
+1. 读取实现计划中 Task 7.3 的详细要求。
+2. 添加手机 SoC 品类 schema 测试。
 3. 保持 RED/GREEN/验证/提交/推送 循环。
 
 ## Verification Status
 
-Task 7.1 完整验证、实现提交、推送通过。
+Task 7.2 完整验证、实现提交、推送通过。
 
 最新结果：
 
 - 命令：`npm.cmd run verify`
 - 数据校验：`Validated 12 GPU records.`
-- 测试：96 pass / 0 fail
+- 测试：99 pass / 0 fail
 
 ## Important Commands
 

@@ -157,6 +157,8 @@
 | Desktop CPU schema 遵循 GPU schema 结构 | 使用相同的 listView/detailView/adminForm/comparePresets/metrics 模式，保持跨品类一致性。 |
 | Desktop CPU metrics 使用 `cpu.` 前缀 | 与 `gpu.` 前缀区分，支持未来跨品类查询和对比。 |
 | Desktop CPU 暂无 warnings | 桌面 CPU 没有类似移动版 TGP 的变异性问题，warnings 为空数组。 |
+| Desktop CPU 种子数据直接使用 hardware model 格式 | 无 legacy 格式需要迁移，数据直接存储为 `{ item, metricValues, rankingScore, sources }` 结构。 |
+| JSON repository 按品类分别加载数据 | GPU 使用 legacy mapper，desktop-cpu 直接读取 hardware model 格式；`listCategories` 返回所有已注册品类。 |
 
 ## Issues Encountered
 

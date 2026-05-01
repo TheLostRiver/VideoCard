@@ -196,12 +196,27 @@
   - `tests/desktop-cpu-schema.test.mjs` created
   - `src/data/categories/desktop-cpu.schema.json` created
 
+### Phase: Task 7.2 Desktop CPU Seed Data
+
+- **Status:** complete
+- Actions taken:
+  - 新增 `tests/desktop-cpu-data.test.mjs`，RED 确认因 repository 不支持 desktop-cpu 失败
+  - 新增 `src/data/hardware/desktop-cpu.items.json`（3 条 CPU 数据）
+  - 修改 `src/infrastructure/json/json-hardware-repository.js` 支持 desktop-cpu 品类
+  - 更新 `tests/hardware-api.test.mjs` 的 `withApi` helper 包含 desktop-cpu 文件
+  - `npm.cmd run verify` 通过：99 tests / 0 fail
+- Files created/modified:
+  - `src/data/hardware/desktop-cpu.items.json` created
+  - `src/infrastructure/json/json-hardware-repository.js` modified
+  - `tests/desktop-cpu-data.test.mjs` created
+  - `tests/hardware-api.test.mjs` modified
+
 ## 5-Question Reboot Check
 
 | Question | Answer |
 |----------|--------|
-| 我在哪？ | Task 7.1 完成。准备进入 Task 7.2: Desktop CPU Seed Data。 |
-| 去哪？ | 下一个原子任务是 Task 7.2。 |
+| 我在哪？ | Task 7.2 完成。准备进入 Task 7.3: Mobile SoC Category Schema。 |
+| 去哪？ | 下一个原子任务是 Task 7.3。 |
 | 目标？ | 继续多硬件平台实现计划，一个原子任务一个原子任务推进。 |
 | 学到了什么？ | 见 `findings.md`。 |
-| 做了什么？ | 完成、验证、提交、推送 Task 7.1（Desktop CPU Category Schema）。 |
+| 做了什么？ | 完成、验证、提交、推送 Task 7.2（Desktop CPU Seed Data）。 |

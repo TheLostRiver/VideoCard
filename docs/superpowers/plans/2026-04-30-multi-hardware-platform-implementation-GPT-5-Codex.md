@@ -1124,7 +1124,7 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add failing tests**
+- [x] **Step 1: Add failing tests**
 
 Test repository returns at least three desktop CPU items:
 
@@ -1132,11 +1132,11 @@ Test repository returns at least three desktop CPU items:
 - one Intel Core;
 - one Apple Silicon item is not included here because Apple gets its own category.
 
-- [ ] **Step 2: Add seed data**
+- [x] **Step 2: Add seed data**
 
 Use conservative estimated values and mark confidence as `estimated` where needed.
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 
@@ -1147,7 +1147,7 @@ npm.cmd run verify
 
 Expected: all tests pass.
 
-- [ ] **Step 4: Update records, commit, push**
+- [x] **Step 4: Update records, commit, push**
 
 Commit:
 

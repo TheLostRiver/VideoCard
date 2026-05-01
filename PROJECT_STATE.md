@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 7.1 完成。
+阶段：Multi-Hardware Platform Implementation Task 7.2 完成。
 
-当前任务：Task 7.1: Add Desktop CPU Category Schema — 完成。
+当前任务：Task 7.2: Add Desktop CPU Seed Data — 完成。
 
-下一步：Task 7.2: Add Desktop CPU Seed Data。
+下一步：Task 7.3: Add Mobile SoC Category Schema。
 
 ## 工作规则
 
@@ -180,6 +180,11 @@
 - Task 7.1 RED 完成：新增 `tests/desktop-cpu-schema.test.mjs`，先运行 `npm.cmd test`，按预期因 `desktop-cpu.schema.json` 缺失失败。
 - Task 7.1 GREEN 完成：新增 `src/data/categories/desktop-cpu.schema.json`，包含 20 个 metrics（cores、threads、clocks、L3 cache、socket、memory、TDP、Cinebench、Geekbench、gaming recommendation）。
 - Task 7.1 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 96 pass / 0 fail。
+- Task 7.2 启动检查完成：已读取实现计划 Task 7.2、JSON repository 结构和 `git status -sb`。
+- Task 7.2 RED 完成：新增 `tests/desktop-cpu-data.test.mjs`，先运行 `npm.cmd test`，按预期因 repository 不支持 desktop-cpu 失败。
+- Task 7.2 GREEN 完成：新增 `src/data/hardware/desktop-cpu.items.json`（3 条 CPU：Ryzen 7 7800X3D、Core i9-14900K、Ryzen 5 7600X），修改 `json-hardware-repository.js` 支持 desktop-cpu 品类。
+- Task 7.2 测试修复完成：更新 `hardware-api.test.mjs` 的 `withApi` helper 包含 desktop-cpu schema 和数据文件，修正 unknown-category 测试使用真正的未知品类名。
+- Task 7.2 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 99 pass / 0 fail。
 
 ## 最近验证
 

@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Task 7.1 complete. Ready for Task 7.2: Desktop CPU Seed Data
+Task 7.2 complete. Ready for Task 7.3: Mobile SoC Category Schema
 
 ## Phases
 
@@ -415,6 +415,24 @@ Task 7.1 complete. Ready for Task 7.2: Desktop CPU Seed Data
 - [x] 更新实现计划 checkbox
 - [x] 更新记录文件
 - [x] 提交并推送 Task 7.1
+- **Status:** complete
+
+### Phase 52: Task 7.2 Desktop CPU Seed Data
+
+- [x] 读取 Task 7.2 实现计划详情
+- [x] 新增 `tests/desktop-cpu-data.test.mjs` 失败测试（RED）
+- [x] 确认 RED 因 repository 不支持 desktop-cpu 失败
+- [x] 新增 `src/data/hardware/desktop-cpu.items.json`（3 条 CPU 数据）
+- [x] 修改 `src/infrastructure/json/json-hardware-repository.js` 支持 desktop-cpu
+- [x] 确认 `npm.cmd test` 通过（99 pass / 0 fail）
+- **Status:** complete
+
+### Phase 53: Task 7.2 验证与记录
+
+- [x] 运行 `npm.cmd run verify` 通过
+- [x] 更新实现计划 checkbox
+- [x] 更新记录文件
+- [x] 提交并推送 Task 7.2
 - **Status:** complete
 
 ## Key Questions

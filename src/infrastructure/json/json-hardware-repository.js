@@ -11,6 +11,8 @@ import {
 
 const defaultGpuDataUrl = new URL("../../data/gpus.json", import.meta.url);
 const defaultGpuCategorySchemaUrl = new URL("../../data/categories/gpu.schema.json", import.meta.url);
+const defaultDesktopCpuDataUrl = new URL("../../data/hardware/desktop-cpu.items.json", import.meta.url);
+const defaultDesktopCpuCategorySchemaUrl = new URL("../../data/categories/desktop-cpu.schema.json", import.meta.url);
 const legacyMetricPaths = new Map([
   ["gpu.release.date", "releaseDate"],
   ["gpu.confidence", "confidence"],
@@ -38,9 +40,16 @@ export function createJsonHardwareRepository(options = {}) {
     ? pathToFileURL(join(options.root, "src", "data", "gpus.json"))
     : defaultGpuDataUrl);
   const gpuCategorySchemaUrl = options.gpuCategorySchemaUrl || defaultGpuCategorySchemaUrl;
+  const desktopCpuDataUrl = options.desktopCpuDataUrl || (options.root
+    ? pathToFileURL(join(options.root, "src", "data", "hardware", "desktop-cpu.items.json"))
+    : defaultDesktopCpuDataUrl);
+  const desktopCpuCategorySchemaUrl = options.desktopCpuCategorySchemaUrl || defaultDesktopCpuCategorySchemaUrl;
 
   async function listCategories() {
-    return [await readJson(gpuCategorySchemaUrl)];
+    return [
+      await readJson(gpuCategorySchemaUrl),
+      await readJson(desktopCpuCategorySchemaUrl)
+    ];
   }
 
   async function getCategory(categoryId) {
@@ -49,23 +58,43 @@ export function createJsonHardwareRepository(options = {}) {
   }
 
   async function listItems(query = {}) {
-    if (query.categoryId && query.categoryId !== "gpu") return [];
+    if (query.categoryId === "gpu") {
+      const gpuRecords = await readGpuRecords(gpuDataUrl);
+      return gpuRecords.map(mapLegacyGpuToHardwareItem);
+    }
 
-    const gpuRecords = await readGpuRecords(gpuDataUrl);
-    return gpuRecords.map(mapLegacyGpuToHardwareItem);
+    if (query.categoryId === "desktop-cpu") {
+      const cpuItems = await readJson(desktopCpuDataUrl);
+      return cpuItems.map((entry) => entry.item);
+    }
+
+    return [];
   }
 
   async function getItemDetail(itemId) {
     const gpuRecords = await readGpuRecords(gpuDataUrl);
     const gpu = gpuRecords.find((record) => record.id === itemId);
-    if (!gpu) return null;
+    if (gpu) {
+      return {
+        item: mapLegacyGpuToHardwareItem(gpu),
+        metricValues: mapLegacyGpuToMetricValues(gpu),
+        rankingScore: mapLegacyGpuToRankingScore(gpu),
+        sources: mapLegacyGpuToSources(gpu)
+      };
+    }
 
-    return {
-      item: mapLegacyGpuToHardwareItem(gpu),
-      metricValues: mapLegacyGpuToMetricValues(gpu),
-      rankingScore: mapLegacyGpuToRankingScore(gpu),
-      sources: mapLegacyGpuToSources(gpu)
-    };
+    const cpuItems = await readJson(desktopCpuDataUrl);
+    const cpuEntry = cpuItems.find((entry) => entry.item.id === itemId);
+    if (cpuEntry) {
+      return {
+        item: cpuEntry.item,
+        metricValues: cpuEntry.metricValues,
+        rankingScore: cpuEntry.rankingScore,
+        sources: cpuEntry.sources
+      };
+    }
+
+    return null;
   }
 
   async function saveItem(detail) {
