@@ -148,6 +148,8 @@
 | Treat `6fbed35..959fcff` as Task 5.1 record commits | Task 5.2 starts only after both the implementation and planning record commits are pushed. |
 | Comparison service uses `higherIsBetter !== false` as default | Most numeric metrics benefit from higher values; only explicitly `higherIsBetter: false` metrics (like power) invert the best-value logic. |
 | Treat `e395e5b` as Task 5.2 implementation commit | The generic admin save route task is implemented, verified, and pushed; the next task is Task 6.1. |
+| Compare renderer uses `escapeHtml` for XSS safety | All user-visible values are escaped before HTML insertion. |
+| Treat `c391843` as Task 6.1 implementation commit | The comparison service task is implemented, verified, and pushed; the next task is Task 6.2. |
 
 ## Issues Encountered
 

@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 6.1: Add Comparison Service
+Task: Task 6.2: Add Compare Renderer
 
-Status: Task 6.1 is complete and ready to push. Created `src/application/comparison-service.js` with `createComparisonService(repository)` exposing `compare(categoryId, itemIds)`. Uses category compare presets to group metrics, marks best numeric values, shows `待补充` for missing values, and rejects cross-category comparison. Tests cover grouped rows, best value marking, missing value placeholders, and cross-category rejection. Full verify passed: 12 data records, 86 tests / 0 fail.
+Status: Task 6.2 is complete and ready to push. Created `src/features/compare/render-compare.js` with `renderCompareTable(viewModel)` that consumes `CompareTableViewModel` and renders a table with item headers, metric group rows, `is-best` class on best values, and `待补充` for missing values. Tests cover headers, group rendering, best-value class, missing placeholder, and empty state. Full verify passed: 12 data records, 91 tests / 0 fail.
 
 ## Current Date
 

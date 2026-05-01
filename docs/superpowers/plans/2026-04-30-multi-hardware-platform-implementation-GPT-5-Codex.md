@@ -980,7 +980,7 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add failing render tests**
+- [x] **Step 1: Add failing render tests**
 
 Test:
 
@@ -989,11 +989,11 @@ Test:
 - best values get an `is-best` class;
 - missing values render `待补充`.
 
-- [ ] **Step 2: Implement renderer**
+- [x] **Step 2: Implement renderer**
 
 Renderer consumes `CompareTableViewModel` only.
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 
@@ -1004,7 +1004,7 @@ npm.cmd run verify
 
 Expected: all tests pass.
 
-- [ ] **Step 4: Update records, commit, push**
+- [x] **Step 4: Update records, commit, push**
 
 Commit:
 

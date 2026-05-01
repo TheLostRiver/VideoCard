@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 6.1 完成。
+阶段：Multi-Hardware Platform Implementation Task 6.2 完成。
 
-当前任务：Task 6.1: Add Comparison Service — 完成。
+当前任务：Task 6.2: Add Compare Renderer — 完成。
 
-下一步：Task 6.2: Add Compare Renderer。
+下一步：Task 6.3: Add GPU Compare Page Entry。
 
 ## 工作规则
 
@@ -165,6 +165,11 @@
 - Task 6.1 RED 完成：新增 `tests/comparison-service.test.mjs`，先运行 `npm.cmd test`，按预期因 `src/application/comparison-service.js` 缺失失败。
 - Task 6.1 GREEN 完成：新增 `src/application/comparison-service.js`，实现 `compare(categoryId, itemIds)`，使用 category compare presets 分组 metric，标记最佳数值，缺失值显示 `待补充`，拒绝跨品类对比。
 - Task 6.1 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 86 pass / 0 fail。
+- Task 6.1 推送完成：`c391843 feat: add hardware comparison service` 已推送到 `origin/main`。
+- Task 6.2 启动检查完成：已读取实现计划 Task 6.2、comparison service 输出结构和 `git status -sb`。
+- Task 6.2 RED 完成：新增 `tests/compare-render.test.mjs`，先运行 `npm.cmd test`，按预期因 `src/features/compare/render-compare.js` 缺失失败。
+- Task 6.2 GREEN 完成：新增 `src/features/compare/render-compare.js`，实现 `renderCompareTable(viewModel)` 渲染 item headers、metric group rows、`is-best` class 和 `待补充` 占位。
+- Task 6.2 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 91 pass / 0 fail。
 
 ## 最近验证
 
