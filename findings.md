@@ -159,6 +159,7 @@
 | Desktop CPU 暂无 warnings | 桌面 CPU 没有类似移动版 TGP 的变异性问题，warnings 为空数组。 |
 | Desktop CPU 种子数据直接使用 hardware model 格式 | 无 legacy 格式需要迁移，数据直接存储为 `{ item, metricValues, rankingScore, sources }` 结构。 |
 | JSON repository 按品类分别加载数据 | GPU 使用 legacy mapper，desktop-cpu 直接读取 hardware model 格式；`listCategories` 返回所有已注册品类。 |
+| Mobile SoC schema 包含手机特有 metrics | 进程节点、CPU 集群配置、GPU 名称、NPU/AI 引擎、基带、AnTuTu、3DMark Wild Life 等手机 SoC 专属字段。 |
 
 ## Issues Encountered
 

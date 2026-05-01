@@ -211,12 +211,23 @@
   - `tests/desktop-cpu-data.test.mjs` created
   - `tests/hardware-api.test.mjs` modified
 
+### Phase: Task 7.3 Mobile SoC Category Schema
+
+- **Status:** complete
+- Actions taken:
+  - 新增 `tests/mobile-soc-schema.test.mjs`，RED 确认因 schema 文件缺失失败
+  - 新增 `src/data/categories/mobile-soc.schema.json`，包含 21 个 metrics
+  - `npm.cmd run verify` 通过：100 tests / 0 fail
+- Files created/modified:
+  - `tests/mobile-soc-schema.test.mjs` created
+  - `src/data/categories/mobile-soc.schema.json` created
+
 ## 5-Question Reboot Check
 
 | Question | Answer |
 |----------|--------|
-| 我在哪？ | Task 7.2 完成。准备进入 Task 7.3: Mobile SoC Category Schema。 |
-| 去哪？ | 下一个原子任务是 Task 7.3。 |
+| 我在哪？ | Task 7.3 完成。准备进入 Task 7.4: Apple Silicon Category Schema。 |
+| 去哪？ | 下一个原子任务是 Task 7.4。 |
 | 目标？ | 继续多硬件平台实现计划，一个原子任务一个原子任务推进。 |
 | 学到了什么？ | 见 `findings.md`。 |
-| 做了什么？ | 完成、验证、提交、推送 Task 7.2（Desktop CPU Seed Data）。 |
+| 做了什么？ | 完成、验证、提交、推送 Task 7.3（Mobile SoC Category Schema）。 |

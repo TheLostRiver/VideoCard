@@ -1,0 +1,410 @@
+{
+  "id": "mobile-soc",
+  "label": "Mobile SoC",
+  "description": "Mobile system-on-chip processors for smartphones and tablets.",
+  "itemName": {
+    "singular": "SoC",
+    "plural": "SoCs"
+  },
+  "listView": {
+    "titleField": "name",
+    "subtitleFields": [
+      "brand",
+      "generation",
+      "soc.process.node"
+    ],
+    "badgeField": "segment",
+    "scoreField": "soc.performance.index",
+    "powerField": "soc.power.display",
+    "recommendationField": "soc.device.tier"
+  },
+  "detailView": {
+    "groups": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "metricIds": [
+          "soc.performance.index",
+          "soc.release.date",
+          "soc.process.node",
+          "soc.confidence"
+        ]
+      },
+      {
+        "id": "cpu",
+        "title": "CPU",
+        "metricIds": [
+          "soc.cpu.cluster",
+          "soc.cpu.cores",
+          "soc.cpu.maxClock"
+        ]
+      },
+      {
+        "id": "gpuNpu",
+        "title": "GPU And NPU",
+        "metricIds": [
+          "soc.gpu.name",
+          "soc.gpu.cores",
+          "soc.npu.ai"
+        ]
+      },
+      {
+        "id": "connectivity",
+        "title": "Connectivity",
+        "metricIds": [
+          "soc.modem",
+          "soc.memory.type",
+          "soc.memory.maxSize"
+        ]
+      },
+      {
+        "id": "benchmarks",
+        "title": "Benchmarks",
+        "metricIds": [
+          "soc.benchmark.geekbenchSingle",
+          "soc.benchmark.geekbenchMulti",
+          "soc.benchmark.antutuTotal",
+          "soc.benchmark.wildLife"
+        ]
+      },
+      {
+        "id": "notes",
+        "title": "Notes",
+        "metricIds": [
+          "soc.benchmark.sourceNote",
+          "soc.device.tier",
+          "soc.device.efficiencyNote"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "adminForm": {
+    "groups": [
+      {
+        "id": "basic",
+        "title": "Basic",
+        "fields": [
+          {
+            "kind": "property",
+            "key": "id",
+            "label": "ID"
+          },
+          {
+            "kind": "property",
+            "key": "name",
+            "label": "Name"
+          },
+          {
+            "kind": "property",
+            "key": "brand",
+            "label": "Brand"
+          },
+          {
+            "kind": "property",
+            "key": "segment",
+            "label": "Segment"
+          },
+          {
+            "kind": "property",
+            "key": "generation",
+            "label": "Generation"
+          },
+          {
+            "kind": "property",
+            "key": "architecture",
+            "label": "Architecture"
+          },
+          {
+            "kind": "metric",
+            "metricId": "soc.release.date"
+          },
+          {
+            "kind": "metric",
+            "metricId": "soc.performance.index"
+          },
+          {
+            "kind": "metric",
+            "metricId": "soc.process.node"
+          },
+          {
+            "kind": "metric",
+            "metricId": "soc.confidence"
+          }
+        ]
+      },
+      {
+        "id": "cpu",
+        "title": "CPU",
+        "fields": [
+          {
+            "kind": "metric",
+            "metricId": "soc.cpu.cluster"
+          },
+          {
+            "kind": "metric",
+            "metricId": "soc.cpu.cores"
+          },
+          {
+            "kind": "metric",
+            "metricId": "soc.cpu.maxClock"
+          }
+        ]
+      },
+      {
+        "id": "gpuNpu",
+        "title": "GPU And NPU",
+        "fields": [
+          {
+            "kind": "metric",
+            "metricId": "soc.gpu.name"
+          },
+          {
+            "kind": "metric",
+            "metricId": "soc.gpu.cores"
+          },
+          {
+            "kind": "metric",
+            "metricId": "soc.npu.ai"
+          }
+        ]
+      },
+      {
+        "id": "connectivityMemory",
+        "title": "Connectivity And Memory",
+        "fields": [
+          {
+            "kind": "metric",
+            "metricId": "soc.modem"
+          },
+          {
+            "kind": "metric",
+            "metricId": "soc.memory.type"
+          },
+          {
+            "kind": "metric",
+            "metricId": "soc.memory.maxSize"
+          }
+        ]
+      },
+      {
+        "id": "benchmarks",
+        "title": "Benchmarks",
+        "fields": [
+          {
+            "kind": "metric",
+            "metricId": "soc.benchmark.geekbenchSingle"
+          },
+          {
+            "kind": "metric",
+            "metricId": "soc.benchmark.geekbenchMulti"
+          },
+          {
+            "kind": "metric",
+            "metricId": "soc.benchmark.antutuTotal"
+          },
+          {
+            "kind": "metric",
+            "metricId": "soc.benchmark.wildLife"
+          },
+          {
+            "kind": "metric",
+            "metricId": "soc.benchmark.sourceNote"
+          }
+        ]
+      },
+      {
+        "id": "deviceNotes",
+        "title": "Device And Notes",
+        "fields": [
+          {
+            "kind": "metric",
+            "metricId": "soc.device.tier"
+          },
+          {
+            "kind": "metric",
+            "metricId": "soc.device.efficiencyNote"
+          },
+          {
+            "kind": "property",
+            "key": "notes",
+            "label": "Notes"
+          },
+          {
+            "kind": "property",
+            "key": "sources",
+            "label": "Sources"
+          }
+        ]
+      }
+    ]
+  },
+  "metrics": [
+    {
+      "id": "soc.performance.index",
+      "label": "Performance Index",
+      "valueType": "number",
+      "formatterId": "index"
+    },
+    {
+      "id": "soc.release.date",
+      "label": "Release Date",
+      "valueType": "date",
+      "formatterId": "release-month"
+    },
+    {
+      "id": "soc.process.node",
+      "label": "Process Node",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "soc.confidence",
+      "label": "Confidence",
+      "valueType": "enum",
+      "formatterId": "confidence"
+    },
+    {
+      "id": "soc.cpu.cluster",
+      "label": "CPU Cluster Config",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "soc.cpu.cores",
+      "label": "CPU Cores",
+      "valueType": "number",
+      "formatterId": "number"
+    },
+    {
+      "id": "soc.cpu.maxClock",
+      "label": "Max CPU Clock",
+      "valueType": "number",
+      "formatterId": "clock-mhz"
+    },
+    {
+      "id": "soc.gpu.name",
+      "label": "GPU Name",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "soc.gpu.cores",
+      "label": "GPU Cores",
+      "valueType": "number",
+      "formatterId": "number"
+    },
+    {
+      "id": "soc.npu.ai",
+      "label": "NPU / AI Engine",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "soc.modem",
+      "label": "Modem",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "soc.memory.type",
+      "label": "Memory Type",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "soc.memory.maxSize",
+      "label": "Max Memory Size",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "soc.power.display",
+      "label": "Power Display",
+      "valueType": "text",
+      "formatterId": "power"
+    },
+    {
+      "id": "soc.benchmark.geekbenchSingle",
+      "label": "Geekbench 6 Single",
+      "valueType": "number",
+      "formatterId": "benchmark-score"
+    },
+    {
+      "id": "soc.benchmark.geekbenchMulti",
+      "label": "Geekbench 6 Multi",
+      "valueType": "number",
+      "formatterId": "benchmark-score"
+    },
+    {
+      "id": "soc.benchmark.antutuTotal",
+      "label": "AnTuTu Total",
+      "valueType": "number",
+      "formatterId": "benchmark-score"
+    },
+    {
+      "id": "soc.benchmark.wildLife",
+      "label": "3DMark Wild Life Extreme",
+      "valueType": "number",
+      "formatterId": "benchmark-score"
+    },
+    {
+      "id": "soc.benchmark.sourceNote",
+      "label": "Benchmark Source Note",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "soc.device.tier",
+      "label": "Device Tier",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "soc.device.efficiencyNote",
+      "label": "Efficiency Note",
+      "valueType": "text",
+      "formatterId": "text"
+    }
+  ],
+  "comparePresets": [
+    {
+      "id": "specs",
+      "label": "Specs",
+      "metricIds": [
+        "soc.process.node",
+        "soc.cpu.cluster",
+        "soc.cpu.cores",
+        "soc.cpu.maxClock"
+      ]
+    },
+    {
+      "id": "gpuNpu",
+      "label": "GPU And NPU",
+      "metricIds": [
+        "soc.gpu.name",
+        "soc.gpu.cores",
+        "soc.npu.ai"
+      ]
+    },
+    {
+      "id": "connectivity",
+      "label": "Connectivity",
+      "metricIds": [
+        "soc.modem",
+        "soc.memory.type",
+        "soc.memory.maxSize"
+      ]
+    },
+    {
+      "id": "benchmarks",
+      "label": "Benchmarks",
+      "metricIds": [
+        "soc.benchmark.geekbenchSingle",
+        "soc.benchmark.geekbenchMulti",
+        "soc.benchmark.antutuTotal",
+        "soc.benchmark.wildLife"
+      ]
+    }
+  ]
+}

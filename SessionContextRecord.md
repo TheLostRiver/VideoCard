@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 7.2: Add Desktop CPU Seed Data
+Task: Task 7.3: Add Mobile SoC Category Schema
 
-Status: Task 7.2 is complete. Created `src/data/hardware/desktop-cpu.items.json` with 3 desktop CPU seed records (Ryzen 7 7800X3D, Core i9-14900K, Ryzen 5 7600X). Modified `json-hardware-repository.js` to support the desktop-cpu category alongside GPU. Updated hardware-api tests to include desktop-cpu files in test setup. Full verify passed: 12 data records, 99 tests / 0 fail.
+Status: Task 7.3 is complete. Created `src/data/categories/mobile-soc.schema.json` with 21 metrics covering process node, CPU cluster, GPU name, NPU/AI, modem, memory, Geekbench, AnTuTu, and 3DMark Wild Life. Schema follows the same listView/detailView/adminForm/comparePresets structure as GPU and desktop-cpu schemas. Full verify passed: 12 data records, 100 tests / 0 fail.
 
 ## Current Date
 
@@ -69,19 +69,19 @@ Core model:
 
 ## Next Step
 
-1. 读取实现计划中 Task 7.3 的详细要求。
-2. 添加手机 SoC 品类 schema 测试。
+1. 读取实现计划中 Task 7.4 的详细要求。
+2. 添加 Apple Silicon 品类 schema 测试。
 3. 保持 RED/GREEN/验证/提交/推送 循环。
 
 ## Verification Status
 
-Task 7.2 完整验证、实现提交、推送通过。
+Task 7.3 完整验证、实现提交、推送通过。
 
 最新结果：
 
 - 命令：`npm.cmd run verify`
 - 数据校验：`Validated 12 GPU records.`
-- 测试：99 pass / 0 fail
+- 测试：100 pass / 0 fail
 
 ## Important Commands
 
