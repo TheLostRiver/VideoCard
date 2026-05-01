@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 5.2: Add Generic Admin Save API Route
+Task: Task 6.1: Add Comparison Service
 
-Status: Task 5.2 is complete and ready to push. Added `PUT /api/admin/hardware/:categoryId/items/:itemId` route to `scripts/serve.mjs`, using `HardwareMutationService` for writes and `HardwareQueryService` to return the saved detail. Extended `getDetailViewModel` to expose `metricValues`, `rankingScore`, and `sources` for admin round-trip. Tests cover save success, mobile TGP rejection (400), and missing item (404). Full verify passed: 12 data records, 82 tests / 0 fail.
+Status: Task 6.1 is complete and ready to push. Created `src/application/comparison-service.js` with `createComparisonService(repository)` exposing `compare(categoryId, itemIds)`. Uses category compare presets to group metrics, marks best numeric values, shows `待补充` for missing values, and rejects cross-category comparison. Tests cover grouped rows, best value marking, missing value placeholders, and cross-category rejection. Full verify passed: 12 data records, 86 tests / 0 fail.
 
 ## Current Date
 

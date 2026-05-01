@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Task 5.2 complete. Ready for Task 6.1: Add Comparison Service
+Task 6.1 complete. Ready for Task 6.2: Add Compare Renderer
 
 ## Phases
 
@@ -326,6 +326,30 @@ Task 5.2 complete. Ready for Task 6.1: Add Comparison Service
 
 - [x] Confirm Task 5.2 implementation commit is pushed.
 - [x] Record next task as Task 6.1.
+- [x] Confirm clean git status after push.
+- **Status:** complete
+
+### Phase 41: Task 6.1 Comparison Service
+
+- [x] Read Task 6.1 implementation plan details.
+- [x] Add failing comparison tests.
+- [x] Confirm RED failure because comparison service does not exist.
+- [x] Implement comparison service using category compare presets.
+- [x] Confirm `npm.cmd test` passes.
+- **Status:** complete
+
+### Phase 42: Task 6.1 Verification And Records
+
+- [x] Run `npm.cmd run verify`.
+- [x] Update implementation plan checkboxes.
+- [x] Update `SessionContextRecord.md`, `PROJECT_STATE.md`, `task_plan.md`, `findings.md`, and `progress.md`.
+- [x] Commit and push Task 6.1.
+- **Status:** complete
+
+### Phase 43: Next Task Readiness After Task 6.1
+
+- [x] Confirm Task 6.1 implementation commit is pushed.
+- [x] Record next task as Task 6.2.
 - [x] Confirm clean git status after push.
 - **Status:** complete
 

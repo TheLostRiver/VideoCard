@@ -138,6 +138,11 @@
 | Task 5.2 GREEN v1 | `npm.cmd test` | TGP rejection test passes | Test still fails (200 !== 400) because view model `value` is a display primitive, not the underlying metric value | Fail |
 | Task 5.2 GREEN v2 | `npm.cmd test` | All tests pass after exposing `metricValues` in detail view model | 82 pass / 0 fail | Pass |
 | Task 5.2 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 82 pass / 0 fail | Pass |
+| Task 5.2 push | `git push --porcelain origin main` | Push Task 5.2 to origin/main | `959fcff..e395e5b` pushed | Pass |
+| Resume Task 6.1 | Read recovery records, GPU schema compare presets, and implementation plan | Clean workspace and Task 6.1 requirements known | `git status -sb` returned `## main...origin/main`; Task 6.1 requirements captured | Pass |
+| Task 6.1 RED | `npm.cmd test` | Fail because comparison service does not exist | Failed with `ERR_MODULE_NOT_FOUND` for `src/application/comparison-service.js` | Pass |
+| Task 6.1 GREEN | `npm.cmd test` | Comparison service tests pass and suite remains green | 86 pass / 0 fail | Pass |
+| Task 6.1 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 86 pass / 0 fail | Pass |
 
 ## Error Log
 
@@ -167,8 +172,8 @@
 
 | Question | Answer |
 |----------|--------|
-| Where am I? | Task 5.2 complete. Ready for Task 6.1 Add Comparison Service. |
-| Where am I going? | Start Task 6.1 with failing comparison service tests. |
+| Where am I? | Task 6.1 complete. Ready for Task 6.2 Add Compare Renderer. |
+| Where am I going? | Start Task 6.2 with failing compare renderer tests. |
 | What's the goal? | Continue the multi-hardware implementation one atomic task at a time. |
 | What have I learned? | See `findings.md`. |
-| What have I done? | Completed, verified, committed, pushed, and recorded Task 5.2 (generic admin save API route). |
+| What have I done? | Completed, verified, committed, pushed, and recorded Task 6.1 (comparison service). |

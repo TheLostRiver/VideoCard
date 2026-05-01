@@ -937,7 +937,7 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add failing comparison tests**
+- [x] **Step 1: Add failing comparison tests**
 
 Test:
 
@@ -946,11 +946,11 @@ Test:
 - missing values display `待补充`;
 - cross-category comparison is rejected.
 
-- [ ] **Step 2: Implement comparison service**
+- [x] **Step 2: Implement comparison service**
 
 Use category compare preset and metric definitions.
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 
@@ -961,7 +961,7 @@ npm.cmd run verify
 
 Expected: all tests pass.
 
-- [ ] **Step 4: Update records, commit, push**
+- [x] **Step 4: Update records, commit, push**
 
 Commit:
 

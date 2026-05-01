@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 5.2 完成。
+阶段：Multi-Hardware Platform Implementation Task 6.1 完成。
 
-当前任务：Task 5.2: Add Generic Admin Save API Route — 完成。
+当前任务：Task 6.1: Add Comparison Service — 完成。
 
-下一步：Task 6.1: Add Comparison Service。
+下一步：Task 6.2: Add Compare Renderer。
 
 ## 工作规则
 
@@ -160,6 +160,11 @@
 - Task 5.2 RED 完成：更新 `tests/hardware-api.test.mjs` 新增 admin save 测试，先运行 `npm.cmd test`，按预期因 `/api/admin/hardware/` PUT 路由不存在返回 404 失败。
 - Task 5.2 GREEN 完成：`scripts/serve.mjs` 新增 `PUT /api/admin/hardware/:categoryId/items/:itemId`，通过 `HardwareMutationService` 写入，`HardwareQueryService` 返回保存后详情；`hardware-query-service.js` 的 `getDetailViewModel` 新增 `metricValues`、`rankingScore`、`sources` 以支持 admin 往返保存。
 - Task 5.2 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 82 pass / 0 fail。
+- Task 5.2 推送完成：`e395e5b feat: add generic hardware admin save route` 已推送到 `origin/main`。
+- Task 6.1 启动检查完成：已读取 `SessionContextRecord.md`、`PROJECT_STATE.md`、实现计划 Task 6.1、GPU schema compare presets 和 `git status -sb`。
+- Task 6.1 RED 完成：新增 `tests/comparison-service.test.mjs`，先运行 `npm.cmd test`，按预期因 `src/application/comparison-service.js` 缺失失败。
+- Task 6.1 GREEN 完成：新增 `src/application/comparison-service.js`，实现 `compare(categoryId, itemIds)`，使用 category compare presets 分组 metric，标记最佳数值，缺失值显示 `待补充`，拒绝跨品类对比。
+- Task 6.1 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 86 pass / 0 fail。
 
 ## 最近验证
 

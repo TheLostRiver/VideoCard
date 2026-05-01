@@ -146,6 +146,8 @@
 | Detail view model must expose raw metric values for admin round-trip | `getDetailViewModel` now returns `metricValues`, `rankingScore`, and `sources` alongside the display groups, so admin save can send the full detail back. |
 | Admin save test must modify `metricValues` not display `value` | The view model's `groups[].rows[].value` is a display primitive; the repository's save path reads `metricValues[].valueText`/`valueMin`/`valueMax`, so the TGP rejection test must clear the metric value fields. |
 | Treat `6fbed35..959fcff` as Task 5.1 record commits | Task 5.2 starts only after both the implementation and planning record commits are pushed. |
+| Comparison service uses `higherIsBetter !== false` as default | Most numeric metrics benefit from higher values; only explicitly `higherIsBetter: false` metrics (like power) invert the best-value logic. |
+| Treat `e395e5b` as Task 5.2 implementation commit | The generic admin save route task is implemented, verified, and pushed; the next task is Task 6.1. |
 
 ## Issues Encountered
 
