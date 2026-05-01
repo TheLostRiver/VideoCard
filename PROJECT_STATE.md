@@ -280,7 +280,8 @@
 
 ## 最近提交
 
-- `4578eea chore: record task4.3 push completion`
+- `a907a9d feat: 添加 GPU 对比页面入口`
+- `48f6733 feat: add hardware compare renderer`
 - `2858013 refactor: render admin editor from category schema`
 - `afd2c66 chore: record task3.3 push completion`
 - `d5b0742 feat: add schema-driven admin form renderer`
