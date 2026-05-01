@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Task 6.2 complete. Ready for Task 6.3: Add GPU Compare Page Entry
+Task 6.3 complete. Ready for Task 7.1: Desktop CPU Category Schema
 
 ## Phases
 
@@ -375,6 +375,29 @@ Task 6.2 complete. Ready for Task 6.3: Add GPU Compare Page Entry
 - [x] Confirm Task 6.2 implementation commit is pushed.
 - [x] Record next task as Task 6.3.
 - [x] Confirm clean git status after push.
+- **Status:** complete
+
+### Phase 47: Task 6.3 GPU 对比页面入口
+
+- [x] 修改 `src/app.js`：`createInitialState` 支持 compare hash、`render()` async 处理 compare mode、`getElements` 新增 `comparePanel`
+- [x] 修改 `src/styles.css`：新增对比表格样式
+- [x] 运行 `npm.cmd run verify` 通过（95 tests / 0 fail）
+- [x] 浏览器烟测通过
+- **Status:** complete
+
+### Phase 48: Task 6.3 验证与记录
+
+- [x] 运行 `npm.cmd run verify` 通过
+- [x] 更新实现计划 checkbox
+- [x] 更新 `SessionContextRecord.md`、`PROJECT_STATE.md`、`task_plan.md`、`findings.md`、`progress.md`
+- [x] 提交并推送 Task 6.3
+- **Status:** complete
+
+### Phase 49: Task 6.3 后续准备
+
+- [x] 确认 Task 6.3 实现提交已推送
+- [x] 记录下一个任务为 Task 7.1
+- [x] 确认推送后 git 状态干净
 - **Status:** complete
 
 ## Key Questions

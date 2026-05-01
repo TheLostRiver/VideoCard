@@ -1,11 +1,14 @@
 import { BRANDS, SEGMENTS, SORT_OPTIONS, TIERS } from "./data/constants.js";
 import { gpus } from "./data/gpus.js";
 import { createHardwareQueryService } from "./application/hardware-query-service.js";
+import { createComparisonService } from "./application/comparison-service.js";
+import { renderCompareTable } from "./features/compare/render-compare.js";
 import { filterGpus, sortGpus } from "./utils/filters.js";
 import { formatBenchmark, formatClock, formatMemory, formatNumber, formatPower } from "./utils/format.js";
 import { getMaxPerformanceIndex, getPerformanceWidth, groupByTier } from "./utils/performance.js";
 
 export function createInitialState(hash = "", fallbackId = gpus[0]?.id || "") {
+  const compareParams = parseCompareHash(hash);
   const hashId = hash.replace(/^#/, "");
   return {
     query: "",
@@ -14,7 +17,9 @@ export function createInitialState(hash = "", fallbackId = gpus[0]?.id || "") {
     generations: new Set(),
     sortBy: "performance",
     selectedId: hashId || fallbackId,
-    drawerOpen: Boolean(hashId)
+    drawerOpen: Boolean(hashId),
+    compareMode: Boolean(compareParams),
+    compareParams
   };
 }
 
@@ -69,6 +74,22 @@ function getHardwareListSearchText(item) {
     .filter(Boolean)
     .join(" ")
     .toLowerCase();
+}
+
+export function parseCompareHash(hash) {
+  const match = String(hash || "").match(/^#compare\/([^?]+)\?ids=(.+)$/);
+  if (!match) return null;
+  const categoryId = match[1];
+  const itemIds = match[2].split(",").map((s) => s.trim()).filter(Boolean);
+  if (itemIds.length < 2) return null;
+  return { categoryId, itemIds };
+}
+
+export async function renderComparePage({ categoryId, itemIds, repository } = {}) {
+  const repo = repository || await createDefaultHardwareRepository();
+  const service = createComparisonService(repo);
+  const viewModel = await service.compare(categoryId, itemIds);
+  return renderCompareTable(viewModel);
 }
 
 export function renderFilterChips(items = gpus) {
@@ -195,13 +216,13 @@ export function initApp({ doc = document, win = window, data = gpus } = {}) {
     elements.searchInput.addEventListener("input", (event) => {
       state.query = event.target.value;
       state.drawerOpen = false;
-      render();
+      render().catch(console.error);
     });
 
     elements.sortSelect.addEventListener("change", (event) => {
       state.sortBy = event.target.value;
       state.drawerOpen = false;
-      render();
+      render().catch(console.error);
     });
 
     elements.filterBar.addEventListener("click", (event) => {
@@ -213,7 +234,7 @@ export function initApp({ doc = document, win = window, data = gpus } = {}) {
       if (set.has(value)) set.delete(value);
       else set.add(value);
       state.drawerOpen = false;
-      render();
+      render().catch(console.error);
     });
 
     elements.resetButton.addEventListener("click", () => {
@@ -223,15 +244,26 @@ export function initApp({ doc = document, win = window, data = gpus } = {}) {
       state.generations.clear();
       state.drawerOpen = false;
       elements.searchInput.value = "";
-      render();
+      render().catch(console.error);
     });
 
     win.addEventListener("hashchange", () => {
-      const id = win.location.hash.replace(/^#/, "");
+      const hash = win.location.hash;
+      const compareParams = parseCompareHash(hash);
+      if (compareParams) {
+        state.compareMode = true;
+        state.compareParams = compareParams;
+        render().catch(console.error);
+        return;
+      }
+
+      state.compareMode = false;
+      state.compareParams = null;
+      const id = hash.replace(/^#/, "");
       if (data.some((gpu) => gpu.id === id)) {
         state.selectedId = id;
         state.drawerOpen = true;
-        render();
+        render().catch(console.error);
       }
     });
   }
@@ -250,7 +282,7 @@ export function initApp({ doc = document, win = window, data = gpus } = {}) {
     state.selectedId = id;
     state.drawerOpen = true;
     if (win.location.hash !== `#${id}`) win.history.replaceState(null, "", `#${id}`);
-    render();
+    render().catch(console.error);
   }
 
   function renderLadder(items, maxIndex) {
@@ -278,8 +310,21 @@ export function initApp({ doc = document, win = window, data = gpus } = {}) {
     });
   }
 
-  function render() {
+  async function render() {
     updateControlState();
+
+    const contentGrid = doc.querySelector(".content-grid");
+    if (state.compareMode) {
+      if (contentGrid) contentGrid.hidden = true;
+      elements.comparePanel.hidden = false;
+      elements.comparePanel.innerHTML = await renderComparePage(state.compareParams);
+      elements.mobileDrawer.hidden = true;
+      return;
+    }
+
+    if (contentGrid) contentGrid.hidden = false;
+    elements.comparePanel.hidden = true;
+
     const filtered = sortGpus(filterGpus(data, state), state.sortBy);
     const maxIndex = getMaxPerformanceIndex(data);
     const selectedGpu = data.find((gpu) => gpu.id === state.selectedId) || filtered[0];
@@ -289,7 +334,7 @@ export function initApp({ doc = document, win = window, data = gpus } = {}) {
 
   renderControls();
   bindEvents();
-  render();
+  render().catch(console.error);
 
   return { elements, render, state };
 }
@@ -302,7 +347,8 @@ function getElements(doc) {
     resetButton: doc.querySelector("#resetButton"),
     ladderList: doc.querySelector("#ladderList"),
     detailPanel: doc.querySelector("#detailPanel"),
-    mobileDrawer: doc.querySelector("#mobileDrawer")
+    mobileDrawer: doc.querySelector("#mobileDrawer"),
+    comparePanel: doc.querySelector("#comparePanel")
   };
 }
 

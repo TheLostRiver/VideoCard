@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 6.2 完成。
+阶段：Multi-Hardware Platform Implementation Task 6.3 完成。
 
-当前任务：Task 6.2: Add Compare Renderer — 完成。
+当前任务：Task 6.3: Add GPU Compare Page Entry — 完成。
 
-下一步：Task 6.3: Add GPU Compare Page Entry。
+下一步：Task 7.1: Desktop CPU Category Schema。
 
 ## 工作规则
 
@@ -170,6 +170,12 @@
 - Task 6.2 RED 完成：新增 `tests/compare-render.test.mjs`，先运行 `npm.cmd test`，按预期因 `src/features/compare/render-compare.js` 缺失失败。
 - Task 6.2 GREEN 完成：新增 `src/features/compare/render-compare.js`，实现 `renderCompareTable(viewModel)` 渲染 item headers、metric group rows、`is-best` class 和 `待补充` 占位。
 - Task 6.2 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 91 pass / 0 fail。
+- Task 6.3 启动检查完成：已读取实现计划 Task 6.3、`src/app.js`、`index.html`、`src/styles.css` 和 `git status -sb`。
+- Task 6.3 RED 完成：新增 `parseCompareHash` 和 `renderComparePage` 测试到 `tests/app-render.test.mjs`，先运行 `npm.cmd test`，按预期因函数未实现失败。
+- Task 6.3 GREEN 完成：`src/app.js` 新增 `parseCompareHash`、`renderComparePage`，修改 `initApp` 的 hashchange handler 检测 compare mode；`index.html` 新增 `#comparePanel` 容器。
+- Task 6.3 浏览器接线完成：`src/app.js` 的 `render()` 改为 async 处理 compare mode（隐藏 content-grid、显示 comparePanel），`createInitialState` 支持 compare hash 初始化，`getElements` 新增 `comparePanel`，所有事件处理 `render()` 加 `.catch(console.error)`。
+- Task 6.3 样式完成：`src/styles.css` 新增 `.compare-panel`、`.compare-table`、`.compare-group-row`、`.compare-label`、`.compare-value.is-best`、`.compare-empty` 样式。
+- Task 6.3 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 95 pass / 0 fail。
 
 ## 最近验证
 
@@ -269,6 +275,8 @@
 - Task 4.3 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 74 pass / 0 fail。
 - Task 4.3 浏览器烟测：后台保存 4070 Laptop 当前值成功，前台详情同步显示 `45-115W`、`2,175 MHz`、`12,345`，console error 为空。
 - Task 4.3 push-record 验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 74 pass / 0 fail。
+- Task 6.3 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 95 pass / 0 fail。
+- Task 6.3 浏览器烟测：服务器和静态文件正常访问（200），对比页面客户端渲染依赖测试覆盖。
 
 ## 最近提交
 

@@ -150,6 +150,10 @@
 | Treat `e395e5b` as Task 5.2 implementation commit | The generic admin save route task is implemented, verified, and pushed; the next task is Task 6.1. |
 | Compare renderer uses `escapeHtml` for XSS safety | All user-visible values are escaped before HTML insertion. |
 | Treat `c391843` as Task 6.1 implementation commit | The comparison service task is implemented, verified, and pushed; the next task is Task 6.2. |
+| `render()` 改为 async 以支持对比页面 | `renderComparePage` 是 async 函数，需要 await 才能正确渲染对比表格；所有事件处理中的 `render()` 调用需加 `.catch(console.error)`。 |
+| `createInitialState` 需解析 compare hash | 浏览器初始加载时可能直接访问 `#compare/gpu?ids=...` URL，状态初始化必须设置 `compareMode`/`compareParams`。 |
+| 对比模式下隐藏 content-grid 并显示 comparePanel | 对比页面与天梯列表/详情面板互斥，需切换 DOM 可见性。 |
+| Treat Task 6.3 as the final Phase 6 task | GPU 对比功能完整闭环：对比服务（6.1）→ 对比渲染器（6.2）→ 对比页面入口（6.3）。 |
 
 ## Issues Encountered
 

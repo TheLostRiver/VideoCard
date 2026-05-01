@@ -173,12 +173,24 @@
 | 2026-05-01 | Browser admin smoke stayed at `正在加载数据...` | 1 | Diagnosed `.mjs` static responses as `application/octet-stream`; added `.mjs` MIME support and regression coverage. |
 | TGP rejection test expected 400 but got 200 | 1 | View model `value` is a display primitive; must modify `metricValues[].valueText` instead. Extended `getDetailViewModel` to expose `metricValues`. |
 
+### Phase: Task 6.3 GPU 对比页面入口
+
+- **Status:** complete
+- Actions taken:
+  - `src/app.js` 修改：`createInitialState` 支持 compare hash 初始化、`render()` 改为 async 处理 compare mode、`getElements` 新增 `comparePanel`、所有事件处理 `render()` 加 `.catch(console.error)`
+  - `src/styles.css` 新增：`.compare-panel`、`.compare-table`、`.compare-group-row`、`.compare-label`、`.compare-value.is-best`、`.compare-empty` 样式
+  - `npm.cmd run verify` 通过：95 tests / 0 fail
+  - 浏览器烟测：服务器和静态文件正常访问（200）
+- Files created/modified:
+  - `src/app.js` modified
+  - `src/styles.css` modified
+
 ## 5-Question Reboot Check
 
 | Question | Answer |
 |----------|--------|
-| Where am I? | Task 6.2 complete. Ready for Task 6.3 Add GPU Compare Page Entry. |
-| Where am I going? | Start Task 6.3 with compare page wiring. |
-| What's the goal? | Continue the multi-hardware implementation one atomic task at a time. |
-| What have I learned? | See `findings.md`. |
-| What have I done? | Completed, verified, committed, pushed, and recorded Task 6.2 (compare renderer). |
+| 我在哪？ | Task 6.3 完成。准备进入 Phase 7: Desktop CPU Category Schema。 |
+| 去哪？ | 下一个原子任务是 Task 7.1。 |
+| 目标？ | 继续多硬件平台实现计划，一个原子任务一个原子任务推进。 |
+| 学到了什么？ | 见 `findings.md`。 |
+| 做了什么？ | 完成、验证、提交、推送 Task 6.3（GPU 对比页面入口）。 |

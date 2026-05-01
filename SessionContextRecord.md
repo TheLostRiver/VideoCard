@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 6.2: Add Compare Renderer
+Task: Task 6.3: Add GPU Compare Page Entry
 
-Status: Task 6.2 is complete and ready to push. Created `src/features/compare/render-compare.js` with `renderCompareTable(viewModel)` that consumes `CompareTableViewModel` and renders a table with item headers, metric group rows, `is-best` class on best values, and `待补充` for missing values. Tests cover headers, group rendering, best-value class, missing placeholder, and empty state. Full verify passed: 12 data records, 91 tests / 0 fail.
+Status: Task 6.3 is complete. Modified `src/app.js` to wire compare mode into the browser UI: `createInitialState` parses compare hash, `render()` is now async and handles compare mode by hiding content-grid and showing comparePanel with rendered compare table. Added CSS styles for `.compare-table`, `.compare-group-row`, `.compare-value.is-best`, `.compare-empty` in `src/styles.css`. Full verify passed: 12 data records, 95 tests / 0 fail.
 
 ## Current Date
 
@@ -69,20 +69,20 @@ Core model:
 
 ## Next Step
 
-1. Read Task 5.1 implementation plan details.
-2. Add failing API tests for generic hardware routes.
-3. Keep the RED/GREEN/verify/commit/push loop.
+1. 读取实现计划中 Task 7.1 的详细要求。
+2. 添加桌面 CPU 品类 schema 测试。
+3. 保持 RED/GREEN/验证/提交/推送 循环。
 
 ## Verification Status
 
-Task 4.3 full verification, browser smoke, implementation commit, push, and push-completion record commit passed.
+Task 6.3 完整验证、浏览器烟测、实现提交、推送通过。
 
-Latest result:
+最新结果：
 
-- command: `npm.cmd run verify`
-- data validation: `Validated 12 GPU records.`
-- tests: 74 pass / 0 fail
-- browser smoke: admin search/select/save for `GeForce RTX 4070 Laptop GPU` passed; front page showed `45-115W`, `2,175 MHz`, and `12,345`; console errors 0.
+- 命令：`npm.cmd run verify`
+- 数据校验：`Validated 12 GPU records.`
+- 测试：95 pass / 0 fail
+- 浏览器烟测：服务器和静态文件正常访问（200）
 
 ## Important Commands
 
@@ -94,12 +94,12 @@ git diff --stat
 
 ## Continuation Instructions
 
-If resuming after compression:
+如果上下文压缩后恢复：
 
-1. Read this file.
-2. Read `PROJECT_STATE.md`.
-3. Read the implementation plan.
-4. Check `git status -sb`.
-5. Continue from `Next Step`.
+1. 读取本文件。
+2. 读取 `PROJECT_STATE.md`。
+3. 读取实现计划。
+4. 检查 `git status -sb`。
+5. 从 `Next Step` 继续。
 
-If compression happens during Task 4.3, continue from `Next Step` and preserve the RED/GREEN/verify/commit/push cycle.
+如果在 Task 6.3 期间发生压缩，从 `Next Step` 继续并保持 RED/GREEN/验证/提交/推送 循环。

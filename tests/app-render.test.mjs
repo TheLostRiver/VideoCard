@@ -5,6 +5,8 @@ import {
   createGpuPageHardwareModel,
   createInitialState,
   getUniqueValues,
+  parseCompareHash,
+  renderComparePage,
   renderDetailMarkup,
   renderFilterChips,
   renderGpuRow,
@@ -77,4 +79,31 @@ test("service-backed GPU page model preserves search, mobile badge, warning, and
   assert.match(detailHtml, /移动版性能受 TGP、散热和厂商调校影响/);
   assert.match(detailHtml, /Time Spy Graphics/);
   assert.match(detailHtml, /12,345/);
+});
+
+test("parseCompareHash extracts category and ids from compare hash", () => {
+  const result = parseCompareHash("#compare/gpu?ids=rtx-4070-desktop,rtx-4070-laptop");
+  assert.equal(result.categoryId, "gpu");
+  assert.deepEqual(result.itemIds, ["rtx-4070-desktop", "rtx-4070-laptop"]);
+});
+
+test("parseCompareHash returns null for non-compare hash", () => {
+  assert.equal(parseCompareHash("#rtx-4070-laptop"), null);
+  assert.equal(parseCompareHash(""), null);
+});
+
+test("parseCompareHash rejects compare hash with fewer than 2 ids", () => {
+  assert.equal(parseCompareHash("#compare/gpu?ids=rtx-4070-desktop"), null);
+});
+
+test("renderComparePage renders a compare table for two GPUs", async () => {
+  const html = await renderComparePage({
+    categoryId: "gpu",
+    itemIds: ["rtx-4070-laptop", "rtx-4090-desktop"]
+  });
+
+  assert.match(html, /compare-table/);
+  assert.match(html, /rtx-4070-laptop/);
+  assert.match(html, /rtx-4090-desktop/);
+  assert.match(html, /Core Count/);
 });

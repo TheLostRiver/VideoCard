@@ -1025,11 +1025,11 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add tests**
+- [x] **Step 1: Add tests**
 
 Test that a compare URL state can render a compare table for two GPU ids.
 
-- [ ] **Step 2: Implement minimal compare mode**
+- [x] **Step 2: Implement minimal compare mode**
 
 Support hash format:
 
@@ -1037,7 +1037,7 @@ Support hash format:
 #compare/gpu?ids=rtx-4070-desktop,rtx-4070-laptop
 ```
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 
@@ -1048,11 +1048,11 @@ npm.cmd run verify
 
 Expected: all tests pass.
 
-- [ ] **Step 4: Browser smoke**
+- [x] **Step 4: Browser smoke**
 
 Open compare hash and verify the table renders without overlap.
 
-- [ ] **Step 5: Update records, commit, push**
+- [x] **Step 5: Update records, commit, push**
 
 Commit:
 
