@@ -127,6 +127,11 @@
 | Task 4.3 push | `git push --porcelain origin main` | Push Task 4.3 to origin/main | `a1fc662..2858013` pushed | Pass |
 | Task 4.3 push-record verify | `npm.cmd run verify` | Data validation and all tests pass before the push-completion record commit | `Validated 12 GPU records.` and 74 pass / 0 fail | Pass |
 | Task 4.3 push-record push | `git push --porcelain origin main` | Push Task 4.3 record commit to origin/main | `2858013..4578eea` pushed | Pass |
+| Resume Task 5.1 | Read recovery records, serve.mjs, query service, repository, and implementation plan | Clean workspace and Task 5.1 requirements known | `git status -sb` returned `## main...origin/main`; Task 5.1 requirements captured | Pass |
+| Task 5.1 RED | `npm.cmd test` | Fail because hardware API routes do not exist | All 3 new tests failed with status 404 | Pass |
+| Task 5.1 GREEN | `npm.cmd test` | Hardware API route tests pass and suite remains green | 79 pass / 0 fail | Pass |
+| Task 5.1 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 79 pass / 0 fail | Pass |
+| Task 5.1 push | `git push --porcelain origin main` | Push Task 5.1 to origin/main | `95195c6..6fbed35` pushed | Pass |
 
 ## Error Log
 
@@ -155,8 +160,8 @@
 
 | Question | Answer |
 |----------|--------|
-| Where am I? | Ready for Task 5.1 Add Read-Only Hardware API Routes. |
-| Where am I going? | Start Task 5.1 with failing generic hardware API tests. |
+| Where am I? | Task 5.1 complete. Ready for Task 5.2 Add Generic Admin Save API Route. |
+| Where am I going? | Start Task 5.2 with failing admin save API tests. |
 | What's the goal? | Continue the multi-hardware implementation one atomic task at a time. |
 | What have I learned? | See `findings.md`. |
-| What have I done? | Completed, verified, browser-smoked, committed, pushed, and recorded Task 4.3. |
+| What have I done? | Completed, verified, committed, pushed, and recorded Task 5.1 (read-only hardware API routes). |

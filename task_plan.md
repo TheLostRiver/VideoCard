@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Ready for Task 5.1: Add Read-Only Hardware API Routes
+Task 5.1 complete. Ready for Task 5.2: Add Generic Admin Save API Route
 
 ## Phases
 
@@ -280,6 +280,30 @@ Ready for Task 5.1: Add Read-Only Hardware API Routes
 - [x] Confirm clean git status after push-completion record.
 - **Status:** complete
 
+### Phase 35: Task 5.1 Read-Only Hardware API Routes
+
+- [x] Read Task 5.1 implementation plan details.
+- [x] Add failing API tests for `/api/hardware/categories`, `/api/hardware/gpu/items`, `/api/hardware/gpu/items/rtx-4070-laptop`.
+- [x] Confirm RED failure because routes return 404.
+- [x] Implement routes in `scripts/serve.mjs` using `HardwareQueryService`.
+- [x] Confirm `npm.cmd test` passes.
+- **Status:** complete
+
+### Phase 36: Task 5.1 Verification And Records
+
+- [x] Run `npm.cmd run verify`.
+- [x] Update implementation plan checkboxes.
+- [x] Update `SessionContextRecord.md`, `PROJECT_STATE.md`, `task_plan.md`, `findings.md`, and `progress.md`.
+- [x] Commit and push Task 5.1.
+- **Status:** complete
+
+### Phase 37: Next Task Readiness After Task 5.1
+
+- [x] Confirm Task 5.1 implementation commit is pushed.
+- [x] Record next task as Task 5.2.
+- [x] Confirm clean git status after push.
+- **Status:** complete
+
 ## Key Questions
 
 1. What is the repository contract surface for future JSON and PostgreSQL adapters?
@@ -323,6 +347,8 @@ Ready for Task 5.1: Add Read-Only Hardware API Routes
 | Serve `.mjs` as JavaScript in the local server | The browser admin page imports the legacy mapper module from `/scripts`, so module MIME must be `text/javascript` instead of `application/octet-stream`. |
 | Start Task 5.1 next | Task 4.3 is implemented, verified, browser-smoked, committed, and pushed as `2858013`. |
 | Treat `4578eea` as Task 4.3 push completion record commit | Task 5.1 starts only after the Task 4.3 record commit is also pushed. |
+| Hardware API routes create repository per request | Matches test pattern with temp directories and ensures correct server root. |
+| Start Task 5.2 next | Task 5.1 is implemented, verified, committed, and pushed as `6fbed35`. |
 
 ## Errors Encountered
 

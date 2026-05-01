@@ -81,6 +81,13 @@
   - `RankingScore` includes `rankingProfileId`, `score`, `tierId`, `confidence`, `formulaVersion`, and `updatedAt`.
   - `SourceDocument` includes `id`, `label`, `url`, `sourceType`, and optional publisher/retrieval metadata.
 
+- Implementation plan Task 5.1 requires:
+  - modify `scripts/serve.mjs`;
+  - create `tests/hardware-api.test.mjs`;
+  - test `GET /api/hardware/categories`, `GET /api/hardware/gpu/items`, `GET /api/hardware/gpu/items/rtx-4070-laptop`;
+  - routes must call `HardwareQueryService`, not `readGpuData` directly;
+  - commit message should be `feat: add generic hardware api read routes`.
+
 ## Technical Decisions
 
 | Decision | Rationale |
@@ -127,6 +134,9 @@
 | Local static service must serve `.mjs` as JavaScript | The browser admin page imports `/scripts/import-legacy-gpus.mjs`; without `text/javascript`, Chrome refuses the module and the admin UI stays in the loading state. |
 | Treat `2858013` as Task 4.3 implementation commit | The schema-form admin editor task is implemented, verified, browser-smoked, and pushed; the next task is Task 5.1. |
 | Treat `4578eea` as Task 4.3 push completion record commit | Task 5.1 starts only after the Task 4.3 record commit is also pushed. |
+| Hardware API routes use regex matching for category/item path extraction | Avoids adding a routing framework; pattern `^/api/hardware/([^/]+)/items(?:/(.*))?$` captures categoryId and optional itemId. |
+| Hardware API creates repository per request | `createJsonHardwareRepository({ root: serverRoot })` ensures each request reads from the correct server root, matching the test pattern with temp directories. |
+| Treat `6fbed35` as Task 5.1 implementation commit | The read-only hardware API routes task is implemented, verified, and pushed; the next task is Task 5.2. |
 
 ## Issues Encountered
 
@@ -166,6 +176,7 @@
 - `tests/schema-form-render.test.mjs`
 - `scripts/serve.mjs`
 - `tests/admin-api.test.mjs`
+- `tests/hardware-api.test.mjs`
 
 ## Visual/Browser Findings
 
