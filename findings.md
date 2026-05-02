@@ -201,6 +201,7 @@
 | PostgreSQL repository 的 `getItemDetail` 返回 flat item + 附加数据 | 使用 `{ ...item, metricValues, rankingScore, sources }` 格式，contract test 可直接访问 `detail.id`，应用层可访问 `detail.metricValues`。 |
 | 静态导出脚本使用 JSON repository 作为默认数据源 | `createJsonHardwareRepository()` 无需配置即可读取现有 JSON 数据，导出结果可用于静态部署或前端缓存。 |
 | 验证脚本需同时支持新格式和 legacy 格式 | `src/data/hardware/*.items.json` 使用 `{ item, metricValues, rankingScore, sources }` 格式，`src/data/gpus.json` 使用 legacy flat 格式；验证逻辑需按文件类型分别处理。 |
+| 首次架构迁移检查点确认所有 Phase 0-10 完成 | 实现计划 Task 0.1 到 Task 10.2 全部 checkbox 已标记，架构检查清单 6 项全部通过。 |
 
 ## Issues Encountered
 

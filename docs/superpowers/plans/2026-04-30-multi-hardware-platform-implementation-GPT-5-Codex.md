@@ -1530,7 +1530,7 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
 
-- [ ] **Step 1: Run full verification**
+- [x] **Step 1: Run full verification**
 
 Run:
 
@@ -1546,7 +1546,7 @@ Expected:
 - tests pass;
 - working tree only has planned documentation updates.
 
-- [ ] **Step 2: Review architecture checklist**
+- [x] **Step 2: Review architecture checklist**
 
 Confirm:
 
@@ -1557,7 +1557,7 @@ Confirm:
 - CPU/SoC schemas exist if Phase 7 is complete;
 - PostgreSQL design exists if Phase 8 is complete.
 
-- [ ] **Step 3: Update records, commit, push**
+- [x] **Step 3: Update records, commit, push**
 
 Commit:
 

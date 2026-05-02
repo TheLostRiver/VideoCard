@@ -1,6 +1,6 @@
 # Project State
 
-更新时间：2026-05-01
+更新时间：2026-05-02
 
 ## 当前目标
 
@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 10.1 完成。
+阶段：Multi-Hardware Platform Implementation Task 10.2 完成（首次架构迁移检查点）。
 
-当前任务：Task 10.1: Update README For Multi-Hardware Architecture — 完成。
+当前任务：Task 10.2: First Architecture Migration Checkpoint — 完成。
 
-下一步：Task 10.2: First Architecture Migration Checkpoint。
+下一步：实现计划 Task 0.1 到 Task 10.2 全部完成。可选方向：Phase 7.5 或其他后续任务。
 
 ## 工作规则
 
@@ -222,6 +222,8 @@
 - Task 10.1 完成：更新 README.md，新增 PostgreSQL schema 设计文档链接、新脚本说明（export:static、validate:hardware）和验证内容说明。
 - Task 10.1 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录 + 4 品类 15 条记录，测试 128 pass / 0 fail。
 - Task 10.1 推送完成：`56b7c7a docs: 更新 README 补充多硬件架构文档` 已推送到 `origin/main`。
+- Task 10.2 完成：首次架构迁移检查点验证通过。旧 GPU 天梯（12 条记录）、通用 repository（JSON + PostgreSQL）、schema-driven 渲染器（列表/详情/后台表单）、对比服务、CPU/SoC/Apple Silicon schema、PostgreSQL 设计（13 表 + 迁移 + repository 骨架）全部就位。
+- Task 10.2 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录 + 4 品类 15 条记录，测试 128 pass / 0 fail。
 
 ## 最近验证
 
@@ -329,9 +331,12 @@
 - Task 9.1 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 125 pass / 0 fail。
 - Task 9.2 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录 + 4 品类 15 条记录，测试 128 pass / 0 fail。
 - Task 10.1 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录 + 4 品类 15 条记录，测试 128 pass / 0 fail。
+- Task 10.2 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录 + 4 品类 15 条记录，测试 128 pass / 0 fail。
+- Task 10.2 架构检查：旧 GPU 天梯正常、通用 repository 存在、schema-driven 渲染器存在、对比服务存在、CPU/SoC/Apple Silicon schema 存在、PostgreSQL 设计存在。
 
 ## 最近提交
 
+- `待推送 chore: 记录首次架构迁移检查点`
 - `56b7c7a docs: 更新 README 补充多硬件架构文档`
 - `d826409 feat: 添加通用硬件数据验证脚本`
 - `da30d3d feat: 添加静态硬件数据导出脚本`
