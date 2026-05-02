@@ -217,6 +217,7 @@
 - Task 9.2 RED 完成：新增 `tests/validate-hardware-data.test.mjs`，先运行 `npm.cmd test`，按预期因 `validate-hardware-data.mjs` 缺失失败。
 - Task 9.2 GREEN 完成：新增 `scripts/validate-hardware-data.mjs`，验证所有品类 schema 和硬件数据（含 legacy GPU 格式）；`package.json` 新增 `validate:hardware` 脚本并更新 `verify`。
 - Task 9.2 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录 + 4 品类 15 条记录，测试 128 pass / 0 fail。
+- Task 9.2 推送完成：`d826409 feat: 添加通用硬件数据验证脚本` 已推送到 `origin/main`。
 
 ## 最近验证
 
@@ -322,9 +323,11 @@
 - Task 8.2 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 118 pass / 0 fail。
 - Task 8.3 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 122 pass / 0 fail。
 - Task 9.1 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 125 pass / 0 fail。
+- Task 9.2 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录 + 4 品类 15 条记录，测试 128 pass / 0 fail。
 
 ## 最近提交
 
+- `d826409 feat: 添加通用硬件数据验证脚本`
 - `da30d3d feat: 添加静态硬件数据导出脚本`
 - `05822d3 feat: 添加 PostgreSQL 硬件仓库骨架`
 - `4cc767e db: 添加初始硬件平台 SQL 迁移`
