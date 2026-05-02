@@ -83,7 +83,8 @@ Task 10.2 完整验证、架构迁移检查点、提交、推送通过。
 - 数据校验：`Validated 12 GPU records.` + `Validated 4 categories, 15 items.`
 - 测试：128 pass / 0 fail
 - 架构检查：旧 GPU 天梯、通用 repository、schema-driven 渲染器、对比服务、CPU/SoC/Apple Silicon schema、PostgreSQL 设计全部就位
-- 提交：待推送
+- 提交：`1399297 chore: 记录首次架构迁移检查点`
+- 推送：`origin/main` 已更新
 
 ## Important Commands
 
