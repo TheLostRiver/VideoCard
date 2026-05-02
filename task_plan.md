@@ -605,6 +605,16 @@ Phase 70 complete. Task 10.2: First Architecture Migration Checkpoint done. Impl
 - [x] 提交并推送
 - **Status:** complete
 
+### Phase 75: 前台品类切换 UI
+
+- [x] Phase 1: HTML — index.html 添加品类标签栏 `<nav id="categoryTabs">`
+- [x] Phase 2: JS — app.js 品类切换核心逻辑（fetchCategories、fetchCategoryListViewModel、fetchCategoryItemDetail、switchCategory、renderGenericList、renderGenericDetail）
+- [x] Phase 3: 筛选排序适配（非 GPU 品类隐藏 filter/sort，搜索适配通用视图模型）
+- [x] Phase 4: 样式 — category-tabs、hardware-list-item、hardware-detail 等 CSS
+- [x] 清理冗余 renderLadder 函数
+- [x] 运行 `npm.cmd run verify` 通过（136 pass / 0 fail）
+- **Status:** complete
+
 ## Key Questions
 
 1. What is the repository contract surface for future JSON and PostgreSQL adapters?

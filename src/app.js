@@ -3,6 +3,8 @@ import { gpus } from "./data/gpus.js";
 import { createHardwareQueryService } from "./application/hardware-query-service.js";
 import { createComparisonService } from "./application/comparison-service.js";
 import { renderCompareTable } from "./features/compare/render-compare.js";
+import { renderHardwareList } from "./features/hardware-list/render-list.js";
+import { renderHardwareDetail } from "./features/hardware-detail/render-detail.js";
 import { filterGpus, sortGpus } from "./utils/filters.js";
 import { formatBenchmark, formatClock, formatMemory, formatNumber, formatPower } from "./utils/format.js";
 import { getMaxPerformanceIndex, getPerformanceWidth, groupByTier } from "./utils/performance.js";
@@ -29,6 +31,24 @@ export function shouldShowMobileDrawer(gpu, state) {
 
 export function getUniqueValues(items, key) {
   return [...new Set(items.map((item) => item[key]).filter(Boolean))].sort();
+}
+
+export async function fetchCategories() {
+  const res = await fetch("/api/hardware/categories");
+  const data = await res.json();
+  return data.categories || [];
+}
+
+export async function fetchCategoryListViewModel(categoryId) {
+  const res = await fetch(`/api/hardware/${categoryId}/items`);
+  return res.json();
+}
+
+export async function fetchCategoryItemDetail(categoryId, itemId) {
+  const res = await fetch(`/api/hardware/${categoryId}/items/${itemId}`);
+  if (!res.ok) return null;
+  const data = await res.json();
+  return data.detail || null;
 }
 
 export async function createGpuPageHardwareModel(options = {}) {
@@ -202,27 +222,77 @@ export function detailSection(title, rows) {
   `;
 }
 
-export function initApp({ doc = document, win = window, data = gpus } = {}) {
+export function initApp({ doc = document, win = window, data = gpus, categories = [] } = {}) {
   const elements = getElements(doc);
   const state = createInitialState(win.location.hash, data[0]?.id || "");
+  state.categoryId = "gpu";
+  state.genericItems = [];
+  state.genericDetail = null;
 
   function renderControls() {
-    elements.sortSelect.innerHTML = renderSortOptions();
-    elements.sortSelect.value = state.sortBy;
-    elements.filterBar.innerHTML = renderFilterChips(data);
+    if (state.categoryId === "gpu") {
+      elements.sortSelect.innerHTML = renderSortOptions();
+      elements.sortSelect.value = state.sortBy;
+      elements.filterBar.innerHTML = renderFilterChips(data);
+      elements.sortSelect.parentElement.hidden = false;
+      elements.filterBar.hidden = false;
+    } else {
+      elements.sortSelect.innerHTML = `<option value="score">按分数排序</option>`;
+      elements.filterBar.innerHTML = "";
+      elements.sortSelect.parentElement.hidden = true;
+      elements.filterBar.hidden = true;
+    }
+  }
+
+  function renderCategoryTabs() {
+    if (!categories.length) return;
+    elements.categoryTabs.innerHTML = categories.map((cat) =>
+      `<button class="category-tab${cat.id === state.categoryId ? " is-active" : ""}" data-category-id="${escapeHtml(cat.id)}">${escapeHtml(cat.label)}</button>`
+    ).join("");
+    elements.categoryTabs.querySelectorAll("[data-category-id]").forEach((tab) => {
+      tab.addEventListener("click", () => switchCategory(tab.dataset.categoryId));
+    });
+  }
+
+  async function switchCategory(categoryId) {
+    if (categoryId === state.categoryId) return;
+    state.categoryId = categoryId;
+    state.query = "";
+    state.drawerOpen = false;
+    state.genericDetail = null;
+    elements.searchInput.value = "";
+
+    renderCategoryTabs();
+    renderControls();
+
+    if (categoryId === "gpu") {
+      state.selectedId = data[0]?.id || "";
+      renderGpuMode();
+    } else {
+      const listVm = await fetchCategoryListViewModel(categoryId);
+      state.genericItems = listVm?.items || [];
+      state.selectedId = state.genericItems[0]?.id || "";
+      renderGenericList();
+      if (state.selectedId) {
+        const detail = await fetchCategoryItemDetail(categoryId, state.selectedId);
+        state.genericDetail = detail;
+        renderGenericDetail(detail);
+      }
+    }
   }
 
   function bindEvents() {
     elements.searchInput.addEventListener("input", (event) => {
       state.query = event.target.value;
       state.drawerOpen = false;
-      render().catch(console.error);
+      if (state.categoryId === "gpu") renderGpuMode();
+      else renderGenericList();
     });
 
     elements.sortSelect.addEventListener("change", (event) => {
       state.sortBy = event.target.value;
       state.drawerOpen = false;
-      render().catch(console.error);
+      if (state.categoryId === "gpu") renderGpuMode();
     });
 
     elements.filterBar.addEventListener("click", (event) => {
@@ -234,7 +304,7 @@ export function initApp({ doc = document, win = window, data = gpus } = {}) {
       if (set.has(value)) set.delete(value);
       else set.add(value);
       state.drawerOpen = false;
-      render().catch(console.error);
+      if (state.categoryId === "gpu") renderGpuMode();
     });
 
     elements.resetButton.addEventListener("click", () => {
@@ -244,7 +314,8 @@ export function initApp({ doc = document, win = window, data = gpus } = {}) {
       state.generations.clear();
       state.drawerOpen = false;
       elements.searchInput.value = "";
-      render().catch(console.error);
+      if (state.categoryId === "gpu") renderGpuMode();
+      else renderGenericList();
     });
 
     win.addEventListener("hashchange", () => {
@@ -260,7 +331,7 @@ export function initApp({ doc = document, win = window, data = gpus } = {}) {
       state.compareMode = false;
       state.compareParams = null;
       const id = hash.replace(/^#/, "");
-      if (data.some((gpu) => gpu.id === id)) {
+      if (state.categoryId === "gpu" && data.some((gpu) => gpu.id === id)) {
         state.selectedId = id;
         state.drawerOpen = true;
         render().catch(console.error);
@@ -282,13 +353,45 @@ export function initApp({ doc = document, win = window, data = gpus } = {}) {
     state.selectedId = id;
     state.drawerOpen = true;
     if (win.location.hash !== `#${id}`) win.history.replaceState(null, "", `#${id}`);
-    render().catch(console.error);
+    if (state.categoryId === "gpu") renderGpuMode();
   }
 
-  function renderLadder(items, maxIndex) {
+  async function selectGenericItem(id) {
+    state.selectedId = id;
+    state.drawerOpen = true;
+    if (win.location.hash !== `#${id}`) win.history.replaceState(null, "", `#${id}`);
+    const detail = await fetchCategoryItemDetail(state.categoryId, id);
+    state.genericDetail = detail;
+    renderGenericDetail(detail);
+  }
+
+  function renderGpuList(items, maxIndex) {
     elements.ladderList.innerHTML = renderLadderMarkup(items, maxIndex, state.selectedId);
     elements.ladderList.querySelectorAll("[data-gpu-id]").forEach((row) => {
       row.addEventListener("click", () => selectGpu(row.dataset.gpuId));
+    });
+  }
+
+  function renderGenericList() {
+    const query = state.query.trim().toLowerCase();
+    let items = state.genericItems;
+    if (query) {
+      items = items.filter((item) => searchHardwareListItems([item], state.query).length > 0);
+    }
+    elements.ladderList.innerHTML = renderHardwareList(items, { selectedId: state.selectedId });
+    elements.ladderList.querySelectorAll("[data-hardware-id]").forEach((row) => {
+      row.addEventListener("click", () => selectGenericItem(row.dataset.hardwareId));
+    });
+  }
+
+  function renderGenericDetail(detail) {
+    const html = renderHardwareDetail(detail);
+    elements.detailPanel.innerHTML = html;
+    elements.mobileDrawer.innerHTML = `${html}<button class="ghost-button drawer-close" type="button">关闭</button>`;
+    elements.mobileDrawer.hidden = !state.drawerOpen;
+    elements.mobileDrawer.querySelector(".drawer-close")?.addEventListener("click", () => {
+      state.drawerOpen = false;
+      elements.mobileDrawer.hidden = true;
     });
   }
 
@@ -310,9 +413,16 @@ export function initApp({ doc = document, win = window, data = gpus } = {}) {
     });
   }
 
-  async function render() {
+  function renderGpuMode() {
     updateControlState();
+    const filtered = sortGpus(filterGpus(data, state), state.sortBy);
+    const maxIndex = getMaxPerformanceIndex(data);
+    const selectedGpu = data.find((gpu) => gpu.id === state.selectedId) || filtered[0];
+    renderGpuList(filtered, maxIndex);
+    renderDetails(selectedGpu);
+  }
 
+  async function render() {
     const contentGrid = doc.querySelector(".content-grid");
     if (state.compareMode) {
       if (contentGrid) contentGrid.hidden = true;
@@ -325,13 +435,19 @@ export function initApp({ doc = document, win = window, data = gpus } = {}) {
     if (contentGrid) contentGrid.hidden = false;
     elements.comparePanel.hidden = true;
 
-    const filtered = sortGpus(filterGpus(data, state), state.sortBy);
-    const maxIndex = getMaxPerformanceIndex(data);
-    const selectedGpu = data.find((gpu) => gpu.id === state.selectedId) || filtered[0];
-    renderLadder(filtered, maxIndex);
-    renderDetails(selectedGpu);
+    if (state.categoryId === "gpu") {
+      renderGpuMode();
+    } else {
+      renderGenericList();
+      if (!state.genericDetail && state.selectedId) {
+        const detail = await fetchCategoryItemDetail(state.categoryId, state.selectedId);
+        state.genericDetail = detail;
+      }
+      renderGenericDetail(state.genericDetail);
+    }
   }
 
+  renderCategoryTabs();
   renderControls();
   bindEvents();
   render().catch(console.error);
@@ -348,7 +464,8 @@ function getElements(doc) {
     ladderList: doc.querySelector("#ladderList"),
     detailPanel: doc.querySelector("#detailPanel"),
     mobileDrawer: doc.querySelector("#mobileDrawer"),
-    comparePanel: doc.querySelector("#comparePanel")
+    comparePanel: doc.querySelector("#comparePanel"),
+    categoryTabs: doc.querySelector("#categoryTabs")
   };
 }
 
@@ -362,5 +479,7 @@ function escapeHtml(value) {
 }
 
 if (typeof document !== "undefined") {
-  initApp();
+  fetchCategories().then((categories) => {
+    initApp({ categories });
+  }).catch(console.error);
 }

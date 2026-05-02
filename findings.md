@@ -252,3 +252,18 @@
 
 - Task 3.3 browser smoke passed on `http://localhost:4173/#rtx-4070-laptop`: page title was `游戏显卡天梯图`, the DOM contained `GeForce RTX 4070 Laptop GPU`, the mobile warning, and the `12,345` Time Spy value, with 0 browser console errors.
 - Task 4.3 browser smoke passed on `http://localhost:4173/admin.html`: searched `4070`, selected `GeForce RTX 4070 Laptop GPU`, saved current schema-form values `45-115W`, `2175`, and `12345`, then confirmed `http://localhost:4173/#rtx-4070-laptop` still showed `45-115W`, `2,175 MHz`, and `12,345` with 0 browser console errors.
+
+## API Response Format Findings
+
+- `GET /api/hardware/{categoryId}/items` returns the list view model directly: `{ category, items }` (not wrapped in a `viewModel` key).
+- `GET /api/hardware/{categoryId}/items/{itemId}` returns `{ detail }` where `detail` is the full detail view model with `{ category, item, metricValues, rankingScore, sources, warnings, groups }`.
+- `GET /api/hardware/categories` returns `{ categories }` array.
+
+## Category Switching UI Findings
+
+- Generic renderers (`renderHardwareListItem`, `renderHardwareDetail`) work seamlessly with view models from `HardwareQueryService` — no GPU-specific field assumptions.
+- GPU mode keeps existing tier grouping + GPU-specific renderers for backward compatibility.
+- Non-GPU categories use flat list (no tier grouping) with generic renderers.
+- Filter bar and sort select are hidden for non-GPU categories (they use GPU-specific options like BRANDS/SEGMENTS).
+- `searchHardwareListItems` already works with generic view models (searches title, subtitle, facts, badges).
+- Categories are loaded async from `/api/hardware/categories` on page init; items are loaded on-demand when switching categories.

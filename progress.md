@@ -369,3 +369,30 @@
   - `src/styles.css` modified
   - `tests/json-hardware-repository.test.mjs` modified
   - `tests/hardware-api.test.mjs` modified
+
+## Session: 2026-05-02
+
+### 5-Question Reboot
+
+| Question | Answer |
+|----------|--------|
+| 我在哪？ | 前台品类切换 UI 实现完成。 |
+| 去哪？ | 提交 → 推送。 |
+| 目标？ | 前台天梯图支持切换 GPU / Desktop CPU / Mobile SoC / Apple Silicon。 |
+| 学到了什么？ | API 返回格式：列表直接返回 viewModel，详情包装在 { detail } 中；通用渲染器已就绪可直接复用。 |
+| 做了什么？ | HTML 添加品类标签栏；JS 实现品类切换（fetch API + 通用渲染器）；CSS 添加标签栏和通用渲染器样式。 |
+
+### Phase: 前台品类切换 UI
+
+- **Status:** complete
+- Actions taken:
+  - Phase 1: `index.html` 添加 `<nav id="categoryTabs">` 标签栏
+  - Phase 2: `src/app.js` 新增 `fetchCategories`、`fetchCategoryListViewModel`、`fetchCategoryItemDetail`；`initApp` 支持品类切换；GPU 模式保持 tier 分组 + GPU 专用渲染器，非 GPU 模式使用通用渲染器
+  - Phase 3: 非 GPU 品类隐藏 filter/sort 控件，搜索适配通用视图模型
+  - Phase 4: `src/styles.css` 新增 `.category-tabs`、`.hardware-list-item`、`.hardware-detail` 等样式
+  - 清理冗余 `renderLadder` 函数
+  - `npm.cmd run verify` 通过：136 tests / 0 fail
+- Files created/modified:
+  - `index.html` modified
+  - `src/app.js` modified
+  - `src/styles.css` modified

@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：管理后台新增硬件功能实现完成。
+阶段：前台品类切换 UI 实现完成。
 
-当前任务：管理后台新增硬件功能（Admin Create Hardware）— 完成。
+当前任务：前台品类切换 UI（Category Switching UI）— 完成。
 
-下一步：浏览器验证管理界面新增功能，提交并推送。
+下一步：提交并推送品类切换 UI 代码。
 
 ## 工作规则
 
@@ -224,6 +224,8 @@
 - Task 10.1 推送完成：`56b7c7a docs: 更新 README 补充多硬件架构文档` 已推送到 `origin/main`。
 - Task 10.2 完成：首次架构迁移检查点验证通过。旧 GPU 天梯（12 条记录）、通用 repository（JSON + PostgreSQL）、schema-driven 渲染器（列表/详情/后台表单）、对比服务、CPU/SoC/Apple Silicon schema、PostgreSQL 设计（13 表 + 迁移 + repository 骨架）全部就位。
 - Task 10.2 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录 + 4 品类 15 条记录，测试 128 pass / 0 fail。
+- 管理后台新增硬件功能完成：数据层（wrapped 品类 + GPU create + upsert）、API 层（POST 路由）、UI 层（品类选择器 + 新增表单）。`npm.cmd run verify` 通过，136 tests / 0 fail。
+- 前台品类切换 UI 完成：`index.html` 添加品类标签栏；`src/app.js` 实现品类切换（async 加载 + 通用渲染器）；`src/styles.css` 添加标签栏和通用渲染器样式。GPU 模式保持 tier 分组，非 GPU 模式使用平铺列表。`npm.cmd run verify` 通过，136 tests / 0 fail。
 
 ## 最近验证
 
