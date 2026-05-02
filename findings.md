@@ -202,6 +202,10 @@
 | 静态导出脚本使用 JSON repository 作为默认数据源 | `createJsonHardwareRepository()` 无需配置即可读取现有 JSON 数据，导出结果可用于静态部署或前端缓存。 |
 | 验证脚本需同时支持新格式和 legacy 格式 | `src/data/hardware/*.items.json` 使用 `{ item, metricValues, rankingScore, sources }` 格式，`src/data/gpus.json` 使用 legacy flat 格式；验证逻辑需按文件类型分别处理。 |
 | 首次架构迁移检查点确认所有 Phase 0-10 完成 | 实现计划 Task 0.1 到 Task 10.2 全部 checkbox 已标记，架构检查清单 6 项全部通过。 |
+| saveItem 需要 upsert 选项区分新增和编辑 | PUT（更新）应返回 404 给不存在的项；POST（新增）应创建新项。`{ upsert: true }` 控制行为。 |
+| GPU validation 要求多个必填字段 | `validateGpuRecords` 要求 `tier`、`specs.coresLabel`、`benchmarks`、`gaming.recommendedResolution`、`notes`、`sources` 等。新增 GPU 必须填写这些字段。 |
+| applyHardwareItem 需要处理 specs 嵌套字段 | 管理表单发送 `specs.coresLabel` 等嵌套字段，`applyHardwareItem` 需要 `item.specs` 合并到 `gpu.specs`。 |
+| admin.js 需要区分品类渲染 | GPU 使用 legacy editor，其他品类使用 schema editor；新增时传空白模板，编辑时传已有数据。 |
 
 ## Issues Encountered
 

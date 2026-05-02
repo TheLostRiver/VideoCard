@@ -344,8 +344,28 @@
 
 | Question | Answer |
 |----------|--------|
-| 我在哪？ | Task 10.2 完成。实现计划 Task 0.1 到 Task 10.2 全部执行完毕。 |
-| 去哪？ | 实现计划已全部完成。可选方向：Phase 7.5 或其他后续任务。 |
-| 目标？ | 多硬件平台实现计划首次架构迁移检查点已通过。 |
-| 学到了什么？ | 见 `findings.md`。 |
-| 做了什么？ | 完成、验证 Task 10.2（First Architecture Migration Checkpoint）。 |
+| 我在哪？ | 管理后台新增硬件功能实现完成。 |
+| 去哪？ | 浏览器验证 → 提交 → 推送。 |
+| 目标？ | 管理后台支持所有 4 个品类的新增硬件功能。 |
+| 学到了什么？ | saveItem 需要 upsert 选项区分新增/编辑；GPU validation 要求 tier、specs.coresLabel 等必填字段。 |
+| 做了什么？ | 实现数据层（wrapped 品类 + GPU create）、API 层（POST 路由）、UI 层（品类选择器 + 新增表单）。 |
+
+### Phase: 管理后台新增硬件功能
+
+- **Status:** complete
+- Actions taken:
+  - Phase 1: `json-hardware-repository.js` saveItem 支持 desktop-cpu / mobile-soc / apple-silicon 新增和更新
+  - Phase 2: `gpu-data.mjs` 新增 `createGpuRecord` / `saveNewGpuRecord`；repository saveItem 增加 upsert 选项
+  - Phase 3: `serve.mjs` 新增 `POST /api/admin/hardware/:category/items` 路由
+  - Phase 4: `admin.html` 新增品类选择器和新增按钮；`admin.js` 重写为多品类支持
+  - `npm.cmd run verify` 通过：17 GPU + 4 品类 27 条记录，136 tests / 0 fail
+- Files created/modified:
+  - `scripts/gpu-data.mjs` modified
+  - `src/infrastructure/json/json-hardware-repository.js` modified
+  - `src/application/hardware-mutation-service.js` modified
+  - `scripts/serve.mjs` modified
+  - `src/admin.js` modified
+  - `admin.html` modified
+  - `src/styles.css` modified
+  - `tests/json-hardware-repository.test.mjs` modified
+  - `tests/hardware-api.test.mjs` modified

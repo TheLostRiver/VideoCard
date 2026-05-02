@@ -261,46 +261,247 @@ export function getFormFields(form) {
   return Object.fromEntries(new FormData(form).entries());
 }
 
+function filterAdminItems(items, query) {
+  const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  if (!terms.length) return items;
+
+  return items.filter((item) => {
+    const haystack = [item.id, item.name, item.manufacturerId].join(" ").toLowerCase();
+    return terms.every((term) => haystack.includes(term));
+  });
+}
+
+function renderNewEditor(categoryId, schema) {
+  if (categoryId === "gpu") {
+    const blankGpu = createBlankGpu();
+    return renderLegacyAdminEditor(blankGpu).replace(
+      '<button class="ghost-button save-button" type="submit">保存</button>',
+      '<button class="ghost-button save-button" type="submit">创建</button>'
+    );
+  }
+
+  if (!schema) return '<p class="empty-state">无法加载品类 schema。</p>';
+  const blankDetail = createBlankDetail(categoryId, schema);
+  return renderSchemaAdminEditorForNew(blankDetail, schema);
+}
+
+function createBlankGpu() {
+  return {
+    id: "",
+    name: "",
+    brand: "nvidia",
+    segment: "desktop",
+    generation: "",
+    architecture: "",
+    releaseDate: "",
+    performanceIndex: 0,
+    tier: "mainstream",
+    confidence: "estimated",
+    specs: { coresLabel: "" },
+    benchmarks: {},
+    gaming: {},
+    notes: [],
+    sources: []
+  };
+}
+
+function createBlankDetail(categoryId, schema) {
+  const item = {
+    id: "",
+    categoryId,
+    name: "",
+    manufacturerId: "",
+    status: "draft"
+  };
+
+  const metricValues = (schema.metrics || []).map((metric) => {
+    const mv = { metricId: metric.id };
+    if (metric.valueType === "number") mv.valueNumber = null;
+    else mv.valueText = "";
+    return mv;
+  });
+
+  return { item, metricValues, rankingScore: { score: null }, sources: [] };
+}
+
+function renderSchemaAdminEditorForNew(detail, schema) {
+  const schemaBody = renderSchemaForm({ schema, detail })
+    .replace(/^\s*<form[^>]*>/, "")
+    .replace(/<\/form>\s*$/, "");
+
+  return `
+    <form id="gpuForm" class="admin-form schema-form" data-category-id="${escapeHtml(schema.id)}">
+      <div class="admin-editor-heading">
+        <div>
+          <h2>新增 ${escapeHtml(schema.label || schema.id)}</h2>
+          <p>填写新硬件信息</p>
+        </div>
+        <button class="ghost-button save-button" type="submit">创建</button>
+      </div>
+      ${schemaBody}
+      <div id="adminFormMessage" class="admin-form-message" role="status"></div>
+    </form>
+  `;
+}
+
+function renderSchemaAdminEditorForCategory(item, schema) {
+  if (!item) return `<p class="empty-state">请选择一项。</p>`;
+  if (!schema) return `<p class="empty-state">无法加载品类 schema。</p>`;
+
+  const detail = buildDetailFromItem(item, schema);
+  const schemaBody = renderSchemaForm({ schema, detail })
+    .replace(/^\s*<form[^>]*>/, "")
+    .replace(/<\/form>\s*$/, "");
+
+  return `
+    <form id="gpuForm" class="admin-form schema-form" data-category-id="${escapeHtml(schema.id)}">
+      <div class="admin-editor-heading">
+        <div>
+          <h2>${escapeHtml(item.name)}</h2>
+          <p>${escapeHtml(item.id)}</p>
+        </div>
+        <button class="ghost-button save-button" type="submit">保存</button>
+      </div>
+      ${schemaBody}
+      <div id="adminFormMessage" class="admin-form-message" role="status"></div>
+    </form>
+  `;
+}
+
+function buildDetailFromItem(item, schema) {
+  const metricValues = (schema.metrics || []).map((metric) => {
+    const mv = { metricId: metric.id };
+    if (metric.valueType === "number") mv.valueNumber = item.metrics?.[metric.id] ?? null;
+    else mv.valueText = item.metrics?.[metric.id] ?? "";
+    return mv;
+  });
+  return { item, metricValues, rankingScore: { score: item.performanceIndex }, sources: item.sources || [] };
+}
+
+function buildDetailForCategory(categoryId, original, fields, schema) {
+  const item = original ? structuredClone(original) : { id: "", categoryId, name: "", manufacturerId: "", status: "draft" };
+  const metricValues = [];
+  let notesText = "";
+  let sourcesText = "";
+
+  for (const [name, rawValue] of Object.entries(fields)) {
+    const schemaField = parseSchemaFieldName(name);
+    if (schemaField?.kind === "property") {
+      if (schemaField.key === "notes") { notesText = rawValue; continue; }
+      if (schemaField.key === "sources") { sourcesText = rawValue; continue; }
+      setPath(item, schemaField.key, rawValue);
+      continue;
+    }
+    if (schemaField?.kind === "metric") {
+      const metric = (schema?.metrics || []).find((m) => m.id === schemaField.key);
+      const mv = { metricId: schemaField.key };
+      if (metric?.valueType === "number") mv.valueNumber = rawValue === "" ? null : Number(rawValue);
+      else mv.valueText = rawValue;
+      metricValues.push(mv);
+      continue;
+    }
+  }
+
+  item.notes = parseLines(notesText);
+  item.sources = parseLines(sourcesText).map((line) => {
+    const [label, ...urlParts] = line.split("|");
+    return { label: label.trim(), url: urlParts.join("|").trim() };
+  }).filter((s) => s.label && s.url);
+
+  const rankingScore = { score: item.performanceIndex ? Number(item.performanceIndex) : null };
+  return { item, metricValues, rankingScore, sources: item.sources };
+}
+
 async function initAdmin() {
   const elements = {
     search: document.querySelector("#adminSearch"),
+    categorySelect: document.querySelector("#adminCategorySelect"),
+    newButton: document.querySelector("#adminNewButton"),
     list: document.querySelector("#adminList"),
     editor: document.querySelector("#adminEditor"),
     status: document.querySelector("#adminStatus")
   };
 
   const state = {
+    categories: [],
+    categoryId: "gpu",
+    items: [],
     gpus: [],
     query: "",
     selectedId: "",
+    creatingNew: false,
     schema: null
   };
 
-  async function load() {
+  async function loadCategories() {
+    const response = await fetch("/api/hardware/categories");
+    const body = await response.json();
+    state.categories = body.categories || [];
+    elements.categorySelect.innerHTML = state.categories
+      .map((cat) => `<option value="${escapeHtml(cat.id)}"${cat.id === state.categoryId ? " selected" : ""}>${escapeHtml(cat.label || cat.id)}</option>`)
+      .join("");
+  }
+
+  async function loadItems() {
     try {
-      const [response, schemaResponse] = await Promise.all([
-        fetch("/api/gpus"),
-        fetch("/src/data/categories/gpu.schema.json")
-      ]);
-      const body = await response.json();
-      state.gpus = body.gpus;
-      state.schema = await schemaResponse.json();
-      state.selectedId = state.gpus.find((gpu) => gpu.id === "rtx-4070-laptop")?.id || state.gpus[0]?.id || "";
-      elements.status.textContent = `已加载 ${state.gpus.length} 张显卡`;
+      if (state.categoryId === "gpu") {
+        const response = await fetch("/api/gpus");
+        const body = await response.json();
+        state.gpus = body.gpus;
+        state.items = state.gpus;
+      } else {
+        const response = await fetch(`/api/hardware/${encodeURIComponent(state.categoryId)}/items`);
+        const body = await response.json();
+        state.items = (body.items || []).map((item) => ({ ...item, categoryId: state.categoryId }));
+      }
+      state.selectedId = state.items[0]?.id || "";
+      state.creatingNew = false;
+      elements.status.textContent = `已加载 ${state.items.length} 条数据`;
       render();
     } catch (error) {
       elements.status.textContent = `加载失败：${error.message}`;
     }
   }
 
-  function render() {
-    const filtered = filterAdminGpus(state.gpus, state.query);
-    if (!filtered.some((gpu) => gpu.id === state.selectedId)) {
-      state.selectedId = filtered[0]?.id || state.gpus[0]?.id || "";
-    }
-    elements.list.innerHTML = renderAdminList(filtered, state.selectedId);
-    elements.editor.innerHTML = renderAdminEditor(state.gpus.find((gpu) => gpu.id === state.selectedId), state.schema);
+  async function loadSchema() {
+    const category = state.categories.find((cat) => cat.id === state.categoryId);
+    state.schema = category || null;
   }
+
+  function render() {
+    const filtered = state.categoryId === "gpu"
+      ? filterAdminGpus(state.items, state.query)
+      : filterAdminItems(state.items, state.query);
+    if (!state.creatingNew && !filtered.some((item) => item.id === state.selectedId)) {
+      state.selectedId = filtered[0]?.id || state.items[0]?.id || "";
+    }
+    elements.list.innerHTML = renderAdminList(filtered, state.selectedId, state.categoryId);
+
+    if (state.creatingNew) {
+      elements.editor.innerHTML = renderNewEditor(state.categoryId, state.schema);
+    } else {
+      const selectedItem = state.items.find((item) => item.id === state.selectedId);
+      if (state.categoryId === "gpu") {
+        elements.editor.innerHTML = renderAdminEditor(selectedItem, state.schema);
+      } else {
+        elements.editor.innerHTML = renderSchemaAdminEditorForCategory(selectedItem, state.schema);
+      }
+    }
+  }
+
+  elements.categorySelect.addEventListener("change", async (event) => {
+    state.categoryId = event.target.value;
+    state.query = "";
+    elements.search.value = "";
+    await loadSchema();
+    await loadItems();
+  });
+
+  elements.newButton.addEventListener("click", () => {
+    state.creatingNew = true;
+    state.selectedId = "";
+    render();
+  });
 
   elements.search.addEventListener("input", (event) => {
     state.query = event.target.value;
@@ -311,6 +512,7 @@ async function initAdmin() {
     const button = event.target.closest("[data-gpu-id]");
     if (!button) return;
     state.selectedId = button.dataset.gpuId;
+    state.creatingNew = false;
     render();
   });
 
@@ -318,36 +520,70 @@ async function initAdmin() {
     event.preventDefault();
     const form = event.target;
     const message = form.querySelector("#adminFormMessage");
-    const original = state.gpus.find((gpu) => gpu.id === state.selectedId);
-    const nextGpu = buildGpuFromForm(original, getFormFields(form));
+    const categoryId = state.categoryId;
 
     message.textContent = "正在保存...";
     message.className = "admin-form-message";
+
     try {
-      const response = await fetch(`/api/gpus/${encodeURIComponent(state.selectedId)}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(nextGpu)
-      });
+      let response;
+      if (state.creatingNew) {
+        const detail = buildDetailForCategory(categoryId, null, getFormFields(form), state.schema);
+        response = await fetch(`/api/admin/hardware/${encodeURIComponent(categoryId)}/items`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(detail)
+        });
+      } else if (categoryId === "gpu") {
+        const original = state.items.find((item) => item.id === state.selectedId);
+        const nextGpu = buildGpuFromForm(original, getFormFields(form));
+        response = await fetch(`/api/gpus/${encodeURIComponent(state.selectedId)}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(nextGpu)
+        });
+      } else {
+        const original = state.items.find((item) => item.id === state.selectedId);
+        const detail = buildDetailForCategory(categoryId, original, getFormFields(form), state.schema);
+        response = await fetch(`/api/admin/hardware/${encodeURIComponent(categoryId)}/items/${encodeURIComponent(state.selectedId)}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(detail)
+        });
+      }
+
       const body = await response.json();
       if (!response.ok) throw new Error((body.errors || ["保存失败"]).join("；"));
 
-      const index = state.gpus.findIndex((gpu) => gpu.id === state.selectedId);
-      state.gpus[index] = body.gpu;
-      state.selectedId = body.gpu.id;
-      message.textContent = "已保存。刷新前台页面即可看到最新参数。";
+      if (state.creatingNew) {
+        state.creatingNew = false;
+        await loadItems();
+        const savedId = body.detail?.item?.id || body.gpu?.id;
+        if (savedId) state.selectedId = savedId;
+        message.textContent = "新增成功。";
+      } else if (categoryId === "gpu") {
+        const index = state.items.findIndex((item) => item.id === state.selectedId);
+        state.items[index] = body.gpu;
+        state.gpus = state.items;
+        message.textContent = "已保存。刷新前台页面即可看到最新参数。";
+      } else {
+        const index = state.items.findIndex((item) => item.id === state.selectedId);
+        if (index !== -1) state.items[index] = { ...body.detail.item, categoryId };
+        message.textContent = "已保存。刷新前台页面即可看到最新参数。";
+      }
+
       message.classList.add("is-success");
       render();
-      elements.editor.querySelector("#adminFormMessage").textContent = "已保存。刷新前台页面即可看到最新参数。";
-      elements.editor.querySelector("#adminFormMessage").classList.add("is-success");
-      elements.status.textContent = `已保存 ${body.gpu.name}`;
+      elements.status.textContent = `已保存`;
     } catch (error) {
       message.textContent = error.message;
       message.classList.add("is-error");
     }
   });
 
-  await load();
+  await loadCategories();
+  await loadSchema();
+  await loadItems();
 }
 
 function fieldset(title, fields) {

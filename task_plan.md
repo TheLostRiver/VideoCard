@@ -580,6 +580,31 @@ Phase 70 complete. Task 10.2: First Architecture Migration Checkpoint done. Impl
 - [x] 提交并推送 Task 10.2
 - **Status:** complete
 
+### Phase 71: 管理后台新增硬件功能 — 数据层
+
+- [x] Phase 1: Wrapped 品类 saveItem 新增支持（desktop-cpu / mobile-soc / apple-silicon）
+- [x] Phase 2: GPU 新增支持（createGpuRecord / saveNewGpuRecord）
+- [x] 修复 GPU 404 行为：saveItem 增加 upsert 选项
+- **Status:** complete
+
+### Phase 72: 管理后台新增硬件功能 — API 层
+
+- [x] Phase 3: POST /api/admin/hardware/:category/items 路由
+- **Status:** complete
+
+### Phase 73: 管理后台新增硬件功能 — UI 层
+
+- [x] Phase 4: admin.html 新增按钮、品类选择器
+- [x] Phase 4: admin.js 多品类支持、新增表单、POST 提交
+- **Status:** complete
+
+### Phase 74: 管理后台新增硬件功能 — 验证与提交
+
+- [x] 运行 `npm.cmd run verify` 通过（136 pass / 0 fail）
+- [x] 更新记录文件
+- [x] 提交并推送
+- **Status:** complete
+
 ## Key Questions
 
 1. What is the repository contract surface for future JSON and PostgreSQL adapters?

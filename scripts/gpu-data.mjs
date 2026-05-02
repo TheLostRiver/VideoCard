@@ -58,6 +58,27 @@ export async function saveGpuRecord(id, nextRecord, root = process.cwd()) {
   return nextRecords.find((gpu) => gpu.id === nextRecord.id);
 }
 
+export function createGpuRecord(records, newRecord) {
+  if (records.some((gpu) => gpu.id === newRecord.id)) {
+    const error = new Error(`GPU already exists: ${newRecord.id}`);
+    error.statusCode = 409;
+    error.errors = [`GPU already exists: ${newRecord.id}`];
+    throw error;
+  }
+
+  const nextRecords = [...records, newRecord];
+  assertValidGpuRecords(nextRecords);
+  return nextRecords;
+}
+
+export async function saveNewGpuRecord(newRecord, root = process.cwd()) {
+  const records = await readGpuData(root);
+  const nextRecords = createGpuRecord(records, newRecord);
+  await writeGpuJsonAtomic(nextRecords, root);
+  await writeGpuModule(nextRecords, root);
+  return nextRecords.find((gpu) => gpu.id === newRecord.id);
+}
+
 export async function assertGeneratedModuleFresh(root = process.cwd()) {
   const { jsPath } = getDataPaths(root);
   const records = await readGpuData(root);

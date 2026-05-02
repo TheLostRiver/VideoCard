@@ -146,6 +146,87 @@ test("PUT /api/admin/hardware/gpu/items/:id returns 404 for missing item", async
   });
 });
 
+test("POST /api/admin/hardware/desktop-cpu/items creates new item", async () => {
+  await withApi(async ({ baseUrl }) => {
+    const newCpu = {
+      item: { id: "test-new-cpu", categoryId: "desktop-cpu", name: "Test CPU", manufacturerId: "intel", status: "draft" },
+      metricValues: [],
+      rankingScore: { score: 100 }
+    };
+    const response = await fetch(`${baseUrl}/api/admin/hardware/desktop-cpu/items`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newCpu)
+    });
+    const body = await response.json();
+
+    assert.equal(response.status, 201);
+    assert.equal(body.detail.item.id, "test-new-cpu");
+
+    const getResponse = await fetch(`${baseUrl}/api/hardware/desktop-cpu/items/test-new-cpu`);
+    assert.equal(getResponse.status, 200);
+  });
+});
+
+test("POST /api/admin/hardware/gpu/items creates new GPU", async () => {
+  await withApi(async ({ baseUrl }) => {
+    const newGpu = {
+      item: {
+        id: "test-new-gpu",
+        categoryId: "gpu",
+        name: "Test GPU",
+        manufacturerId: "nvidia",
+        generation: "RTX 50",
+        architecture: "Blackwell",
+        releaseDate: "2025",
+        marketSegmentIds: ["desktop"],
+        tierId: "high",
+        specs: { coresLabel: "5000 CUDA" },
+        notes: [],
+        status: "draft"
+      },
+      metricValues: [
+        { metricId: "gpu.performance.index", valueNumber: 150 },
+        { metricId: "gpu.core.count", valueNumber: 5000 },
+        { metricId: "gpu.clock.base", valueNumber: 2000 },
+        { metricId: "gpu.clock.boost", valueNumber: 2500 },
+        { metricId: "gpu.memory.size", valueNumber: 16 },
+        { metricId: "gpu.memory.type", valueText: "GDDR7" },
+        { metricId: "gpu.memory.bus", valueNumber: 256 },
+        { metricId: "gpu.memory.bandwidth", valueNumber: 800 },
+        { metricId: "gpu.power.board", valueNumber: 200 },
+        { metricId: "gpu.benchmark.timeSpyGraphics", valueNumber: 20000 },
+        { metricId: "gpu.gaming.recommendedResolution", valueText: "1440p" }
+      ],
+      rankingScore: { score: 150, tierId: "high" },
+      sources: []
+    };
+    const response = await fetch(`${baseUrl}/api/admin/hardware/gpu/items`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newGpu)
+    });
+    const body = await response.json();
+
+    assert.equal(response.status, 201);
+    assert.equal(body.detail.item.id, "test-new-gpu");
+  });
+});
+
+test("POST /api/admin/hardware/:category/items rejects missing item.id", async () => {
+  await withApi(async ({ baseUrl }) => {
+    const response = await fetch(`${baseUrl}/api/admin/hardware/desktop-cpu/items`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ item: {} })
+    });
+    const body = await response.json();
+
+    assert.equal(response.status, 400);
+    assert.ok(body.errors);
+  });
+});
+
 async function withApi(callback) {
   const root = await mkdtemp(join(tmpdir(), "hardware-api-"));
   await mkdir(join(root, "src", "data", "categories"), { recursive: true });

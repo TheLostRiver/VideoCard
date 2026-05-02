@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 10.2: First Architecture Migration Checkpoint
+Task: 管理后台新增硬件功能（Admin Create Hardware）
 
-Status: Task 10.2 is complete. Architecture migration checkpoint verified: old GPU ladder works (12 records), generic repository exists (JSON + PostgreSQL), schema-driven renderers exist (list/detail/admin form), compare service exists, CPU/SoC/Apple Silicon schemas exist, PostgreSQL design exists (13 tables + migration + repository skeleton). Full verify passed: 4 categories, 15 items, 128 tests / 0 fail.
+Status: 实现完成。为所有 4 个品类（GPU、Desktop CPU、Mobile SoC、Apple Silicon）实现完整的新增功能。数据层（saveItem upsert + createGpuRecord）、API 层（POST 路由）、UI 层（品类选择器 + 新增按钮 + 空白表单）全部就位。验证通过：136 tests / 0 fail。
 
 ## Current Date
 
@@ -60,31 +60,34 @@ Core model:
 
 ## Current Files Changed In This Task
 
-- Modified `SessionContextRecord.md`
-- Modified `PROJECT_STATE.md`
-- Modified `task_plan.md`
-- Modified `findings.md`
-- Modified `progress.md`
-- Modified `docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md`
+- Modified `scripts/gpu-data.mjs` — 新增 `createGpuRecord`、`saveNewGpuRecord`
+- Modified `src/infrastructure/json/json-hardware-repository.js` — saveItem 支持 upsert 和 wrapped 品类写入
+- Modified `src/application/hardware-mutation-service.js` — saveItemDetail 传递 options
+- Modified `scripts/serve.mjs` — 新增 POST 路由
+- Modified `src/admin.js` — 多品类支持、新增按钮、品类选择器
+- Modified `admin.html` — 品类选择器、新增按钮
+- Modified `src/styles.css` — 新增 admin-list-actions 样式
+- Modified `tests/json-hardware-repository.test.mjs` — 新增 5 个保存测试
+- Modified `tests/hardware-api.test.mjs` — 新增 3 个 POST 测试
 
 ## Next Step
 
-1. 实现计划 Task 0.1 到 Task 10.2 全部完成。
-2. 如需继续，检查实现计划 Self-Review Checklist 和 Execution Handoff。
-3. 可选方向：Phase 7.5（Desktop CPU Query Service Integration）或其他后续任务。
+1. 浏览器验证管理界面新增功能。
+2. 提交并推送本次修改。
+3. 可选方向：其他后续功能。
 
 ## Verification Status
 
-Task 10.2 完整验证、架构迁移检查点、提交、推送通过。
+管理后台新增硬件功能完整验证通过。
 
 最新结果：
 
 - 命令：`npm.cmd run verify`
-- 数据校验：`Validated 12 GPU records.` + `Validated 4 categories, 15 items.`
-- 测试：128 pass / 0 fail
-- 架构检查：旧 GPU 天梯、通用 repository、schema-driven 渲染器、对比服务、CPU/SoC/Apple Silicon schema、PostgreSQL 设计全部就位
-- 提交：`1399297 chore: 记录首次架构迁移检查点`
-- 推送：`origin/main` 已更新
+- 数据校验：`Validated 17 GPU records.` + `Validated 4 categories, 27 items.`
+- 测试：136 pass / 0 fail
+- 功能覆盖：GPU / Desktop CPU / Mobile SoC / Apple Silicon 四个品类新增支持
+- 提交：待提交
+- 推送：待推送
 
 ## Important Commands
 

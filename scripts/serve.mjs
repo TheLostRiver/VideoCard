@@ -87,6 +87,32 @@ async function handleApiRequest(req, res, url, serverRoot) {
     return;
   }
 
+  const adminHardwareCreateMatch = url.pathname.match(/^\/api\/admin\/hardware\/([^/]+)\/items$/);
+  if (req.method === "POST" && adminHardwareCreateMatch) {
+    const categoryId = decodeURIComponent(adminHardwareCreateMatch[1]);
+    try {
+      const repo = createJsonHardwareRepository({ root: serverRoot });
+      const mutationService = createHardwareMutationService(repo);
+      const queryService = createHardwareQueryService(repo);
+      const category = await repo.getCategory(categoryId);
+      if (!category) {
+        sendJson(res, 404, { errors: [`category not found: ${categoryId}`] });
+        return;
+      }
+      const detail = await readJsonBody(req);
+      if (!detail?.item?.id) {
+        sendJson(res, 400, { errors: ["detail.item.id is required"] });
+        return;
+      }
+      await mutationService.saveItemDetail(detail, { upsert: true });
+      const saved = await queryService.getDetailViewModel(detail.item.id);
+      sendJson(res, 201, { detail: saved });
+    } catch (error) {
+      sendJson(res, error.statusCode || 400, { errors: error.errors || [error.message] });
+    }
+    return;
+  }
+
   const adminHardwareMatch = url.pathname.match(/^\/api\/admin\/hardware\/([^/]+)\/items\/(.+)$/);
   if (req.method === "PUT" && adminHardwareMatch) {
     const categoryId = decodeURIComponent(adminHardwareMatch[1]);

@@ -1,7 +1,7 @@
-import { readFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
-import { saveGpuRecord } from "../../../scripts/gpu-data.mjs";
+import { saveGpuRecord, saveNewGpuRecord } from "../../../scripts/gpu-data.mjs";
 import {
   mapLegacyGpuToHardwareItem,
   mapLegacyGpuToMetricValues,
@@ -143,24 +143,60 @@ export function createJsonHardwareRepository(options = {}) {
     return null;
   }
 
-  async function saveItem(detail) {
+  async function saveItem(detail, options = {}) {
+    const categoryId = detail?.item?.categoryId;
+    const itemId = detail?.item?.id;
+    const upsert = options.upsert === true;
+
+    if (categoryId === "desktop-cpu" || categoryId === "mobile-soc" || categoryId === "apple-silicon") {
+      return saveWrappedCategoryItem(categoryId, detail);
+    }
+
     const gpuRecords = await readGpuRecords(gpuDataUrl);
-    const currentGpu = gpuRecords.find((record) => record.id === detail?.item?.id);
-    if (!currentGpu) {
-      const error = new Error(`GPU not found: ${detail?.item?.id}`);
+    const currentGpu = gpuRecords.find((record) => record.id === itemId);
+
+    if (!currentGpu && !upsert) {
+      const error = new Error(`GPU not found: ${itemId}`);
       error.statusCode = 404;
-      error.errors = [`GPU not found: ${detail?.item?.id}`];
+      error.errors = [`GPU not found: ${itemId}`];
       throw error;
     }
 
-    const nextGpu = mapHardwareDetailToLegacyGpu(detail, currentGpu);
-    const savedGpu = await saveGpuRecord(currentGpu.id, nextGpu, root);
+    const nextGpu = mapHardwareDetailToLegacyGpu(detail, currentGpu || { id: itemId });
+    const savedGpu = currentGpu
+      ? await saveGpuRecord(currentGpu.id, nextGpu, root)
+      : await saveNewGpuRecord(nextGpu, root);
     return {
       item: mapLegacyGpuToHardwareItem(savedGpu),
       metricValues: mapLegacyGpuToMetricValues(savedGpu),
       rankingScore: mapLegacyGpuToRankingScore(savedGpu),
       sources: mapLegacyGpuToSources(savedGpu)
     };
+  }
+
+  async function saveWrappedCategoryItem(categoryId, detail) {
+    const dataUrl = getCategoryDataUrl(categoryId);
+    const items = await readJson(dataUrl);
+    const index = items.findIndex((entry) => entry.item?.id === detail.item.id);
+
+    if (index === -1) {
+      items.push(detail);
+    } else {
+      items[index] = detail;
+    }
+
+    await writeFile(dataUrl, JSON.stringify(items, null, 2) + "\n", "utf8");
+    return detail;
+  }
+
+  function getCategoryDataUrl(categoryId) {
+    if (categoryId === "desktop-cpu") return desktopCpuDataUrl;
+    if (categoryId === "mobile-soc") return mobileSocDataUrl;
+    if (categoryId === "apple-silicon") return appleSiliconDataUrl;
+    const error = new Error(`Unsupported category: ${categoryId}`);
+    error.statusCode = 400;
+    error.errors = [`Unsupported category: ${categoryId}`];
+    throw error;
   }
 
   return {
@@ -199,6 +235,9 @@ function applyHardwareItem(gpu, item) {
   if (item.architecture !== undefined) gpu.architecture = item.architecture;
   if (item.releaseDate !== undefined) gpu.releaseDate = item.releaseDate;
   if (item.marketSegmentIds?.[0]) gpu.segment = item.marketSegmentIds[0];
+  if (item.tierId !== undefined) gpu.tier = item.tierId;
+  if (item.confidence !== undefined) gpu.confidence = item.confidence;
+  if (item.specs) gpu.specs = { ...(gpu.specs || {}), ...item.specs };
   if (Array.isArray(item.notes)) gpu.notes = [...item.notes];
 }
 

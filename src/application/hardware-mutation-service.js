@@ -4,12 +4,12 @@ export function createHardwareMutationService(repository) {
   }
 
   return {
-    async saveItemDetail(detail) {
+    async saveItemDetail(detail, options) {
       if (!detail?.item?.id) {
         throw new Error("saveItemDetail requires detail.item.id");
       }
 
-      return repository.saveItem(detail);
+      return repository.saveItem(detail, options);
     }
   };
 }

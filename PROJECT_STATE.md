@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 10.2 完成（首次架构迁移检查点）。
+阶段：管理后台新增硬件功能实现完成。
 
-当前任务：Task 10.2: First Architecture Migration Checkpoint — 完成。
+当前任务：管理后台新增硬件功能（Admin Create Hardware）— 完成。
 
-下一步：实现计划 Task 0.1 到 Task 10.2 全部完成。可选方向：Phase 7.5 或其他后续任务。
+下一步：浏览器验证管理界面新增功能，提交并推送。
 
 ## 工作规则
 
@@ -333,6 +333,7 @@
 - Task 10.1 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录 + 4 品类 15 条记录，测试 128 pass / 0 fail。
 - Task 10.2 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录 + 4 品类 15 条记录，测试 128 pass / 0 fail。
 - Task 10.2 架构检查：旧 GPU 天梯正常、通用 repository 存在、schema-driven 渲染器存在、对比服务存在、CPU/SoC/Apple Silicon schema 存在、PostgreSQL 设计存在。
+- 管理后台新增硬件功能完整验证：`npm.cmd run verify` 通过，17 GPU + 4 品类 27 条记录，136 tests / 0 fail。
 
 ## 最近提交
 

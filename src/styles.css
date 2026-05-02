@@ -464,6 +464,27 @@ select {
   margin-bottom: 10px;
 }
 
+.admin-list-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.admin-category-select {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid #d9e2ec;
+  border-radius: 6px;
+  font-size: 13px;
+  background: #fff;
+}
+
+.admin-new-button {
+  white-space: nowrap;
+  font-size: 13px;
+  padding: 6px 12px;
+}
+
 .admin-list {
   display: grid;
   gap: 8px;
