@@ -488,6 +488,230 @@
     "confidence": "aggregate"
   },
   {
+    "id": "rtx-4080-desktop",
+    "name": "GeForce RTX 4080",
+    "brand": "nvidia",
+    "segment": "desktop",
+    "generation": "RTX 40",
+    "architecture": "Ada Lovelace",
+    "releaseDate": "2022-11",
+    "performanceIndex": 220,
+    "tier": "enthusiast",
+    "specs": {
+      "coresLabel": "CUDA Cores",
+      "cores": 9728,
+      "baseClockMHz": 2205,
+      "boostClockMHz": 2505,
+      "memorySizeGB": 16,
+      "memoryType": "GDDR6X",
+      "memoryBusBit": 256,
+      "bandwidthGBs": 717,
+      "powerW": 320,
+      "tgpRangeW": null
+    },
+    "benchmarks": {
+      "timeSpyGraphics": 28000,
+      "steelNomadGraphics": null,
+      "passMarkG3D": null,
+      "sourceNote": "公开评测均值参考"
+    },
+    "gaming": {
+      "recommendedResolution": "4K",
+      "rayTracingLevel": "excellent",
+      "efficiencyNote": "高端 4K 游戏首选"
+    },
+    "notes": [
+      "支持 DLSS 3",
+      "性能接近上代 4090"
+    ],
+    "sources": [
+      {
+        "label": "NVIDIA GeForce",
+        "url": "https://www.nvidia.com/en-us/geforce/"
+      }
+    ],
+    "confidence": "aggregate"
+  },
+  {
+    "id": "rtx-4070-ti-desktop",
+    "name": "GeForce RTX 4070 Ti",
+    "brand": "nvidia",
+    "segment": "desktop",
+    "generation": "RTX 40",
+    "architecture": "Ada Lovelace",
+    "releaseDate": "2023-01",
+    "performanceIndex": 190,
+    "tier": "high",
+    "specs": {
+      "coresLabel": "CUDA Cores",
+      "cores": 7680,
+      "baseClockMHz": 2310,
+      "boostClockMHz": 2610,
+      "memorySizeGB": 12,
+      "memoryType": "GDDR6X",
+      "memoryBusBit": 192,
+      "bandwidthGBs": 504,
+      "powerW": 285,
+      "tgpRangeW": null
+    },
+    "benchmarks": {
+      "timeSpyGraphics": 22500,
+      "steelNomadGraphics": null,
+      "passMarkG3D": null,
+      "sourceNote": "公开评测均值参考"
+    },
+    "gaming": {
+      "recommendedResolution": "1440p/4K",
+      "rayTracingLevel": "excellent",
+      "efficiencyNote": "1440p 高帧率甜点"
+    },
+    "notes": [
+      "支持 DLSS 3"
+    ],
+    "sources": [
+      {
+        "label": "NVIDIA GeForce",
+        "url": "https://www.nvidia.com/en-us/geforce/"
+      }
+    ],
+    "confidence": "aggregate"
+  },
+  {
+    "id": "rtx-4060-laptop",
+    "name": "GeForce RTX 4060 Laptop GPU",
+    "brand": "nvidia",
+    "segment": "mobile",
+    "generation": "RTX 40",
+    "architecture": "Ada Lovelace",
+    "releaseDate": "2023-02",
+    "performanceIndex": 110,
+    "tier": "mainstream",
+    "specs": {
+      "coresLabel": "CUDA Cores",
+      "cores": 3072,
+      "baseClockMHz": null,
+      "boostClockMHz": 2370,
+      "memorySizeGB": 8,
+      "memoryType": "GDDR6",
+      "memoryBusBit": 128,
+      "bandwidthGBs": 256,
+      "powerW": null,
+      "tgpRangeW": "35-115W"
+    },
+    "benchmarks": {
+      "timeSpyGraphics": 10500,
+      "steelNomadGraphics": null,
+      "passMarkG3D": null,
+      "sourceNote": "移动版参考典型高 TGP 机型"
+    },
+    "gaming": {
+      "recommendedResolution": "1080p",
+      "rayTracingLevel": "medium",
+      "efficiencyNote": "主流游戏本常见配置"
+    },
+    "notes": [
+      "移动版不可直接等同桌面 RTX 4060",
+      "实际表现受 TGP 和散热影响"
+    ],
+    "sources": [
+      {
+        "label": "NVIDIA GeForce Laptop",
+        "url": "https://www.nvidia.com/en-us/geforce/laptops/"
+      }
+    ],
+    "confidence": "estimated"
+  },
+  {
+    "id": "rx-7900-xt-desktop",
+    "name": "Radeon RX 7900 XT",
+    "brand": "amd",
+    "segment": "desktop",
+    "generation": "RX 7000",
+    "architecture": "RDNA 3",
+    "releaseDate": "2022-12",
+    "performanceIndex": 195,
+    "tier": "enthusiast",
+    "specs": {
+      "coresLabel": "Stream Processors",
+      "cores": 5376,
+      "baseClockMHz": null,
+      "boostClockMHz": 2400,
+      "memorySizeGB": 20,
+      "memoryType": "GDDR6",
+      "memoryBusBit": 320,
+      "bandwidthGBs": 800,
+      "powerW": 315,
+      "tgpRangeW": null
+    },
+    "benchmarks": {
+      "timeSpyGraphics": 25000,
+      "steelNomadGraphics": null,
+      "passMarkG3D": null,
+      "sourceNote": "公开评测均值参考"
+    },
+    "gaming": {
+      "recommendedResolution": "4K",
+      "rayTracingLevel": "good",
+      "efficiencyNote": "大显存高性价比旗舰"
+    },
+    "notes": [
+      "支持 FSR",
+      "20GB 显存适合高分辨率"
+    ],
+    "sources": [
+      {
+        "label": "AMD Radeon",
+        "url": "https://www.amd.com/en/products/graphics/desktops.html"
+      }
+    ],
+    "confidence": "aggregate"
+  },
+  {
+    "id": "rtx-3060-desktop",
+    "name": "GeForce RTX 3060",
+    "brand": "nvidia",
+    "segment": "desktop",
+    "generation": "RTX 30",
+    "architecture": "Ampere",
+    "releaseDate": "2021-02",
+    "performanceIndex": 80,
+    "tier": "mainstream",
+    "specs": {
+      "coresLabel": "CUDA Cores",
+      "cores": 3584,
+      "baseClockMHz": 1320,
+      "boostClockMHz": 1777,
+      "memorySizeGB": 12,
+      "memoryType": "GDDR6",
+      "memoryBusBit": 192,
+      "bandwidthGBs": 360,
+      "powerW": 170,
+      "tgpRangeW": null
+    },
+    "benchmarks": {
+      "timeSpyGraphics": 8700,
+      "steelNomadGraphics": null,
+      "passMarkG3D": null,
+      "sourceNote": "公开评测均值参考"
+    },
+    "gaming": {
+      "recommendedResolution": "1080p",
+      "rayTracingLevel": "medium",
+      "efficiencyNote": "上代主流甜点卡"
+    },
+    "notes": [
+      "支持 DLSS 2",
+      "12GB 显存同代较大"
+    ],
+    "sources": [
+      {
+        "label": "NVIDIA GeForce",
+        "url": "https://www.nvidia.com/en-us/geforce/"
+      }
+    ],
+    "confidence": "aggregate"
+  },
+  {
     "id": "rx-580-desktop",
     "name": "Radeon RX 580",
     "brand": "amd",

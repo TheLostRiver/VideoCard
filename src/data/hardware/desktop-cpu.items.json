@@ -148,5 +148,155 @@
     "sources": [
       { "id": "ryzen-5-7600x:source:1", "label": "AMD Official", "url": "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-5-7600x.html", "sourceType": "official" }
     ]
+  },
+  {
+    "item": {
+      "id": "core-i7-14700k",
+      "categoryId": "desktop-cpu",
+      "name": "Intel Core i7-14700K",
+      "manufacturerId": "intel",
+      "generation": "14th Gen",
+      "architecture": "Raptor Lake",
+      "releaseDate": "2023-10",
+      "marketSegmentIds": ["desktop"],
+      "status": "published",
+      "notes": ["20 cores (8P + 12E), strong multi-thread performance."],
+      "createdAt": "seed-data",
+      "updatedAt": "seed-data"
+    },
+    "metricValues": [
+      { "id": "core-i7-14700k:cpu.release.date", "itemId": "core-i7-14700k", "metricId": "cpu.release.date", "valueText": "2023-10", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i7-14700k:cpu.confidence", "itemId": "core-i7-14700k", "metricId": "cpu.confidence", "valueText": "confirmed", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i7-14700k:cpu.core.count", "itemId": "core-i7-14700k", "metricId": "cpu.core.count", "valueNumber": 20, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i7-14700k:cpu.core.threads", "itemId": "core-i7-14700k", "metricId": "cpu.core.threads", "valueNumber": 28, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i7-14700k:cpu.clock.base", "itemId": "core-i7-14700k", "metricId": "cpu.clock.base", "valueNumber": 3400, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i7-14700k:cpu.clock.boost", "itemId": "core-i7-14700k", "metricId": "cpu.clock.boost", "valueNumber": 5600, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i7-14700k:cpu.cache.l3", "itemId": "core-i7-14700k", "metricId": "cpu.cache.l3", "valueNumber": 33, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i7-14700k:cpu.socket", "itemId": "core-i7-14700k", "metricId": "cpu.socket", "valueText": "LGA 1700", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i7-14700k:cpu.memory.type", "itemId": "core-i7-14700k", "metricId": "cpu.memory.type", "valueText": "DDR5 / DDR4", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i7-14700k:cpu.memory.maxSpeed", "itemId": "core-i7-14700k", "metricId": "cpu.memory.maxSpeed", "valueText": "DDR5-5600", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i7-14700k:cpu.power.tdp", "itemId": "core-i7-14700k", "metricId": "cpu.power.tdp", "valueNumber": 253, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i7-14700k:cpu.power.tdp.display", "itemId": "core-i7-14700k", "metricId": "cpu.power.tdp.display", "valueText": "253W", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i7-14700k:cpu.benchmark.cinebenchSingle", "itemId": "core-i7-14700k", "metricId": "cpu.benchmark.cinebenchSingle", "valueNumber": 2180, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i7-14700k:cpu.benchmark.cinebenchMulti", "itemId": "core-i7-14700k", "metricId": "cpu.benchmark.cinebenchMulti", "valueNumber": 30000, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i7-14700k:cpu.benchmark.geekbenchSingle", "itemId": "core-i7-14700k", "metricId": "cpu.benchmark.geekbenchSingle", "valueNumber": 2950, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i7-14700k:cpu.benchmark.geekbenchMulti", "itemId": "core-i7-14700k", "metricId": "cpu.benchmark.geekbenchMulti", "valueNumber": 18500, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i7-14700k:cpu.benchmark.sourceNote", "itemId": "core-i7-14700k", "metricId": "cpu.benchmark.sourceNote", "valueText": "Estimated from public benchmarks", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i7-14700k:cpu.gaming.recommendedTier", "itemId": "core-i7-14700k", "metricId": "cpu.gaming.recommendedTier", "valueText": "Excellent for 1080p/1440p gaming", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i7-14700k:cpu.gaming.efficiencyNote", "itemId": "core-i7-14700k", "metricId": "cpu.gaming.efficiencyNote", "valueText": "Strong gaming and productivity balance.", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" }
+    ],
+    "rankingScore": {
+      "id": "core-i7-14700k:ranking:desktop-cpu-performance",
+      "itemId": "core-i7-14700k",
+      "rankingProfileId": "desktop-cpu-performance",
+      "score": 240,
+      "tierId": "high-end",
+      "confidence": "estimated",
+      "formulaVersion": "cpu-cinebench-multi-v1",
+      "updatedAt": "seed-data"
+    },
+    "sources": [
+      { "id": "core-i7-14700k:source:1", "label": "Intel Official", "url": "https://www.intel.com/content/www/us/en/products/sku/230504/intel-core-i7-processor-14700k-33m-cache-up-to-5-60-ghz/specifications.html", "sourceType": "official" }
+    ]
+  },
+  {
+    "item": {
+      "id": "ryzen-9-7950x",
+      "categoryId": "desktop-cpu",
+      "name": "AMD Ryzen 9 7950X",
+      "manufacturerId": "amd",
+      "generation": "Ryzen 7000",
+      "architecture": "Zen 4",
+      "releaseDate": "2022-09",
+      "marketSegmentIds": ["desktop"],
+      "status": "published",
+      "notes": ["16-core flagship, excellent multi-thread performance."],
+      "createdAt": "seed-data",
+      "updatedAt": "seed-data"
+    },
+    "metricValues": [
+      { "id": "ryzen-9-7950x:cpu.release.date", "itemId": "ryzen-9-7950x", "metricId": "cpu.release.date", "valueText": "2022-09", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "ryzen-9-7950x:cpu.confidence", "itemId": "ryzen-9-7950x", "metricId": "cpu.confidence", "valueText": "confirmed", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "ryzen-9-7950x:cpu.core.count", "itemId": "ryzen-9-7950x", "metricId": "cpu.core.count", "valueNumber": 16, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "ryzen-9-7950x:cpu.core.threads", "itemId": "ryzen-9-7950x", "metricId": "cpu.core.threads", "valueNumber": 32, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "ryzen-9-7950x:cpu.clock.base", "itemId": "ryzen-9-7950x", "metricId": "cpu.clock.base", "valueNumber": 4500, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "ryzen-9-7950x:cpu.clock.boost", "itemId": "ryzen-9-7950x", "metricId": "cpu.clock.boost", "valueNumber": 5700, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "ryzen-9-7950x:cpu.cache.l3", "itemId": "ryzen-9-7950x", "metricId": "cpu.cache.l3", "valueNumber": 64, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "ryzen-9-7950x:cpu.socket", "itemId": "ryzen-9-7950x", "metricId": "cpu.socket", "valueText": "AM5", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "ryzen-9-7950x:cpu.memory.type", "itemId": "ryzen-9-7950x", "metricId": "cpu.memory.type", "valueText": "DDR5", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "ryzen-9-7950x:cpu.memory.maxSpeed", "itemId": "ryzen-9-7950x", "metricId": "cpu.memory.maxSpeed", "valueText": "DDR5-5200", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "ryzen-9-7950x:cpu.power.tdp", "itemId": "ryzen-9-7950x", "metricId": "cpu.power.tdp", "valueNumber": 170, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "ryzen-9-7950x:cpu.power.tdp.display", "itemId": "ryzen-9-7950x", "metricId": "cpu.power.tdp.display", "valueText": "170W", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "ryzen-9-7950x:cpu.benchmark.cinebenchSingle", "itemId": "ryzen-9-7950x", "metricId": "cpu.benchmark.cinebenchSingle", "valueNumber": 2250, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "ryzen-9-7950x:cpu.benchmark.cinebenchMulti", "itemId": "ryzen-9-7950x", "metricId": "cpu.benchmark.cinebenchMulti", "valueNumber": 38000, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "ryzen-9-7950x:cpu.benchmark.geekbenchSingle", "itemId": "ryzen-9-7950x", "metricId": "cpu.benchmark.geekbenchSingle", "valueNumber": 2950, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "ryzen-9-7950x:cpu.benchmark.geekbenchMulti", "itemId": "ryzen-9-7950x", "metricId": "cpu.benchmark.geekbenchMulti", "valueNumber": 21000, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "ryzen-9-7950x:cpu.benchmark.sourceNote", "itemId": "ryzen-9-7950x", "metricId": "cpu.benchmark.sourceNote", "valueText": "Estimated from public benchmarks", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "ryzen-9-7950x:cpu.gaming.recommendedTier", "itemId": "ryzen-9-7950x", "metricId": "cpu.gaming.recommendedTier", "valueText": "Excellent for 1080p/1440p/4K gaming", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "ryzen-9-7950x:cpu.gaming.efficiencyNote", "itemId": "ryzen-9-7950x", "metricId": "cpu.gaming.efficiencyNote", "valueText": "Top-tier multi-thread performance with reasonable power.", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" }
+    ],
+    "rankingScore": {
+      "id": "ryzen-9-7950x:ranking:desktop-cpu-performance",
+      "itemId": "ryzen-9-7950x",
+      "rankingProfileId": "desktop-cpu-performance",
+      "score": 270,
+      "tierId": "flagship",
+      "confidence": "estimated",
+      "formulaVersion": "cpu-cinebench-multi-v1",
+      "updatedAt": "seed-data"
+    },
+    "sources": [
+      { "id": "ryzen-9-7950x:source:1", "label": "AMD Official", "url": "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-9-7950x.html", "sourceType": "official" }
+    ]
+  },
+  {
+    "item": {
+      "id": "core-i5-13600k",
+      "categoryId": "desktop-cpu",
+      "name": "Intel Core i5-13600K",
+      "manufacturerId": "intel",
+      "generation": "13th Gen",
+      "architecture": "Raptor Lake",
+      "releaseDate": "2022-10",
+      "marketSegmentIds": ["desktop"],
+      "status": "published",
+      "notes": ["14 cores (6P + 8E), excellent value gaming CPU."],
+      "createdAt": "seed-data",
+      "updatedAt": "seed-data"
+    },
+    "metricValues": [
+      { "id": "core-i5-13600k:cpu.release.date", "itemId": "core-i5-13600k", "metricId": "cpu.release.date", "valueText": "2022-10", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i5-13600k:cpu.confidence", "itemId": "core-i5-13600k", "metricId": "cpu.confidence", "valueText": "confirmed", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i5-13600k:cpu.core.count", "itemId": "core-i5-13600k", "metricId": "cpu.core.count", "valueNumber": 14, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i5-13600k:cpu.core.threads", "itemId": "core-i5-13600k", "metricId": "cpu.core.threads", "valueNumber": 20, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i5-13600k:cpu.clock.base", "itemId": "core-i5-13600k", "metricId": "cpu.clock.base", "valueNumber": 3500, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i5-13600k:cpu.clock.boost", "itemId": "core-i5-13600k", "metricId": "cpu.clock.boost", "valueNumber": 5100, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i5-13600k:cpu.cache.l3", "itemId": "core-i5-13600k", "metricId": "cpu.cache.l3", "valueNumber": 24, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i5-13600k:cpu.socket", "itemId": "core-i5-13600k", "metricId": "cpu.socket", "valueText": "LGA 1700", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i5-13600k:cpu.memory.type", "itemId": "core-i5-13600k", "metricId": "cpu.memory.type", "valueText": "DDR5 / DDR4", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i5-13600k:cpu.memory.maxSpeed", "itemId": "core-i5-13600k", "metricId": "cpu.memory.maxSpeed", "valueText": "DDR5-5600", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i5-13600k:cpu.power.tdp", "itemId": "core-i5-13600k", "metricId": "cpu.power.tdp", "valueNumber": 181, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i5-13600k:cpu.power.tdp.display", "itemId": "core-i5-13600k", "metricId": "cpu.power.tdp.display", "valueText": "181W", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i5-13600k:cpu.benchmark.cinebenchSingle", "itemId": "core-i5-13600k", "metricId": "cpu.benchmark.cinebenchSingle", "valueNumber": 1980, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i5-13600k:cpu.benchmark.cinebenchMulti", "itemId": "core-i5-13600k", "metricId": "cpu.benchmark.cinebenchMulti", "valueNumber": 16500, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i5-13600k:cpu.benchmark.geekbenchSingle", "itemId": "core-i5-13600k", "metricId": "cpu.benchmark.geekbenchSingle", "valueNumber": 2650, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i5-13600k:cpu.benchmark.geekbenchMulti", "itemId": "core-i5-13600k", "metricId": "cpu.benchmark.geekbenchMulti", "valueNumber": 13800, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i5-13600k:cpu.benchmark.sourceNote", "itemId": "core-i5-13600k", "metricId": "cpu.benchmark.sourceNote", "valueText": "Estimated from public benchmarks", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i5-13600k:cpu.gaming.recommendedTier", "itemId": "core-i5-13600k", "metricId": "cpu.gaming.recommendedTier", "valueText": "Good for 1080p/1440p gaming", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
+      { "id": "core-i5-13600k:cpu.gaming.efficiencyNote", "itemId": "core-i5-13600k", "metricId": "cpu.gaming.efficiencyNote", "valueText": "Great value gaming CPU with solid multi-thread capability.", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" }
+    ],
+    "rankingScore": {
+      "id": "core-i5-13600k:ranking:desktop-cpu-performance",
+      "itemId": "core-i5-13600k",
+      "rankingProfileId": "desktop-cpu-performance",
+      "score": 195,
+      "tierId": "mid-range",
+      "confidence": "estimated",
+      "formulaVersion": "cpu-cinebench-multi-v1",
+      "updatedAt": "seed-data"
+    },
+    "sources": [
+      { "id": "core-i5-13600k:source:1", "label": "Intel Official", "url": "https://www.intel.com/content/www/us/en/products/sku/230502/intel-core-i5-processor-13600k-24m-cache-up-to-5-10-ghz/specifications.html", "sourceType": "official" }
+    ]
   }
 ]
