@@ -221,6 +221,7 @@
 - Task 10.1 启动检查完成：已读取实现计划 Task 10.1 和当前 README。
 - Task 10.1 完成：更新 README.md，新增 PostgreSQL schema 设计文档链接、新脚本说明（export:static、validate:hardware）和验证内容说明。
 - Task 10.1 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录 + 4 品类 15 条记录，测试 128 pass / 0 fail。
+- Task 10.1 推送完成：`56b7c7a docs: 更新 README 补充多硬件架构文档` 已推送到 `origin/main`。
 
 ## 最近验证
 
@@ -327,9 +328,11 @@
 - Task 8.3 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 122 pass / 0 fail。
 - Task 9.1 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 125 pass / 0 fail。
 - Task 9.2 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录 + 4 品类 15 条记录，测试 128 pass / 0 fail。
+- Task 10.1 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录 + 4 品类 15 条记录，测试 128 pass / 0 fail。
 
 ## 最近提交
 
+- `56b7c7a docs: 更新 README 补充多硬件架构文档`
 - `d826409 feat: 添加通用硬件数据验证脚本`
 - `da30d3d feat: 添加静态硬件数据导出脚本`
 - `05822d3 feat: 添加 PostgreSQL 硬件仓库骨架`
