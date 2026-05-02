@@ -1346,15 +1346,15 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add contract test with mocked query client**
+- [x] **Step 1: Add contract test with mocked query client**
 
 Use a fake query client. Do not require a real database.
 
-- [ ] **Step 2: Implement skeleton repository**
+- [x] **Step 2: Implement skeleton repository**
 
 Expose same methods as `HardwareRepository`. Return data from injected query client.
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 
@@ -1365,7 +1365,7 @@ npm.cmd run verify
 
 Expected: all tests pass.
 
-- [ ] **Step 4: Update records, commit, push**
+- [x] **Step 4: Update records, commit, push**
 
 Commit:
 

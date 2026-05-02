@@ -152,6 +152,9 @@
 | Task 8.2 RED | `npm.cmd test` | Fail because migration file does not exist | Failed with `ENOENT` for `db/migrations/0001_initial_hardware_platform.sql` | Pass |
 | Task 8.2 GREEN | `npm.cmd test` | All tests pass after migration file created | 118 pass / 0 fail | Pass |
 | Task 8.2 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 118 pass / 0 fail | Pass |
+| Task 8.3 RED | `npm.cmd test` | Fail because postgres repository does not exist | Failed with `ERR_MODULE_NOT_FOUND` for `src/infrastructure/postgres/postgres-hardware-repository.js` | Pass |
+| Task 8.3 GREEN | `npm.cmd test` | All contract tests pass with fake query client | 122 pass / 0 fail | Pass |
+| Task 8.3 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 122 pass / 0 fail | Pass |
 
 ## Error Log
 
@@ -258,12 +261,23 @@
   - `tests/database-migration-file.test.mjs` created
   - `db/migrations/0001_initial_hardware_platform.sql` created
 
+### Phase: Task 8.3 PostgreSQL Repository Skeleton
+
+- **Status:** complete
+- Actions taken:
+  - 新增 `tests/postgres-repository-contract.test.mjs`，RED 确认因 repository 模块缺失失败
+  - 新增 `src/infrastructure/postgres/postgres-hardware-repository.js`，实现完整 HardwareRepository 接口
+  - `npm.cmd run verify` 通过：122 tests / 0 fail
+- Files created/modified:
+  - `tests/postgres-repository-contract.test.mjs` created
+  - `src/infrastructure/postgres/postgres-hardware-repository.js` created
+
 ## 5-Question Reboot Check
 
 | Question | Answer |
 |----------|--------|
-| 我在哪？ | Task 8.2 完成。准备进入 Task 8.3: Add PostgreSQL Repository Skeleton。 |
-| 去哪？ | 下一个原子任务是 Task 8.3。 |
+| 我在哪？ | Task 8.3 完成。准备进入 Task 9.1: Add Static Export Script。 |
+| 去哪？ | 下一个原子任务是 Task 9.1。 |
 | 目标？ | 继续多硬件平台实现计划，一个原子任务一个原子任务推进。 |
 | 学到了什么？ | 见 `findings.md`。 |
-| 做了什么？ | 完成、验证 Task 8.2（Initial SQL Migration）。 |
+| 做了什么？ | 完成、验证 Task 8.3（PostgreSQL Repository Skeleton）。 |

@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 8.2: Add Initial SQL Migration
+Task: Task 8.3: Add PostgreSQL Repository Skeleton
 
-Status: Task 8.2 is complete. Created `db/migrations/0001_initial_hardware_platform.sql` with all 13 tables, foreign keys, indexes, and unique constraints. Created `tests/database-migration-file.test.mjs` verifying table names, primary keys, foreign keys, and indexes. Full verify passed: 12 data records, 118 tests / 0 fail.
+Status: Task 8.3 is complete. Created `src/infrastructure/postgres/postgres-hardware-repository.js` implementing the full HardwareRepository interface (listCategories, getCategory, listItems, getItemDetail, saveItem) using an injected query client. Created `tests/postgres-repository-contract.test.mjs` with a fake query client exercising all contract tests. Full verify passed: 12 data records, 122 tests / 0 fail.
 
 ## Current Date
 
@@ -60,8 +60,8 @@ Core model:
 
 ## Current Files Changed In This Task
 
-- Created `db/migrations/0001_initial_hardware_platform.sql`
-- Created `tests/database-migration-file.test.mjs`
+- Created `src/infrastructure/postgres/postgres-hardware-repository.js`
+- Created `tests/postgres-repository-contract.test.mjs`
 - Modified `SessionContextRecord.md`
 - Modified `PROJECT_STATE.md`
 - Modified `task_plan.md`
@@ -71,19 +71,19 @@ Core model:
 
 ## Next Step
 
-1. 读取实现计划中 Task 8.3 的详细要求。
-2. 创建 PostgreSQL repository 骨架。
+1. 读取实现计划中 Task 9.1 的详细要求。
+2. 创建静态导出脚本。
 3. 保持 RED/GREEN/验证/提交/推送 循环。
 
 ## Verification Status
 
-Task 8.2 完整验证、实现提交、推送通过。
+Task 8.3 完整验证通过。
 
 最新结果：
 
 - 命令：`npm.cmd run verify`
 - 数据校验：`Validated 12 GPU records.`
-- 测试：118 pass / 0 fail
+- 测试：122 pass / 0 fail
 - 提交：`4cc767e db: 添加初始硬件平台 SQL 迁移`
 - 推送：`origin/main` 已更新
 

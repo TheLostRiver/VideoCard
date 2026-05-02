@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 8.2 完成。
+阶段：Multi-Hardware Platform Implementation Task 8.3 完成。
 
-当前任务：Task 8.2: Add Initial SQL Migration — 完成。
+当前任务：Task 8.3: Add PostgreSQL Repository Skeleton — 完成。
 
-下一步：Task 8.3: Add PostgreSQL Repository Skeleton。
+下一步：Task 9.1: Add Static Export Script。
 
 ## 工作规则
 
@@ -203,6 +203,10 @@
 - Task 8.2 测试修复完成：修正 `extractTableBlock` 函数支持嵌套括号。
 - Task 8.2 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 118 pass / 0 fail。
 - Task 8.2 推送完成：`4cc767e db: 添加初始硬件平台 SQL 迁移` 已推送到 `origin/main`。
+- Task 8.3 启动检查完成：已读取实现计划 Task 8.3、repository contract 和 JSON repository。
+- Task 8.3 RED 完成：新增 `tests/postgres-repository-contract.test.mjs`，先运行 `npm.cmd test`，按预期因 `postgres-hardware-repository.js` 缺失失败。
+- Task 8.3 GREEN 完成：新增 `src/infrastructure/postgres/postgres-hardware-repository.js`，实现完整 HardwareRepository 接口（listCategories、getCategory、listItems、getItemDetail、saveItem），使用注入的 queryClient。
+- Task 8.3 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 122 pass / 0 fail。
 
 ## 最近验证
 

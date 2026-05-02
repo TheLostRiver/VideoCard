@@ -104,6 +104,12 @@
   - test that migration file contains all required table names and primary keys;
   - use PostgreSQL SQL only, do not require a running database;
   - commit message should be `db: add initial hardware platform migration`.
+- Implementation plan Task 8.3 requires:
+  - create `src/infrastructure/postgres/postgres-hardware-repository.js`;
+  - create `tests/postgres-repository-contract.test.mjs`;
+  - use a fake query client, do not require a real database;
+  - expose same methods as `HardwareRepository`;
+  - commit message should be `feat: add postgres hardware repository skeleton`.
 
 ## Technical Decisions
 
@@ -176,6 +182,9 @@
 | PostgreSQL 表设计遵循品类无关原则 | 核心表不包含品类特定字段，通过 category_id 区分；metric_definitions 存储在数据库中，与 category schema 对应。 |
 | PostgreSQL 采用渐进迁移策略 | JSON repository 继续作为短期适配器，PostgreSQL 作为长期主数据源；JSON 保留为 import/export 格式。 |
 | SQL 迁移测试需处理嵌套括号 | `extractTableBlock` 用正则匹配 `CREATE TABLE` 后的括号内容时，`DEFAULT NOW()` 等函数调用包含嵌套括号，必须用括号深度计数而非简单正则。 |
+| PostgreSQL repository 使用注入的 queryClient | 不直接依赖 pg 库，通过 `options.queryClient` 注入，便于测试和未来连接池集成。 |
+| PostgreSQL repository 的 `saveItem` 兼容 flat 和 wrapped 格式 | `const item = detail.item || detail` 兼容 contract test 的 flat 格式和应用层的 wrapped 格式。 |
+| PostgreSQL repository 的 `getItemDetail` 返回 flat item + 附加数据 | 使用 `{ ...item, metricValues, rankingScore, sources }` 格式，contract test 可直接访问 `detail.id`，应用层可访问 `detail.metricValues`。 |
 
 ## Issues Encountered
 
