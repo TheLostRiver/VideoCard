@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 9.1 完成。
+阶段：Multi-Hardware Platform Implementation Task 9.2 完成。
 
-当前任务：Task 9.1: Add Static Export Script — 完成。
+当前任务：Task 9.2: Add JSON Import Validation Script — 完成。
 
-下一步：Task 9.2: Add JSON Import Validation Script。
+下一步：Task 10.1: Update README For Multi-Hardware Architecture。
 
 ## 工作规则
 
@@ -213,6 +213,10 @@
 - Task 9.1 GREEN 完成：新增 `scripts/export-static-data.mjs`，使用 JSON repository 导出 categories 和 items 到静态 JSON 文件；`package.json` 新增 `export:static` 脚本。
 - Task 9.1 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 125 pass / 0 fail。
 - Task 9.1 推送完成：`da30d3d feat: 添加静态硬件数据导出脚本` 已推送到 `origin/main`。
+- Task 9.2 启动检查完成：已读取实现计划 Task 9.2。
+- Task 9.2 RED 完成：新增 `tests/validate-hardware-data.test.mjs`，先运行 `npm.cmd test`，按预期因 `validate-hardware-data.mjs` 缺失失败。
+- Task 9.2 GREEN 完成：新增 `scripts/validate-hardware-data.mjs`，验证所有品类 schema 和硬件数据（含 legacy GPU 格式）；`package.json` 新增 `validate:hardware` 脚本并更新 `verify`。
+- Task 9.2 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录 + 4 品类 15 条记录，测试 128 pass / 0 fail。
 
 ## 最近验证
 

@@ -1434,11 +1434,11 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add failing validation test**
+- [x] **Step 1: Add failing validation test**
 
 Test that invalid category schema and invalid item metric value are reported.
 
-- [ ] **Step 2: Implement validation script**
+- [x] **Step 2: Implement validation script**
 
 Validate:
 
@@ -1447,7 +1447,7 @@ Validate:
 - all metric definitions;
 - all ranking scores.
 
-- [ ] **Step 3: Add script**
+- [x] **Step 3: Add script**
 
 Add:
 
@@ -1461,7 +1461,7 @@ Update verify only after this script is stable:
 "verify": "npm run validate:data && npm run validate:hardware && npm test"
 ```
 
-- [ ] **Step 4: Verify**
+- [x] **Step 4: Verify**
 
 Run:
 
@@ -1471,7 +1471,7 @@ npm.cmd run verify
 
 Expected: all tests pass.
 
-- [ ] **Step 5: Update records, commit, push**
+- [x] **Step 5: Update records, commit, push**
 
 Commit:
 

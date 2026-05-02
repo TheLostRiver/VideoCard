@@ -158,6 +158,9 @@
 | Task 9.1 RED | `npm.cmd test` | Fail because export script does not exist | Failed with `ERR_MODULE_NOT_FOUND` for `scripts/export-static-data.mjs` | Pass |
 | Task 9.1 GREEN | `npm.cmd test` | All export tests pass | 125 pass / 0 fail | Pass |
 | Task 9.1 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` and 125 pass / 0 fail | Pass |
+| Task 9.2 RED | `npm.cmd test` | Fail because validation script does not exist | Failed with `ERR_MODULE_NOT_FOUND` for `scripts/validate-hardware-data.mjs` | Pass |
+| Task 9.2 GREEN | `npm.cmd test` | All validation tests pass | 128 pass / 0 fail | Pass |
+| Task 9.2 full verify | `npm.cmd run verify` | Data validation and all tests pass | `Validated 12 GPU records.` + `Validated 4 categories, 15 items.` and 128 pass / 0 fail | Pass |
 
 ## Error Log
 
@@ -288,12 +291,26 @@
   - `scripts/export-static-data.mjs` created
   - `package.json` modified
 
+### Phase: Task 9.2 JSON Import Validation Script
+
+- **Status:** complete
+- Actions taken:
+  - 新增 `tests/validate-hardware-data.test.mjs`，RED 确认因验证脚本缺失失败
+  - 新增 `scripts/validate-hardware-data.mjs`，验证所有品类 schema 和硬件数据（含 legacy GPU 格式）
+  - `package.json` 新增 `validate:hardware` 脚本并更新 `verify`
+  - `npm.cmd run verify` 通过：128 tests / 0 fail
+- Files created/modified:
+  - `tests/validate-hardware-data.test.mjs` created
+  - `scripts/validate-hardware-data.mjs` created
+  - `tests/fixtures/bad-schemas/bad-category.schema.json` created
+  - `package.json` modified
+
 ## 5-Question Reboot Check
 
 | Question | Answer |
 |----------|--------|
-| 我在哪？ | Task 9.1 完成。准备进入 Task 9.2: Add JSON Import Validation Script。 |
-| 去哪？ | 下一个原子任务是 Task 9.2。 |
+| 我在哪？ | Task 9.2 完成。准备进入 Task 10.1: Update README For Multi-Hardware Architecture。 |
+| 去哪？ | 下一个原子任务是 Task 10.1。 |
 | 目标？ | 继续多硬件平台实现计划，一个原子任务一个原子任务推进。 |
 | 学到了什么？ | 见 `findings.md`。 |
-| 做了什么？ | 完成、验证 Task 9.1（Static Export Script）。 |
+| 做了什么？ | 完成、验证 Task 9.2（JSON Import Validation Script）。 |

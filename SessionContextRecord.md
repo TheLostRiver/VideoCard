@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 9.1: Add Static Export Script
+Task: Task 9.2: Add JSON Import Validation Script
 
-Status: Task 9.1 is complete. Created `scripts/export-static-data.mjs` exporting all categories and items from JSON repository to static JSON files. Created `tests/static-export.test.mjs` verifying category/item export and error handling. Added `export:static` npm script. Full verify passed: 12 data records, 125 tests / 0 fail.
+Status: Task 9.2 is complete. Created `scripts/validate-hardware-data.mjs` validating all category schemas and item data (including legacy GPU format). Created `tests/validate-hardware-data.test.mjs` with 3 tests. Added `validate:hardware` npm script and updated `verify` to include it. Full verify passed: 12 data records, 128 tests / 0 fail.
 
 ## Current Date
 
@@ -60,8 +60,9 @@ Core model:
 
 ## Current Files Changed In This Task
 
-- Created `scripts/export-static-data.mjs`
-- Created `tests/static-export.test.mjs`
+- Created `scripts/validate-hardware-data.mjs`
+- Created `tests/validate-hardware-data.test.mjs`
+- Created `tests/fixtures/bad-schemas/bad-category.schema.json`
 - Modified `package.json`
 - Modified `SessionContextRecord.md`
 - Modified `PROJECT_STATE.md`
@@ -72,23 +73,19 @@ Core model:
 
 ## Next Step
 
-1. 读取实现计划中 Task 9.2 的详细要求。
-2. 创建 JSON 导入验证脚本。
+1. 读取实现计划中 Task 10.1 的详细要求。
+2. 更新 README 文档。
 3. 保持 RED/GREEN/验证/提交/推送 循环。
 
 ## Verification Status
 
-Task 9.1 完整验证、实现提交、推送通过。
+Task 9.2 完整验证通过。
 
 最新结果：
 
 - 命令：`npm.cmd run verify`
-- 数据校验：`Validated 12 GPU records.`
-- 测试：125 pass / 0 fail
-- 提交：`da30d3d feat: 添加静态硬件数据导出脚本`
-- 推送：`origin/main` 已更新
-- 提交：`4cc767e db: 添加初始硬件平台 SQL 迁移`
-- 推送：`origin/main` 已更新
+- 数据校验：`Validated 12 GPU records.` + `Validated 4 categories, 15 items.`
+- 测试：128 pass / 0 fail
 
 ## Important Commands
 

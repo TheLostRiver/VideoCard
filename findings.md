@@ -117,6 +117,13 @@
   - test that export script writes category and item JSON files to a temp directory;
   - use repository interface, default to JSON repository;
   - commit message should be `feat: add static hardware data export`.
+- Implementation plan Task 9.2 requires:
+  - create `scripts/validate-hardware-data.mjs`;
+  - create `tests/validate-hardware-data.test.mjs`;
+  - add `"validate:hardware"` script to `package.json`;
+  - update `verify` to include `validate:hardware`;
+  - validate all category schemas, item files, metric definitions, and ranking scores;
+  - commit message should be `feat: add generic hardware data validation`.
 
 ## Technical Decisions
 
@@ -193,6 +200,7 @@
 | PostgreSQL repository 的 `saveItem` 兼容 flat 和 wrapped 格式 | `const item = detail.item || detail` 兼容 contract test 的 flat 格式和应用层的 wrapped 格式。 |
 | PostgreSQL repository 的 `getItemDetail` 返回 flat item + 附加数据 | 使用 `{ ...item, metricValues, rankingScore, sources }` 格式，contract test 可直接访问 `detail.id`，应用层可访问 `detail.metricValues`。 |
 | 静态导出脚本使用 JSON repository 作为默认数据源 | `createJsonHardwareRepository()` 无需配置即可读取现有 JSON 数据，导出结果可用于静态部署或前端缓存。 |
+| 验证脚本需同时支持新格式和 legacy 格式 | `src/data/hardware/*.items.json` 使用 `{ item, metricValues, rankingScore, sources }` 格式，`src/data/gpus.json` 使用 legacy flat 格式；验证逻辑需按文件类型分别处理。 |
 
 ## Issues Encountered
 

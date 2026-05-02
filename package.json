@@ -9,6 +9,7 @@
     "sync:data": "node scripts/sync-gpus.mjs",
     "validate:data": "node scripts/validate-data.mjs",
     "export:static": "node scripts/export-static-data.mjs",
-    "verify": "npm run validate:data && npm test"
+    "validate:hardware": "node scripts/validate-hardware-data.mjs",
+    "verify": "npm run validate:data && npm run validate:hardware && npm test"
   }
 }

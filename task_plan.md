@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Phase 65 complete. Ready for Task 9.2: Add JSON Import Validation Script
+Phase 67 complete. Ready for Task 10.1: Update README For Multi-Hardware Architecture
 
 ## Phases
 
@@ -535,6 +535,24 @@ Phase 65 complete. Ready for Task 9.2: Add JSON Import Validation Script
 - [x] 更新实现计划 checkbox
 - [x] 更新记录文件
 - [x] 提交并推送 Task 9.1
+- **Status:** complete
+
+### Phase 66: Task 9.2 JSON Import Validation Script
+
+- [x] 读取 Task 9.2 实现计划详情
+- [x] 新增 `tests/validate-hardware-data.test.mjs` 失败测试（RED）
+- [x] 确认 RED 因验证脚本不存在失败
+- [x] 新增 `scripts/validate-hardware-data.mjs`
+- [x] `package.json` 新增 `validate:hardware` 并更新 `verify`
+- [x] 确认 `npm.cmd test` 通过（128 pass / 0 fail）
+- **Status:** complete
+
+### Phase 67: Task 9.2 验证与记录
+
+- [x] 运行 `npm.cmd run verify` 通过
+- [x] 更新实现计划 checkbox
+- [x] 更新记录文件
+- [x] 提交并推送 Task 9.2
 - **Status:** complete
 
 ## Key Questions
