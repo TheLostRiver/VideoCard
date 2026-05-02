@@ -17,6 +17,12 @@ const desktopCpuSchema = JSON.parse(
 const desktopCpuItems = JSON.parse(
   await readFile(new URL("../src/data/hardware/desktop-cpu.items.json", import.meta.url), "utf8")
 );
+const mobileSocSchema = JSON.parse(
+  await readFile(new URL("../src/data/categories/mobile-soc.schema.json", import.meta.url), "utf8")
+);
+const mobileSocItems = JSON.parse(
+  await readFile(new URL("../src/data/hardware/mobile-soc.items.json", import.meta.url), "utf8")
+);
 
 test("GET /api/hardware/categories returns category list", async () => {
   await withApi(async ({ baseUrl }) => {
@@ -151,6 +157,14 @@ async function withApi(callback) {
   await writeFile(
     join(root, "src", "data", "hardware", "desktop-cpu.items.json"),
     JSON.stringify(desktopCpuItems, null, 2)
+  );
+  await writeFile(
+    join(root, "src", "data", "categories", "mobile-soc.schema.json"),
+    JSON.stringify(mobileSocSchema, null, 2)
+  );
+  await writeFile(
+    join(root, "src", "data", "hardware", "mobile-soc.items.json"),
+    JSON.stringify(mobileSocItems, null, 2)
   );
 
   const server = createServer(createRequestHandler({ root }));

@@ -13,6 +13,8 @@ const defaultGpuDataUrl = new URL("../../data/gpus.json", import.meta.url);
 const defaultGpuCategorySchemaUrl = new URL("../../data/categories/gpu.schema.json", import.meta.url);
 const defaultDesktopCpuDataUrl = new URL("../../data/hardware/desktop-cpu.items.json", import.meta.url);
 const defaultDesktopCpuCategorySchemaUrl = new URL("../../data/categories/desktop-cpu.schema.json", import.meta.url);
+const defaultMobileSocDataUrl = new URL("../../data/hardware/mobile-soc.items.json", import.meta.url);
+const defaultMobileSocCategorySchemaUrl = new URL("../../data/categories/mobile-soc.schema.json", import.meta.url);
 const legacyMetricPaths = new Map([
   ["gpu.release.date", "releaseDate"],
   ["gpu.confidence", "confidence"],
@@ -44,11 +46,16 @@ export function createJsonHardwareRepository(options = {}) {
     ? pathToFileURL(join(options.root, "src", "data", "hardware", "desktop-cpu.items.json"))
     : defaultDesktopCpuDataUrl);
   const desktopCpuCategorySchemaUrl = options.desktopCpuCategorySchemaUrl || defaultDesktopCpuCategorySchemaUrl;
+  const mobileSocDataUrl = options.mobileSocDataUrl || (options.root
+    ? pathToFileURL(join(options.root, "src", "data", "hardware", "mobile-soc.items.json"))
+    : defaultMobileSocDataUrl);
+  const mobileSocCategorySchemaUrl = options.mobileSocCategorySchemaUrl || defaultMobileSocCategorySchemaUrl;
 
   async function listCategories() {
     return [
       await readJson(gpuCategorySchemaUrl),
-      await readJson(desktopCpuCategorySchemaUrl)
+      await readJson(desktopCpuCategorySchemaUrl),
+      await readJson(mobileSocCategorySchemaUrl)
     ];
   }
 
@@ -66,6 +73,11 @@ export function createJsonHardwareRepository(options = {}) {
     if (query.categoryId === "desktop-cpu") {
       const cpuItems = await readJson(desktopCpuDataUrl);
       return cpuItems.map((entry) => entry.item);
+    }
+
+    if (query.categoryId === "mobile-soc") {
+      const socItems = await readJson(mobileSocDataUrl);
+      return socItems.map((entry) => entry.item);
     }
 
     return [];
@@ -91,6 +103,17 @@ export function createJsonHardwareRepository(options = {}) {
         metricValues: cpuEntry.metricValues,
         rankingScore: cpuEntry.rankingScore,
         sources: cpuEntry.sources
+      };
+    }
+
+    const socItems = await readJson(mobileSocDataUrl);
+    const socEntry = socItems.find((entry) => entry.item.id === itemId);
+    if (socEntry) {
+      return {
+        item: socEntry.item,
+        metricValues: socEntry.metricValues,
+        rankingScore: socEntry.rankingScore,
+        sources: socEntry.sources
       };
     }
 
