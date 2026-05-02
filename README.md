@@ -24,6 +24,7 @@
 关键文档：
 
 - [多硬件平台架构设计](docs/architecture/2026-04-30-multi-hardware-platform-architecture-GPT-5-Codex.md)
+- [PostgreSQL Schema 设计](docs/architecture/2026-04-30-postgresql-schema-design-GPT-5-Codex.md)
 - [多硬件平台实现计划](docs/superpowers/plans/2026-04-30-multi-hardware-platform-implementation-GPT-5-Codex.md)
 - [架构扩展性审计](docs/architecture/2026-04-30-architecture-scalability-review-GPT-5-Codex.md)
 - [上下文恢复记录](SessionContextRecord.md)
@@ -94,6 +95,18 @@ npm.cmd run sync:data
 npm.cmd run verify
 ```
 
+导出静态数据：
+
+```powershell
+npm.cmd run export:static
+```
+
+验证硬件数据完整性：
+
+```powershell
+npm.cmd run validate:hardware
+```
+
 移动版显卡必须保留 `segment: "mobile"` 和 `specs.tgpRangeW`，因为同一移动版 GPU 的实际表现会受 TGP、散热和厂商调校影响。
 
 ## 验证
@@ -105,6 +118,7 @@ npm.cmd run verify
 验证内容包括：
 
 - JSON 数据合法性。
+- 品类 schema 和硬件数据完整性（`validate:hardware`）。
 - `src/data/gpus.json` 和生成的 `src/data/gpus.js` 是否同步。
 - 前台渲染、筛选、格式化和性能工具测试。
 - 本地后台 API 保存测试。

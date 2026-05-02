@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 9.2: Add JSON Import Validation Script
+Task: Task 10.1: Update README For Multi-Hardware Architecture
 
-Status: Task 9.2 is complete. Created `scripts/validate-hardware-data.mjs` validating all category schemas and item data (including legacy GPU format). Created `tests/validate-hardware-data.test.mjs` with 3 tests. Added `validate:hardware` npm script and updated `verify` to include it. Full verify passed: 12 data records, 128 tests / 0 fail.
+Status: Task 10.1 is complete. Updated README.md with PostgreSQL schema design doc link, new scripts (export:static, validate:hardware), and updated verification section. Full verify passed: 12 data records, 128 tests / 0 fail.
 
 ## Current Date
 
@@ -60,10 +60,7 @@ Core model:
 
 ## Current Files Changed In This Task
 
-- Created `scripts/validate-hardware-data.mjs`
-- Created `tests/validate-hardware-data.test.mjs`
-- Created `tests/fixtures/bad-schemas/bad-category.schema.json`
-- Modified `package.json`
+- Modified `README.md`
 - Modified `SessionContextRecord.md`
 - Modified `PROJECT_STATE.md`
 - Modified `task_plan.md`
@@ -73,21 +70,19 @@ Core model:
 
 ## Next Step
 
-1. 读取实现计划中 Task 10.1 的详细要求。
-2. 更新 README 文档。
+1. 读取实现计划中 Task 10.2 的详细要求。
+2. 执行首次架构迁移检查点。
 3. 保持 RED/GREEN/验证/提交/推送 循环。
 
 ## Verification Status
 
-Task 9.2 完整验证、实现提交、推送通过。
+Task 10.1 完整验证通过。
 
 最新结果：
 
 - 命令：`npm.cmd run verify`
 - 数据校验：`Validated 12 GPU records.` + `Validated 4 categories, 15 items.`
 - 测试：128 pass / 0 fail
-- 提交：`d826409 feat: 添加通用硬件数据验证脚本`
-- 推送：`origin/main` 已更新
 
 ## Important Commands
 

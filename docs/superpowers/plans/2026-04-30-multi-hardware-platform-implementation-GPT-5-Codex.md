@@ -1491,7 +1491,7 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Update README sections**
+- [x] **Step 1: Update README sections**
 
 README must mention:
 
@@ -1502,7 +1502,7 @@ README must mention:
 - JSON now, PostgreSQL later;
 - schema-driven UI direction.
 
-- [ ] **Step 2: Verify**
+- [x] **Step 2: Verify**
 
 Run:
 
@@ -1512,7 +1512,7 @@ npm.cmd run verify
 
 Expected: all tests pass.
 
-- [ ] **Step 3: Update records, commit, push**
+- [x] **Step 3: Update records, commit, push**
 
 Commit:
 
