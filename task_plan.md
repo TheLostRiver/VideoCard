@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Phase 59 complete. Ready for Task 8.2: Add Initial SQL Migration
+Phase 61 complete. Ready for Task 8.3: Add PostgreSQL Repository Skeleton
 
 ## Phases
 
@@ -482,6 +482,24 @@ Phase 59 complete. Ready for Task 8.2: Add Initial SQL Migration
 - [x] 更新实现计划 checkbox
 - [x] 更新记录文件
 - [x] 提交并推送 Task 8.1
+- **Status:** complete
+
+### Phase 60: Task 8.2 Initial SQL Migration
+
+- [x] 读取 Task 8.2 实现计划详情
+- [x] 新增 `tests/database-migration-file.test.mjs` 失败测试（RED）
+- [x] 确认 RED 因迁移文件不存在失败
+- [x] 新增 `db/migrations/0001_initial_hardware_platform.sql`（13 个表）
+- [x] 修正 `extractTableBlock` 支持嵌套括号
+- [x] 确认 `npm.cmd test` 通过（118 pass / 0 fail）
+- **Status:** complete
+
+### Phase 61: Task 8.2 验证与记录
+
+- [x] 运行 `npm.cmd run verify` 通过
+- [x] 更新实现计划 checkbox
+- [x] 更新记录文件
+- [x] 提交并推送 Task 8.2
 - **Status:** complete
 
 ## Key Questions

@@ -1308,15 +1308,15 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add migration file test**
+- [x] **Step 1: Add migration file test**
 
 Test that migration file contains all required table names and primary keys.
 
-- [ ] **Step 2: Write SQL migration**
+- [x] **Step 2: Write SQL migration**
 
 Use PostgreSQL SQL only. Do not require a running database in this task.
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Run:
 
@@ -1327,7 +1327,7 @@ npm.cmd run verify
 
 Expected: all tests pass.
 
-- [ ] **Step 4: Update records, commit, push**
+- [x] **Step 4: Update records, commit, push**
 
 Commit:
 

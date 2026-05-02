@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 8.1: Add Database Schema Document
+Task: Task 8.2: Add Initial SQL Migration
 
-Status: Task 8.1 is complete. Created `docs/architecture/2026-04-30-postgresql-schema-design-GPT-5-Codex.md` with 13 PostgreSQL tables (hardware_categories, manufacturers, product_families, hardware_items, hardware_variants, metric_definitions, metric_values, benchmark_definitions, benchmark_scores, ranking_profiles, ranking_scores, source_documents, audit_logs). Document includes ER relationships, JSON-to-PostgreSQL mapping, and migration strategy. Full verify passed: 12 data records, 101 tests / 0 fail.
+Status: Task 8.2 is complete. Created `db/migrations/0001_initial_hardware_platform.sql` with all 13 tables, foreign keys, indexes, and unique constraints. Created `tests/database-migration-file.test.mjs` verifying table names, primary keys, foreign keys, and indexes. Full verify passed: 12 data records, 118 tests / 0 fail.
 
 ## Current Date
 
@@ -60,7 +60,8 @@ Core model:
 
 ## Current Files Changed In This Task
 
-- Created `docs/architecture/2026-04-30-postgresql-schema-design-GPT-5-Codex.md`
+- Created `db/migrations/0001_initial_hardware_platform.sql`
+- Created `tests/database-migration-file.test.mjs`
 - Modified `SessionContextRecord.md`
 - Modified `PROJECT_STATE.md`
 - Modified `task_plan.md`
@@ -70,21 +71,19 @@ Core model:
 
 ## Next Step
 
-1. 读取实现计划中 Task 8.2 的详细要求。
-2. 创建初始 SQL 迁移文件。
+1. 读取实现计划中 Task 8.3 的详细要求。
+2. 创建 PostgreSQL repository 骨架。
 3. 保持 RED/GREEN/验证/提交/推送 循环。
 
 ## Verification Status
 
-Task 8.1 完整验证、实现提交、推送通过。
+Task 8.2 完整验证通过。
 
 最新结果：
 
 - 命令：`npm.cmd run verify`
 - 数据校验：`Validated 12 GPU records.`
-- 测试：101 pass / 0 fail
-- 提交：`494ec9f docs: 添加 PostgreSQL schema 设计文档`
-- 推送：`origin/main` 已更新
+- 测试：118 pass / 0 fail
 
 ## Important Commands
 

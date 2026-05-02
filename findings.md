@@ -98,6 +98,12 @@
   - document 13 tables: hardware_categories, manufacturers, product_families, hardware_items, hardware_variants, metric_definitions, metric_values, benchmark_definitions, benchmark_scores, ranking_profiles, ranking_scores, source_documents, audit_logs;
   - include ER relationships, JSON-to-PostgreSQL mapping, and migration strategy;
   - commit message should be `docs: add postgres schema design`.
+- Implementation plan Task 8.2 requires:
+  - create `tests/database-migration-file.test.mjs`;
+  - create `db/migrations/0001_initial_hardware_platform.sql`;
+  - test that migration file contains all required table names and primary keys;
+  - use PostgreSQL SQL only, do not require a running database;
+  - commit message should be `db: add initial hardware platform migration`.
 
 ## Technical Decisions
 
@@ -169,6 +175,7 @@
 | PostgreSQL schema 使用 13 个核心表 | hardware_categories、manufacturers、product_families、hardware_items、hardware_variants、metric_definitions、metric_values、benchmark_definitions、benchmark_scores、ranking_profiles、ranking_scores、source_documents、audit_logs 覆盖完整领域模型。 |
 | PostgreSQL 表设计遵循品类无关原则 | 核心表不包含品类特定字段，通过 category_id 区分；metric_definitions 存储在数据库中，与 category schema 对应。 |
 | PostgreSQL 采用渐进迁移策略 | JSON repository 继续作为短期适配器，PostgreSQL 作为长期主数据源；JSON 保留为 import/export 格式。 |
+| SQL 迁移测试需处理嵌套括号 | `extractTableBlock` 用正则匹配 `CREATE TABLE` 后的括号内容时，`DEFAULT NOW()` 等函数调用包含嵌套括号，必须用括号深度计数而非简单正则。 |
 
 ## Issues Encountered
 

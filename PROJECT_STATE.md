@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 8.1 完成。
+阶段：Multi-Hardware Platform Implementation Task 8.2 完成。
 
-当前任务：Task 8.1: Add Database Schema Document — 完成。
+当前任务：Task 8.2: Add Initial SQL Migration — 完成。
 
-下一步：Task 8.2: Add Initial SQL Migration。
+下一步：Task 8.3: Add PostgreSQL Repository Skeleton。
 
 ## 工作规则
 
@@ -197,6 +197,11 @@
 - Task 8.1 完成：新增 `docs/architecture/2026-04-30-postgresql-schema-design-GPT-5-Codex.md`，包含 13 个 PostgreSQL 表（hardware_categories、manufacturers、product_families、hardware_items、hardware_variants、metric_definitions、metric_values、benchmark_definitions、benchmark_scores、ranking_profiles、ranking_scores、source_documents、audit_logs）、ER 关系、JSON 映射表和迁移策略。
 - Task 8.1 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 101 pass / 0 fail。
 - Task 8.1 推送完成：`494ec9f docs: 添加 PostgreSQL schema 设计文档` 已推送到 `origin/main`。
+- Task 8.2 启动检查完成：已读取实现计划 Task 8.2。
+- Task 8.2 RED 完成：新增 `tests/database-migration-file.test.mjs`，先运行 `npm.cmd test`，按预期因迁移文件缺失失败。
+- Task 8.2 GREEN 完成：新增 `db/migrations/0001_initial_hardware_platform.sql`，包含 13 个表、外键、索引和唯一约束。
+- Task 8.2 测试修复完成：修正 `extractTableBlock` 函数支持嵌套括号。
+- Task 8.2 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 118 pass / 0 fail。
 
 ## 最近验证
 
