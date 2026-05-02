@@ -15,6 +15,8 @@ const defaultDesktopCpuDataUrl = new URL("../../data/hardware/desktop-cpu.items.
 const defaultDesktopCpuCategorySchemaUrl = new URL("../../data/categories/desktop-cpu.schema.json", import.meta.url);
 const defaultMobileSocDataUrl = new URL("../../data/hardware/mobile-soc.items.json", import.meta.url);
 const defaultMobileSocCategorySchemaUrl = new URL("../../data/categories/mobile-soc.schema.json", import.meta.url);
+const defaultAppleSiliconDataUrl = new URL("../../data/hardware/apple-silicon.items.json", import.meta.url);
+const defaultAppleSiliconCategorySchemaUrl = new URL("../../data/categories/apple-silicon.schema.json", import.meta.url);
 const legacyMetricPaths = new Map([
   ["gpu.release.date", "releaseDate"],
   ["gpu.confidence", "confidence"],
@@ -50,12 +52,17 @@ export function createJsonHardwareRepository(options = {}) {
     ? pathToFileURL(join(options.root, "src", "data", "hardware", "mobile-soc.items.json"))
     : defaultMobileSocDataUrl);
   const mobileSocCategorySchemaUrl = options.mobileSocCategorySchemaUrl || defaultMobileSocCategorySchemaUrl;
+  const appleSiliconDataUrl = options.appleSiliconDataUrl || (options.root
+    ? pathToFileURL(join(options.root, "src", "data", "hardware", "apple-silicon.items.json"))
+    : defaultAppleSiliconDataUrl);
+  const appleSiliconCategorySchemaUrl = options.appleSiliconCategorySchemaUrl || defaultAppleSiliconCategorySchemaUrl;
 
   async function listCategories() {
     return [
       await readJson(gpuCategorySchemaUrl),
       await readJson(desktopCpuCategorySchemaUrl),
-      await readJson(mobileSocCategorySchemaUrl)
+      await readJson(mobileSocCategorySchemaUrl),
+      await readJson(appleSiliconCategorySchemaUrl)
     ];
   }
 
@@ -78,6 +85,11 @@ export function createJsonHardwareRepository(options = {}) {
     if (query.categoryId === "mobile-soc") {
       const socItems = await readJson(mobileSocDataUrl);
       return socItems.map((entry) => entry.item);
+    }
+
+    if (query.categoryId === "apple-silicon") {
+      const appleItems = await readJson(appleSiliconDataUrl);
+      return appleItems.map((entry) => entry.item);
     }
 
     return [];
@@ -114,6 +126,17 @@ export function createJsonHardwareRepository(options = {}) {
         metricValues: socEntry.metricValues,
         rankingScore: socEntry.rankingScore,
         sources: socEntry.sources
+      };
+    }
+
+    const appleItems = await readJson(appleSiliconDataUrl);
+    const appleEntry = appleItems.find((entry) => entry.item.id === itemId);
+    if (appleEntry) {
+      return {
+        item: appleEntry.item,
+        metricValues: appleEntry.metricValues,
+        rankingScore: appleEntry.rankingScore,
+        sources: appleEntry.sources
       };
     }
 

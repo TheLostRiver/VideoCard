@@ -23,6 +23,12 @@ const mobileSocSchema = JSON.parse(
 const mobileSocItems = JSON.parse(
   await readFile(new URL("../src/data/hardware/mobile-soc.items.json", import.meta.url), "utf8")
 );
+const appleSiliconSchema = JSON.parse(
+  await readFile(new URL("../src/data/categories/apple-silicon.schema.json", import.meta.url), "utf8")
+);
+const appleSiliconItems = JSON.parse(
+  await readFile(new URL("../src/data/hardware/apple-silicon.items.json", import.meta.url), "utf8")
+);
 
 test("GET /api/hardware/categories returns category list", async () => {
   await withApi(async ({ baseUrl }) => {
@@ -165,6 +171,14 @@ async function withApi(callback) {
   await writeFile(
     join(root, "src", "data", "hardware", "mobile-soc.items.json"),
     JSON.stringify(mobileSocItems, null, 2)
+  );
+  await writeFile(
+    join(root, "src", "data", "categories", "apple-silicon.schema.json"),
+    JSON.stringify(appleSiliconSchema, null, 2)
+  );
+  await writeFile(
+    join(root, "src", "data", "hardware", "apple-silicon.items.json"),
+    JSON.stringify(appleSiliconItems, null, 2)
   );
 
   const server = createServer(createRequestHandler({ root }));
