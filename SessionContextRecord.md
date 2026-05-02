@@ -78,13 +78,15 @@ Core model:
 
 ## Verification Status
 
-Task 9.1 完整验证通过。
+Task 9.1 完整验证、实现提交、推送通过。
 
 最新结果：
 
 - 命令：`npm.cmd run verify`
 - 数据校验：`Validated 12 GPU records.`
 - 测试：125 pass / 0 fail
+- 提交：`da30d3d feat: 添加静态硬件数据导出脚本`
+- 推送：`origin/main` 已更新
 - 提交：`4cc767e db: 添加初始硬件平台 SQL 迁移`
 - 推送：`origin/main` 已更新
 

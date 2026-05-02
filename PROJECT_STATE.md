@@ -212,6 +212,7 @@
 - Task 9.1 RED 完成：新增 `tests/static-export.test.mjs`，先运行 `npm.cmd test`，按预期因 `export-static-data.mjs` 缺失失败。
 - Task 9.1 GREEN 完成：新增 `scripts/export-static-data.mjs`，使用 JSON repository 导出 categories 和 items 到静态 JSON 文件；`package.json` 新增 `export:static` 脚本。
 - Task 9.1 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 125 pass / 0 fail。
+- Task 9.1 推送完成：`da30d3d feat: 添加静态硬件数据导出脚本` 已推送到 `origin/main`。
 
 ## 最近验证
 
@@ -316,9 +317,11 @@
 - Task 8.1 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 101 pass / 0 fail。
 - Task 8.2 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 118 pass / 0 fail。
 - Task 8.3 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 122 pass / 0 fail。
+- Task 9.1 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 125 pass / 0 fail。
 
 ## 最近提交
 
+- `da30d3d feat: 添加静态硬件数据导出脚本`
 - `05822d3 feat: 添加 PostgreSQL 硬件仓库骨架`
 - `4cc767e db: 添加初始硬件平台 SQL 迁移`
 - `494ec9f docs: 添加 PostgreSQL schema 设计文档`
