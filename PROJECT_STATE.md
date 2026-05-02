@@ -202,6 +202,7 @@
 - Task 8.2 GREEN 完成：新增 `db/migrations/0001_initial_hardware_platform.sql`，包含 13 个表、外键、索引和唯一约束。
 - Task 8.2 测试修复完成：修正 `extractTableBlock` 函数支持嵌套括号。
 - Task 8.2 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 118 pass / 0 fail。
+- Task 8.2 推送完成：`4cc767e db: 添加初始硬件平台 SQL 迁移` 已推送到 `origin/main`。
 
 ## 最近验证
 
@@ -304,9 +305,11 @@
 - Task 6.3 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 95 pass / 0 fail。
 - Task 6.3 浏览器烟测：服务器和静态文件正常访问（200），对比页面客户端渲染依赖测试覆盖。
 - Task 8.1 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 101 pass / 0 fail。
+- Task 8.2 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 118 pass / 0 fail。
 
 ## 最近提交
 
+- `4cc767e db: 添加初始硬件平台 SQL 迁移`
 - `494ec9f docs: 添加 PostgreSQL schema 设计文档`
 - `8e67f98 data: 添加 Apple Silicon 品类 schema`
 - `10ae624 data: 添加手机 SoC 品类 schema`
