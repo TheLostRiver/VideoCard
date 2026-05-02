@@ -8,34 +8,206 @@
       "generation": "Snapdragon 8",
       "architecture": "Cortex-X4 / A720 / A520",
       "releaseDate": "2023-10",
-      "marketSegmentIds": ["mobile"],
+      "marketSegmentIds": [
+        "mobile"
+      ],
       "status": "published",
-      "notes": ["Flagship Android SoC 2024, strong GPU and AI performance."],
+      "notes": [
+        "Flagship Android SoC 2024, strong GPU and AI performance."
+      ],
       "createdAt": "seed-data",
       "updatedAt": "seed-data"
     },
     "metricValues": [
-      { "id": "snapdragon-8-gen-3:soc.performance.index", "itemId": "snapdragon-8-gen-3", "metricId": "soc.performance.index", "valueNumber": 210, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.release.date", "itemId": "snapdragon-8-gen-3", "metricId": "soc.release.date", "valueText": "2023-10", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.process.node", "itemId": "snapdragon-8-gen-3", "metricId": "soc.process.node", "valueText": "TSMC 4nm", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.confidence", "itemId": "snapdragon-8-gen-3", "metricId": "soc.confidence", "valueText": "estimated", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.cpu.cluster", "itemId": "snapdragon-8-gen-3", "metricId": "soc.cpu.cluster", "valueText": "1x Cortex-X4 + 3x A720 + 2x A720 + 2x A520", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.cpu.cores", "itemId": "snapdragon-8-gen-3", "metricId": "soc.cpu.cores", "valueNumber": 8, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.cpu.maxClock", "itemId": "snapdragon-8-gen-3", "metricId": "soc.cpu.maxClock", "valueNumber": 3300, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.gpu.name", "itemId": "snapdragon-8-gen-3", "metricId": "soc.gpu.name", "valueText": "Adreno 750", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.gpu.cores", "itemId": "snapdragon-8-gen-3", "metricId": "soc.gpu.cores", "valueNumber": 6, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.npu.ai", "itemId": "snapdragon-8-gen-3", "metricId": "soc.npu.ai", "valueText": "Hexagon NPU, 45 TOPS", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.modem", "itemId": "snapdragon-8-gen-3", "metricId": "soc.modem", "valueText": "Snapdragon X75 5G", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.memory.type", "itemId": "snapdragon-8-gen-3", "metricId": "soc.memory.type", "valueText": "LPDDR5X", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.memory.maxSize", "itemId": "snapdragon-8-gen-3", "metricId": "soc.memory.maxSize", "valueText": "24GB", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.power.display", "itemId": "snapdragon-8-gen-3", "metricId": "soc.power.display", "valueText": "~12W peak", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.benchmark.geekbenchSingle", "itemId": "snapdragon-8-gen-3", "metricId": "soc.benchmark.geekbenchSingle", "valueNumber": 2200, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.benchmark.geekbenchMulti", "itemId": "snapdragon-8-gen-3", "metricId": "soc.benchmark.geekbenchMulti", "valueNumber": 7200, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.benchmark.antutuTotal", "itemId": "snapdragon-8-gen-3", "metricId": "soc.benchmark.antutuTotal", "valueNumber": 2100000, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.benchmark.wildLife", "itemId": "snapdragon-8-gen-3", "metricId": "soc.benchmark.wildLife", "valueNumber": 5100, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.benchmark.sourceNote", "itemId": "snapdragon-8-gen-3", "metricId": "soc.benchmark.sourceNote", "valueText": "Estimated from public benchmarks", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.device.tier", "itemId": "snapdragon-8-gen-3", "metricId": "soc.device.tier", "valueText": "Flagship Android phones 2024", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "snapdragon-8-gen-3:soc.device.efficiencyNote", "itemId": "snapdragon-8-gen-3", "metricId": "soc.device.efficiencyNote", "valueText": "Excellent GPU and AI performance, 4nm process.", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" }
+      {
+        "id": "snapdragon-8-gen-3:soc.performance.index",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.performance.index",
+        "valueNumber": 210,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.release.date",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.release.date",
+        "valueText": "2023-10",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.process.node",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.process.node",
+        "valueText": "TSMC 4nm",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.confidence",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.confidence",
+        "valueText": "estimated",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.cpu.cluster",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.cpu.cluster",
+        "valueText": "1x Cortex-X4 + 3x A720 + 2x A720 + 2x A520",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.cpu.cores",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.cpu.cores",
+        "valueNumber": 8,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.cpu.maxClock",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.cpu.maxClock",
+        "valueNumber": 3300,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.gpu.name",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.gpu.name",
+        "valueText": "Adreno 750",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.gpu.cores",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.gpu.cores",
+        "valueNumber": 6,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.npu.ai",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.npu.ai",
+        "valueText": "Hexagon NPU, 45 TOPS",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.modem",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.modem",
+        "valueText": "Snapdragon X75 5G",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.memory.type",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.memory.type",
+        "valueText": "LPDDR5X",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.memory.maxSize",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.memory.maxSize",
+        "valueText": "24GB",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.power.display",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.power.display",
+        "valueText": "~12W peak",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.benchmark.geekbenchSingle",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.benchmark.geekbenchSingle",
+        "valueNumber": 2200,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.benchmark.geekbenchMulti",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.benchmark.geekbenchMulti",
+        "valueNumber": 7200,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.benchmark.antutuTotal",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.benchmark.antutuTotal",
+        "valueNumber": 2100000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.benchmark.wildLife",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.benchmark.wildLife",
+        "valueNumber": 5100,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.benchmark.sourceNote",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.benchmark.sourceNote",
+        "valueText": "Estimated from public benchmarks",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.device.tier",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.device.tier",
+        "valueText": "Flagship Android phones 2024",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-3:soc.device.efficiencyNote",
+        "itemId": "snapdragon-8-gen-3",
+        "metricId": "soc.device.efficiencyNote",
+        "valueText": "Excellent GPU and AI performance, 4nm process.",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      }
     ],
     "rankingScore": {
       "id": "snapdragon-8-gen-3:ranking:mobile-soc-performance",
@@ -48,7 +220,12 @@
       "updatedAt": "seed-data"
     },
     "sources": [
-      { "id": "snapdragon-8-gen-3:source:1", "label": "Qualcomm Official", "url": "https://www.qualcomm.com/products/mobile/snapdragon/smartphones/snapdragon-8-series-mobile-platforms/snapdragon-8-gen-3-mobile-platform", "sourceType": "official" }
+      {
+        "id": "snapdragon-8-gen-3:source:1",
+        "label": "Qualcomm Official",
+        "url": "https://www.qualcomm.com/products/mobile/snapdragon/smartphones/snapdragon-8-series-mobile-platforms/snapdragon-8-gen-3-mobile-platform",
+        "sourceType": "official"
+      }
     ]
   },
   {
@@ -60,34 +237,206 @@
       "generation": "Dimensity 9000",
       "architecture": "Cortex-X4 / A720",
       "releaseDate": "2023-11",
-      "marketSegmentIds": ["mobile"],
+      "marketSegmentIds": [
+        "mobile"
+      ],
       "status": "published",
-      "notes": ["All big-core design, no efficiency cores, strong multi-thread."],
+      "notes": [
+        "All big-core design, no efficiency cores, strong multi-thread."
+      ],
       "createdAt": "seed-data",
       "updatedAt": "seed-data"
     },
     "metricValues": [
-      { "id": "dimensity-9300:soc.performance.index", "itemId": "dimensity-9300", "metricId": "soc.performance.index", "valueNumber": 205, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.release.date", "itemId": "dimensity-9300", "metricId": "soc.release.date", "valueText": "2023-11", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.process.node", "itemId": "dimensity-9300", "metricId": "soc.process.node", "valueText": "TSMC 4nm (N4P)", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.confidence", "itemId": "dimensity-9300", "metricId": "soc.confidence", "valueText": "estimated", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.cpu.cluster", "itemId": "dimensity-9300", "metricId": "soc.cpu.cluster", "valueText": "1x Cortex-X4 + 3x Cortex-X4 + 4x A720", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.cpu.cores", "itemId": "dimensity-9300", "metricId": "soc.cpu.cores", "valueNumber": 8, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.cpu.maxClock", "itemId": "dimensity-9300", "metricId": "soc.cpu.maxClock", "valueNumber": 3250, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.gpu.name", "itemId": "dimensity-9300", "metricId": "soc.gpu.name", "valueText": "Immortalis-G720 MC12", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.gpu.cores", "itemId": "dimensity-9300", "metricId": "soc.gpu.cores", "valueNumber": 12, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.npu.ai", "itemId": "dimensity-9300", "metricId": "soc.npu.ai", "valueText": "APU 790, 46 TOPS", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.modem", "itemId": "dimensity-9300", "metricId": "soc.modem", "valueText": "MediaTek 5G (sub-6 + mmWave)", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.memory.type", "itemId": "dimensity-9300", "metricId": "soc.memory.type", "valueText": "LPDDR5X", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.memory.maxSize", "itemId": "dimensity-9300", "metricId": "soc.memory.maxSize", "valueText": "24GB", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.power.display", "itemId": "dimensity-9300", "metricId": "soc.power.display", "valueText": "~12W peak", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.benchmark.geekbenchSingle", "itemId": "dimensity-9300", "metricId": "soc.benchmark.geekbenchSingle", "valueNumber": 2150, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.benchmark.geekbenchMulti", "itemId": "dimensity-9300", "metricId": "soc.benchmark.geekbenchMulti", "valueNumber": 7000, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.benchmark.antutuTotal", "itemId": "dimensity-9300", "metricId": "soc.benchmark.antutuTotal", "valueNumber": 2050000, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.benchmark.wildLife", "itemId": "dimensity-9300", "metricId": "soc.benchmark.wildLife", "valueNumber": 4800, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.benchmark.sourceNote", "itemId": "dimensity-9300", "metricId": "soc.benchmark.sourceNote", "valueText": "Estimated from public benchmarks", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.device.tier", "itemId": "dimensity-9300", "metricId": "soc.device.tier", "valueText": "Flagship Android phones 2024", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "dimensity-9300:soc.device.efficiencyNote", "itemId": "dimensity-9300", "metricId": "soc.device.efficiencyNote", "valueText": "All big-core design, excellent multi-thread, competitive GPU.", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" }
+      {
+        "id": "dimensity-9300:soc.performance.index",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.performance.index",
+        "valueNumber": 205,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.release.date",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.release.date",
+        "valueText": "2023-11",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.process.node",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.process.node",
+        "valueText": "TSMC 4nm (N4P)",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.confidence",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.confidence",
+        "valueText": "estimated",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.cpu.cluster",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.cpu.cluster",
+        "valueText": "1x Cortex-X4 + 3x Cortex-X4 + 4x A720",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.cpu.cores",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.cpu.cores",
+        "valueNumber": 8,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.cpu.maxClock",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.cpu.maxClock",
+        "valueNumber": 3250,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.gpu.name",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.gpu.name",
+        "valueText": "Immortalis-G720 MC12",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.gpu.cores",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.gpu.cores",
+        "valueNumber": 12,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.npu.ai",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.npu.ai",
+        "valueText": "APU 790, 46 TOPS",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.modem",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.modem",
+        "valueText": "MediaTek 5G (sub-6 + mmWave)",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.memory.type",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.memory.type",
+        "valueText": "LPDDR5X",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.memory.maxSize",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.memory.maxSize",
+        "valueText": "24GB",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.power.display",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.power.display",
+        "valueText": "~12W peak",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.benchmark.geekbenchSingle",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.benchmark.geekbenchSingle",
+        "valueNumber": 2150,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.benchmark.geekbenchMulti",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.benchmark.geekbenchMulti",
+        "valueNumber": 7000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.benchmark.antutuTotal",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.benchmark.antutuTotal",
+        "valueNumber": 2050000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.benchmark.wildLife",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.benchmark.wildLife",
+        "valueNumber": 4800,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.benchmark.sourceNote",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.benchmark.sourceNote",
+        "valueText": "Estimated from public benchmarks",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.device.tier",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.device.tier",
+        "valueText": "Flagship Android phones 2024",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9300:soc.device.efficiencyNote",
+        "itemId": "dimensity-9300",
+        "metricId": "soc.device.efficiencyNote",
+        "valueText": "All big-core design, excellent multi-thread, competitive GPU.",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      }
     ],
     "rankingScore": {
       "id": "dimensity-9300:ranking:mobile-soc-performance",
@@ -100,7 +449,1386 @@
       "updatedAt": "seed-data"
     },
     "sources": [
-      { "id": "dimensity-9300:source:1", "label": "MediaTek Official", "url": "https://www.mediatek.com/products/smartphones-2/mediatek-dimensity-9300", "sourceType": "official" }
+      {
+        "id": "dimensity-9300:source:1",
+        "label": "MediaTek Official",
+        "url": "https://www.mediatek.com/products/smartphones-2/mediatek-dimensity-9300",
+        "sourceType": "official"
+      }
+    ]
+  },
+  {
+    "item": {
+      "id": "snapdragon-8-gen-2",
+      "categoryId": "mobile-soc",
+      "name": "Qualcomm Snapdragon 8 Gen 2",
+      "manufacturerId": "qualcomm",
+      "generation": "Snapdragon 8",
+      "architecture": "Cortex-X3 / A715 / A710 / A510",
+      "releaseDate": "2022-11",
+      "marketSegmentIds": [
+        "mobile"
+      ],
+      "status": "published",
+      "notes": [
+        "2023 flagship SoC, excellent GPU performance."
+      ],
+      "createdAt": "seed-data",
+      "updatedAt": "seed-data"
+    },
+    "metricValues": [
+      {
+        "id": "snapdragon-8-gen-2:soc.performance.index",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.performance.index",
+        "valueNumber": 190,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.release.date",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.release.date",
+        "valueText": "2022-11",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.process.node",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.process.node",
+        "valueText": "TSMC 4nm",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.confidence",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.confidence",
+        "valueText": "estimated",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.cpu.cluster",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.cpu.cluster",
+        "valueText": "1x Cortex-X3 + 2x A715 + 2x A710 + 3x A510",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.cpu.cores",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.cpu.cores",
+        "valueNumber": 8,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.cpu.maxClock",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.cpu.maxClock",
+        "valueNumber": 3200,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.gpu.name",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.gpu.name",
+        "valueText": "Adreno 740",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.gpu.cores",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.gpu.cores",
+        "valueNumber": 6,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.npu.ai",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.npu.ai",
+        "valueText": "Hexagon NPU, 32 TOPS",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.modem",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.modem",
+        "valueText": "Snapdragon X70 5G",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.memory.type",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.memory.type",
+        "valueText": "LPDDR5X",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.memory.maxSize",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.memory.maxSize",
+        "valueText": "16GB",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.power.display",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.power.display",
+        "valueText": "~10W peak",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.benchmark.geekbenchSingle",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.benchmark.geekbenchSingle",
+        "valueNumber": 2050,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.benchmark.geekbenchMulti",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.benchmark.geekbenchMulti",
+        "valueNumber": 5600,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.benchmark.antutuTotal",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.benchmark.antutuTotal",
+        "valueNumber": 1550000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.benchmark.wildLife",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.benchmark.wildLife",
+        "valueNumber": 3800,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.benchmark.sourceNote",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.benchmark.sourceNote",
+        "valueText": "Estimated from public benchmarks",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.device.tier",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.device.tier",
+        "valueText": "Flagship Android phones 2023",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8-gen-2:soc.device.efficiencyNote",
+        "itemId": "snapdragon-8-gen-2",
+        "metricId": "soc.device.efficiencyNote",
+        "valueText": "Excellent GPU, strong overall performance.",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      }
+    ],
+    "rankingScore": {
+      "id": "snapdragon-8-gen-2:ranking:mobile-soc-performance",
+      "itemId": "snapdragon-8-gen-2",
+      "rankingProfileId": "mobile-soc-performance",
+      "score": 190,
+      "tierId": "flagship",
+      "confidence": "estimated",
+      "formulaVersion": "v1",
+      "updatedAt": "seed-data"
+    },
+    "sources": [
+      {
+        "id": "snapdragon-8-gen-2:source:1",
+        "label": "Public benchmarks",
+        "url": "",
+        "sourceType": "reference"
+      }
+    ]
+  },
+  {
+    "item": {
+      "id": "snapdragon-8s-gen-3",
+      "categoryId": "mobile-soc",
+      "name": "Qualcomm Snapdragon 8s Gen 3",
+      "manufacturerId": "qualcomm",
+      "generation": "Snapdragon 8",
+      "architecture": "Cortex-X4 / A720 / A520",
+      "releaseDate": "2024-03",
+      "marketSegmentIds": [
+        "mobile"
+      ],
+      "status": "published",
+      "notes": [
+        "Sub-flagship SoC, near 8 Gen 3 performance at lower cost."
+      ],
+      "createdAt": "seed-data",
+      "updatedAt": "seed-data"
+    },
+    "metricValues": [
+      {
+        "id": "snapdragon-8s-gen-3:soc.performance.index",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.performance.index",
+        "valueNumber": 185,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.release.date",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.release.date",
+        "valueText": "2024-03",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.process.node",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.process.node",
+        "valueText": "TSMC 4nm",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.confidence",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.confidence",
+        "valueText": "estimated",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.cpu.cluster",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.cpu.cluster",
+        "valueText": "1x Cortex-X4 + 3x A720 + 4x A520",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.cpu.cores",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.cpu.cores",
+        "valueNumber": 8,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.cpu.maxClock",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.cpu.maxClock",
+        "valueNumber": 3000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.gpu.name",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.gpu.name",
+        "valueText": "Adreno 735",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.gpu.cores",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.gpu.cores",
+        "valueNumber": 4,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.npu.ai",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.npu.ai",
+        "valueText": "Hexagon NPU, 32 TOPS",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.modem",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.modem",
+        "valueText": "Snapdragon X70 5G",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.memory.type",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.memory.type",
+        "valueText": "LPDDR5X",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.memory.maxSize",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.memory.maxSize",
+        "valueText": "16GB",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.power.display",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.power.display",
+        "valueText": "~8W peak",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.benchmark.geekbenchSingle",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.benchmark.geekbenchSingle",
+        "valueNumber": 2000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.benchmark.geekbenchMulti",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.benchmark.geekbenchMulti",
+        "valueNumber": 5500,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.benchmark.antutuTotal",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.benchmark.antutuTotal",
+        "valueNumber": 1450000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.benchmark.wildLife",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.benchmark.wildLife",
+        "valueNumber": 3200,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.benchmark.sourceNote",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.benchmark.sourceNote",
+        "valueText": "Estimated from public benchmarks",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.device.tier",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.device.tier",
+        "valueText": "Upper mid-range phones 2024",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-8s-gen-3:soc.device.efficiencyNote",
+        "itemId": "snapdragon-8s-gen-3",
+        "metricId": "soc.device.efficiencyNote",
+        "valueText": "Near-flagship performance, better efficiency.",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      }
+    ],
+    "rankingScore": {
+      "id": "snapdragon-8s-gen-3:ranking:mobile-soc-performance",
+      "itemId": "snapdragon-8s-gen-3",
+      "rankingProfileId": "mobile-soc-performance",
+      "score": 185,
+      "tierId": "high",
+      "confidence": "estimated",
+      "formulaVersion": "v1",
+      "updatedAt": "seed-data"
+    },
+    "sources": [
+      {
+        "id": "snapdragon-8s-gen-3:source:1",
+        "label": "Public benchmarks",
+        "url": "",
+        "sourceType": "reference"
+      }
+    ]
+  },
+  {
+    "item": {
+      "id": "dimensity-9200",
+      "categoryId": "mobile-soc",
+      "name": "MediaTek Dimensity 9200",
+      "manufacturerId": "mediatek",
+      "generation": "Dimensity 9000",
+      "architecture": "Cortex-X3 / A715 / A510",
+      "releaseDate": "2022-11",
+      "marketSegmentIds": [
+        "mobile"
+      ],
+      "status": "published",
+      "notes": [
+        "First 4nm flagship from MediaTek."
+      ],
+      "createdAt": "seed-data",
+      "updatedAt": "seed-data"
+    },
+    "metricValues": [
+      {
+        "id": "dimensity-9200:soc.performance.index",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.performance.index",
+        "valueNumber": 180,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.release.date",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.release.date",
+        "valueText": "2022-11",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.process.node",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.process.node",
+        "valueText": "TSMC 4nm (N4P)",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.confidence",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.confidence",
+        "valueText": "estimated",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.cpu.cluster",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.cpu.cluster",
+        "valueText": "1x Cortex-X3 + 3x A715 + 4x A510",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.cpu.cores",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.cpu.cores",
+        "valueNumber": 8,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.cpu.maxClock",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.cpu.maxClock",
+        "valueNumber": 3050,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.gpu.name",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.gpu.name",
+        "valueText": "Immortalis-G715 MC11",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.gpu.cores",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.gpu.cores",
+        "valueNumber": 11,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.npu.ai",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.npu.ai",
+        "valueText": "APU 690, 35 TOPS",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.modem",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.modem",
+        "valueText": "MediaTek 5G (sub-6 + mmWave)",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.memory.type",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.memory.type",
+        "valueText": "LPDDR5X",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.memory.maxSize",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.memory.maxSize",
+        "valueText": "16GB",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.power.display",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.power.display",
+        "valueText": "~10W peak",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.benchmark.geekbenchSingle",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.benchmark.geekbenchSingle",
+        "valueNumber": 1950,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.benchmark.geekbenchMulti",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.benchmark.geekbenchMulti",
+        "valueNumber": 5400,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.benchmark.antutuTotal",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.benchmark.antutuTotal",
+        "valueNumber": 1450000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.benchmark.wildLife",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.benchmark.wildLife",
+        "valueNumber": 3500,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.benchmark.sourceNote",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.benchmark.sourceNote",
+        "valueText": "Estimated from public benchmarks",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.device.tier",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.device.tier",
+        "valueText": "Flagship Android phones 2023",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-9200:soc.device.efficiencyNote",
+        "itemId": "dimensity-9200",
+        "metricId": "soc.device.efficiencyNote",
+        "valueText": "Strong GPU with ray tracing support.",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      }
+    ],
+    "rankingScore": {
+      "id": "dimensity-9200:ranking:mobile-soc-performance",
+      "itemId": "dimensity-9200",
+      "rankingProfileId": "mobile-soc-performance",
+      "score": 180,
+      "tierId": "flagship",
+      "confidence": "estimated",
+      "formulaVersion": "v1",
+      "updatedAt": "seed-data"
+    },
+    "sources": [
+      {
+        "id": "dimensity-9200:source:1",
+        "label": "Public benchmarks",
+        "url": "",
+        "sourceType": "reference"
+      }
+    ]
+  },
+  {
+    "item": {
+      "id": "snapdragon-7-gen-3",
+      "categoryId": "mobile-soc",
+      "name": "Qualcomm Snapdragon 7 Gen 3",
+      "manufacturerId": "qualcomm",
+      "generation": "Snapdragon 7",
+      "architecture": "Cortex-A715 / A510",
+      "releaseDate": "2023-11",
+      "marketSegmentIds": [
+        "mobile"
+      ],
+      "status": "published",
+      "notes": [
+        "Upper mid-range SoC, good efficiency."
+      ],
+      "createdAt": "seed-data",
+      "updatedAt": "seed-data"
+    },
+    "metricValues": [
+      {
+        "id": "snapdragon-7-gen-3:soc.performance.index",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.performance.index",
+        "valueNumber": 140,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.release.date",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.release.date",
+        "valueText": "2023-11",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.process.node",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.process.node",
+        "valueText": "TSMC 4nm",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.confidence",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.confidence",
+        "valueText": "estimated",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.cpu.cluster",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.cpu.cluster",
+        "valueText": "1x Cortex-A715 + 3x A715 + 4x A510",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.cpu.cores",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.cpu.cores",
+        "valueNumber": 8,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.cpu.maxClock",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.cpu.maxClock",
+        "valueNumber": 2630,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.gpu.name",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.gpu.name",
+        "valueText": "Adreno 720",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.gpu.cores",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.gpu.cores",
+        "valueNumber": 4,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.npu.ai",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.npu.ai",
+        "valueText": "Hexagon NPU, 12 TOPS",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.modem",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.modem",
+        "valueText": "Snapdragon X63 5G",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.memory.type",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.memory.type",
+        "valueText": "LPDDR5",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.memory.maxSize",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.memory.maxSize",
+        "valueText": "12GB",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.power.display",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.power.display",
+        "valueText": "~6W peak",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.benchmark.geekbenchSingle",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.benchmark.geekbenchSingle",
+        "valueNumber": 1500,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.benchmark.geekbenchMulti",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.benchmark.geekbenchMulti",
+        "valueNumber": 4000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.benchmark.antutuTotal",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.benchmark.antutuTotal",
+        "valueNumber": 900000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.benchmark.wildLife",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.benchmark.wildLife",
+        "valueNumber": 1800,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.benchmark.sourceNote",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.benchmark.sourceNote",
+        "valueText": "Estimated from public benchmarks",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.device.tier",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.device.tier",
+        "valueText": "Mid-range phones 2024",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "snapdragon-7-gen-3:soc.device.efficiencyNote",
+        "itemId": "snapdragon-7-gen-3",
+        "metricId": "soc.device.efficiencyNote",
+        "valueText": "Good balance of performance and battery life.",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      }
+    ],
+    "rankingScore": {
+      "id": "snapdragon-7-gen-3:ranking:mobile-soc-performance",
+      "itemId": "snapdragon-7-gen-3",
+      "rankingProfileId": "mobile-soc-performance",
+      "score": 140,
+      "tierId": "mainstream",
+      "confidence": "estimated",
+      "formulaVersion": "v1",
+      "updatedAt": "seed-data"
+    },
+    "sources": [
+      {
+        "id": "snapdragon-7-gen-3:source:1",
+        "label": "Public benchmarks",
+        "url": "",
+        "sourceType": "reference"
+      }
+    ]
+  },
+  {
+    "item": {
+      "id": "exynos-2400",
+      "categoryId": "mobile-soc",
+      "name": "Samsung Exynos 2400",
+      "manufacturerId": "samsung",
+      "generation": "Exynos 2000",
+      "architecture": "Cortex-X4 / A720 / A520",
+      "releaseDate": "2024-01",
+      "marketSegmentIds": [
+        "mobile"
+      ],
+      "status": "published",
+      "notes": [
+        "Samsung's flagship SoC for Galaxy S24 series."
+      ],
+      "createdAt": "seed-data",
+      "updatedAt": "seed-data"
+    },
+    "metricValues": [
+      {
+        "id": "exynos-2400:soc.performance.index",
+        "itemId": "exynos-2400",
+        "metricId": "soc.performance.index",
+        "valueNumber": 185,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.release.date",
+        "itemId": "exynos-2400",
+        "metricId": "soc.release.date",
+        "valueText": "2024-01",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.process.node",
+        "itemId": "exynos-2400",
+        "metricId": "soc.process.node",
+        "valueText": "Samsung 4nm",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.confidence",
+        "itemId": "exynos-2400",
+        "metricId": "soc.confidence",
+        "valueText": "estimated",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.cpu.cluster",
+        "itemId": "exynos-2400",
+        "metricId": "soc.cpu.cluster",
+        "valueText": "1x Cortex-X4 + 2x A720 + 3x A720 + 4x A520",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.cpu.cores",
+        "itemId": "exynos-2400",
+        "metricId": "soc.cpu.cores",
+        "valueNumber": 10,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.cpu.maxClock",
+        "itemId": "exynos-2400",
+        "metricId": "soc.cpu.maxClock",
+        "valueNumber": 3200,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.gpu.name",
+        "itemId": "exynos-2400",
+        "metricId": "soc.gpu.name",
+        "valueText": "Xclipse 940 (AMD RDNA 3)",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.gpu.cores",
+        "itemId": "exynos-2400",
+        "metricId": "soc.gpu.cores",
+        "valueNumber": 6,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.npu.ai",
+        "itemId": "exynos-2400",
+        "metricId": "soc.npu.ai",
+        "valueText": "Dual NPU, 35 TOPS",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.modem",
+        "itemId": "exynos-2400",
+        "metricId": "soc.modem",
+        "valueText": "Exynos 5G (sub-6 + mmWave)",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.memory.type",
+        "itemId": "exynos-2400",
+        "metricId": "soc.memory.type",
+        "valueText": "LPDDR5X",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.memory.maxSize",
+        "itemId": "exynos-2400",
+        "metricId": "soc.memory.maxSize",
+        "valueText": "12GB",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.power.display",
+        "itemId": "exynos-2400",
+        "metricId": "soc.power.display",
+        "valueText": "~10W peak",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.benchmark.geekbenchSingle",
+        "itemId": "exynos-2400",
+        "metricId": "soc.benchmark.geekbenchSingle",
+        "valueNumber": 2100,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.benchmark.geekbenchMulti",
+        "itemId": "exynos-2400",
+        "metricId": "soc.benchmark.geekbenchMulti",
+        "valueNumber": 6500,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.benchmark.antutuTotal",
+        "itemId": "exynos-2400",
+        "metricId": "soc.benchmark.antutuTotal",
+        "valueNumber": 1600000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.benchmark.wildLife",
+        "itemId": "exynos-2400",
+        "metricId": "soc.benchmark.wildLife",
+        "valueNumber": 3900,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.benchmark.sourceNote",
+        "itemId": "exynos-2400",
+        "metricId": "soc.benchmark.sourceNote",
+        "valueText": "Estimated from public benchmarks",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.device.tier",
+        "itemId": "exynos-2400",
+        "metricId": "soc.device.tier",
+        "valueText": "Flagship Android phones 2024",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "exynos-2400:soc.device.efficiencyNote",
+        "itemId": "exynos-2400",
+        "metricId": "soc.device.efficiencyNote",
+        "valueText": "RDNA 3 GPU brings desktop-class graphics features.",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      }
+    ],
+    "rankingScore": {
+      "id": "exynos-2400:ranking:mobile-soc-performance",
+      "itemId": "exynos-2400",
+      "rankingProfileId": "mobile-soc-performance",
+      "score": 185,
+      "tierId": "flagship",
+      "confidence": "estimated",
+      "formulaVersion": "v1",
+      "updatedAt": "seed-data"
+    },
+    "sources": [
+      {
+        "id": "exynos-2400:source:1",
+        "label": "Public benchmarks",
+        "url": "",
+        "sourceType": "reference"
+      }
+    ]
+  },
+  {
+    "item": {
+      "id": "dimensity-8300",
+      "categoryId": "mobile-soc",
+      "name": "MediaTek Dimensity 8300",
+      "manufacturerId": "mediatek",
+      "generation": "Dimensity 8000",
+      "architecture": "Cortex-A715 / A510",
+      "releaseDate": "2023-11",
+      "marketSegmentIds": [
+        "mobile"
+      ],
+      "status": "published",
+      "notes": [
+        "Upper mid-range, strong efficiency."
+      ],
+      "createdAt": "seed-data",
+      "updatedAt": "seed-data"
+    },
+    "metricValues": [
+      {
+        "id": "dimensity-8300:soc.performance.index",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.performance.index",
+        "valueNumber": 145,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.release.date",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.release.date",
+        "valueText": "2023-11",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.process.node",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.process.node",
+        "valueText": "TSMC 4nm",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.confidence",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.confidence",
+        "valueText": "estimated",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.cpu.cluster",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.cpu.cluster",
+        "valueText": "1x Cortex-A715 + 3x A715 + 4x A510",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.cpu.cores",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.cpu.cores",
+        "valueNumber": 8,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.cpu.maxClock",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.cpu.maxClock",
+        "valueNumber": 2800,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.gpu.name",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.gpu.name",
+        "valueText": "Mali-G615 MC6",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.gpu.cores",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.gpu.cores",
+        "valueNumber": 6,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.npu.ai",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.npu.ai",
+        "valueText": "APU 780, 16 TOPS",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.modem",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.modem",
+        "valueText": "MediaTek 5G (sub-6)",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.memory.type",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.memory.type",
+        "valueText": "LPDDR5X",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.memory.maxSize",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.memory.maxSize",
+        "valueText": "16GB",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.power.display",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.power.display",
+        "valueText": "~7W peak",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.benchmark.geekbenchSingle",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.benchmark.geekbenchSingle",
+        "valueNumber": 1550,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.benchmark.geekbenchMulti",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.benchmark.geekbenchMulti",
+        "valueNumber": 4500,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.benchmark.antutuTotal",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.benchmark.antutuTotal",
+        "valueNumber": 1000000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.benchmark.wildLife",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.benchmark.wildLife",
+        "valueNumber": 2000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.benchmark.sourceNote",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.benchmark.sourceNote",
+        "valueText": "Estimated from public benchmarks",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.device.tier",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.device.tier",
+        "valueText": "Upper mid-range phones 2024",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "dimensity-8300:soc.device.efficiencyNote",
+        "itemId": "dimensity-8300",
+        "metricId": "soc.device.efficiencyNote",
+        "valueText": "Efficient 4nm process, good daily performance.",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      }
+    ],
+    "rankingScore": {
+      "id": "dimensity-8300:ranking:mobile-soc-performance",
+      "itemId": "dimensity-8300",
+      "rankingProfileId": "mobile-soc-performance",
+      "score": 145,
+      "tierId": "mainstream",
+      "confidence": "estimated",
+      "formulaVersion": "v1",
+      "updatedAt": "seed-data"
+    },
+    "sources": [
+      {
+        "id": "dimensity-8300:source:1",
+        "label": "Public benchmarks",
+        "url": "",
+        "sourceType": "reference"
+      }
     ]
   }
 ]

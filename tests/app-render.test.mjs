@@ -67,7 +67,7 @@ test("service-backed GPU page model preserves search, mobile badge, warning, and
   const matches = searchHardwareListItems(pageModel.listViewModel.items, "4070");
   const laptop4070 = matches.find((item) => item.id === "rtx-4070-laptop");
 
-  assert.equal(matches.length, 3);
+  assert.equal(matches.length, 4);
   assert.ok(laptop4070);
 
   const rowHtml = renderHardwareListItem(laptop4070, { selectedId: laptop4070.id });

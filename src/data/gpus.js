@@ -754,5 +754,633 @@ export const gpus = [
       }
     ],
     "confidence": "aggregate"
+  },
+  {
+    "id": "rtx-4080-super-desktop",
+    "name": "GeForce RTX 4080 SUPER",
+    "brand": "nvidia",
+    "segment": "desktop",
+    "generation": "RTX 40",
+    "architecture": "Ada Lovelace",
+    "releaseDate": "2024-01",
+    "performanceIndex": 230,
+    "tier": "flagship",
+    "specs": {
+      "coresLabel": "CUDA Cores",
+      "cores": 10240,
+      "baseClockMHz": 2295,
+      "boostClockMHz": 2550,
+      "memorySizeGB": 16,
+      "memoryType": "GDDR6X",
+      "memoryBusBit": 256,
+      "bandwidthGBs": 736,
+      "powerW": 320,
+      "tgpRangeW": null
+    },
+    "benchmarks": {
+      "timeSpyGraphics": 28500,
+      "steelNomadGraphics": null,
+      "passMarkG3D": null,
+      "sourceNote": "公开评测均值参考"
+    },
+    "gaming": {
+      "recommendedResolution": "4K",
+      "rayTracingLevel": "excellent",
+      "efficiencyNote": "高性能 4K 游戏卡"
+    },
+    "notes": [
+      "RTX 4080 小幅升级版"
+    ],
+    "sources": [
+      {
+        "label": "NVIDIA",
+        "url": "https://www.nvidia.com"
+      }
+    ],
+    "confidence": "aggregate"
+  },
+  {
+    "id": "rtx-4070-ti-super-desktop",
+    "name": "GeForce RTX 4070 Ti SUPER",
+    "brand": "nvidia",
+    "segment": "desktop",
+    "generation": "RTX 40",
+    "architecture": "Ada Lovelace",
+    "releaseDate": "2024-01",
+    "performanceIndex": 210,
+    "tier": "enthusiast",
+    "specs": {
+      "coresLabel": "CUDA Cores",
+      "cores": 8448,
+      "baseClockMHz": 2340,
+      "boostClockMHz": 2610,
+      "memorySizeGB": 16,
+      "memoryType": "GDDR6X",
+      "memoryBusBit": 256,
+      "bandwidthGBs": 672,
+      "powerW": 285,
+      "tgpRangeW": null
+    },
+    "benchmarks": {
+      "timeSpyGraphics": 24000,
+      "steelNomadGraphics": null,
+      "passMarkG3D": null,
+      "sourceNote": "公开评测均值参考"
+    },
+    "gaming": {
+      "recommendedResolution": "4K",
+      "rayTracingLevel": "excellent",
+      "efficiencyNote": "高性价比 4K 方案"
+    },
+    "notes": [
+      "16GB 显存版本"
+    ],
+    "sources": [
+      {
+        "label": "NVIDIA",
+        "url": "https://www.nvidia.com"
+      }
+    ],
+    "confidence": "aggregate"
+  },
+  {
+    "id": "rtx-4060-ti-desktop",
+    "name": "GeForce RTX 4060 Ti",
+    "brand": "nvidia",
+    "segment": "desktop",
+    "generation": "RTX 40",
+    "architecture": "Ada Lovelace",
+    "releaseDate": "2023-05",
+    "performanceIndex": 155,
+    "tier": "mainstream",
+    "specs": {
+      "coresLabel": "CUDA Cores",
+      "cores": 4352,
+      "baseClockMHz": 2310,
+      "boostClockMHz": 2535,
+      "memorySizeGB": 8,
+      "memoryType": "GDDR6",
+      "memoryBusBit": 128,
+      "bandwidthGBs": 288,
+      "powerW": 160,
+      "tgpRangeW": null
+    },
+    "benchmarks": {
+      "timeSpyGraphics": 13500,
+      "steelNomadGraphics": null,
+      "passMarkG3D": null,
+      "sourceNote": "公开评测均值参考"
+    },
+    "gaming": {
+      "recommendedResolution": "1440p",
+      "rayTracingLevel": "good",
+      "efficiencyNote": "主流 1080p/1440p 选择"
+    },
+    "notes": [
+      "8GB 显存略显不足"
+    ],
+    "sources": [
+      {
+        "label": "NVIDIA",
+        "url": "https://www.nvidia.com"
+      }
+    ],
+    "confidence": "aggregate"
+  },
+  {
+    "id": "rtx-3070-desktop",
+    "name": "GeForce RTX 3070",
+    "brand": "nvidia",
+    "segment": "desktop",
+    "generation": "RTX 30",
+    "architecture": "Ampere",
+    "releaseDate": "2020-10",
+    "performanceIndex": 145,
+    "tier": "mainstream",
+    "specs": {
+      "coresLabel": "CUDA Cores",
+      "cores": 5888,
+      "baseClockMHz": 1500,
+      "boostClockMHz": 1725,
+      "memorySizeGB": 8,
+      "memoryType": "GDDR6",
+      "memoryBusBit": 256,
+      "bandwidthGBs": 448,
+      "powerW": 220,
+      "tgpRangeW": null
+    },
+    "benchmarks": {
+      "timeSpyGraphics": 13000,
+      "steelNomadGraphics": null,
+      "passMarkG3D": null,
+      "sourceNote": "公开评测均值参考"
+    },
+    "gaming": {
+      "recommendedResolution": "1440p",
+      "rayTracingLevel": "good",
+      "efficiencyNote": "经典 1440p 游戏卡"
+    },
+    "notes": [
+      "上代主力型号"
+    ],
+    "sources": [
+      {
+        "label": "NVIDIA",
+        "url": "https://www.nvidia.com"
+      }
+    ],
+    "confidence": "aggregate"
+  },
+  {
+    "id": "rtx-3080-desktop",
+    "name": "GeForce RTX 3080",
+    "brand": "nvidia",
+    "segment": "desktop",
+    "generation": "RTX 30",
+    "architecture": "Ampere",
+    "releaseDate": "2020-09",
+    "performanceIndex": 175,
+    "tier": "high",
+    "specs": {
+      "coresLabel": "CUDA Cores",
+      "cores": 8704,
+      "baseClockMHz": 1440,
+      "boostClockMHz": 1710,
+      "memorySizeGB": 10,
+      "memoryType": "GDDR6X",
+      "memoryBusBit": 320,
+      "bandwidthGBs": 760,
+      "powerW": 320,
+      "tgpRangeW": null
+    },
+    "benchmarks": {
+      "timeSpyGraphics": 17500,
+      "steelNomadGraphics": null,
+      "passMarkG3D": null,
+      "sourceNote": "公开评测均值参考"
+    },
+    "gaming": {
+      "recommendedResolution": "4K",
+      "rayTracingLevel": "good",
+      "efficiencyNote": "上代高端 4K 游戏卡"
+    },
+    "notes": [
+      "Ampere 架构经典型号"
+    ],
+    "sources": [
+      {
+        "label": "NVIDIA",
+        "url": "https://www.nvidia.com"
+      }
+    ],
+    "confidence": "aggregate"
+  },
+  {
+    "id": "gtx-1660-super-desktop",
+    "name": "GeForce GTX 1660 SUPER",
+    "brand": "nvidia",
+    "segment": "desktop",
+    "generation": "GTX 16",
+    "architecture": "Turing",
+    "releaseDate": "2019-10",
+    "performanceIndex": 70,
+    "tier": "entry",
+    "specs": {
+      "coresLabel": "CUDA Cores",
+      "cores": 1408,
+      "baseClockMHz": 1530,
+      "boostClockMHz": 1785,
+      "memorySizeGB": 6,
+      "memoryType": "GDDR6",
+      "memoryBusBit": 192,
+      "bandwidthGBs": 336,
+      "powerW": 125,
+      "tgpRangeW": null
+    },
+    "benchmarks": {
+      "timeSpyGraphics": 6000,
+      "steelNomadGraphics": null,
+      "passMarkG3D": null,
+      "sourceNote": "公开评测均值参考"
+    },
+    "gaming": {
+      "recommendedResolution": "1080p",
+      "rayTracingLevel": "none",
+      "efficiencyNote": "入门级 1080p 游戏卡"
+    },
+    "notes": [
+      "无光线追踪"
+    ],
+    "sources": [
+      {
+        "label": "NVIDIA",
+        "url": "https://www.nvidia.com"
+      }
+    ],
+    "confidence": "aggregate"
+  },
+  {
+    "id": "rx-6800-xt-desktop",
+    "name": "Radeon RX 6800 XT",
+    "brand": "amd",
+    "segment": "desktop",
+    "generation": "RX 6000",
+    "architecture": "RDNA 2",
+    "releaseDate": "2020-11",
+    "performanceIndex": 175,
+    "tier": "high",
+    "specs": {
+      "coresLabel": "Stream Processors",
+      "cores": 4608,
+      "baseClockMHz": 1825,
+      "boostClockMHz": 2250,
+      "memorySizeGB": 16,
+      "memoryType": "GDDR6",
+      "memoryBusBit": 256,
+      "bandwidthGBs": 512,
+      "powerW": 300,
+      "tgpRangeW": null
+    },
+    "benchmarks": {
+      "timeSpyGraphics": 17000,
+      "steelNomadGraphics": null,
+      "passMarkG3D": null,
+      "sourceNote": "公开评测均值参考"
+    },
+    "gaming": {
+      "recommendedResolution": "4K",
+      "rayTracingLevel": "moderate",
+      "efficiencyNote": "16GB 大显存，高分辨率友好"
+    },
+    "notes": [
+      "RDNA 2 高端型号"
+    ],
+    "sources": [
+      {
+        "label": "AMD",
+        "url": "https://www.amd.com"
+      }
+    ],
+    "confidence": "aggregate"
+  },
+  {
+    "id": "rx-6700-xt-desktop",
+    "name": "Radeon RX 6700 XT",
+    "brand": "amd",
+    "segment": "desktop",
+    "generation": "RX 6000",
+    "architecture": "RDNA 2",
+    "releaseDate": "2021-03",
+    "performanceIndex": 135,
+    "tier": "mainstream",
+    "specs": {
+      "coresLabel": "Stream Processors",
+      "cores": 2560,
+      "baseClockMHz": 2321,
+      "boostClockMHz": 2581,
+      "memorySizeGB": 12,
+      "memoryType": "GDDR6",
+      "memoryBusBit": 192,
+      "bandwidthGBs": 384,
+      "powerW": 230,
+      "tgpRangeW": null
+    },
+    "benchmarks": {
+      "timeSpyGraphics": 12000,
+      "steelNomadGraphics": null,
+      "passMarkG3D": null,
+      "sourceNote": "公开评测均值参考"
+    },
+    "gaming": {
+      "recommendedResolution": "1440p",
+      "rayTracingLevel": "moderate",
+      "efficiencyNote": "12GB 显存性价比不错"
+    },
+    "notes": [
+      "RDNA 2 中高端"
+    ],
+    "sources": [
+      {
+        "label": "AMD",
+        "url": "https://www.amd.com"
+      }
+    ],
+    "confidence": "aggregate"
+  },
+  {
+    "id": "rx-7600-xt-desktop",
+    "name": "Radeon RX 7600 XT",
+    "brand": "amd",
+    "segment": "desktop",
+    "generation": "RX 7000",
+    "architecture": "RDNA 3",
+    "releaseDate": "2024-01",
+    "performanceIndex": 125,
+    "tier": "mainstream",
+    "specs": {
+      "coresLabel": "Stream Processors",
+      "cores": 2048,
+      "baseClockMHz": 1720,
+      "boostClockMHz": 2755,
+      "memorySizeGB": 16,
+      "memoryType": "GDDR6",
+      "memoryBusBit": 128,
+      "bandwidthGBs": 288,
+      "powerW": 150,
+      "tgpRangeW": null
+    },
+    "benchmarks": {
+      "timeSpyGraphics": 10500,
+      "steelNomadGraphics": null,
+      "passMarkG3D": null,
+      "sourceNote": "公开评测均值参考"
+    },
+    "gaming": {
+      "recommendedResolution": "1080p",
+      "rayTracingLevel": "moderate",
+      "efficiencyNote": "16GB 大显存入门卡"
+    },
+    "notes": [
+      "RDNA 3 入门级"
+    ],
+    "sources": [
+      {
+        "label": "AMD",
+        "url": "https://www.amd.com"
+      }
+    ],
+    "confidence": "aggregate"
+  },
+  {
+    "id": "arc-a750-desktop",
+    "name": "Intel Arc A750",
+    "brand": "intel",
+    "segment": "desktop",
+    "generation": "Arc A",
+    "architecture": "Xe-HPG",
+    "releaseDate": "2022-10",
+    "performanceIndex": 100,
+    "tier": "mainstream",
+    "specs": {
+      "coresLabel": "Xe Cores",
+      "cores": 28,
+      "baseClockMHz": 2050,
+      "boostClockMHz": 2400,
+      "memorySizeGB": 8,
+      "memoryType": "GDDR6",
+      "memoryBusBit": 256,
+      "bandwidthGBs": 512,
+      "powerW": 225,
+      "tgpRangeW": null
+    },
+    "benchmarks": {
+      "timeSpyGraphics": 10000,
+      "steelNomadGraphics": null,
+      "passMarkG3D": null,
+      "sourceNote": "公开评测均值参考"
+    },
+    "gaming": {
+      "recommendedResolution": "1080p",
+      "rayTracingLevel": "moderate",
+      "efficiencyNote": "Intel 独显入门选择"
+    },
+    "notes": [
+      "Xe 架构独显"
+    ],
+    "sources": [
+      {
+        "label": "Intel",
+        "url": "https://www.intel.com"
+      }
+    ],
+    "confidence": "aggregate"
+  },
+  {
+    "id": "rtx-4090-laptop",
+    "name": "GeForce RTX 4090 Laptop GPU",
+    "brand": "nvidia",
+    "segment": "mobile",
+    "generation": "RTX 40",
+    "architecture": "Ada Lovelace",
+    "releaseDate": "2023-02",
+    "performanceIndex": 200,
+    "tier": "enthusiast",
+    "specs": {
+      "coresLabel": "CUDA Cores",
+      "cores": 9728,
+      "baseClockMHz": 1455,
+      "boostClockMHz": 2040,
+      "memorySizeGB": 16,
+      "memoryType": "GDDR6",
+      "memoryBusBit": 256,
+      "bandwidthGBs": 576,
+      "powerW": null,
+      "tgpRangeW": [
+        80,
+        150
+      ]
+    },
+    "benchmarks": {
+      "timeSpyGraphics": 21000,
+      "steelNomadGraphics": null,
+      "passMarkG3D": null,
+      "sourceNote": "公开评测均值参考"
+    },
+    "gaming": {
+      "recommendedResolution": "4K",
+      "rayTracingLevel": "excellent",
+      "efficiencyNote": "移动版旗舰，性能受 TGP 影响大"
+    },
+    "notes": [
+      "移动版性能受 TGP 影响"
+    ],
+    "sources": [
+      {
+        "label": "NVIDIA",
+        "url": "https://www.nvidia.com"
+      }
+    ],
+    "confidence": "aggregate"
+  },
+  {
+    "id": "rtx-4080-laptop",
+    "name": "GeForce RTX 4080 Laptop GPU",
+    "brand": "nvidia",
+    "segment": "mobile",
+    "generation": "RTX 40",
+    "architecture": "Ada Lovelace",
+    "releaseDate": "2023-02",
+    "performanceIndex": 175,
+    "tier": "high",
+    "specs": {
+      "coresLabel": "CUDA Cores",
+      "cores": 7424,
+      "baseClockMHz": 1455,
+      "boostClockMHz": 2280,
+      "memorySizeGB": 12,
+      "memoryType": "GDDR6",
+      "memoryBusBit": 192,
+      "bandwidthGBs": 432,
+      "powerW": null,
+      "tgpRangeW": [
+        60,
+        150
+      ]
+    },
+    "benchmarks": {
+      "timeSpyGraphics": 17000,
+      "steelNomadGraphics": null,
+      "passMarkG3D": null,
+      "sourceNote": "公开评测均值参考"
+    },
+    "gaming": {
+      "recommendedResolution": "4K",
+      "rayTracingLevel": "excellent",
+      "efficiencyNote": "移动版高端选择"
+    },
+    "notes": [
+      "移动版性能受 TGP 影响"
+    ],
+    "sources": [
+      {
+        "label": "NVIDIA",
+        "url": "https://www.nvidia.com"
+      }
+    ],
+    "confidence": "aggregate"
+  },
+  {
+    "id": "rtx-3070-laptop",
+    "name": "GeForce RTX 3070 Laptop GPU",
+    "brand": "nvidia",
+    "segment": "mobile",
+    "generation": "RTX 30",
+    "architecture": "Ampere",
+    "releaseDate": "2021-01",
+    "performanceIndex": 120,
+    "tier": "mainstream",
+    "specs": {
+      "coresLabel": "CUDA Cores",
+      "cores": 5120,
+      "baseClockMHz": 1110,
+      "boostClockMHz": 1560,
+      "memorySizeGB": 8,
+      "memoryType": "GDDR6",
+      "memoryBusBit": 256,
+      "bandwidthGBs": 384,
+      "powerW": null,
+      "tgpRangeW": [
+        80,
+        125
+      ]
+    },
+    "benchmarks": {
+      "timeSpyGraphics": 10000,
+      "steelNomadGraphics": null,
+      "passMarkG3D": null,
+      "sourceNote": "公开评测均值参考"
+    },
+    "gaming": {
+      "recommendedResolution": "1440p",
+      "rayTracingLevel": "good",
+      "efficiencyNote": "上代移动版中高端"
+    },
+    "notes": [
+      "移动版性能受 TGP 影响"
+    ],
+    "sources": [
+      {
+        "label": "NVIDIA",
+        "url": "https://www.nvidia.com"
+      }
+    ],
+    "confidence": "aggregate"
+  },
+  {
+    "id": "rx-7900m-mobile",
+    "name": "Radeon RX 7900M",
+    "brand": "amd",
+    "segment": "mobile",
+    "generation": "RX 7000",
+    "architecture": "RDNA 3",
+    "releaseDate": "2023-06",
+    "performanceIndex": 160,
+    "tier": "high",
+    "specs": {
+      "coresLabel": "Stream Processors",
+      "cores": 4608,
+      "baseClockMHz": 1825,
+      "boostClockMHz": 2400,
+      "memorySizeGB": 16,
+      "memoryType": "GDDR6",
+      "memoryBusBit": 256,
+      "bandwidthGBs": 512,
+      "powerW": null,
+      "tgpRangeW": [
+        100,
+        180
+      ]
+    },
+    "benchmarks": {
+      "timeSpyGraphics": 15000,
+      "steelNomadGraphics": null,
+      "passMarkG3D": null,
+      "sourceNote": "公开评测均值参考"
+    },
+    "gaming": {
+      "recommendedResolution": "1440p",
+      "rayTracingLevel": "moderate",
+      "efficiencyNote": "AMD 移动版高端选择"
+    },
+    "notes": [
+      "移动版性能受 TGP 影响"
+    ],
+    "sources": [
+      {
+        "label": "AMD",
+        "url": "https://www.amd.com"
+      }
+    ],
+    "confidence": "aggregate"
   }
 ];

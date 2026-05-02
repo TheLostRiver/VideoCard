@@ -8,35 +8,216 @@
       "generation": "M3",
       "architecture": "Apple Silicon",
       "releaseDate": "2023-10",
-      "marketSegmentIds": ["desktop", "laptop"],
+      "marketSegmentIds": [
+        "desktop",
+        "laptop"
+      ],
       "status": "published",
-      "notes": ["Base M3 chip for MacBook Pro, iMac, MacBook Air."],
+      "notes": [
+        "Base M3 chip for MacBook Pro, iMac, MacBook Air."
+      ],
       "createdAt": "seed-data",
       "updatedAt": "seed-data"
     },
     "metricValues": [
-      { "id": "apple-m3:apple.performance.index", "itemId": "apple-m3", "metricId": "apple.performance.index", "valueNumber": 160, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.release.date", "itemId": "apple-m3", "metricId": "apple.release.date", "valueText": "2023-10", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.process.node", "itemId": "apple-m3", "metricId": "apple.process.node", "valueText": "TSMC 3nm", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.confidence", "itemId": "apple-m3", "metricId": "apple.confidence", "valueText": "estimated", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.cpu.performanceCores", "itemId": "apple-m3", "metricId": "apple.cpu.performanceCores", "valueNumber": 4, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.cpu.efficiencyCores", "itemId": "apple-m3", "metricId": "apple.cpu.efficiencyCores", "valueNumber": 4, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.cpu.totalCores", "itemId": "apple-m3", "metricId": "apple.cpu.totalCores", "valueNumber": 8, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.cpu.maxClock", "itemId": "apple-m3", "metricId": "apple.cpu.maxClock", "valueNumber": 4050, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.gpu.cores", "itemId": "apple-m3", "metricId": "apple.gpu.cores", "valueNumber": 10, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.gpu.maxClock", "itemId": "apple-m3", "metricId": "apple.gpu.maxClock", "valueNumber": 1600, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.neuralEngine.cores", "itemId": "apple-m3", "metricId": "apple.neuralEngine.cores", "valueNumber": 16, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.memory.unified", "itemId": "apple-m3", "metricId": "apple.memory.unified", "valueNumber": 24, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.memory.bandwidth", "itemId": "apple-m3", "metricId": "apple.memory.bandwidth", "valueNumber": 100, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.memory.type", "itemId": "apple-m3", "metricId": "apple.memory.type", "valueText": "LPDDR5", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.power.tdp", "itemId": "apple-m3", "metricId": "apple.power.tdp", "valueNumber": 20, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.power.display", "itemId": "apple-m3", "metricId": "apple.power.display", "valueText": "~20W", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.benchmark.geekbenchSingle", "itemId": "apple-m3", "metricId": "apple.benchmark.geekbenchSingle", "valueNumber": 3000, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.benchmark.geekbenchMulti", "itemId": "apple-m3", "metricId": "apple.benchmark.geekbenchMulti", "valueNumber": 11800, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.benchmark.metal", "itemId": "apple-m3", "metricId": "apple.benchmark.metal", "valueNumber": 15200, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.benchmark.sourceNote", "itemId": "apple-m3", "metricId": "apple.benchmark.sourceNote", "valueText": "Estimated from public benchmarks", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.device.tier", "itemId": "apple-m3", "metricId": "apple.device.tier", "valueText": "Mainstream Mac / iPad Pro", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3:apple.device.efficiencyNote", "itemId": "apple-m3", "metricId": "apple.device.efficiencyNote", "valueText": "Excellent single-thread and GPU performance per watt.", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" }
+      {
+        "id": "apple-m3:apple.performance.index",
+        "itemId": "apple-m3",
+        "metricId": "apple.performance.index",
+        "valueNumber": 160,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.release.date",
+        "itemId": "apple-m3",
+        "metricId": "apple.release.date",
+        "valueText": "2023-10",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.process.node",
+        "itemId": "apple-m3",
+        "metricId": "apple.process.node",
+        "valueText": "TSMC 3nm",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.confidence",
+        "itemId": "apple-m3",
+        "metricId": "apple.confidence",
+        "valueText": "estimated",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.cpu.performanceCores",
+        "itemId": "apple-m3",
+        "metricId": "apple.cpu.performanceCores",
+        "valueNumber": 4,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.cpu.efficiencyCores",
+        "itemId": "apple-m3",
+        "metricId": "apple.cpu.efficiencyCores",
+        "valueNumber": 4,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.cpu.totalCores",
+        "itemId": "apple-m3",
+        "metricId": "apple.cpu.totalCores",
+        "valueNumber": 8,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.cpu.maxClock",
+        "itemId": "apple-m3",
+        "metricId": "apple.cpu.maxClock",
+        "valueNumber": 4050,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.gpu.cores",
+        "itemId": "apple-m3",
+        "metricId": "apple.gpu.cores",
+        "valueNumber": 10,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.gpu.maxClock",
+        "itemId": "apple-m3",
+        "metricId": "apple.gpu.maxClock",
+        "valueNumber": 1600,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.neuralEngine.cores",
+        "itemId": "apple-m3",
+        "metricId": "apple.neuralEngine.cores",
+        "valueNumber": 16,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.memory.unified",
+        "itemId": "apple-m3",
+        "metricId": "apple.memory.unified",
+        "valueNumber": 24,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.memory.bandwidth",
+        "itemId": "apple-m3",
+        "metricId": "apple.memory.bandwidth",
+        "valueNumber": 100,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.memory.type",
+        "itemId": "apple-m3",
+        "metricId": "apple.memory.type",
+        "valueText": "LPDDR5",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.power.tdp",
+        "itemId": "apple-m3",
+        "metricId": "apple.power.tdp",
+        "valueNumber": 20,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.power.display",
+        "itemId": "apple-m3",
+        "metricId": "apple.power.display",
+        "valueText": "~20W",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.benchmark.geekbenchSingle",
+        "itemId": "apple-m3",
+        "metricId": "apple.benchmark.geekbenchSingle",
+        "valueNumber": 3000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.benchmark.geekbenchMulti",
+        "itemId": "apple-m3",
+        "metricId": "apple.benchmark.geekbenchMulti",
+        "valueNumber": 11800,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.benchmark.metal",
+        "itemId": "apple-m3",
+        "metricId": "apple.benchmark.metal",
+        "valueNumber": 15200,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.benchmark.sourceNote",
+        "itemId": "apple-m3",
+        "metricId": "apple.benchmark.sourceNote",
+        "valueText": "Estimated from public benchmarks",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.device.tier",
+        "itemId": "apple-m3",
+        "metricId": "apple.device.tier",
+        "valueText": "Mainstream Mac / iPad Pro",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3:apple.device.efficiencyNote",
+        "itemId": "apple-m3",
+        "metricId": "apple.device.efficiencyNote",
+        "valueText": "Excellent single-thread and GPU performance per watt.",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      }
     ],
     "rankingScore": {
       "id": "apple-m3:ranking:apple-silicon-performance",
@@ -49,7 +230,12 @@
       "updatedAt": "seed-data"
     },
     "sources": [
-      { "id": "apple-m3:source:1", "label": "Apple Official", "url": "https://www.apple.com/m3/", "sourceType": "official" }
+      {
+        "id": "apple-m3:source:1",
+        "label": "Apple Official",
+        "url": "https://www.apple.com/m3/",
+        "sourceType": "official"
+      }
     ]
   },
   {
@@ -61,35 +247,216 @@
       "generation": "M3",
       "architecture": "Apple Silicon",
       "releaseDate": "2023-10",
-      "marketSegmentIds": ["desktop", "laptop"],
+      "marketSegmentIds": [
+        "desktop",
+        "laptop"
+      ],
       "status": "published",
-      "notes": ["Pro-tier M3 for MacBook Pro, balanced performance and efficiency."],
+      "notes": [
+        "Pro-tier M3 for MacBook Pro, balanced performance and efficiency."
+      ],
       "createdAt": "seed-data",
       "updatedAt": "seed-data"
     },
     "metricValues": [
-      { "id": "apple-m3-pro:apple.performance.index", "itemId": "apple-m3-pro", "metricId": "apple.performance.index", "valueNumber": 200, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.release.date", "itemId": "apple-m3-pro", "metricId": "apple.release.date", "valueText": "2023-10", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.process.node", "itemId": "apple-m3-pro", "metricId": "apple.process.node", "valueText": "TSMC 3nm", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.confidence", "itemId": "apple-m3-pro", "metricId": "apple.confidence", "valueText": "estimated", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.cpu.performanceCores", "itemId": "apple-m3-pro", "metricId": "apple.cpu.performanceCores", "valueNumber": 6, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.cpu.efficiencyCores", "itemId": "apple-m3-pro", "metricId": "apple.cpu.efficiencyCores", "valueNumber": 6, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.cpu.totalCores", "itemId": "apple-m3-pro", "metricId": "apple.cpu.totalCores", "valueNumber": 12, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.cpu.maxClock", "itemId": "apple-m3-pro", "metricId": "apple.cpu.maxClock", "valueNumber": 4050, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.gpu.cores", "itemId": "apple-m3-pro", "metricId": "apple.gpu.cores", "valueNumber": 18, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.gpu.maxClock", "itemId": "apple-m3-pro", "metricId": "apple.gpu.maxClock", "valueNumber": 1600, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.neuralEngine.cores", "itemId": "apple-m3-pro", "metricId": "apple.neuralEngine.cores", "valueNumber": 16, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.memory.unified", "itemId": "apple-m3-pro", "metricId": "apple.memory.unified", "valueNumber": 36, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.memory.bandwidth", "itemId": "apple-m3-pro", "metricId": "apple.memory.bandwidth", "valueNumber": 150, "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.memory.type", "itemId": "apple-m3-pro", "metricId": "apple.memory.type", "valueText": "LPDDR5", "confidence": "confirmed", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.power.tdp", "itemId": "apple-m3-pro", "metricId": "apple.power.tdp", "valueNumber": 30, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.power.display", "itemId": "apple-m3-pro", "metricId": "apple.power.display", "valueText": "~30W", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.benchmark.geekbenchSingle", "itemId": "apple-m3-pro", "metricId": "apple.benchmark.geekbenchSingle", "valueNumber": 3100, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.benchmark.geekbenchMulti", "itemId": "apple-m3-pro", "metricId": "apple.benchmark.geekbenchMulti", "valueNumber": 15500, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.benchmark.metal", "itemId": "apple-m3-pro", "metricId": "apple.benchmark.metal", "valueNumber": 22000, "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.benchmark.sourceNote", "itemId": "apple-m3-pro", "metricId": "apple.benchmark.sourceNote", "valueText": "Estimated from public benchmarks", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.device.tier", "itemId": "apple-m3-pro", "metricId": "apple.device.tier", "valueText": "Pro Mac / MacBook Pro", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" },
-      { "id": "apple-m3-pro:apple.device.efficiencyNote", "itemId": "apple-m3-pro", "metricId": "apple.device.efficiencyNote", "valueText": "Strong multi-thread and GPU, good for creative workflows.", "confidence": "estimated", "sourceIds": [], "updatedAt": "seed-data" }
+      {
+        "id": "apple-m3-pro:apple.performance.index",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.performance.index",
+        "valueNumber": 200,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.release.date",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.release.date",
+        "valueText": "2023-10",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.process.node",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.process.node",
+        "valueText": "TSMC 3nm",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.confidence",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.confidence",
+        "valueText": "estimated",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.cpu.performanceCores",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.cpu.performanceCores",
+        "valueNumber": 6,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.cpu.efficiencyCores",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.cpu.efficiencyCores",
+        "valueNumber": 6,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.cpu.totalCores",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.cpu.totalCores",
+        "valueNumber": 12,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.cpu.maxClock",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.cpu.maxClock",
+        "valueNumber": 4050,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.gpu.cores",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.gpu.cores",
+        "valueNumber": 18,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.gpu.maxClock",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.gpu.maxClock",
+        "valueNumber": 1600,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.neuralEngine.cores",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.neuralEngine.cores",
+        "valueNumber": 16,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.memory.unified",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.memory.unified",
+        "valueNumber": 36,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.memory.bandwidth",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.memory.bandwidth",
+        "valueNumber": 150,
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.memory.type",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.memory.type",
+        "valueText": "LPDDR5",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.power.tdp",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.power.tdp",
+        "valueNumber": 30,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.power.display",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.power.display",
+        "valueText": "~30W",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.benchmark.geekbenchSingle",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.benchmark.geekbenchSingle",
+        "valueNumber": 3100,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.benchmark.geekbenchMulti",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.benchmark.geekbenchMulti",
+        "valueNumber": 15500,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.benchmark.metal",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.benchmark.metal",
+        "valueNumber": 22000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.benchmark.sourceNote",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.benchmark.sourceNote",
+        "valueText": "Estimated from public benchmarks",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.device.tier",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.device.tier",
+        "valueText": "Pro Mac / MacBook Pro",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-pro:apple.device.efficiencyNote",
+        "itemId": "apple-m3-pro",
+        "metricId": "apple.device.efficiencyNote",
+        "valueText": "Strong multi-thread and GPU, good for creative workflows.",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      }
     ],
     "rankingScore": {
       "id": "apple-m3-pro:ranking:apple-silicon-performance",
@@ -102,7 +469,2163 @@
       "updatedAt": "seed-data"
     },
     "sources": [
-      { "id": "apple-m3-pro:source:1", "label": "Apple Official", "url": "https://www.apple.com/m3-pro/", "sourceType": "official" }
+      {
+        "id": "apple-m3-pro:source:1",
+        "label": "Apple Official",
+        "url": "https://www.apple.com/m3-pro/",
+        "sourceType": "official"
+      }
+    ]
+  },
+  {
+    "item": {
+      "id": "apple-m1",
+      "categoryId": "apple-silicon",
+      "name": "Apple M1",
+      "manufacturerId": "apple",
+      "generation": "M1",
+      "architecture": "Apple Silicon",
+      "releaseDate": "2020-11",
+      "marketSegmentIds": [
+        "desktop",
+        "laptop"
+      ],
+      "status": "published",
+      "notes": [
+        "First Apple Silicon chip, revolutionary efficiency."
+      ],
+      "createdAt": "seed-data",
+      "updatedAt": "seed-data"
+    },
+    "metricValues": [
+      {
+        "id": "apple-m1:apple.performance.index",
+        "itemId": "apple-m1",
+        "metricId": "apple.performance.index",
+        "valueNumber": 120,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.release.date",
+        "itemId": "apple-m1",
+        "metricId": "apple.release.date",
+        "valueText": "2020-11",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.process.node",
+        "itemId": "apple-m1",
+        "metricId": "apple.process.node",
+        "valueText": "TSMC 5nm",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.confidence",
+        "itemId": "apple-m1",
+        "metricId": "apple.confidence",
+        "valueText": "confirmed",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.cpu.performanceCores",
+        "itemId": "apple-m1",
+        "metricId": "apple.cpu.performanceCores",
+        "valueNumber": 4,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.cpu.efficiencyCores",
+        "itemId": "apple-m1",
+        "metricId": "apple.cpu.efficiencyCores",
+        "valueNumber": 4,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.cpu.totalCores",
+        "itemId": "apple-m1",
+        "metricId": "apple.cpu.totalCores",
+        "valueNumber": 8,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.cpu.maxClock",
+        "itemId": "apple-m1",
+        "metricId": "apple.cpu.maxClock",
+        "valueNumber": 3200,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.gpu.cores",
+        "itemId": "apple-m1",
+        "metricId": "apple.gpu.cores",
+        "valueNumber": 8,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.gpu.maxClock",
+        "itemId": "apple-m1",
+        "metricId": "apple.gpu.maxClock",
+        "valueNumber": 1300,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.neuralEngine.cores",
+        "itemId": "apple-m1",
+        "metricId": "apple.neuralEngine.cores",
+        "valueNumber": 16,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.memory.unified",
+        "itemId": "apple-m1",
+        "metricId": "apple.memory.unified",
+        "valueNumber": 16,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.memory.bandwidth",
+        "itemId": "apple-m1",
+        "metricId": "apple.memory.bandwidth",
+        "valueNumber": 68,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.memory.type",
+        "itemId": "apple-m1",
+        "metricId": "apple.memory.type",
+        "valueText": "LPDDR4X",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.power.tdp",
+        "itemId": "apple-m1",
+        "metricId": "apple.power.tdp",
+        "valueNumber": 15,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.power.display",
+        "itemId": "apple-m1",
+        "metricId": "apple.power.display",
+        "valueText": "~15W",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.benchmark.geekbenchSingle",
+        "itemId": "apple-m1",
+        "metricId": "apple.benchmark.geekbenchSingle",
+        "valueNumber": 2400,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.benchmark.geekbenchMulti",
+        "itemId": "apple-m1",
+        "metricId": "apple.benchmark.geekbenchMulti",
+        "valueNumber": 8800,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.benchmark.metal",
+        "itemId": "apple-m1",
+        "metricId": "apple.benchmark.metal",
+        "valueNumber": 10500,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.benchmark.sourceNote",
+        "itemId": "apple-m1",
+        "metricId": "apple.benchmark.sourceNote",
+        "valueText": "Estimated from public benchmarks",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.device.tier",
+        "itemId": "apple-m1",
+        "metricId": "apple.device.tier",
+        "valueText": "Entry Mac / iPad",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1:apple.device.efficiencyNote",
+        "itemId": "apple-m1",
+        "metricId": "apple.device.efficiencyNote",
+        "valueText": "Exceptional performance per watt.",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      }
+    ],
+    "rankingScore": {
+      "id": "apple-m1:ranking:apple-silicon-performance",
+      "itemId": "apple-m1",
+      "rankingProfileId": "apple-silicon-performance",
+      "score": 120,
+      "tierId": "entry",
+      "confidence": "estimated",
+      "formulaVersion": "v1",
+      "updatedAt": "seed-data"
+    },
+    "sources": [
+      {
+        "id": "apple-m1:source:1",
+        "label": "Public benchmarks",
+        "url": "",
+        "sourceType": "reference"
+      }
+    ]
+  },
+  {
+    "item": {
+      "id": "apple-m1-pro",
+      "categoryId": "apple-silicon",
+      "name": "Apple M1 Pro",
+      "manufacturerId": "apple",
+      "generation": "M1",
+      "architecture": "Apple Silicon",
+      "releaseDate": "2021-10",
+      "marketSegmentIds": [
+        "desktop",
+        "laptop"
+      ],
+      "status": "published",
+      "notes": [
+        "Pro-tier M1 for MacBook Pro, more GPU and memory bandwidth."
+      ],
+      "createdAt": "seed-data",
+      "updatedAt": "seed-data"
+    },
+    "metricValues": [
+      {
+        "id": "apple-m1-pro:apple.performance.index",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.performance.index",
+        "valueNumber": 165,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.release.date",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.release.date",
+        "valueText": "2021-10",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.process.node",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.process.node",
+        "valueText": "TSMC 5nm",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.confidence",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.confidence",
+        "valueText": "confirmed",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.cpu.performanceCores",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.cpu.performanceCores",
+        "valueNumber": 6,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.cpu.efficiencyCores",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.cpu.efficiencyCores",
+        "valueNumber": 2,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.cpu.totalCores",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.cpu.totalCores",
+        "valueNumber": 8,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.cpu.maxClock",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.cpu.maxClock",
+        "valueNumber": 3230,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.gpu.cores",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.gpu.cores",
+        "valueNumber": 16,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.gpu.maxClock",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.gpu.maxClock",
+        "valueNumber": 1300,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.neuralEngine.cores",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.neuralEngine.cores",
+        "valueNumber": 16,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.memory.unified",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.memory.unified",
+        "valueNumber": 32,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.memory.bandwidth",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.memory.bandwidth",
+        "valueNumber": 200,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.memory.type",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.memory.type",
+        "valueText": "LPDDR5",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.power.tdp",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.power.tdp",
+        "valueNumber": 30,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.power.display",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.power.display",
+        "valueText": "~30W",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.benchmark.geekbenchSingle",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.benchmark.geekbenchSingle",
+        "valueNumber": 2450,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.benchmark.geekbenchMulti",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.benchmark.geekbenchMulti",
+        "valueNumber": 12500,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.benchmark.metal",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.benchmark.metal",
+        "valueNumber": 22000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.benchmark.sourceNote",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.benchmark.sourceNote",
+        "valueText": "Estimated from public benchmarks",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.device.tier",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.device.tier",
+        "valueText": "Pro MacBook Pro",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-pro:apple.device.efficiencyNote",
+        "itemId": "apple-m1-pro",
+        "metricId": "apple.device.efficiencyNote",
+        "valueText": "Great multi-thread and GPU for creative work.",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      }
+    ],
+    "rankingScore": {
+      "id": "apple-m1-pro:ranking:apple-silicon-performance",
+      "itemId": "apple-m1-pro",
+      "rankingProfileId": "apple-silicon-performance",
+      "score": 165,
+      "tierId": "mainstream",
+      "confidence": "estimated",
+      "formulaVersion": "v1",
+      "updatedAt": "seed-data"
+    },
+    "sources": [
+      {
+        "id": "apple-m1-pro:source:1",
+        "label": "Public benchmarks",
+        "url": "",
+        "sourceType": "reference"
+      }
+    ]
+  },
+  {
+    "item": {
+      "id": "apple-m1-max",
+      "categoryId": "apple-silicon",
+      "name": "Apple M1 Max",
+      "manufacturerId": "apple",
+      "generation": "M1",
+      "architecture": "Apple Silicon",
+      "releaseDate": "2021-10",
+      "marketSegmentIds": [
+        "desktop",
+        "laptop"
+      ],
+      "status": "published",
+      "notes": [
+        "Max-tier M1, 32 GPU cores, 400 GB/s bandwidth."
+      ],
+      "createdAt": "seed-data",
+      "updatedAt": "seed-data"
+    },
+    "metricValues": [
+      {
+        "id": "apple-m1-max:apple.performance.index",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.performance.index",
+        "valueNumber": 210,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.release.date",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.release.date",
+        "valueText": "2021-10",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.process.node",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.process.node",
+        "valueText": "TSMC 5nm",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.confidence",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.confidence",
+        "valueText": "confirmed",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.cpu.performanceCores",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.cpu.performanceCores",
+        "valueNumber": 8,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.cpu.efficiencyCores",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.cpu.efficiencyCores",
+        "valueNumber": 2,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.cpu.totalCores",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.cpu.totalCores",
+        "valueNumber": 10,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.cpu.maxClock",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.cpu.maxClock",
+        "valueNumber": 3230,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.gpu.cores",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.gpu.cores",
+        "valueNumber": 32,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.gpu.maxClock",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.gpu.maxClock",
+        "valueNumber": 1300,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.neuralEngine.cores",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.neuralEngine.cores",
+        "valueNumber": 16,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.memory.unified",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.memory.unified",
+        "valueNumber": 64,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.memory.bandwidth",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.memory.bandwidth",
+        "valueNumber": 400,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.memory.type",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.memory.type",
+        "valueText": "LPDDR5",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.power.tdp",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.power.tdp",
+        "valueNumber": 50,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.power.display",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.power.display",
+        "valueText": "~50W",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.benchmark.geekbenchSingle",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.benchmark.geekbenchSingle",
+        "valueNumber": 2450,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.benchmark.geekbenchMulti",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.benchmark.geekbenchMulti",
+        "valueNumber": 15500,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.benchmark.metal",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.benchmark.metal",
+        "valueNumber": 38000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.benchmark.sourceNote",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.benchmark.sourceNote",
+        "valueText": "Estimated from public benchmarks",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.device.tier",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.device.tier",
+        "valueText": "Pro/Max MacBook Pro",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m1-max:apple.device.efficiencyNote",
+        "itemId": "apple-m1-max",
+        "metricId": "apple.device.efficiencyNote",
+        "valueText": "Workstation-class GPU in a laptop.",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      }
+    ],
+    "rankingScore": {
+      "id": "apple-m1-max:ranking:apple-silicon-performance",
+      "itemId": "apple-m1-max",
+      "rankingProfileId": "apple-silicon-performance",
+      "score": 210,
+      "tierId": "high-end",
+      "confidence": "estimated",
+      "formulaVersion": "v1",
+      "updatedAt": "seed-data"
+    },
+    "sources": [
+      {
+        "id": "apple-m1-max:source:1",
+        "label": "Public benchmarks",
+        "url": "",
+        "sourceType": "reference"
+      }
+    ]
+  },
+  {
+    "item": {
+      "id": "apple-m2",
+      "categoryId": "apple-silicon",
+      "name": "Apple M2",
+      "manufacturerId": "apple",
+      "generation": "M2",
+      "architecture": "Apple Silicon",
+      "releaseDate": "2022-06",
+      "marketSegmentIds": [
+        "desktop",
+        "laptop"
+      ],
+      "status": "published",
+      "notes": [
+        "Second-gen base chip, ~18% faster GPU than M1."
+      ],
+      "createdAt": "seed-data",
+      "updatedAt": "seed-data"
+    },
+    "metricValues": [
+      {
+        "id": "apple-m2:apple.performance.index",
+        "itemId": "apple-m2",
+        "metricId": "apple.performance.index",
+        "valueNumber": 140,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.release.date",
+        "itemId": "apple-m2",
+        "metricId": "apple.release.date",
+        "valueText": "2022-06",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.process.node",
+        "itemId": "apple-m2",
+        "metricId": "apple.process.node",
+        "valueText": "TSMC 5nm (N5P)",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.confidence",
+        "itemId": "apple-m2",
+        "metricId": "apple.confidence",
+        "valueText": "confirmed",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.cpu.performanceCores",
+        "itemId": "apple-m2",
+        "metricId": "apple.cpu.performanceCores",
+        "valueNumber": 4,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.cpu.efficiencyCores",
+        "itemId": "apple-m2",
+        "metricId": "apple.cpu.efficiencyCores",
+        "valueNumber": 4,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.cpu.totalCores",
+        "itemId": "apple-m2",
+        "metricId": "apple.cpu.totalCores",
+        "valueNumber": 8,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.cpu.maxClock",
+        "itemId": "apple-m2",
+        "metricId": "apple.cpu.maxClock",
+        "valueNumber": 3500,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.gpu.cores",
+        "itemId": "apple-m2",
+        "metricId": "apple.gpu.cores",
+        "valueNumber": 10,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.gpu.maxClock",
+        "itemId": "apple-m2",
+        "metricId": "apple.gpu.maxClock",
+        "valueNumber": 1400,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.neuralEngine.cores",
+        "itemId": "apple-m2",
+        "metricId": "apple.neuralEngine.cores",
+        "valueNumber": 16,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.memory.unified",
+        "itemId": "apple-m2",
+        "metricId": "apple.memory.unified",
+        "valueNumber": 24,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.memory.bandwidth",
+        "itemId": "apple-m2",
+        "metricId": "apple.memory.bandwidth",
+        "valueNumber": 100,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.memory.type",
+        "itemId": "apple-m2",
+        "metricId": "apple.memory.type",
+        "valueText": "LPDDR5",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.power.tdp",
+        "itemId": "apple-m2",
+        "metricId": "apple.power.tdp",
+        "valueNumber": 18,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.power.display",
+        "itemId": "apple-m2",
+        "metricId": "apple.power.display",
+        "valueText": "~18W",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.benchmark.geekbenchSingle",
+        "itemId": "apple-m2",
+        "metricId": "apple.benchmark.geekbenchSingle",
+        "valueNumber": 2600,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.benchmark.geekbenchMulti",
+        "itemId": "apple-m2",
+        "metricId": "apple.benchmark.geekbenchMulti",
+        "valueNumber": 10000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.benchmark.metal",
+        "itemId": "apple-m2",
+        "metricId": "apple.benchmark.metal",
+        "valueNumber": 12500,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.benchmark.sourceNote",
+        "itemId": "apple-m2",
+        "metricId": "apple.benchmark.sourceNote",
+        "valueText": "Estimated from public benchmarks",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.device.tier",
+        "itemId": "apple-m2",
+        "metricId": "apple.device.tier",
+        "valueText": "Mainstream Mac / iPad",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2:apple.device.efficiencyNote",
+        "itemId": "apple-m2",
+        "metricId": "apple.device.efficiencyNote",
+        "valueText": "Improved GPU and media engines over M1.",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      }
+    ],
+    "rankingScore": {
+      "id": "apple-m2:ranking:apple-silicon-performance",
+      "itemId": "apple-m2",
+      "rankingProfileId": "apple-silicon-performance",
+      "score": 140,
+      "tierId": "mainstream",
+      "confidence": "estimated",
+      "formulaVersion": "v1",
+      "updatedAt": "seed-data"
+    },
+    "sources": [
+      {
+        "id": "apple-m2:source:1",
+        "label": "Public benchmarks",
+        "url": "",
+        "sourceType": "reference"
+      }
+    ]
+  },
+  {
+    "item": {
+      "id": "apple-m2-pro",
+      "categoryId": "apple-silicon",
+      "name": "Apple M2 Pro",
+      "manufacturerId": "apple",
+      "generation": "M2",
+      "architecture": "Apple Silicon",
+      "releaseDate": "2023-01",
+      "marketSegmentIds": [
+        "desktop",
+        "laptop"
+      ],
+      "status": "published",
+      "notes": [
+        "Pro-tier M2, up to 12 CPU + 19 GPU cores."
+      ],
+      "createdAt": "seed-data",
+      "updatedAt": "seed-data"
+    },
+    "metricValues": [
+      {
+        "id": "apple-m2-pro:apple.performance.index",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.performance.index",
+        "valueNumber": 190,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.release.date",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.release.date",
+        "valueText": "2023-01",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.process.node",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.process.node",
+        "valueText": "TSMC 5nm (N5P)",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.confidence",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.confidence",
+        "valueText": "confirmed",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.cpu.performanceCores",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.cpu.performanceCores",
+        "valueNumber": 8,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.cpu.efficiencyCores",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.cpu.efficiencyCores",
+        "valueNumber": 4,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.cpu.totalCores",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.cpu.totalCores",
+        "valueNumber": 12,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.cpu.maxClock",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.cpu.maxClock",
+        "valueNumber": 3500,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.gpu.cores",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.gpu.cores",
+        "valueNumber": 19,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.gpu.maxClock",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.gpu.maxClock",
+        "valueNumber": 1400,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.neuralEngine.cores",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.neuralEngine.cores",
+        "valueNumber": 16,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.memory.unified",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.memory.unified",
+        "valueNumber": 32,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.memory.bandwidth",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.memory.bandwidth",
+        "valueNumber": 200,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.memory.type",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.memory.type",
+        "valueText": "LPDDR5",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.power.tdp",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.power.tdp",
+        "valueNumber": 35,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.power.display",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.power.display",
+        "valueText": "~35W",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.benchmark.geekbenchSingle",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.benchmark.geekbenchSingle",
+        "valueNumber": 2650,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.benchmark.geekbenchMulti",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.benchmark.geekbenchMulti",
+        "valueNumber": 15000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.benchmark.metal",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.benchmark.metal",
+        "valueNumber": 25000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.benchmark.sourceNote",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.benchmark.sourceNote",
+        "valueText": "Estimated from public benchmarks",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.device.tier",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.device.tier",
+        "valueText": "Pro MacBook Pro / Mac mini",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-pro:apple.device.efficiencyNote",
+        "itemId": "apple-m2-pro",
+        "metricId": "apple.device.efficiencyNote",
+        "valueText": "Strong all-rounder for developers and creators.",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      }
+    ],
+    "rankingScore": {
+      "id": "apple-m2-pro:ranking:apple-silicon-performance",
+      "itemId": "apple-m2-pro",
+      "rankingProfileId": "apple-silicon-performance",
+      "score": 190,
+      "tierId": "high-end",
+      "confidence": "estimated",
+      "formulaVersion": "v1",
+      "updatedAt": "seed-data"
+    },
+    "sources": [
+      {
+        "id": "apple-m2-pro:source:1",
+        "label": "Public benchmarks",
+        "url": "",
+        "sourceType": "reference"
+      }
+    ]
+  },
+  {
+    "item": {
+      "id": "apple-m2-max",
+      "categoryId": "apple-silicon",
+      "name": "Apple M2 Max",
+      "manufacturerId": "apple",
+      "generation": "M2",
+      "architecture": "Apple Silicon",
+      "releaseDate": "2023-01",
+      "marketSegmentIds": [
+        "desktop",
+        "laptop"
+      ],
+      "status": "published",
+      "notes": [
+        "Max-tier M2, 38 GPU cores, 400 GB/s bandwidth."
+      ],
+      "createdAt": "seed-data",
+      "updatedAt": "seed-data"
+    },
+    "metricValues": [
+      {
+        "id": "apple-m2-max:apple.performance.index",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.performance.index",
+        "valueNumber": 240,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.release.date",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.release.date",
+        "valueText": "2023-01",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.process.node",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.process.node",
+        "valueText": "TSMC 5nm (N5P)",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.confidence",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.confidence",
+        "valueText": "confirmed",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.cpu.performanceCores",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.cpu.performanceCores",
+        "valueNumber": 8,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.cpu.efficiencyCores",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.cpu.efficiencyCores",
+        "valueNumber": 4,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.cpu.totalCores",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.cpu.totalCores",
+        "valueNumber": 12,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.cpu.maxClock",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.cpu.maxClock",
+        "valueNumber": 3500,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.gpu.cores",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.gpu.cores",
+        "valueNumber": 38,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.gpu.maxClock",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.gpu.maxClock",
+        "valueNumber": 1400,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.neuralEngine.cores",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.neuralEngine.cores",
+        "valueNumber": 16,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.memory.unified",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.memory.unified",
+        "valueNumber": 96,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.memory.bandwidth",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.memory.bandwidth",
+        "valueNumber": 400,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.memory.type",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.memory.type",
+        "valueText": "LPDDR5",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.power.tdp",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.power.tdp",
+        "valueNumber": 55,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.power.display",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.power.display",
+        "valueText": "~55W",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.benchmark.geekbenchSingle",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.benchmark.geekbenchSingle",
+        "valueNumber": 2650,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.benchmark.geekbenchMulti",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.benchmark.geekbenchMulti",
+        "valueNumber": 18000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.benchmark.metal",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.benchmark.metal",
+        "valueNumber": 42000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.benchmark.sourceNote",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.benchmark.sourceNote",
+        "valueText": "Estimated from public benchmarks",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.device.tier",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.device.tier",
+        "valueText": "Max MacBook Pro",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m2-max:apple.device.efficiencyNote",
+        "itemId": "apple-m2-max",
+        "metricId": "apple.device.efficiencyNote",
+        "valueText": "Workstation-class GPU for video and 3D.",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      }
+    ],
+    "rankingScore": {
+      "id": "apple-m2-max:ranking:apple-silicon-performance",
+      "itemId": "apple-m2-max",
+      "rankingProfileId": "apple-silicon-performance",
+      "score": 240,
+      "tierId": "high-end",
+      "confidence": "estimated",
+      "formulaVersion": "v1",
+      "updatedAt": "seed-data"
+    },
+    "sources": [
+      {
+        "id": "apple-m2-max:source:1",
+        "label": "Public benchmarks",
+        "url": "",
+        "sourceType": "reference"
+      }
+    ]
+  },
+  {
+    "item": {
+      "id": "apple-m3-max",
+      "categoryId": "apple-silicon",
+      "name": "Apple M3 Max",
+      "manufacturerId": "apple",
+      "generation": "M3",
+      "architecture": "Apple Silicon",
+      "releaseDate": "2023-11",
+      "marketSegmentIds": [
+        "desktop",
+        "laptop"
+      ],
+      "status": "published",
+      "notes": [
+        "3nm Max chip, up to 40 GPU cores."
+      ],
+      "createdAt": "seed-data",
+      "updatedAt": "seed-data"
+    },
+    "metricValues": [
+      {
+        "id": "apple-m3-max:apple.performance.index",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.performance.index",
+        "valueNumber": 280,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.release.date",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.release.date",
+        "valueText": "2023-11",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.process.node",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.process.node",
+        "valueText": "TSMC 3nm",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.confidence",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.confidence",
+        "valueText": "confirmed",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.cpu.performanceCores",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.cpu.performanceCores",
+        "valueNumber": 10,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.cpu.efficiencyCores",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.cpu.efficiencyCores",
+        "valueNumber": 4,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.cpu.totalCores",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.cpu.totalCores",
+        "valueNumber": 14,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.cpu.maxClock",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.cpu.maxClock",
+        "valueNumber": 4050,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.gpu.cores",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.gpu.cores",
+        "valueNumber": 40,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.gpu.maxClock",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.gpu.maxClock",
+        "valueNumber": 1600,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.neuralEngine.cores",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.neuralEngine.cores",
+        "valueNumber": 16,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.memory.unified",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.memory.unified",
+        "valueNumber": 128,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.memory.bandwidth",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.memory.bandwidth",
+        "valueNumber": 400,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.memory.type",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.memory.type",
+        "valueText": "LPDDR5",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.power.tdp",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.power.tdp",
+        "valueNumber": 60,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.power.display",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.power.display",
+        "valueText": "~60W",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.benchmark.geekbenchSingle",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.benchmark.geekbenchSingle",
+        "valueNumber": 3100,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.benchmark.geekbenchMulti",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.benchmark.geekbenchMulti",
+        "valueNumber": 21500,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.benchmark.metal",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.benchmark.metal",
+        "valueNumber": 52000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.benchmark.sourceNote",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.benchmark.sourceNote",
+        "valueText": "Estimated from public benchmarks",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.device.tier",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.device.tier",
+        "valueText": "Max MacBook Pro",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m3-max:apple.device.efficiencyNote",
+        "itemId": "apple-m3-max",
+        "metricId": "apple.device.efficiencyNote",
+        "valueText": "Top-tier laptop chip for 3D and video.",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      }
+    ],
+    "rankingScore": {
+      "id": "apple-m3-max:ranking:apple-silicon-performance",
+      "itemId": "apple-m3-max",
+      "rankingProfileId": "apple-silicon-performance",
+      "score": 280,
+      "tierId": "high-end",
+      "confidence": "estimated",
+      "formulaVersion": "v1",
+      "updatedAt": "seed-data"
+    },
+    "sources": [
+      {
+        "id": "apple-m3-max:source:1",
+        "label": "Public benchmarks",
+        "url": "",
+        "sourceType": "reference"
+      }
+    ]
+  },
+  {
+    "item": {
+      "id": "apple-m4",
+      "categoryId": "apple-silicon",
+      "name": "Apple M4",
+      "manufacturerId": "apple",
+      "generation": "M4",
+      "architecture": "Apple Silicon",
+      "releaseDate": "2024-05",
+      "marketSegmentIds": [
+        "desktop",
+        "laptop"
+      ],
+      "status": "published",
+      "notes": [
+        "Latest base chip, debuted in iPad Pro."
+      ],
+      "createdAt": "seed-data",
+      "updatedAt": "seed-data"
+    },
+    "metricValues": [
+      {
+        "id": "apple-m4:apple.performance.index",
+        "itemId": "apple-m4",
+        "metricId": "apple.performance.index",
+        "valueNumber": 175,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.release.date",
+        "itemId": "apple-m4",
+        "metricId": "apple.release.date",
+        "valueText": "2024-05",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.process.node",
+        "itemId": "apple-m4",
+        "metricId": "apple.process.node",
+        "valueText": "TSMC 3nm (N3E)",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.confidence",
+        "itemId": "apple-m4",
+        "metricId": "apple.confidence",
+        "valueText": "confirmed",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.cpu.performanceCores",
+        "itemId": "apple-m4",
+        "metricId": "apple.cpu.performanceCores",
+        "valueNumber": 4,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.cpu.efficiencyCores",
+        "itemId": "apple-m4",
+        "metricId": "apple.cpu.efficiencyCores",
+        "valueNumber": 6,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.cpu.totalCores",
+        "itemId": "apple-m4",
+        "metricId": "apple.cpu.totalCores",
+        "valueNumber": 10,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.cpu.maxClock",
+        "itemId": "apple-m4",
+        "metricId": "apple.cpu.maxClock",
+        "valueNumber": 4400,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.gpu.cores",
+        "itemId": "apple-m4",
+        "metricId": "apple.gpu.cores",
+        "valueNumber": 10,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.gpu.maxClock",
+        "itemId": "apple-m4",
+        "metricId": "apple.gpu.maxClock",
+        "valueNumber": 1800,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.neuralEngine.cores",
+        "itemId": "apple-m4",
+        "metricId": "apple.neuralEngine.cores",
+        "valueNumber": 16,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.memory.unified",
+        "itemId": "apple-m4",
+        "metricId": "apple.memory.unified",
+        "valueNumber": 16,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.memory.bandwidth",
+        "itemId": "apple-m4",
+        "metricId": "apple.memory.bandwidth",
+        "valueNumber": 120,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.memory.type",
+        "itemId": "apple-m4",
+        "metricId": "apple.memory.type",
+        "valueText": "LPDDR5X",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.power.tdp",
+        "itemId": "apple-m4",
+        "metricId": "apple.power.tdp",
+        "valueNumber": 15,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.power.display",
+        "itemId": "apple-m4",
+        "metricId": "apple.power.display",
+        "valueText": "~15W",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.benchmark.geekbenchSingle",
+        "itemId": "apple-m4",
+        "metricId": "apple.benchmark.geekbenchSingle",
+        "valueNumber": 3700,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.benchmark.geekbenchMulti",
+        "itemId": "apple-m4",
+        "metricId": "apple.benchmark.geekbenchMulti",
+        "valueNumber": 13000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.benchmark.metal",
+        "itemId": "apple-m4",
+        "metricId": "apple.benchmark.metal",
+        "valueNumber": 18000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.benchmark.sourceNote",
+        "itemId": "apple-m4",
+        "metricId": "apple.benchmark.sourceNote",
+        "valueText": "Estimated from public benchmarks",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.device.tier",
+        "itemId": "apple-m4",
+        "metricId": "apple.device.tier",
+        "valueText": "iPad Pro / MacBook Air",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4:apple.device.efficiencyNote",
+        "itemId": "apple-m4",
+        "metricId": "apple.device.efficiencyNote",
+        "valueText": "Best single-thread in a mobile chip.",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      }
+    ],
+    "rankingScore": {
+      "id": "apple-m4:ranking:apple-silicon-performance",
+      "itemId": "apple-m4",
+      "rankingProfileId": "apple-silicon-performance",
+      "score": 175,
+      "tierId": "mainstream",
+      "confidence": "estimated",
+      "formulaVersion": "v1",
+      "updatedAt": "seed-data"
+    },
+    "sources": [
+      {
+        "id": "apple-m4:source:1",
+        "label": "Public benchmarks",
+        "url": "",
+        "sourceType": "reference"
+      }
+    ]
+  },
+  {
+    "item": {
+      "id": "apple-m4-pro",
+      "categoryId": "apple-silicon",
+      "name": "Apple M4 Pro",
+      "manufacturerId": "apple",
+      "generation": "M4",
+      "architecture": "Apple Silicon",
+      "releaseDate": "2024-11",
+      "marketSegmentIds": [
+        "desktop",
+        "laptop"
+      ],
+      "status": "published",
+      "notes": [
+        "Pro-tier M4, strong multi-thread and GPU."
+      ],
+      "createdAt": "seed-data",
+      "updatedAt": "seed-data"
+    },
+    "metricValues": [
+      {
+        "id": "apple-m4-pro:apple.performance.index",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.performance.index",
+        "valueNumber": 250,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.release.date",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.release.date",
+        "valueText": "2024-11",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.process.node",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.process.node",
+        "valueText": "TSMC 3nm (N3E)",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.confidence",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.confidence",
+        "valueText": "confirmed",
+        "confidence": "confirmed",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.cpu.performanceCores",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.cpu.performanceCores",
+        "valueNumber": 10,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.cpu.efficiencyCores",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.cpu.efficiencyCores",
+        "valueNumber": 4,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.cpu.totalCores",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.cpu.totalCores",
+        "valueNumber": 14,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.cpu.maxClock",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.cpu.maxClock",
+        "valueNumber": 4500,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.gpu.cores",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.gpu.cores",
+        "valueNumber": 20,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.gpu.maxClock",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.gpu.maxClock",
+        "valueNumber": 1800,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.neuralEngine.cores",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.neuralEngine.cores",
+        "valueNumber": 16,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.memory.unified",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.memory.unified",
+        "valueNumber": 48,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.memory.bandwidth",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.memory.bandwidth",
+        "valueNumber": 273,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.memory.type",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.memory.type",
+        "valueText": "LPDDR5X",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.power.tdp",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.power.tdp",
+        "valueNumber": 40,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.power.display",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.power.display",
+        "valueText": "~40W",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.benchmark.geekbenchSingle",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.benchmark.geekbenchSingle",
+        "valueNumber": 3800,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.benchmark.geekbenchMulti",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.benchmark.geekbenchMulti",
+        "valueNumber": 22000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.benchmark.metal",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.benchmark.metal",
+        "valueNumber": 38000,
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.benchmark.sourceNote",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.benchmark.sourceNote",
+        "valueText": "Estimated from public benchmarks",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.device.tier",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.device.tier",
+        "valueText": "Pro MacBook Pro",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      },
+      {
+        "id": "apple-m4-pro:apple.device.efficiencyNote",
+        "itemId": "apple-m4-pro",
+        "metricId": "apple.device.efficiencyNote",
+        "valueText": "Exceptional single-thread, strong GPU upgrade.",
+        "confidence": "estimated",
+        "sourceIds": [],
+        "updatedAt": "seed-data"
+      }
+    ],
+    "rankingScore": {
+      "id": "apple-m4-pro:ranking:apple-silicon-performance",
+      "itemId": "apple-m4-pro",
+      "rankingProfileId": "apple-silicon-performance",
+      "score": 250,
+      "tierId": "high-end",
+      "confidence": "estimated",
+      "formulaVersion": "v1",
+      "updatedAt": "seed-data"
+    },
+    "sources": [
+      {
+        "id": "apple-m4-pro:source:1",
+        "label": "Public benchmarks",
+        "url": "",
+        "sourceType": "reference"
+      }
     ]
   }
 ]

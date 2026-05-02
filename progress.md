@@ -396,3 +396,21 @@
   - `index.html` modified
   - `src/app.js` modified
   - `src/styles.css` modified
+
+### Phase: 扩充硬件数据
+
+- **Status:** complete
+- Actions taken:
+  - Desktop CPU: 新增 11 条（Intel 12th/13th/Core Ultra 200 + AMD Ryzen 5000/7000/9000），总计 17 条
+  - Mobile SoC: 新增 6 条（Snapdragon 8 Gen 2/8s Gen 3/7 Gen 3、Dimensity 9200/8300、Exynos 2400），总计 8 条
+  - Apple Silicon: 新增 9 条（M1/M1 Pro/M1 Max/M2/M2 Pro/M2 Max/M3 Max/M4/M4 Pro），总计 11 条
+  - GPU: 新增 14 条（RTX 4080S/4070TiS/4060Ti/3080/3070/1660S/4090M/4080M/3070M、RX 6800XT/6700XT/7600XT/7900M、Arc A750），总计 31 条
+  - 更新测试：搜索 "4070" 匹配数从 3 更新为 4
+  - `npm.cmd run verify` 通过：136 tests / 0 fail
+- 总计：31 GPU + 17 Desktop CPU + 8 Mobile SoC + 11 Apple Silicon = 67 项
+- Files modified:
+  - `src/data/gpus.json` + `src/data/gpus.js`
+  - `src/data/hardware/desktop-cpu.items.json`
+  - `src/data/hardware/mobile-soc.items.json`
+  - `src/data/hardware/apple-silicon.items.json`
+  - `tests/app-render.test.mjs`
