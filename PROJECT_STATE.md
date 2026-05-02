@@ -207,6 +207,7 @@
 - Task 8.3 RED 完成：新增 `tests/postgres-repository-contract.test.mjs`，先运行 `npm.cmd test`，按预期因 `postgres-hardware-repository.js` 缺失失败。
 - Task 8.3 GREEN 完成：新增 `src/infrastructure/postgres/postgres-hardware-repository.js`，实现完整 HardwareRepository 接口（listCategories、getCategory、listItems、getItemDetail、saveItem），使用注入的 queryClient。
 - Task 8.3 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 122 pass / 0 fail。
+- Task 8.3 推送完成：`05822d3 feat: 添加 PostgreSQL 硬件仓库骨架` 已推送到 `origin/main`。
 
 ## 最近验证
 
@@ -310,9 +311,11 @@
 - Task 6.3 浏览器烟测：服务器和静态文件正常访问（200），对比页面客户端渲染依赖测试覆盖。
 - Task 8.1 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 101 pass / 0 fail。
 - Task 8.2 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 118 pass / 0 fail。
+- Task 8.3 完整验证：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 122 pass / 0 fail。
 
 ## 最近提交
 
+- `05822d3 feat: 添加 PostgreSQL 硬件仓库骨架`
 - `4cc767e db: 添加初始硬件平台 SQL 迁移`
 - `494ec9f docs: 添加 PostgreSQL schema 设计文档`
 - `8e67f98 data: 添加 Apple Silicon 品类 schema`
