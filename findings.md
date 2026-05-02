@@ -110,6 +110,13 @@
   - use a fake query client, do not require a real database;
   - expose same methods as `HardwareRepository`;
   - commit message should be `feat: add postgres hardware repository skeleton`.
+- Implementation plan Task 9.1 requires:
+  - create `scripts/export-static-data.mjs`;
+  - create `tests/static-export.test.mjs`;
+  - add `"export:static"` script to `package.json`;
+  - test that export script writes category and item JSON files to a temp directory;
+  - use repository interface, default to JSON repository;
+  - commit message should be `feat: add static hardware data export`.
 
 ## Technical Decisions
 
@@ -185,6 +192,7 @@
 | PostgreSQL repository 使用注入的 queryClient | 不直接依赖 pg 库，通过 `options.queryClient` 注入，便于测试和未来连接池集成。 |
 | PostgreSQL repository 的 `saveItem` 兼容 flat 和 wrapped 格式 | `const item = detail.item || detail` 兼容 contract test 的 flat 格式和应用层的 wrapped 格式。 |
 | PostgreSQL repository 的 `getItemDetail` 返回 flat item + 附加数据 | 使用 `{ ...item, metricValues, rankingScore, sources }` 格式，contract test 可直接访问 `detail.id`，应用层可访问 `detail.metricValues`。 |
+| 静态导出脚本使用 JSON repository 作为默认数据源 | `createJsonHardwareRepository()` 无需配置即可读取现有 JSON 数据，导出结果可用于静态部署或前端缓存。 |
 
 ## Issues Encountered
 

@@ -17,9 +17,9 @@ The user explicitly required:
 
 ## Current Task
 
-Task: Task 8.3: Add PostgreSQL Repository Skeleton
+Task: Task 9.1: Add Static Export Script
 
-Status: Task 8.3 is complete. Created `src/infrastructure/postgres/postgres-hardware-repository.js` implementing the full HardwareRepository interface (listCategories, getCategory, listItems, getItemDetail, saveItem) using an injected query client. Created `tests/postgres-repository-contract.test.mjs` with a fake query client exercising all contract tests. Full verify passed: 12 data records, 122 tests / 0 fail.
+Status: Task 9.1 is complete. Created `scripts/export-static-data.mjs` exporting all categories and items from JSON repository to static JSON files. Created `tests/static-export.test.mjs` verifying category/item export and error handling. Added `export:static` npm script. Full verify passed: 12 data records, 125 tests / 0 fail.
 
 ## Current Date
 
@@ -60,8 +60,9 @@ Core model:
 
 ## Current Files Changed In This Task
 
-- Created `src/infrastructure/postgres/postgres-hardware-repository.js`
-- Created `tests/postgres-repository-contract.test.mjs`
+- Created `scripts/export-static-data.mjs`
+- Created `tests/static-export.test.mjs`
+- Modified `package.json`
 - Modified `SessionContextRecord.md`
 - Modified `PROJECT_STATE.md`
 - Modified `task_plan.md`
@@ -71,21 +72,19 @@ Core model:
 
 ## Next Step
 
-1. 读取实现计划中 Task 9.1 的详细要求。
-2. 创建静态导出脚本。
+1. 读取实现计划中 Task 9.2 的详细要求。
+2. 创建 JSON 导入验证脚本。
 3. 保持 RED/GREEN/验证/提交/推送 循环。
 
 ## Verification Status
 
-Task 8.3 完整验证、实现提交、推送通过。
+Task 9.1 完整验证通过。
 
 最新结果：
 
 - 命令：`npm.cmd run verify`
 - 数据校验：`Validated 12 GPU records.`
-- 测试：122 pass / 0 fail
-- 提交：`05822d3 feat: 添加 PostgreSQL 硬件仓库骨架`
-- 推送：`origin/main` 已更新
+- 测试：125 pass / 0 fail
 - 提交：`4cc767e db: 添加初始硬件平台 SQL 迁移`
 - 推送：`origin/main` 已更新
 

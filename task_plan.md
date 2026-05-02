@@ -6,7 +6,7 @@ Continue the multi-hardware platform implementation plan one small atomic task a
 
 ## Current Phase
 
-Phase 63 complete. Ready for Task 9.1: Add Static Export Script
+Phase 65 complete. Ready for Task 9.2: Add JSON Import Validation Script
 
 ## Phases
 
@@ -517,6 +517,24 @@ Phase 63 complete. Ready for Task 9.1: Add Static Export Script
 - [x] 更新实现计划 checkbox
 - [x] 更新记录文件
 - [x] 提交并推送 Task 8.3
+- **Status:** complete
+
+### Phase 64: Task 9.1 Static Export Script
+
+- [x] 读取 Task 9.1 实现计划详情
+- [x] 新增 `tests/static-export.test.mjs` 失败测试（RED）
+- [x] 确认 RED 因 export 脚本不存在失败
+- [x] 新增 `scripts/export-static-data.mjs`
+- [x] `package.json` 新增 `export:static` 脚本
+- [x] 确认 `npm.cmd test` 通过（125 pass / 0 fail）
+- **Status:** complete
+
+### Phase 65: Task 9.1 验证与记录
+
+- [x] 运行 `npm.cmd run verify` 通过
+- [x] 更新实现计划 checkbox
+- [x] 更新记录文件
+- [x] 提交并推送 Task 9.1
 - **Status:** complete
 
 ## Key Questions

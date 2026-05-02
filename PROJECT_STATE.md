@@ -8,11 +8,11 @@
 
 ## 当前阶段
 
-阶段：Multi-Hardware Platform Implementation Task 8.3 完成。
+阶段：Multi-Hardware Platform Implementation Task 9.1 完成。
 
-当前任务：Task 8.3: Add PostgreSQL Repository Skeleton — 完成。
+当前任务：Task 9.1: Add Static Export Script — 完成。
 
-下一步：Task 9.1: Add Static Export Script。
+下一步：Task 9.2: Add JSON Import Validation Script。
 
 ## 工作规则
 
@@ -208,6 +208,10 @@
 - Task 8.3 GREEN 完成：新增 `src/infrastructure/postgres/postgres-hardware-repository.js`，实现完整 HardwareRepository 接口（listCategories、getCategory、listItems、getItemDetail、saveItem），使用注入的 queryClient。
 - Task 8.3 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 122 pass / 0 fail。
 - Task 8.3 推送完成：`05822d3 feat: 添加 PostgreSQL 硬件仓库骨架` 已推送到 `origin/main`。
+- Task 9.1 启动检查完成：已读取实现计划 Task 9.1。
+- Task 9.1 RED 完成：新增 `tests/static-export.test.mjs`，先运行 `npm.cmd test`，按预期因 `export-static-data.mjs` 缺失失败。
+- Task 9.1 GREEN 完成：新增 `scripts/export-static-data.mjs`，使用 JSON repository 导出 categories 和 items 到静态 JSON 文件；`package.json` 新增 `export:static` 脚本。
+- Task 9.1 完整验证完成：`npm.cmd run verify` 通过，数据校验 12 条记录，测试 125 pass / 0 fail。
 
 ## 最近验证
 

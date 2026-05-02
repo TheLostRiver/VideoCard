@@ -1387,15 +1387,15 @@ git push origin main
 - Modify: `SessionContextRecord.md`
 - Modify: `PROJECT_STATE.md`
 
-- [ ] **Step 1: Add failing export test**
+- [x] **Step 1: Add failing export test**
 
 Test that export script writes generated category and item JSON files into a temp directory.
 
-- [ ] **Step 2: Implement export script**
+- [x] **Step 2: Implement export script**
 
 Use repository interface. Default to JSON repository.
 
-- [ ] **Step 3: Add script**
+- [x] **Step 3: Add script**
 
 Add:
 
@@ -1403,7 +1403,7 @@ Add:
 "export:static": "node scripts/export-static-data.mjs"
 ```
 
-- [ ] **Step 4: Verify**
+- [x] **Step 4: Verify**
 
 Run:
 
@@ -1414,7 +1414,7 @@ npm.cmd run verify
 
 Expected: all tests pass.
 
-- [ ] **Step 5: Update records, commit, push**
+- [x] **Step 5: Update records, commit, push**
 
 Commit:
 
