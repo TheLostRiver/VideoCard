@@ -353,11 +353,26 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
         || state.rankingProfiles.find((p) => p.isDefault)?.id
         || state.rankingProfiles[0]?.id
         || null;
-      state.selectedId = "";
+      const sortedFirst = getSortedGenericItems()[0];
+      state.selectedId = sortedFirst?.id || "";
       renderControls();
       renderYearFilter();
       renderGenericList();
-      elements.detailPanel.innerHTML = `<div class="hardware-detail-empty">点击左侧条目查看详情</div>`;
+      if (state.selectedId) {
+        if (win.location.hash !== `#${state.selectedId}`) {
+          win.history.replaceState(null, "", `#${state.selectedId}`);
+        }
+        try {
+          const detail = await fetchCategoryItemDetail(state.categoryId, state.selectedId);
+          state.genericDetail = detail;
+          renderGenericDetail(detail);
+        } catch (err) {
+          console.error(err);
+          elements.detailPanel.innerHTML = `<div class="hardware-detail-empty">详情加载失败</div>`;
+        }
+      } else {
+        elements.detailPanel.innerHTML = `<div class="hardware-detail-empty">点击左侧条目查看详情</div>`;
+      }
     }
 
     playEnterAnimation(elements.ladderList, elements.detailPanel, elements.filterBar, elements.yearFilter);
@@ -501,7 +516,7 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
     });
   }
 
-  function renderGenericList() {
+  function getSortedGenericItems() {
     let items = state.genericItems;
     const query = state.query.trim().toLowerCase();
     if (query) {
@@ -509,7 +524,7 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
     }
     items = filterByYears(items, state.selectedYears, state.showUnknownYears, (item) => item.releaseYear != null ? String(item.releaseYear) : null);
     const profileId = state.sortBy;
-    items = [...items].sort((a, b) => {
+    return [...items].sort((a, b) => {
       const scoreA = getBenchmarkValue(a, profileId);
       const scoreB = getBenchmarkValue(b, profileId);
       if (scoreA == null && scoreB == null) return 0;
@@ -517,6 +532,11 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
       if (scoreB == null) return -1;
       return scoreB - scoreA;
     });
+  }
+
+  function renderGenericList() {
+    const items = getSortedGenericItems();
+    const profileId = state.sortBy;
     elements.ladderList.innerHTML = renderHardwareList(items, { selectedId: state.selectedId, activeBenchmark: profileId });
     elements.ladderList.querySelectorAll("[data-hardware-id]").forEach((row) => {
       row.addEventListener("click", () => selectGenericItem(row.dataset.hardwareId));
