@@ -1,0 +1,79 @@
+{
+  "suites": [
+    {
+      "id": "geekbench6",
+      "label": "Geekbench 6",
+      "shortLabel": "GB6",
+      "scores": [
+        { "id": "single", "label": "GB6 单核", "biggerIsBetter": true },
+        { "id": "multi", "label": "GB6 多核", "biggerIsBetter": true }
+      ]
+    },
+    {
+      "id": "cinebench-r23",
+      "label": "Cinebench R23",
+      "shortLabel": "R23",
+      "scores": [
+        { "id": "single", "label": "R23 单核", "biggerIsBetter": true },
+        { "id": "multi", "label": "R23 多核", "biggerIsBetter": true }
+      ]
+    },
+    {
+      "id": "antutu",
+      "label": "AnTuTu",
+      "shortLabel": "AnTuTu",
+      "scores": [
+        { "id": "total", "label": "AnTuTu", "biggerIsBetter": true }
+      ]
+    },
+    {
+      "id": "3dmark-wild-life",
+      "label": "3DMark Wild Life Extreme",
+      "shortLabel": "Wild Life",
+      "scores": [
+        { "id": "score", "label": "Wild Life Extreme", "biggerIsBetter": true }
+      ]
+    },
+    {
+      "id": "metal",
+      "label": "Metal Benchmark",
+      "shortLabel": "Metal",
+      "scores": [
+        { "id": "score", "label": "Metal", "biggerIsBetter": true }
+      ]
+    },
+    {
+      "id": "3dmark-time-spy",
+      "label": "3DMark Time Spy",
+      "shortLabel": "Time Spy",
+      "scores": [
+        { "id": "graphics", "label": "Time Spy", "biggerIsBetter": true }
+      ]
+    },
+    {
+      "id": "3dmark-steel-nomad",
+      "label": "3DMark Steel Nomad",
+      "shortLabel": "Steel Nomad",
+      "scores": [
+        { "id": "graphics", "label": "Steel Nomad", "biggerIsBetter": true }
+      ]
+    },
+    {
+      "id": "passmark-g3d",
+      "label": "PassMark G3D",
+      "shortLabel": "PassMark G3D",
+      "scores": [
+        { "id": "score", "label": "PassMark G3D", "biggerIsBetter": true }
+      ]
+    },
+    {
+      "id": "passmark-cpu",
+      "label": "PassMark CPU",
+      "shortLabel": "PassMark CPU",
+      "scores": [
+        { "id": "cpu-mark", "label": "PassMark CPU Mark", "biggerIsBetter": true },
+        { "id": "thread-mark", "label": "PassMark Thread Mark", "biggerIsBetter": true }
+      ]
+    }
+  ]
+}
