@@ -234,6 +234,8 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
   state.genericDetail = null;
   state.selectedYears = new Set();
   state.showUnknownYears = false;
+  state.activeBenchmark = "composite";
+  state.benchmarkScoreFields = [];
 
   function renderControls() {
     if (state.categoryId === "gpu") {
@@ -243,9 +245,16 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
       elements.sortSelect.parentElement.hidden = false;
       elements.filterBar.hidden = false;
     } else {
-      elements.sortSelect.innerHTML = `<option value="score">按分数排序</option>`;
+      if (state.benchmarkScoreFields.length) {
+        elements.sortSelect.innerHTML = state.benchmarkScoreFields
+          .map((f) => `<option value="${escapeHtml(f.id)}">${escapeHtml(f.label)}</option>`)
+          .join("");
+        elements.sortSelect.value = state.activeBenchmark;
+        elements.sortSelect.parentElement.hidden = false;
+      } else {
+        elements.sortSelect.parentElement.hidden = true;
+      }
       elements.filterBar.innerHTML = "";
-      elements.sortSelect.parentElement.hidden = true;
       elements.filterBar.hidden = true;
     }
   }
@@ -308,14 +317,13 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
     } else {
       const listVm = await fetchCategoryListViewModel(categoryId);
       state.genericItems = listVm?.items || [];
-      state.selectedId = state.genericItems[0]?.id || "";
+      state.benchmarkScoreFields = listVm?.category?.benchmarkScoreFields || [];
+      state.activeBenchmark = state.benchmarkScoreFields[0]?.id || "composite";
+      state.selectedId = "";
+      renderControls();
       renderYearFilter();
       renderGenericList();
-      if (state.selectedId) {
-        const detail = await fetchCategoryItemDetail(categoryId, state.selectedId);
-        state.genericDetail = detail;
-        renderGenericDetail(detail);
-      }
+      elements.detailPanel.innerHTML = `<div class="hardware-detail-empty">点击左侧条目查看详情</div>`;
     }
   }
 
@@ -328,9 +336,15 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
     });
 
     elements.sortSelect.addEventListener("change", (event) => {
-      state.sortBy = event.target.value;
-      state.drawerOpen = false;
-      if (state.categoryId === "gpu") renderGpuMode();
+      if (state.categoryId === "gpu") {
+        state.sortBy = event.target.value;
+        state.drawerOpen = false;
+        renderGpuMode();
+      } else {
+        state.activeBenchmark = event.target.value;
+        state.drawerOpen = false;
+        renderGenericList();
+      }
     });
 
     elements.filterBar.addEventListener("click", (event) => {
@@ -434,6 +448,7 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
     state.selectedId = id;
     state.drawerOpen = true;
     if (win.location.hash !== `#${id}`) win.history.replaceState(null, "", `#${id}`);
+    renderGenericList();
     const detail = await fetchCategoryItemDetail(state.categoryId, id);
     state.genericDetail = detail;
     renderGenericDetail(detail);
@@ -453,10 +468,27 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
       items = items.filter((item) => searchHardwareListItems([item], state.query).length > 0);
     }
     items = filterByYears(items, state.selectedYears, state.showUnknownYears, (item) => item.releaseYear != null ? String(item.releaseYear) : null);
-    elements.ladderList.innerHTML = renderHardwareList(items, { selectedId: state.selectedId });
+    const benchmarkId = state.activeBenchmark;
+    items = [...items].sort((a, b) => {
+      const scoreA = getBenchmarkValue(a, benchmarkId);
+      const scoreB = getBenchmarkValue(b, benchmarkId);
+      if (scoreA == null && scoreB == null) return 0;
+      if (scoreA == null) return 1;
+      if (scoreB == null) return -1;
+      return scoreB - scoreA;
+    });
+    elements.ladderList.innerHTML = renderHardwareList(items, { selectedId: state.selectedId, activeBenchmark: benchmarkId });
     elements.ladderList.querySelectorAll("[data-hardware-id]").forEach((row) => {
       row.addEventListener("click", () => selectGenericItem(row.dataset.hardwareId));
     });
+  }
+
+  function getBenchmarkValue(item, benchmarkId) {
+    if (item.benchmarkScores?.length) {
+      const score = item.benchmarkScores.find((s) => s.id === benchmarkId);
+      if (score) return score.value ?? null;
+    }
+    return item.primaryScore?.value ?? null;
   }
 
   function renderGenericDetail(detail) {

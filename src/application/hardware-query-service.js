@@ -1,17 +1,24 @@
 import { formatNumber } from "../utils/format.js";
+import { extractYear } from "../utils/year-filter.js";
 
 export function createHardwareQueryService(repository) {
   if (!repository) throw new Error("hardware query service requires a repository");
 
   async function getListViewModel(categoryId) {
     const category = await getRequiredCategory(repository, categoryId);
-    const items = await repository.listItems({ categoryId });
-    const details = await Promise.all(items.map((item) => repository.getItemDetail(item.id)));
+    const details = typeof repository.listItemDetails === "function"
+      ? await repository.listItemDetails({ categoryId })
+      : await fallbackListDetails(repository, categoryId);
 
     return {
       category: summarizeCategory(category),
       items: details.filter(Boolean).map((detail) => createListItemViewModel(category, detail))
     };
+  }
+
+  async function fallbackListDetails(repo, categoryId) {
+    const items = await repo.listItems({ categoryId });
+    return Promise.all(items.map((item) => repo.getItemDetail(item.id)));
   }
 
   async function getDetailViewModel(itemId) {
@@ -50,6 +57,7 @@ function createListItemViewModel(category, detail) {
   const listView = category.listView || {};
   const facts = (listView.subtitleFields || []).map((fieldId) => createDisplayField(category, detail, fieldId));
   const badge = createBadge(detail, listView.badgeField);
+  const benchmarkScores = computeBenchmarkScores(category, detail);
 
   return {
     id: detail.item.id,
@@ -58,9 +66,57 @@ function createListItemViewModel(category, detail) {
     badges: badge ? [badge] : [],
     facts,
     primaryScore: createDisplayField(category, detail, listView.scoreField),
+    benchmarkScores,
     power: createDisplayField(category, detail, listView.powerField),
-    recommendation: createDisplayField(category, detail, listView.recommendationField)
+    recommendation: createDisplayField(category, detail, listView.recommendationField),
+    releaseYear: extractYear(detail.item.releaseDate)
   };
+}
+
+function computeBenchmarkScores(category, detail) {
+  const fields = category.listView?.benchmarkScoreFields;
+  if (!fields || !fields.length) return [];
+
+  return fields.map((field) => {
+    if (field.metricIds) {
+      return computeCompositeScore(field, category, detail);
+    }
+    const resolved = createDisplayField(category, detail, field.metricId);
+    return {
+      id: field.id,
+      label: field.label,
+      value: resolved.value,
+      displayValue: resolved.displayValue
+    };
+  });
+}
+
+const BENCHMARK_REFERENCE = {
+  "cpu.benchmark.cinebenchSingle": 2500,
+  "cpu.benchmark.cinebenchMulti": 40000,
+  "cpu.benchmark.geekbenchSingle": 3500,
+  "cpu.benchmark.geekbenchMulti": 25000
+};
+
+function computeCompositeScore(field, category, detail) {
+  const metricIds = field.metricIds || [];
+  const weights = field.weights || metricIds.map(() => 1 / metricIds.length);
+  let totalWeight = 0;
+  let weightedSum = 0;
+
+  for (let i = 0; i < metricIds.length; i++) {
+    const resolved = resolveValue(detail, metricIds[i]);
+    const num = resolved?.valueNumber;
+    if (num == null) continue;
+    const ref = BENCHMARK_REFERENCE[metricIds[i]] || 1;
+    weightedSum += (num / ref) * 100 * weights[i];
+    totalWeight += weights[i];
+  }
+
+  if (totalWeight === 0) return { id: field.id, label: field.label, value: null, displayValue: "待补充" };
+
+  const score = Math.round(weightedSum / totalWeight);
+  return { id: field.id, label: field.label, value: score, displayValue: formatNumber(score) };
 }
 
 function createBadge(detail, fieldId) {
@@ -121,6 +177,19 @@ function formatDisplayValue(formatterId, value) {
   if (formatterId === "index" || formatterId === "number" || formatterId === "benchmark-score") {
     return value.valueNumber === null || value.valueNumber === undefined ? "待补充" : formatNumber(value.valueNumber);
   }
+  if (formatterId === "integer") {
+    return value.valueNumber === null || value.valueNumber === undefined ? "待补充" : formatNumber(Math.round(value.valueNumber));
+  }
+  if (formatterId === "decimal-2") {
+    return value.valueNumber === null || value.valueNumber === undefined ? "待补充" : value.valueNumber.toFixed(2);
+  }
+  if (formatterId === "currency-usd") {
+    return value.valueNumber === null || value.valueNumber === undefined ? "待补充" : `$${formatNumber(value.valueNumber)}`;
+  }
+  if (formatterId === "frequency-mhz") {
+    if (value.valueText) return value.valueText;
+    return value.valueNumber === null || value.valueNumber === undefined ? "待补充" : `${formatNumber(value.valueNumber)} MHz`;
+  }
 
   return getTextValue(value);
 }
@@ -178,11 +247,16 @@ function matchesWarningRule(rule, detail) {
 }
 
 function summarizeCategory(category) {
+  const benchmarkScoreFields = (category.listView?.benchmarkScoreFields || []).map((f) => ({
+    id: f.id,
+    label: f.label
+  }));
   return {
     id: category.id,
     label: category.label,
     description: category.description,
-    itemName: category.itemName
+    itemName: category.itemName,
+    benchmarkScoreFields
   };
 }
 
