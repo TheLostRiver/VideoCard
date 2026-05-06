@@ -26,7 +26,78 @@ export function validateCategorySchema(schema) {
     }
   }
 
+  validateRankingProfiles(schema, schemaId, metricIds, errors);
+
   return errors;
+}
+
+function validateRankingProfiles(schema, schemaId, metricIds, errors) {
+  const rankingProfiles = schema?.rankingProfiles;
+  if (!rankingProfiles) return;
+  if (!Array.isArray(rankingProfiles.profiles)) {
+    errors.push(`${schemaId} rankingProfiles.profiles must be an array`);
+    return;
+  }
+
+  const profileIds = new Set();
+  for (const profile of rankingProfiles.profiles) {
+    if (!profile?.id) errors.push(`${schemaId} rankingProfile missing id`);
+    if (profile?.id && profileIds.has(profile.id)) {
+      errors.push(`${schemaId} duplicate rankingProfile id: ${profile.id}`);
+    }
+    if (profile?.id) profileIds.add(profile.id);
+    if (!profile?.kind) errors.push(`${schemaId} rankingProfile missing kind`);
+
+    const profileLabel = profile?.id || "<anonymous>";
+    if (profile?.kind === "metric") {
+      if (!profile.metricId) {
+        errors.push(`${schemaId} rankingProfile ${profileLabel} missing metricId`);
+      } else if (!metricIds.has(profile.metricId)) {
+        errors.push(`${schemaId} rankingProfile ${profileLabel} references unknown metricId: ${profile.metricId}`);
+      }
+    } else if (profile?.kind === "composite") {
+      if (!Array.isArray(profile.components) || profile.components.length === 0) {
+        errors.push(`${schemaId} rankingProfile ${profileLabel} missing components`);
+      } else {
+        for (const component of profile.components) {
+          if (!component?.metricId) {
+            errors.push(`${schemaId} rankingProfile ${profileLabel} component missing metricId`);
+          } else if (!metricIds.has(component.metricId)) {
+            errors.push(`${schemaId} rankingProfile ${profileLabel} references unknown metricId: ${component.metricId}`);
+          }
+        }
+      }
+    } else if (profile?.kind === "derived") {
+      if (profile.formula !== "ratio") {
+        errors.push(`${schemaId} rankingProfile ${profileLabel} unsupported formula: ${profile.formula || "<missing>"}`);
+      }
+      if (!profile.numerator) errors.push(`${schemaId} rankingProfile ${profileLabel} missing numerator`);
+      if (!profile.denominator) errors.push(`${schemaId} rankingProfile ${profileLabel} missing denominator`);
+      validateDerivedSelector(`${schemaId} rankingProfile ${profileLabel} numerator`, profile.numerator, metricIds, errors);
+      validateDerivedSelector(`${schemaId} rankingProfile ${profileLabel} denominator`, profile.denominator, metricIds, errors);
+    } else if (profile?.kind) {
+      errors.push(`${schemaId} rankingProfile ${profileLabel} unsupported kind: ${profile.kind}`);
+    }
+  }
+
+  if (rankingProfiles.default && !profileIds.has(rankingProfiles.default)) {
+    errors.push(`${schemaId} rankingProfiles default references unknown profile: ${rankingProfiles.default}`);
+  }
+}
+
+function validateDerivedSelector(scope, selector, metricIds, errors) {
+  if (!selector) return;
+  const ids = Array.isArray(selector.metricIds) ? selector.metricIds.filter(Boolean) : [];
+  if (selector.metricId) ids.push(selector.metricId);
+  if (ids.length === 0) {
+    errors.push(`${scope} missing metricId`);
+    return;
+  }
+  for (const metricId of ids) {
+    if (!metricIds.has(metricId)) {
+      errors.push(`${scope} references unknown metricId: ${metricId}`);
+    }
+  }
 }
 
 export function assertValidCategorySchema(schema) {

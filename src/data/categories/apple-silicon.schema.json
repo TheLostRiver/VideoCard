@@ -18,6 +18,24 @@
     "powerField": "apple.power.display",
     "recommendationField": "apple.device.tier"
   },
+  "rankingProfiles": {
+    "default": "composite",
+    "profiles": [
+      {
+        "id": "composite",
+        "label": "综合得分",
+        "kind": "composite",
+        "components": [
+          { "metricId": "apple.benchmark.geekbenchSingle", "weight": 0.30, "reference": 3000 },
+          { "metricId": "apple.benchmark.geekbenchMulti", "weight": 0.35, "reference": 12000 },
+          { "metricId": "apple.benchmark.metal", "weight": 0.35, "reference": 20000 }
+        ]
+      },
+      { "id": "geekbenchSingle", "kind": "metric", "metricId": "apple.benchmark.geekbenchSingle", "suiteRef": "geekbench6.single" },
+      { "id": "geekbenchMulti", "kind": "metric", "metricId": "apple.benchmark.geekbenchMulti", "suiteRef": "geekbench6.multi" },
+      { "id": "metal", "kind": "metric", "metricId": "apple.benchmark.metal", "suiteRef": "metal.score" }
+    ]
+  },
   "detailView": {
     "groups": [
       {

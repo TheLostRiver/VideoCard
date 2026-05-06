@@ -19,6 +19,22 @@
     "powerField": "gpu.power.display",
     "recommendationField": "gpu.gaming.recommendedResolution"
   },
+  "rankingProfiles": {
+    "default": "performance",
+    "profiles": [
+      { "id": "performance", "label": "综合性能", "kind": "metric", "metricId": "gpu.performance.index" },
+      { "id": "timeSpy", "kind": "metric", "metricId": "gpu.benchmark.timeSpyGraphics", "suiteRef": "3dmark-time-spy.graphics" },
+      { "id": "memory", "label": "显存容量", "kind": "metric", "metricId": "gpu.memory.size" },
+      {
+        "id": "efficiency",
+        "label": "能效",
+        "kind": "derived",
+        "formula": "ratio",
+        "numerator": { "metricId": "gpu.performance.index" },
+        "denominator": { "metricIds": ["gpu.power.board", "gpu.power.tgpRange"], "rangeAggregation": "max" }
+      }
+    ]
+  },
   "detailView": {
     "groups": [
       {
@@ -59,6 +75,18 @@
           "gpu.benchmark.timeSpyGraphics",
           "gpu.benchmark.steelNomadGraphics",
           "gpu.benchmark.passMarkG3D"
+        ]
+      },
+      {
+        "id": "chipInfo",
+        "title": "Chip Info",
+        "metricIds": [
+          "gpu.chip",
+          "gpu.bus",
+          "gpu.memory.clock",
+          "gpu.shaders",
+          "gpu.tmus",
+          "gpu.rops"
         ]
       },
       {
@@ -362,6 +390,42 @@
       "label": "Efficiency Note",
       "valueType": "text",
       "formatterId": "text"
+    },
+    {
+      "id": "gpu.chip",
+      "label": "GPU Chip",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "gpu.bus",
+      "label": "Bus Interface",
+      "valueType": "text",
+      "formatterId": "text"
+    },
+    {
+      "id": "gpu.memory.clock",
+      "label": "Memory Clock",
+      "valueType": "number",
+      "formatterId": "frequency-mhz"
+    },
+    {
+      "id": "gpu.shaders",
+      "label": "Shaders",
+      "valueType": "number",
+      "formatterId": "integer"
+    },
+    {
+      "id": "gpu.tmus",
+      "label": "TMUs",
+      "valueType": "number",
+      "formatterId": "integer"
+    },
+    {
+      "id": "gpu.rops",
+      "label": "ROPs",
+      "valueType": "number",
+      "formatterId": "integer"
     }
   ],
   "comparePresets": [

@@ -111,3 +111,95 @@ test("validateCategorySchema reports duplicate metric ids", () => {
 test("assertValidCategorySchema throws with validation errors", () => {
   assert.throws(() => assertValidCategorySchema(createValidGpuSchema({ label: "" })), /gpu missing label/);
 });
+
+test("validateCategorySchema accepts rankingProfiles with metric/composite/derived kinds", () => {
+  const schema = createValidGpuSchema({
+    rankingProfiles: {
+      default: "performance",
+      profiles: [
+        { id: "performance", kind: "metric", metricId: "gpu.core.count", label: "Performance" },
+        {
+          id: "composite",
+          kind: "composite",
+          label: "Composite",
+          components: [
+            { metricId: "gpu.core.count", weight: 0.5, reference: 1000 },
+            { metricId: "gpu.memory.size", weight: 0.5, reference: 16 }
+          ]
+        },
+        {
+          id: "ratio",
+          kind: "derived",
+          label: "Ratio",
+          formula: "ratio",
+          numerator: { metricId: "gpu.core.count" },
+          denominator: { metricId: "gpu.memory.size" }
+        }
+      ]
+    }
+  });
+
+  assert.deepEqual(validateCategorySchema(schema), []);
+});
+
+test("validateCategorySchema reports rankingProfile missing id or kind", () => {
+  const schema = createValidGpuSchema({
+    rankingProfiles: { default: "performance", profiles: [{ label: "Broken" }] }
+  });
+
+  const errors = validateCategorySchema(schema);
+  assert.ok(errors.some((e) => e.includes("rankingProfile missing id")), errors.join("\n"));
+  assert.ok(errors.some((e) => e.includes("rankingProfile missing kind")), errors.join("\n"));
+});
+
+test("validateCategorySchema reports rankingProfile metric kind missing metricId", () => {
+  const schema = createValidGpuSchema({
+    rankingProfiles: { default: "performance", profiles: [{ id: "performance", kind: "metric" }] }
+  });
+
+  const errors = validateCategorySchema(schema);
+  assert.ok(errors.some((e) => e.includes("rankingProfile performance missing metricId")), errors.join("\n"));
+});
+
+test("validateCategorySchema reports rankingProfile metric kind referencing unknown metric", () => {
+  const schema = createValidGpuSchema({
+    rankingProfiles: {
+      default: "performance",
+      profiles: [{ id: "performance", kind: "metric", metricId: "gpu.unknown" }]
+    }
+  });
+
+  const errors = validateCategorySchema(schema);
+  assert.ok(errors.some((e) => e.includes("rankingProfile performance references unknown metricId: gpu.unknown")), errors.join("\n"));
+});
+
+test("validateCategorySchema reports rankingProfile composite without components", () => {
+  const schema = createValidGpuSchema({
+    rankingProfiles: { default: "composite", profiles: [{ id: "composite", kind: "composite" }] }
+  });
+
+  const errors = validateCategorySchema(schema);
+  assert.ok(errors.some((e) => e.includes("rankingProfile composite missing components")), errors.join("\n"));
+});
+
+test("validateCategorySchema reports rankingProfile derived ratio missing numerator/denominator", () => {
+  const schema = createValidGpuSchema({
+    rankingProfiles: {
+      default: "x",
+      profiles: [{ id: "x", kind: "derived", formula: "ratio" }]
+    }
+  });
+
+  const errors = validateCategorySchema(schema);
+  assert.ok(errors.some((e) => e.includes("rankingProfile x missing numerator")), errors.join("\n"));
+  assert.ok(errors.some((e) => e.includes("rankingProfile x missing denominator")), errors.join("\n"));
+});
+
+test("validateCategorySchema reports rankingProfiles default referencing unknown profile", () => {
+  const schema = createValidGpuSchema({
+    rankingProfiles: { default: "missing", profiles: [{ id: "performance", kind: "metric", metricId: "gpu.core.count" }] }
+  });
+
+  const errors = validateCategorySchema(schema);
+  assert.ok(errors.some((e) => e.includes("rankingProfiles default references unknown profile: missing")), errors.join("\n"));
+});

@@ -18,6 +18,26 @@
     "powerField": "soc.power.display",
     "recommendationField": "soc.device.tier"
   },
+  "rankingProfiles": {
+    "default": "composite",
+    "profiles": [
+      {
+        "id": "composite",
+        "label": "综合得分",
+        "kind": "composite",
+        "components": [
+          { "metricId": "soc.benchmark.geekbenchSingle", "weight": 0.25, "reference": 2500 },
+          { "metricId": "soc.benchmark.geekbenchMulti", "weight": 0.25, "reference": 8000 },
+          { "metricId": "soc.benchmark.antutuTotal", "weight": 0.25, "reference": 2000000 },
+          { "metricId": "soc.benchmark.wildLife", "weight": 0.25, "reference": 5000 }
+        ]
+      },
+      { "id": "geekbenchSingle", "kind": "metric", "metricId": "soc.benchmark.geekbenchSingle", "suiteRef": "geekbench6.single" },
+      { "id": "geekbenchMulti", "kind": "metric", "metricId": "soc.benchmark.geekbenchMulti", "suiteRef": "geekbench6.multi" },
+      { "id": "antutuTotal", "kind": "metric", "metricId": "soc.benchmark.antutuTotal", "suiteRef": "antutu.total" },
+      { "id": "wildLife", "kind": "metric", "metricId": "soc.benchmark.wildLife", "suiteRef": "3dmark-wild-life.score" }
+    ]
+  },
   "detailView": {
     "groups": [
       {

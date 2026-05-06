@@ -15,15 +15,28 @@
     ],
     "badgeField": "segment",
     "scoreField": "cpu.performance.index",
-    "benchmarkScoreFields": [
-      { "id": "composite", "label": "综合得分", "metricIds": ["cpu.benchmark.cinebenchSingle", "cpu.benchmark.cinebenchMulti", "cpu.benchmark.geekbenchSingle", "cpu.benchmark.geekbenchMulti"], "weights": [0.25, 0.30, 0.20, 0.25] },
-      { "id": "cinebenchSingle", "label": "R23 单核", "metricId": "cpu.benchmark.cinebenchSingle" },
-      { "id": "cinebenchMulti", "label": "R23 多核", "metricId": "cpu.benchmark.cinebenchMulti" },
-      { "id": "geekbenchSingle", "label": "GB6 单核", "metricId": "cpu.benchmark.geekbenchSingle" },
-      { "id": "geekbenchMulti", "label": "GB6 多核", "metricId": "cpu.benchmark.geekbenchMulti" }
-    ],
     "powerField": "cpu.power.tdp.display",
     "recommendationField": "cpu.gaming.recommendedTier"
+  },
+  "rankingProfiles": {
+    "default": "composite",
+    "profiles": [
+      {
+        "id": "composite",
+        "label": "综合得分",
+        "kind": "composite",
+        "components": [
+          { "metricId": "cpu.benchmark.cinebenchSingle", "weight": 0.25, "reference": 2500 },
+          { "metricId": "cpu.benchmark.cinebenchMulti", "weight": 0.30, "reference": 40000 },
+          { "metricId": "cpu.benchmark.geekbenchSingle", "weight": 0.20, "reference": 3500 },
+          { "metricId": "cpu.benchmark.geekbenchMulti", "weight": 0.25, "reference": 25000 }
+        ]
+      },
+      { "id": "cinebenchSingle", "kind": "metric", "metricId": "cpu.benchmark.cinebenchSingle", "suiteRef": "cinebench-r23.single" },
+      { "id": "cinebenchMulti", "kind": "metric", "metricId": "cpu.benchmark.cinebenchMulti", "suiteRef": "cinebench-r23.multi" },
+      { "id": "geekbenchSingle", "kind": "metric", "metricId": "cpu.benchmark.geekbenchSingle", "suiteRef": "geekbench6.single" },
+      { "id": "geekbenchMulti", "kind": "metric", "metricId": "cpu.benchmark.geekbenchMulti", "suiteRef": "geekbench6.multi" }
+    ]
   },
   "detailView": {
     "groups": [
