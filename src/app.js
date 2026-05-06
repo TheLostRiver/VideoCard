@@ -1,7 +1,9 @@
-import { BRANDS, SEGMENTS, SORT_OPTIONS, TIERS } from "./data/constants.js";
+import { BRANDS, SEGMENTS, TIERS } from "./data/constants.js";
 import { gpus } from "./data/gpus.js";
 import { createHardwareQueryService } from "./application/hardware-query-service.js";
 import { createComparisonService } from "./application/comparison-service.js";
+import { createBenchmarkSuiteRegistry } from "./application/benchmark-suite-registry.js";
+import { createRankingProfileResolver } from "./application/ranking-profile-resolver.js";
 import { renderCompareTable } from "./features/compare/render-compare.js";
 import { renderHardwareList } from "./features/hardware-list/render-list.js";
 import { renderHardwareDetail } from "./features/hardware-detail/render-detail.js";
@@ -38,6 +40,16 @@ export async function fetchCategories() {
   const res = await fetch("/api/hardware/categories");
   const data = await res.json();
   return data.categories || [];
+}
+
+export async function fetchBenchmarkSuites() {
+  try {
+    const res = await fetch("/api/hardware/benchmark-suites");
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
 }
 
 export async function fetchCategoryListViewModel(categoryId) {
@@ -122,12 +134,6 @@ export function renderFilterChips(items = gpus) {
   return `<div class="filter-group"><span class="filter-group-label">品牌</span><div class="filter-group-chips">${brandChips}</div></div>`
     + `<div class="filter-group"><span class="filter-group-label">类型</span><div class="filter-group-chips">${segmentChips}</div></div>`
     + `<div class="filter-group filter-group--gen"><span class="filter-group-label">架构<button class="gen-toggle" type="button" data-gen-toggle>▾</button></span><div class="filter-group-chips filter-gen-chips">${genChips}</div></div>`;
-}
-
-export function renderSortOptions() {
-  return Object.entries(SORT_OPTIONS)
-    .map(([value, label]) => `<option value="${escapeHtml(value)}">${escapeHtml(label)}</option>`)
-    .join("");
 }
 
 export function renderChip(type, value, label) {
@@ -226,7 +232,7 @@ export function detailSection(title, rows) {
   `;
 }
 
-export function initApp({ doc = document, win = window, data = gpus, categories = [] } = {}) {
+export function initApp({ doc = document, win = window, data = gpus, categories = [], suiteRegistry = null } = {}) {
   const elements = getElements(doc);
   const state = createInitialState(win.location.hash, data[0]?.id || "");
   state.categoryId = "gpu";
@@ -234,26 +240,48 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
   state.genericDetail = null;
   state.selectedYears = new Set();
   state.showUnknownYears = false;
-  state.activeBenchmark = "composite";
-  state.benchmarkScoreFields = [];
+  state.rankingProfiles = [];
+  state.suiteRegistry = suiteRegistry;
+  state.categories = categories;
+  applyCategoryRankingProfiles("gpu");
+
+  function applyCategoryRankingProfiles(categoryId) {
+    const category = (state.categories || []).find((cat) => cat.id === categoryId);
+    if (!category?.rankingProfiles) {
+      state.rankingProfiles = [];
+      state.sortBy = state.sortBy || "performance";
+      return;
+    }
+    const resolver = createRankingProfileResolver({ category, suiteRegistry: state.suiteRegistry });
+    state.rankingProfiles = resolver.listProfiles().map((p) => ({
+      id: p.id,
+      label: p.label,
+      isDefault: p.isDefault
+    }));
+    const defaultId = resolver.getDefaultProfileId() || state.rankingProfiles[0]?.id || null;
+    if (!state.rankingProfiles.some((p) => p.id === state.sortBy)) {
+      state.sortBy = defaultId;
+    }
+  }
 
   function renderControls() {
-    if (state.categoryId === "gpu") {
-      elements.sortSelect.innerHTML = renderSortOptions();
+    if (state.rankingProfiles.length) {
+      elements.sortSelect.innerHTML = state.rankingProfiles
+        .map((p) => `<option value="${escapeHtml(p.id)}">${escapeHtml(p.label)}</option>`)
+        .join("");
       elements.sortSelect.value = state.sortBy;
-      elements.filterBar.innerHTML = renderFilterChips(data);
       elements.sortSelect.parentElement.hidden = false;
+      elements.sortSelect.parentElement.style.display = "";
+    } else {
+      elements.sortSelect.innerHTML = "";
+      elements.sortSelect.parentElement.hidden = true;
+      elements.sortSelect.parentElement.style.display = "none";
+    }
+
+    if (state.categoryId === "gpu") {
+      elements.filterBar.innerHTML = renderFilterChips(data);
       elements.filterBar.hidden = false;
     } else {
-      if (state.benchmarkScoreFields.length) {
-        elements.sortSelect.innerHTML = state.benchmarkScoreFields
-          .map((f) => `<option value="${escapeHtml(f.id)}">${escapeHtml(f.label)}</option>`)
-          .join("");
-        elements.sortSelect.value = state.activeBenchmark;
-        elements.sortSelect.parentElement.hidden = false;
-      } else {
-        elements.sortSelect.parentElement.hidden = true;
-      }
       elements.filterBar.innerHTML = "";
       elements.filterBar.hidden = true;
     }
@@ -307,18 +335,24 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
     state.showUnknownYears = false;
     elements.searchInput.value = "";
 
+    state.rankingProfiles = [];
     renderCategoryTabs();
     renderControls();
 
     if (categoryId === "gpu") {
       state.selectedId = data[0]?.id || "";
+      applyCategoryRankingProfiles("gpu");
+      renderControls();
       renderYearFilter();
       renderGpuMode();
     } else {
       const listVm = await fetchCategoryListViewModel(categoryId);
       state.genericItems = listVm?.items || [];
-      state.benchmarkScoreFields = listVm?.category?.benchmarkScoreFields || [];
-      state.activeBenchmark = state.benchmarkScoreFields[0]?.id || "composite";
+      state.rankingProfiles = listVm?.category?.rankingProfiles || [];
+      state.sortBy = listVm?.category?.defaultRankingProfileId
+        || state.rankingProfiles.find((p) => p.isDefault)?.id
+        || state.rankingProfiles[0]?.id
+        || null;
       state.selectedId = "";
       renderControls();
       renderYearFilter();
@@ -336,15 +370,10 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
     });
 
     elements.sortSelect.addEventListener("change", (event) => {
-      if (state.categoryId === "gpu") {
-        state.sortBy = event.target.value;
-        state.drawerOpen = false;
-        renderGpuMode();
-      } else {
-        state.activeBenchmark = event.target.value;
-        state.drawerOpen = false;
-        renderGenericList();
-      }
+      state.sortBy = event.target.value;
+      state.drawerOpen = false;
+      if (state.categoryId === "gpu") renderGpuMode();
+      else renderGenericList();
     });
 
     elements.filterBar.addEventListener("click", (event) => {
@@ -468,16 +497,16 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
       items = items.filter((item) => searchHardwareListItems([item], state.query).length > 0);
     }
     items = filterByYears(items, state.selectedYears, state.showUnknownYears, (item) => item.releaseYear != null ? String(item.releaseYear) : null);
-    const benchmarkId = state.activeBenchmark;
+    const profileId = state.sortBy;
     items = [...items].sort((a, b) => {
-      const scoreA = getBenchmarkValue(a, benchmarkId);
-      const scoreB = getBenchmarkValue(b, benchmarkId);
+      const scoreA = getBenchmarkValue(a, profileId);
+      const scoreB = getBenchmarkValue(b, profileId);
       if (scoreA == null && scoreB == null) return 0;
       if (scoreA == null) return 1;
       if (scoreB == null) return -1;
       return scoreB - scoreA;
     });
-    elements.ladderList.innerHTML = renderHardwareList(items, { selectedId: state.selectedId, activeBenchmark: benchmarkId });
+    elements.ladderList.innerHTML = renderHardwareList(items, { selectedId: state.selectedId, activeBenchmark: profileId });
     elements.ladderList.querySelectorAll("[data-hardware-id]").forEach((row) => {
       row.addEventListener("click", () => selectGenericItem(row.dataset.hardwareId));
     });
@@ -590,7 +619,10 @@ function escapeHtml(value) {
 }
 
 if (typeof document !== "undefined") {
-  fetchCategories().then((categories) => {
-    initApp({ categories });
-  }).catch(console.error);
+  Promise.all([fetchCategories(), fetchBenchmarkSuites()])
+    .then(([categories, suiteData]) => {
+      const suiteRegistry = suiteData ? createBenchmarkSuiteRegistry(suiteData) : null;
+      initApp({ categories, suiteRegistry });
+    })
+    .catch(console.error);
 }

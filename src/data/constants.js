@@ -19,10 +19,3 @@ export const TIERS = {
 };
 
 export const TIER_ORDER = ["flagship", "enthusiast", "high", "mainstream", "entry", "legacy"];
-
-export const SORT_OPTIONS = {
-  performance: "综合性能",
-  timeSpy: "Time Spy",
-  memory: "显存容量",
-  efficiency: "能效"
-};
