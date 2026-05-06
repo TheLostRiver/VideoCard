@@ -713,7 +713,7 @@ input::placeholder {
 
 .hardware-list-item {
   display: grid;
-  grid-template-columns: minmax(180px, 1fr) 80px 120px 60px;
+  grid-template-columns: minmax(180px, 1fr) 74px minmax(120px, 180px) 76px 96px;
   gap: 10px;
   align-items: center;
   min-height: 58px;
@@ -721,7 +721,7 @@ input::placeholder {
   border-left: 3px solid var(--brand, #5a6d80);
   border-radius: var(--radius-sm);
   background: var(--bg-elevated);
-  padding: 10px 14px;
+  padding: 10px 12px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -808,6 +808,18 @@ input::placeholder {
   color: var(--text-secondary);
   font-size: 12px;
   white-space: nowrap;
+}
+
+.hardware-list-recommendation {
+  color: var(--text-secondary);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.hardware-list-power.is-empty,
+.hardware-list-recommendation.is-empty,
+.hardware-list-badges.is-empty {
+  visibility: hidden;
 }
 
 .hardware-list-empty {

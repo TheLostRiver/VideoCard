@@ -38,8 +38,17 @@ export function renderHardwareListItem(item, options = {}) {
       ${renderBadges(item.badges)}
       ${activeScore.hasValue ? renderScoreWithBar(activeScore, options.maxScore) : renderPendingScore()}
       ${renderPower(item.power)}
+      ${renderRecommendation(item.recommendation)}
     </article>
   `;
+}
+
+function renderRecommendation(recommendation) {
+  if (!recommendation || !recommendation.displayValue || recommendation.displayValue === "待补充") {
+    return `<span class="hardware-list-recommendation is-empty" aria-hidden="true"></span>`;
+  }
+  const labelAttr = recommendation.label ? ` aria-label="${escapeHtml(recommendation.label)}"` : "";
+  return `<span class="hardware-list-recommendation"${labelAttr}>${escapeHtml(recommendation.displayValue)}</span>`;
 }
 
 function resolveActiveScore(item, activeBenchmark) {
@@ -55,7 +64,9 @@ function resolveActiveScore(item, activeBenchmark) {
 }
 
 function renderBadges(badges = []) {
-  if (!badges.length) return "";
+  if (!badges.length) {
+    return `<div class="hardware-list-badges is-empty" aria-hidden="true"></div>`;
+  }
 
   return `
     <div class="hardware-list-badges">
@@ -100,8 +111,11 @@ function renderPendingScore() {
 }
 
 function renderPower(power) {
-  if (!power || !power.displayValue || power.displayValue === "待补充") return "";
-  return `<span class="hardware-list-power">${escapeHtml(power.displayValue)}</span>`;
+  if (!power || !power.displayValue || power.displayValue === "待补充") {
+    return `<span class="hardware-list-power is-empty" aria-hidden="true"></span>`;
+  }
+  const labelAttr = power.label ? ` aria-label="${escapeHtml(power.label)}"` : "";
+  return `<span class="hardware-list-power"${labelAttr}>${escapeHtml(power.displayValue)}</span>`;
 }
 
 function escapeHtml(value) {
