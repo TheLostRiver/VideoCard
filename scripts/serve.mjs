@@ -8,6 +8,10 @@ import { createHardwareQueryService } from "../src/application/hardware-query-se
 import { createHardwareMutationService } from "../src/application/hardware-mutation-service.js";
 import { createPool } from "../src/infrastructure/postgres/pool.js";
 import { createPostgresHardwareRepository } from "../src/infrastructure/postgres/postgres-hardware-repository.js";
+import {
+  loadBenchmarkSuiteData,
+  loadDefaultBenchmarkSuiteRegistry
+} from "../src/infrastructure/benchmark-suites/load-benchmark-suite-registry.js";
 
 const root = process.cwd();
 const port = Number(process.env.PORT || 4173);
@@ -24,6 +28,15 @@ if (databaseUrl) {
 } else {
   repo = createJsonHardwareRepository({ root });
   console.log("Using JSON repository");
+}
+
+const benchmarkSuiteDataPromise = loadBenchmarkSuiteData();
+const benchmarkSuiteRegistryPromise = loadDefaultBenchmarkSuiteRegistry();
+
+async function getQueryService() {
+  return createHardwareQueryService(repo, {
+    suiteRegistry: await benchmarkSuiteRegistryPromise
+  });
 }
 
 const types = {
@@ -67,9 +80,18 @@ export function createRequestHandler({ root: serverRoot = root } = {}) {
 async function handleApiRequest(req, res, url, serverRoot) {
   if (req.method === "GET" && url.pathname === "/api/hardware/categories") {
     try {
-      const service = createHardwareQueryService(repo);
       const categories = await repo.listCategories();
       sendJson(res, 200, { categories });
+    } catch (error) {
+      sendJson(res, 500, { errors: [error.message] });
+    }
+    return;
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/hardware/benchmark-suites") {
+    try {
+      const suiteData = await benchmarkSuiteDataPromise;
+      sendJson(res, 200, suiteData);
     } catch (error) {
       sendJson(res, 500, { errors: [error.message] });
     }
@@ -81,7 +103,7 @@ async function handleApiRequest(req, res, url, serverRoot) {
     const categoryId = decodeURIComponent(hardwareItemsMatch[1]);
     const itemId = hardwareItemsMatch[2] ? decodeURIComponent(hardwareItemsMatch[2]) : null;
     try {
-      const service = createHardwareQueryService(repo);
+      const service = await getQueryService();
       const category = await repo.getCategory(categoryId);
       if (!category) {
         sendJson(res, 404, { errors: [`category not found: ${categoryId}`] });
@@ -109,7 +131,7 @@ async function handleApiRequest(req, res, url, serverRoot) {
     const categoryId = decodeURIComponent(adminHardwareCreateMatch[1]);
     try {
       const mutationService = createHardwareMutationService(repo);
-      const queryService = createHardwareQueryService(repo);
+      const queryService = await getQueryService();
       const category = await repo.getCategory(categoryId);
       if (!category) {
         sendJson(res, 404, { errors: [`category not found: ${categoryId}`] });
@@ -135,7 +157,7 @@ async function handleApiRequest(req, res, url, serverRoot) {
     const itemId = decodeURIComponent(adminHardwareMatch[2]);
     try {
       const mutationService = createHardwareMutationService(repo);
-      const queryService = createHardwareQueryService(repo);
+      const queryService = await getQueryService();
       const category = await repo.getCategory(categoryId);
       if (!category) {
         sendJson(res, 404, { errors: [`category not found: ${categoryId}`] });

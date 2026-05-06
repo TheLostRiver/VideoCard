@@ -1,18 +1,25 @@
 import { formatNumber } from "../utils/format.js";
 import { extractYear } from "../utils/year-filter.js";
+import { createRankingProfileResolver } from "./ranking-profile-resolver.js";
 
-export function createHardwareQueryService(repository) {
+export function createHardwareQueryService(repository, options = {}) {
   if (!repository) throw new Error("hardware query service requires a repository");
+  const suiteRegistry = options.suiteRegistry || null;
+
+  function getResolver(category) {
+    return createRankingProfileResolver({ category, suiteRegistry });
+  }
 
   async function getListViewModel(categoryId) {
     const category = await getRequiredCategory(repository, categoryId);
+    const resolver = getResolver(category);
     const details = typeof repository.listItemDetails === "function"
       ? await repository.listItemDetails({ categoryId })
       : await fallbackListDetails(repository, categoryId);
 
     return {
-      category: summarizeCategory(category),
-      items: details.filter(Boolean).map((detail) => createListItemViewModel(category, detail))
+      category: summarizeCategory(category, resolver),
+      items: details.filter(Boolean).map((detail) => createListItemViewModel(category, detail, resolver))
     };
   }
 
@@ -26,8 +33,9 @@ export function createHardwareQueryService(repository) {
     if (!detail) return null;
 
     const category = await getRequiredCategory(repository, detail.item.categoryId);
+    const resolver = getResolver(category);
     return {
-      category: summarizeCategory(category),
+      category: summarizeCategory(category, resolver),
       item: detail.item,
       metricValues: detail.metricValues,
       rankingScore: detail.rankingScore,
@@ -53,11 +61,11 @@ async function getRequiredCategory(repository, categoryId) {
   return category;
 }
 
-function createListItemViewModel(category, detail) {
+function createListItemViewModel(category, detail, resolver) {
   const listView = category.listView || {};
   const facts = (listView.subtitleFields || []).map((fieldId) => createDisplayField(category, detail, fieldId));
   const badge = createBadge(detail, listView.badgeField);
-  const benchmarkScores = computeBenchmarkScores(category, detail);
+  const benchmarkScores = computeBenchmarkScores(category, detail, resolver);
 
   return {
     id: detail.item.id,
@@ -73,50 +81,34 @@ function createListItemViewModel(category, detail) {
   };
 }
 
-function computeBenchmarkScores(category, detail) {
-  const fields = category.listView?.benchmarkScoreFields;
-  if (!fields || !fields.length) return [];
+function computeBenchmarkScores(category, detail, resolver) {
+  if (!resolver) return [];
+  const profileMap = new Map((category.rankingProfiles?.profiles || []).map((p) => [p.id, p]));
 
-  return fields.map((field) => {
-    if (field.metricIds) {
-      return computeCompositeScore(field, category, detail);
-    }
-    const resolved = createDisplayField(category, detail, field.metricId);
+  return resolver.listProfiles().map((descriptor) => {
+    const profile = profileMap.get(descriptor.id);
+    const value = resolver.compute(descriptor.id, detail);
     return {
-      id: field.id,
-      label: field.label,
-      value: resolved.value,
-      displayValue: resolved.displayValue
+      id: descriptor.id,
+      label: descriptor.label,
+      value,
+      displayValue: formatProfileValue(profile, value, category, detail)
     };
   });
 }
 
-const BENCHMARK_REFERENCE = {
-  "cpu.benchmark.cinebenchSingle": 2500,
-  "cpu.benchmark.cinebenchMulti": 40000,
-  "cpu.benchmark.geekbenchSingle": 3500,
-  "cpu.benchmark.geekbenchMulti": 25000
-};
-
-function computeCompositeScore(field, category, detail) {
-  const metricIds = field.metricIds || [];
-  const weights = field.weights || metricIds.map(() => 1 / metricIds.length);
-  let totalWeight = 0;
-  let weightedSum = 0;
-
-  for (let i = 0; i < metricIds.length; i++) {
-    const resolved = resolveValue(detail, metricIds[i]);
-    const num = resolved?.valueNumber;
-    if (num == null) continue;
-    const ref = BENCHMARK_REFERENCE[metricIds[i]] || 1;
-    weightedSum += (num / ref) * 100 * weights[i];
-    totalWeight += weights[i];
+function formatProfileValue(profile, value, category, detail) {
+  if (value == null) return "待补充";
+  if (!profile) return formatNumber(value);
+  if (profile.kind === "metric") {
+    const metric = getMetricDefinition(category, profile.metricId);
+    const raw = resolveValue(detail, profile.metricId) || { valueNumber: value };
+    return formatDisplayValue(metric?.formatterId, raw);
   }
-
-  if (totalWeight === 0) return { id: field.id, label: field.label, value: null, displayValue: "待补充" };
-
-  const score = Math.round(weightedSum / totalWeight);
-  return { id: field.id, label: field.label, value: score, displayValue: formatNumber(score) };
+  if (profile.kind === "derived") {
+    return Number(value).toFixed(2);
+  }
+  return formatNumber(value);
 }
 
 function createBadge(detail, fieldId) {
@@ -246,17 +238,18 @@ function matchesWarningRule(rule, detail) {
   return true;
 }
 
-function summarizeCategory(category) {
-  const benchmarkScoreFields = (category.listView?.benchmarkScoreFields || []).map((f) => ({
-    id: f.id,
-    label: f.label
-  }));
+function summarizeCategory(category, resolver) {
+  const rankingProfiles = resolver
+    ? resolver.listProfiles().map((p) => ({ id: p.id, label: p.label, isDefault: p.isDefault }))
+    : [];
+  const defaultRankingProfileId = resolver?.getDefaultProfileId() || null;
   return {
     id: category.id,
     label: category.label,
     description: category.description,
     itemName: category.itemName,
-    benchmarkScoreFields
+    rankingProfiles,
+    defaultRankingProfileId
   };
 }
 
