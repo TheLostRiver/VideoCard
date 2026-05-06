@@ -1,10 +1,3 @@
-import { BRANDS } from "../../data/constants.js";
-
-const BRAND_COLORS = Object.fromEntries(
-  Object.entries(BRANDS).map(([key, meta]) => [key, meta.color])
-);
-const DEFAULT_BRAND_COLOR = "#5a6d80";
-
 export function renderHardwareList(items = [], options = {}) {
   if (!items.length) {
     return `<div class="hardware-list-empty">没有匹配的硬件</div>`;
@@ -28,16 +21,19 @@ function computeMaxScore(items, activeBenchmark) {
 export function renderHardwareListItem(item, options = {}) {
   const isSelected = options.selectedId === item.id;
   const selectedClass = isSelected ? " is-selected" : "";
-  const subtitle = (item.facts || []).map((f) => f.displayValue).filter(Boolean).join(" · ");
-  const brandKey = extractBrand(item);
-  const brandColor = BRAND_COLORS[brandKey] || DEFAULT_BRAND_COLOR;
+  const facts = item.facts || [];
+  const subtitleParts = facts
+    .filter((f) => f.displayValue)
+    .map((f) => `<span class="hardware-list-fact-inline"${f.label ? ` aria-label="${escapeHtml(f.label)}"` : ""}>${escapeHtml(f.displayValue)}</span>`);
+  const subtitle = subtitleParts.length ? subtitleParts.join(" · ") : "";
+  const factLabelsAttr = facts.map((f) => f.label).filter(Boolean).join(", ");
   const activeScore = resolveActiveScore(item, options.activeBenchmark);
 
   return `
-    <article class="hardware-list-item${selectedClass}" data-hardware-id="${escapeHtml(item.id)}" style="--brand:${brandColor}" role="option" aria-selected="${isSelected ? "true" : "false"}">
+    <article class="hardware-list-item${selectedClass}" data-hardware-id="${escapeHtml(item.id)}" role="option" aria-selected="${isSelected ? "true" : "false"}"${factLabelsAttr ? ` data-fact-labels="${escapeHtml(factLabelsAttr)}"` : ""}>
       <div class="hardware-list-main">
         <strong>${escapeHtml(item.title)}</strong>
-        ${subtitle ? `<span class="hardware-list-subtitle">${escapeHtml(subtitle)}</span>` : ""}
+        ${subtitle ? `<span class="hardware-list-subtitle">${subtitle}</span>` : ""}
       </div>
       ${renderBadges(item.badges)}
       ${activeScore.hasValue ? renderScoreWithBar(activeScore, options.maxScore) : renderPendingScore()}
@@ -56,11 +52,6 @@ function resolveActiveScore(item, activeBenchmark) {
   const ps = item.primaryScore;
   const hasValue = ps && ps.displayValue && ps.displayValue !== "待补充";
   return { value: ps?.value, displayValue: ps?.displayValue || "—", label: ps?.label || "", hasValue };
-}
-
-function extractBrand(item) {
-  const brandFact = (item.facts || []).find((f) => f.id === "brand");
-  return brandFact ? String(brandFact.displayValue || "").toLowerCase() : "";
 }
 
 function renderBadges(badges = []) {
@@ -94,9 +85,10 @@ function renderScoreWithBar(score, maxScore) {
   if (!score) return "";
   const numericValue = parseFloat(score.value);
   const barPct = (!isNaN(numericValue) && maxScore > 0) ? Math.min(100, Math.max(5, (numericValue / maxScore) * 100)) : 0;
+  const labelAttr = score.label ? ` aria-label="${escapeHtml(score.label)}"` : "";
 
   return `
-    <div class="hardware-list-perf">
+    <div class="hardware-list-perf"${labelAttr}>
       <strong>${escapeHtml(score.displayValue)}</strong>
       ${barPct > 0 ? `<div class="perf-track"><div style="width:${barPct}%"></div></div>` : ""}
     </div>
