@@ -39,7 +39,7 @@ test("gpu category schema matches current GPU ladder surfaces", async () => {
 
   assert.deepEqual(
     schema.detailView.groups.map((group) => group.id),
-    ["overview", "core", "memoryPower", "benchmarks", "notes"]
+    ["overview", "core", "memoryPower", "benchmarks", "chipInfo", "notes"]
   );
   assert.deepEqual(
     schema.adminForm.groups.map((group) => group.id),
