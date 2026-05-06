@@ -48,7 +48,8 @@ function renderRecommendation(recommendation) {
     return `<span class="hardware-list-recommendation is-empty" aria-hidden="true"></span>`;
   }
   const labelAttr = recommendation.label ? ` aria-label="${escapeHtml(recommendation.label)}"` : "";
-  return `<span class="hardware-list-recommendation"${labelAttr}>${escapeHtml(recommendation.displayValue)}</span>`;
+  const titleAttr = ` title="${escapeHtml(recommendation.displayValue)}"`;
+  return `<span class="hardware-list-recommendation"${labelAttr}${titleAttr}>${escapeHtml(recommendation.displayValue)}</span>`;
 }
 
 function resolveActiveScore(item, activeBenchmark) {

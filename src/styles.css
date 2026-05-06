@@ -712,13 +712,14 @@ input::placeholder {
 }
 
 .hardware-list-item {
+  --brand: var(--accent-nvidia);
   display: grid;
-  grid-template-columns: minmax(180px, 1fr) 74px minmax(120px, 180px) 76px 96px;
+  grid-template-columns: minmax(180px, 1fr) 74px minmax(120px, 180px) 84px minmax(120px, 200px);
   gap: 10px;
   align-items: center;
   min-height: 58px;
   border: 1px solid var(--border-subtle);
-  border-left: 3px solid var(--brand, #5a6d80);
+  border-left: 3px solid var(--brand);
   border-radius: var(--radius-sm);
   background: var(--bg-elevated);
   padding: 10px 12px;
@@ -808,12 +809,17 @@ input::placeholder {
   color: var(--text-secondary);
   font-size: 12px;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .hardware-list-recommendation {
   color: var(--text-secondary);
   font-size: 12px;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .hardware-list-power.is-empty,
