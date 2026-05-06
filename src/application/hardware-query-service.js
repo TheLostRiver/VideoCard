@@ -66,6 +66,7 @@ function createListItemViewModel(category, detail, resolver) {
   const facts = (listView.subtitleFields || []).map((fieldId) => createDisplayField(category, detail, fieldId));
   const badge = createBadge(detail, listView.badgeField);
   const benchmarkScores = computeBenchmarkScores(category, detail, resolver);
+  const primaryScore = resolvePrimaryScore(category, detail, listView, resolver, benchmarkScores);
 
   return {
     id: detail.item.id,
@@ -73,11 +74,34 @@ function createListItemViewModel(category, detail, resolver) {
     subtitle: facts.map((fact) => fact.displayValue).filter(Boolean).join(" · "),
     badges: badge ? [badge] : [],
     facts,
-    primaryScore: createDisplayField(category, detail, listView.scoreField),
+    primaryScore,
     benchmarkScores,
     power: createDisplayField(category, detail, listView.powerField),
     recommendation: createDisplayField(category, detail, listView.recommendationField),
     releaseYear: extractYear(detail.item.releaseDate)
+  };
+}
+
+function resolvePrimaryScore(category, detail, listView, resolver, benchmarkScores) {
+  const fieldScore = createDisplayField(category, detail, listView.scoreField);
+  if (fieldScore && fieldScore.value != null && fieldScore.displayValue !== "待补充") {
+    return fieldScore;
+  }
+
+  const defaultProfileId = category.rankingProfiles?.default
+    || category.rankingProfiles?.profiles?.[0]?.id
+    || null;
+  if (!defaultProfileId) return fieldScore;
+
+  const fallback = benchmarkScores?.find((s) => s.id === defaultProfileId);
+  if (!fallback || fallback.value == null) return fieldScore;
+
+  return {
+    id: defaultProfileId,
+    metricId: null,
+    label: fallback.label,
+    value: fallback.value,
+    displayValue: fallback.displayValue
   };
 }
 
