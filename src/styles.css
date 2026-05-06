@@ -708,7 +708,7 @@ input::placeholder {
 
 .hardware-list-item {
   display: grid;
-  grid-template-columns: minmax(180px, 1fr) 74px minmax(100px, 150px) auto;
+  grid-template-columns: minmax(180px, 1fr) 80px 120px 60px;
   gap: 10px;
   align-items: center;
   min-height: 58px;
