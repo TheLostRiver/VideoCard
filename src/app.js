@@ -359,6 +359,17 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
       renderGenericList();
       elements.detailPanel.innerHTML = `<div class="hardware-detail-empty">点击左侧条目查看详情</div>`;
     }
+
+    playEnterAnimation(elements.ladderList, elements.detailPanel, elements.filterBar, elements.yearFilter);
+  }
+
+  function playEnterAnimation(...els) {
+    for (const el of els) {
+      if (!el || el.hidden) continue;
+      el.classList.remove("is-entering");
+      void el.offsetWidth;
+      el.classList.add("is-entering");
+    }
   }
 
   function bindEvents() {
