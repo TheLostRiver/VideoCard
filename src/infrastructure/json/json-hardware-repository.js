@@ -95,6 +95,28 @@ export function createJsonHardwareRepository(options = {}) {
     return [];
   }
 
+  async function listItemDetails(query = {}) {
+    if (query.categoryId === "gpu") {
+      const gpuRecords = await readGpuRecords(gpuDataUrl);
+      return gpuRecords.map((gpu) => ({
+        item: mapLegacyGpuToHardwareItem(gpu),
+        metricValues: mapLegacyGpuToMetricValues(gpu),
+        rankingScore: mapLegacyGpuToRankingScore(gpu),
+        sources: mapLegacyGpuToSources(gpu)
+      }));
+    }
+
+    const dataUrl = getCategoryDataUrl(query.categoryId);
+    if (!dataUrl) return [];
+    const entries = await readJson(dataUrl);
+    return entries.map((entry) => ({
+      item: entry.item,
+      metricValues: entry.metricValues,
+      rankingScore: entry.rankingScore,
+      sources: entry.sources
+    }));
+  }
+
   async function getItemDetail(itemId) {
     const gpuRecords = await readGpuRecords(gpuDataUrl);
     const gpu = gpuRecords.find((record) => record.id === itemId);
@@ -166,6 +188,7 @@ export function createJsonHardwareRepository(options = {}) {
     const savedGpu = currentGpu
       ? await saveGpuRecord(currentGpu.id, nextGpu, root)
       : await saveNewGpuRecord(nextGpu, root);
+    jsonCache.delete(String(gpuDataUrl));
     return {
       item: mapLegacyGpuToHardwareItem(savedGpu),
       metricValues: mapLegacyGpuToMetricValues(savedGpu),
@@ -186,6 +209,7 @@ export function createJsonHardwareRepository(options = {}) {
     }
 
     await writeFile(dataUrl, JSON.stringify(items, null, 2) + "\n", "utf8");
+    jsonCache.delete(String(dataUrl));
     return detail;
   }
 
@@ -203,6 +227,7 @@ export function createJsonHardwareRepository(options = {}) {
     listCategories,
     getCategory,
     listItems,
+    listItemDetails,
     getItemDetail,
     saveItem
   };
@@ -212,8 +237,20 @@ async function readGpuRecords(gpuDataUrl) {
   return readJson(gpuDataUrl);
 }
 
+const jsonCache = new Map();
+const CACHE_TTL_MS = 5000;
+
 async function readJson(fileUrl) {
-  return JSON.parse(await readFile(fileUrl, "utf8"));
+  const key = String(fileUrl);
+  const cached = jsonCache.get(key);
+  if (cached && Date.now() - cached.ts < CACHE_TTL_MS) return cached.data;
+  const data = JSON.parse(await readFile(fileUrl, "utf8"));
+  jsonCache.set(key, { data, ts: Date.now() });
+  return data;
+}
+
+function invalidateJsonCache() {
+  jsonCache.clear();
 }
 
 function mapHardwareDetailToLegacyGpu(detail, currentGpu) {
