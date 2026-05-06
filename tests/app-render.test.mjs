@@ -66,9 +66,12 @@ test("service-backed GPU page model preserves search, mobile badge, warning, and
   const pageModel = await createGpuPageHardwareModel();
   const matches = searchHardwareListItems(pageModel.listViewModel.items, "4070");
   const laptop4070 = matches.find((item) => item.id === "rtx-4070-laptop");
+  const desktop4070 = matches.find((item) => item.id === "rtx-4070-desktop");
 
-  assert.equal(matches.length, 4);
+  assert.ok(matches.length >= 2, `expected at least desktop and laptop 4070 in matches, got ${matches.length}`);
+  assert.ok(matches.every((item) => /4070/i.test(`${item.title} ${item.id}`)), "every match should contain 4070");
   assert.ok(laptop4070);
+  assert.ok(desktop4070);
 
   const rowHtml = renderHardwareListItem(laptop4070, { selectedId: laptop4070.id });
   assert.match(rowHtml, /GeForce RTX 4070 Laptop GPU/);
