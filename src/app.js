@@ -6,6 +6,7 @@ import { renderCompareTable } from "./features/compare/render-compare.js";
 import { renderHardwareList } from "./features/hardware-list/render-list.js";
 import { renderHardwareDetail } from "./features/hardware-detail/render-detail.js";
 import { filterGpus, sortGpus } from "./utils/filters.js";
+import { extractYear, getAvailableYears, filterByYears } from "./utils/year-filter.js";
 import { formatBenchmark, formatClock, formatMemory, formatNumber, formatPower } from "./utils/format.js";
 import { getMaxPerformanceIndex, getPerformanceWidth, groupByTier } from "./utils/performance.js";
 
@@ -113,11 +114,14 @@ export async function renderComparePage({ categoryId, itemIds, repository } = {}
 }
 
 export function renderFilterChips(items = gpus) {
-  return [
-    ...Object.entries(BRANDS).map(([value, meta]) => renderChip("brands", value, meta.label)),
-    ...Object.entries(SEGMENTS).map(([value, label]) => renderChip("segments", value, label)),
-    ...getUniqueValues(items, "generation").map((value) => renderChip("generations", value, value))
-  ].join("");
+  const brandChips = Object.entries(BRANDS).map(([value, meta]) => renderChip("brands", value, meta.label)).join("");
+  const segmentChips = Object.entries(SEGMENTS).map(([value, label]) => renderChip("segments", value, label)).join("");
+  const generations = getUniqueValues(items, "generation");
+  const genChips = generations.map((value) => renderChip("generations", value, value)).join("");
+
+  return `<div class="filter-group"><span class="filter-group-label">品牌</span><div class="filter-group-chips">${brandChips}</div></div>`
+    + `<div class="filter-group"><span class="filter-group-label">类型</span><div class="filter-group-chips">${segmentChips}</div></div>`
+    + `<div class="filter-group filter-group--gen"><span class="filter-group-label">架构<button class="gen-toggle" type="button" data-gen-toggle>▾</button></span><div class="filter-group-chips filter-gen-chips">${genChips}</div></div>`;
 }
 
 export function renderSortOptions() {
@@ -228,6 +232,8 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
   state.categoryId = "gpu";
   state.genericItems = [];
   state.genericDetail = null;
+  state.selectedYears = new Set();
+  state.showUnknownYears = false;
 
   function renderControls() {
     if (state.categoryId === "gpu") {
@@ -254,12 +260,42 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
     });
   }
 
+  function getYearSourceItems() {
+    if (state.categoryId === "gpu") return data;
+    return state.genericItems;
+  }
+
+  function getReleaseDate(item) {
+    if (state.categoryId === "gpu") return item.releaseDate;
+    return item.releaseYear != null ? String(item.releaseYear) : null;
+  }
+
+  function renderYearFilter() {
+    const items = getYearSourceItems();
+    const years = getAvailableYears(items, getReleaseDate);
+    if (!years.length && !state.showUnknownYears) {
+      elements.yearFilter.hidden = true;
+      return;
+    }
+
+    const chips = years.map((year) =>
+      `<button class="year-chip${state.selectedYears.has(year) ? " is-active" : ""}" type="button" data-year="${year}">${year}</button>`
+    ).join("");
+
+    const toggle = `<span class="year-divider"></span><label class="year-toggle"><input type="checkbox" data-year-toggle${state.showUnknownYears ? " checked" : ""}>显示未知年份</label>`;
+
+    elements.yearFilter.innerHTML = `<span class="year-label">年份:</span><button class="year-chip${state.selectedYears.size === 0 ? " is-active" : ""}" type="button" data-year="all">全部</button>${chips}${toggle}`;
+    elements.yearFilter.hidden = false;
+  }
+
   async function switchCategory(categoryId) {
     if (categoryId === state.categoryId) return;
     state.categoryId = categoryId;
     state.query = "";
     state.drawerOpen = false;
     state.genericDetail = null;
+    state.selectedYears.clear();
+    state.showUnknownYears = false;
     elements.searchInput.value = "";
 
     renderCategoryTabs();
@@ -267,11 +303,13 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
 
     if (categoryId === "gpu") {
       state.selectedId = data[0]?.id || "";
+      renderYearFilter();
       renderGpuMode();
     } else {
       const listVm = await fetchCategoryListViewModel(categoryId);
       state.genericItems = listVm?.items || [];
       state.selectedId = state.genericItems[0]?.id || "";
+      renderYearFilter();
       renderGenericList();
       if (state.selectedId) {
         const detail = await fetchCategoryItemDetail(categoryId, state.selectedId);
@@ -296,6 +334,13 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
     });
 
     elements.filterBar.addEventListener("click", (event) => {
+      const genToggle = event.target.closest("[data-gen-toggle]");
+      if (genToggle) {
+        const group = genToggle.closest(".filter-group--gen");
+        if (group) group.classList.toggle("is-expanded");
+        return;
+      }
+
       const button = event.target.closest("[data-filter-type]");
       if (!button) return;
 
@@ -312,8 +357,37 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
       state.brands.clear();
       state.segments.clear();
       state.generations.clear();
+      state.selectedYears.clear();
+      state.showUnknownYears = false;
       state.drawerOpen = false;
       elements.searchInput.value = "";
+      renderYearFilter();
+      if (state.categoryId === "gpu") renderGpuMode();
+      else renderGenericList();
+    });
+
+    elements.yearFilter.addEventListener("click", (event) => {
+      const chip = event.target.closest("[data-year]");
+      if (!chip) return;
+      const value = chip.dataset.year;
+      if (value === "all") {
+        state.selectedYears.clear();
+      } else {
+        const year = Number(value);
+        if (state.selectedYears.has(year)) state.selectedYears.delete(year);
+        else state.selectedYears.add(year);
+      }
+      state.drawerOpen = false;
+      renderYearFilter();
+      if (state.categoryId === "gpu") renderGpuMode();
+      else renderGenericList();
+    });
+
+    elements.yearFilter.addEventListener("change", (event) => {
+      if (event.target.dataset.yearToggle === undefined) return;
+      state.showUnknownYears = event.target.checked;
+      state.drawerOpen = false;
+      renderYearFilter();
       if (state.categoryId === "gpu") renderGpuMode();
       else renderGenericList();
     });
@@ -345,7 +419,7 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
       button.classList.toggle("is-active", active);
     });
 
-    const hasFilters = state.query || state.brands.size || state.segments.size || state.generations.size;
+    const hasFilters = state.query || state.brands.size || state.segments.size || state.generations.size || state.selectedYears.size || state.showUnknownYears;
     elements.resetButton.hidden = !hasFilters;
   }
 
@@ -373,11 +447,12 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
   }
 
   function renderGenericList() {
-    const query = state.query.trim().toLowerCase();
     let items = state.genericItems;
+    const query = state.query.trim().toLowerCase();
     if (query) {
       items = items.filter((item) => searchHardwareListItems([item], state.query).length > 0);
     }
+    items = filterByYears(items, state.selectedYears, state.showUnknownYears, (item) => item.releaseYear != null ? String(item.releaseYear) : null);
     elements.ladderList.innerHTML = renderHardwareList(items, { selectedId: state.selectedId });
     elements.ladderList.querySelectorAll("[data-hardware-id]").forEach((row) => {
       row.addEventListener("click", () => selectGenericItem(row.dataset.hardwareId));
@@ -415,7 +490,9 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
 
   function renderGpuMode() {
     updateControlState();
-    const filtered = sortGpus(filterGpus(data, state), state.sortBy);
+    let filtered = filterGpus(data, state);
+    filtered = filterByYears(filtered, state.selectedYears, state.showUnknownYears, (gpu) => gpu.releaseDate);
+    filtered = sortGpus(filtered, state.sortBy);
     const maxIndex = getMaxPerformanceIndex(data);
     const selectedGpu = data.find((gpu) => gpu.id === state.selectedId) || filtered[0];
     renderGpuList(filtered, maxIndex);
@@ -449,6 +526,7 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
 
   renderCategoryTabs();
   renderControls();
+  renderYearFilter();
   bindEvents();
   render().catch(console.error);
 
@@ -465,7 +543,8 @@ function getElements(doc) {
     detailPanel: doc.querySelector("#detailPanel"),
     mobileDrawer: doc.querySelector("#mobileDrawer"),
     comparePanel: doc.querySelector("#comparePanel"),
-    categoryTabs: doc.querySelector("#categoryTabs")
+    categoryTabs: doc.querySelector("#categoryTabs"),
+    yearFilter: doc.querySelector("#yearFilter")
   };
 }
 

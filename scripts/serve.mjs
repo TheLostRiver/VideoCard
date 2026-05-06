@@ -6,9 +6,25 @@ import { readGpuData, saveGpuRecord } from "./gpu-data.mjs";
 import { createJsonHardwareRepository } from "../src/infrastructure/json/json-hardware-repository.js";
 import { createHardwareQueryService } from "../src/application/hardware-query-service.js";
 import { createHardwareMutationService } from "../src/application/hardware-mutation-service.js";
+import { createPool } from "../src/infrastructure/postgres/pool.js";
+import { createPostgresHardwareRepository } from "../src/infrastructure/postgres/postgres-hardware-repository.js";
 
 const root = process.cwd();
 const port = Number(process.env.PORT || 4173);
+
+const databaseUrl = process.env.DATABASE_URL || (process.argv.includes("--database")
+  ? "postgresql://hardware:hardware_dev@localhost:5432/hardware_platform"
+  : null);
+
+let repo;
+if (databaseUrl) {
+  const pool = createPool(databaseUrl);
+  repo = createPostgresHardwareRepository({ queryClient: pool });
+  console.log("Using PostgreSQL repository");
+} else {
+  repo = createJsonHardwareRepository({ root });
+  console.log("Using JSON repository");
+}
 
 const types = {
   ".html": "text/html; charset=utf-8",
@@ -36,7 +52,10 @@ export function createRequestHandler({ root: serverRoot = root } = {}) {
 
       const filePath = resolvePath(url.pathname, serverRoot);
       const body = await readFile(filePath);
-      res.writeHead(200, { "Content-Type": types[extname(filePath)] || "application/octet-stream" });
+      res.writeHead(200, {
+        "Content-Type": types[extname(filePath)] || "application/octet-stream",
+        "Cache-Control": "no-store"
+      });
       res.end(body);
     } catch {
       res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
@@ -48,7 +67,6 @@ export function createRequestHandler({ root: serverRoot = root } = {}) {
 async function handleApiRequest(req, res, url, serverRoot) {
   if (req.method === "GET" && url.pathname === "/api/hardware/categories") {
     try {
-      const repo = createJsonHardwareRepository({ root: serverRoot });
       const service = createHardwareQueryService(repo);
       const categories = await repo.listCategories();
       sendJson(res, 200, { categories });
@@ -63,7 +81,6 @@ async function handleApiRequest(req, res, url, serverRoot) {
     const categoryId = decodeURIComponent(hardwareItemsMatch[1]);
     const itemId = hardwareItemsMatch[2] ? decodeURIComponent(hardwareItemsMatch[2]) : null;
     try {
-      const repo = createJsonHardwareRepository({ root: serverRoot });
       const service = createHardwareQueryService(repo);
       const category = await repo.getCategory(categoryId);
       if (!category) {
@@ -91,7 +108,6 @@ async function handleApiRequest(req, res, url, serverRoot) {
   if (req.method === "POST" && adminHardwareCreateMatch) {
     const categoryId = decodeURIComponent(adminHardwareCreateMatch[1]);
     try {
-      const repo = createJsonHardwareRepository({ root: serverRoot });
       const mutationService = createHardwareMutationService(repo);
       const queryService = createHardwareQueryService(repo);
       const category = await repo.getCategory(categoryId);
@@ -118,7 +134,6 @@ async function handleApiRequest(req, res, url, serverRoot) {
     const categoryId = decodeURIComponent(adminHardwareMatch[1]);
     const itemId = decodeURIComponent(adminHardwareMatch[2]);
     try {
-      const repo = createJsonHardwareRepository({ root: serverRoot });
       const mutationService = createHardwareMutationService(repo);
       const queryService = createHardwareQueryService(repo);
       const category = await repo.getCategory(categoryId);
