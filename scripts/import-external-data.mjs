@@ -24,6 +24,13 @@ export function parseExternalDate(value) {
   // "2022" year only
   if (/^\d{4}$/.test(str)) return `${str}-01`;
 
+  // "Aug 2024" / "October 2024"
+  const monthYear = str.match(/^([A-Za-z]+)\s+(\d{4})$/);
+  if (monthYear) {
+    const month = MONTH_NAMES[monthYear[1].toLowerCase().slice(0, 3)];
+    if (month) return `${monthYear[2]}-${month}`;
+  }
+
   // "Sep 1st, 2004" / "Aug 17th, 2011"
   const mdy = str.match(/([A-Za-z]+)\s+\d{1,2}(?:st|nd|rd|th)?,?\s*(\d{4})/);
   if (mdy) {

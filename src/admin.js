@@ -140,6 +140,105 @@ export function renderAdminFacets(groups, selectedFacets = {}) {
   `).join("");
 }
 
+export function renderAdminImportPanel(selectedCategoryId = "gpu") {
+  const categoryId = selectedCategoryId === "desktop-cpu" ? "desktop-cpu" : "gpu";
+
+  return `
+    <div class="admin-import-copy">
+      <strong>导入数据</strong>
+      <span>支持本地 GPU / CPU JSON，先预览去重，再按勾选项写入主数据。</span>
+    </div>
+    <div class="admin-import-controls">
+      <label class="admin-import-control">
+        <span>类型</span>
+        <select id="adminImportCategory">
+          <option value="gpu"${categoryId === "gpu" ? " selected" : ""}>GPU</option>
+          <option value="desktop-cpu"${categoryId === "desktop-cpu" ? " selected" : ""}>Desktop CPU</option>
+        </select>
+      </label>
+      <label class="admin-import-file">
+        <span>选择 JSON</span>
+        <input id="adminImportFile" type="file" accept=".json,application/json">
+      </label>
+      <div class="admin-import-actions">
+        <button id="adminImportPreviewButton" class="ghost-button" type="button">预览</button>
+        <button id="adminImportCommitButton" class="ghost-button save-button" type="button" disabled>导入选中</button>
+      </div>
+    </div>
+    <label class="admin-import-text">
+      <span>粘贴 JSON</span>
+      <textarea id="adminImportText" rows="5" placeholder='[{"Product_Name":"Radeon RX 9070 XT", "...":"..."}]'></textarea>
+    </label>
+    <div id="adminImportMessage" class="admin-import-message" role="status"></div>
+    <div id="adminImportPreview" class="admin-import-preview"></div>
+  `;
+}
+
+export function renderAdminImportPreview(plan) {
+  if (!plan) return "";
+  const rows = plan.rows || [];
+  const summary = plan.summary || {};
+
+  if (!rows.length) {
+    return `<p class="empty-state">没有可预览的数据。</p>`;
+  }
+
+  return `
+    <div class="admin-import-summary" aria-label="导入预览统计">
+      ${renderImportSummaryPill("总计", summary.total || 0)}
+      ${renderImportSummaryPill("新增", summary.new || 0, "new")}
+      ${renderImportSummaryPill("重复", summary.duplicate || 0, "duplicate")}
+      ${renderImportSummaryPill("无效", summary.invalid || 0, "invalid")}
+    </div>
+    <div class="admin-import-table" role="table" aria-label="导入预览">
+      ${rows.map(renderAdminImportRow).join("")}
+    </div>
+  `;
+}
+
+function renderImportSummaryPill(label, value, status = "") {
+  return `
+    <span class="admin-import-summary-pill${status ? ` is-${escapeHtml(status)}` : ""}">
+      ${escapeHtml(label)}
+      <strong>${escapeHtml(value)}</strong>
+    </span>
+  `;
+}
+
+function renderAdminImportRow(row) {
+  const isSelectable = row.selectable === true;
+  const statusLabel = formatImportStatus(row.status);
+  const meta = [
+    formatManufacturerLabel(row.manufacturerId),
+    row.generation,
+    row.releaseDate
+  ].filter(Boolean).join(" · ");
+
+  return `
+    <label class="admin-import-row" data-import-status="${escapeHtml(row.status)}">
+      <input
+        type="checkbox"
+        name="adminImportRow"
+        value="${escapeHtml(row.id)}"
+        ${isSelectable ? "checked" : "disabled"}
+      >
+      <span class="admin-import-row-main">
+        <strong>${escapeHtml(row.name)}</strong>
+        ${meta ? `<small>${escapeHtml(meta)}</small>` : ""}
+      </span>
+      <span class="admin-import-row-status">${escapeHtml(statusLabel)}</span>
+      <span class="admin-import-row-reason">${escapeHtml(row.reason || "")}</span>
+    </label>
+  `;
+}
+
+function formatImportStatus(status) {
+  if (status === "new") return "新增";
+  if (status === "duplicate") return "重复";
+  if (status === "invalid") return "无效";
+  return status || "";
+}
+
 function renderAdminFacetChip(groupId, option, selectedValue) {
   const isActive = normalizeSelectedFacet(selectedValue) === normalizeSelectedFacet(option.value);
 
@@ -751,6 +850,7 @@ async function initAdmin() {
     search: document.querySelector("#adminSearch"),
     categorySelect: document.querySelector("#adminCategorySelect"),
     newButton: document.querySelector("#adminNewButton"),
+    importPanel: document.querySelector("#adminImportPanel"),
     facets: document.querySelector("#adminFacets"),
     list: document.querySelector("#adminList"),
     editor: document.querySelector("#adminEditor"),
@@ -766,8 +866,14 @@ async function initAdmin() {
     facets: createDefaultAdminFacets(),
     selectedId: "",
     creatingNew: false,
-    schema: null
+    schema: null,
+    importPlan: null,
+    importRecords: []
   };
+
+  if (elements.importPanel) {
+    elements.importPanel.innerHTML = renderAdminImportPanel(state.categoryId);
+  }
 
   async function loadCategories() {
     const response = await fetch("/api/hardware/categories");
@@ -834,6 +940,120 @@ async function initAdmin() {
     }
   }
 
+  function getImportElements() {
+    if (!elements.importPanel) return {};
+    return {
+      category: elements.importPanel.querySelector("#adminImportCategory"),
+      file: elements.importPanel.querySelector("#adminImportFile"),
+      text: elements.importPanel.querySelector("#adminImportText"),
+      message: elements.importPanel.querySelector("#adminImportMessage"),
+      preview: elements.importPanel.querySelector("#adminImportPreview"),
+      commitButton: elements.importPanel.querySelector("#adminImportCommitButton")
+    };
+  }
+
+  function setImportMessage(message, kind = "") {
+    const { message: messageElement } = getImportElements();
+    if (!messageElement) return;
+    messageElement.textContent = message;
+    messageElement.className = `admin-import-message${kind ? ` is-${kind}` : ""}`;
+  }
+
+  function resetImportPreview(message = "") {
+    state.importPlan = null;
+    const { preview, commitButton } = getImportElements();
+    if (preview) preview.innerHTML = "";
+    if (commitButton) commitButton.disabled = true;
+    if (message) setImportMessage(message);
+  }
+
+  function updateImportCommitState() {
+    const { commitButton } = getImportElements();
+    if (!commitButton) return;
+    const checkedCount = elements.importPanel.querySelectorAll('input[name="adminImportRow"]:checked').length;
+    commitButton.disabled = checkedCount === 0;
+  }
+
+  function getSelectedImportIds() {
+    return [...elements.importPanel.querySelectorAll('input[name="adminImportRow"]:checked')]
+      .map((inputElement) => inputElement.value);
+  }
+
+  function parseImportRecords(text) {
+    const parsed = JSON.parse(text);
+    if (Array.isArray(parsed)) return parsed;
+    if (Array.isArray(parsed?.records)) return parsed.records;
+    if (Array.isArray(parsed?.gpus)) return parsed.gpus;
+    if (Array.isArray(parsed?.cpus)) return parsed.cpus;
+    throw new Error("JSON 需要是数组，或包含 records / gpus / cpus 数组。");
+  }
+
+  async function handleImportPreview() {
+    const { category, text, preview, commitButton } = getImportElements();
+    const categoryId = category?.value || "gpu";
+
+    try {
+      setImportMessage("正在解析并检查重复数据...");
+      const records = parseImportRecords(text?.value || "");
+      const response = await fetch("/api/admin/import/preview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ categoryId, records })
+      });
+      const body = await response.json();
+      if (!response.ok) throw new Error((body.errors || ["导入预览失败"]).join("；"));
+
+      state.importRecords = records;
+      state.importPlan = body.plan;
+      if (preview) preview.innerHTML = renderAdminImportPreview(body.plan);
+      setImportMessage(`预览完成：${body.plan.summary.new} 条可导入，${body.plan.summary.duplicate} 条重复，${body.plan.summary.invalid} 条无效。`, "success");
+      if (commitButton) commitButton.disabled = body.plan.summary.selectable === 0;
+    } catch (error) {
+      state.importPlan = null;
+      if (preview) preview.innerHTML = "";
+      if (commitButton) commitButton.disabled = true;
+      setImportMessage(error.message, "error");
+    }
+  }
+
+  async function handleImportCommit() {
+    const { category } = getImportElements();
+    const categoryId = category?.value || "gpu";
+    const selectedIds = getSelectedImportIds();
+
+    if (!selectedIds.length) {
+      setImportMessage("请至少选择一条新增数据。", "error");
+      return;
+    }
+
+    try {
+      setImportMessage("正在写入选中数据...");
+      const response = await fetch("/api/admin/import/commit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ categoryId, records: state.importRecords, selectedIds })
+      });
+      const body = await response.json();
+      if (!response.ok) throw new Error((body.errors || ["导入失败"]).join("；"));
+
+      state.importPlan = body.plan;
+      const firstImportedId = body.imported?.[0]?.savedId || body.imported?.[0]?.id;
+      setImportMessage(`已导入 ${body.imported.length} 条，跳过 ${body.skipped.length} 条。`, "success");
+      if (categoryId === state.categoryId) {
+        await loadItems();
+        if (firstImportedId && state.items.some((item) => item.id === firstImportedId)) {
+          state.selectedId = firstImportedId;
+          state.creatingNew = false;
+          render();
+        }
+      }
+      resetImportPreview(`已导入 ${body.imported.length} 条，列表已更新。`);
+      setImportMessage(`已导入 ${body.imported.length} 条，列表已更新。`, "success");
+    } catch (error) {
+      setImportMessage(error.message, "error");
+    }
+  }
+
   elements.categorySelect.addEventListener("change", async (event) => {
     state.categoryId = event.target.value;
     state.query = "";
@@ -841,6 +1061,10 @@ async function initAdmin() {
     elements.search.value = "";
     await loadSchema();
     await loadItems();
+    const { category } = getImportElements();
+    if (category && (state.categoryId === "gpu" || state.categoryId === "desktop-cpu")) {
+      category.value = state.categoryId;
+    }
   });
 
   elements.newButton.addEventListener("click", () => {
@@ -936,6 +1160,44 @@ async function initAdmin() {
       message.classList.add("is-error");
     }
   });
+
+  if (elements.importPanel) {
+    elements.importPanel.addEventListener("change", async (event) => {
+      if (event.target?.id === "adminImportFile") {
+        const file = event.target.files?.[0];
+        if (!file) return;
+        const { text } = getImportElements();
+        text.value = await file.text();
+        resetImportPreview(`已读取 ${file.name}，可以预览。`);
+        return;
+      }
+
+      if (event.target?.id === "adminImportCategory") {
+        resetImportPreview("已切换导入类型，请重新预览。");
+        return;
+      }
+
+      if (event.target?.name === "adminImportRow") {
+        updateImportCommitState();
+      }
+    });
+
+    elements.importPanel.addEventListener("input", (event) => {
+      if (event.target?.id === "adminImportText") {
+        resetImportPreview();
+      }
+    });
+
+    elements.importPanel.addEventListener("click", async (event) => {
+      if (event.target?.id === "adminImportPreviewButton") {
+        await handleImportPreview();
+      }
+
+      if (event.target?.id === "adminImportCommitButton") {
+        await handleImportCommit();
+      }
+    });
+  }
 
   await loadCategories();
   await loadSchema();

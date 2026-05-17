@@ -9,6 +9,8 @@ import {
   filterAdminItems,
   renderAdminEditor,
   renderAdminFacets,
+  renderAdminImportPanel,
+  renderAdminImportPreview,
   renderAdminList,
   stringifyGpuForForm
 } from "../src/admin.js";
@@ -155,6 +157,32 @@ test("renderAdminList marks selected GPU", () => {
   const html = renderAdminList(gpus.slice(0, 2), "rtx-4070-desktop");
   assert.match(html, /data-gpu-id="rtx-4070-desktop"/);
   assert.match(html, /is-selected/);
+});
+
+test("renderAdminImportPanel exposes import controls", () => {
+  const html = renderAdminImportPanel("gpu");
+
+  assert.match(html, /id="adminImportCategory"/);
+  assert.match(html, /id="adminImportFile"/);
+  assert.match(html, /id="adminImportText"/);
+  assert.match(html, /id="adminImportPreviewButton"/);
+  assert.match(html, /id="adminImportCommitButton"/);
+});
+
+test("renderAdminImportPreview renders status counts and selectable rows", () => {
+  const html = renderAdminImportPreview({
+    summary: { total: 3, new: 1, duplicate: 1, invalid: 1, selectable: 1 },
+    rows: [
+      { id: "new-gpu", name: "New GPU", manufacturerId: "amd", status: "new", selectable: true, reason: "Ready" },
+      { id: "old-gpu", name: "Old GPU", manufacturerId: "nvidia", status: "duplicate", selectable: false, reason: "Exists" },
+      { id: "bad-gpu", name: "Bad GPU", manufacturerId: "unknown", status: "invalid", selectable: false, reason: "Unsupported" }
+    ]
+  });
+
+  assert.match(html, /data-import-status="new"/);
+  assert.match(html, /value="new-gpu"/);
+  assert.match(html, /disabled/);
+  assert.match(html, /data-import-status="invalid"/);
 });
 
 test("renderAdminEditor exposes grouped fields and mobile guidance", () => {

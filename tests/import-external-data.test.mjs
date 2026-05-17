@@ -35,6 +35,11 @@ test("parseExternalDate handles Mon DDth, YYYY", () => {
   assert.equal(parseExternalDate("Jan 5, 2020"), "2020-01");
 });
 
+test("parseExternalDate handles Mon YYYY", () => {
+  assert.equal(parseExternalDate("Aug 2024"), "2024-08");
+  assert.equal(parseExternalDate("Oct 2024"), "2024-10");
+});
+
 test("parseExternalDate returns null for empty/invalid", () => {
   assert.equal(parseExternalDate(null), null);
   assert.equal(parseExternalDate(""), null);
