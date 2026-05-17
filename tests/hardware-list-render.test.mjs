@@ -68,6 +68,31 @@ test("renderHardwareListItem applies manufacturer accent to AMD and Intel rows",
   assert.match(intelHtml, /style="--hardware-accent:var\(--accent-intel\)"/);
 });
 
+test("renderHardwareListItem applies distinct manufacturer accents to mobile SoC rows", () => {
+  const qualcommHtml = renderHardwareListItem({
+    ...laptop4070ViewModel,
+    id: "snapdragon-8-gen-3",
+    title: "Qualcomm Snapdragon 8 Gen 3",
+    manufacturerId: "qualcomm"
+  });
+  const mediatekHtml = renderHardwareListItem({
+    ...laptop4070ViewModel,
+    id: "dimensity-9300",
+    title: "MediaTek Dimensity 9300",
+    manufacturerId: "mediatek"
+  });
+  const samsungHtml = renderHardwareListItem({
+    ...laptop4070ViewModel,
+    id: "exynos-2400",
+    title: "Samsung Exynos 2400",
+    manufacturerId: "samsung"
+  });
+
+  assert.match(qualcommHtml, /style="--hardware-accent:var\(--accent-qualcomm\)"/);
+  assert.match(mediatekHtml, /style="--hardware-accent:var\(--accent-mediatek\)"/);
+  assert.match(samsungHtml, /style="--hardware-accent:var\(--accent-samsung\)"/);
+});
+
 test("hardware list renderer contains no GPU-specific field assumptions", async () => {
   const source = await readFile(new URL("../src/features/hardware-list/render-list.js", import.meta.url), "utf8");
 

@@ -1,6 +1,9 @@
 const manufacturerAccentVars = {
   amd: "var(--accent-amd)",
-  intel: "var(--accent-intel)"
+  intel: "var(--accent-intel)",
+  mediatek: "var(--accent-mediatek)",
+  qualcomm: "var(--accent-qualcomm)",
+  samsung: "var(--accent-samsung)"
 };
 
 export function renderHardwareList(items = [], options = {}) {
