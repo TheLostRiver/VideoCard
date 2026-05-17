@@ -929,6 +929,13 @@ input::placeholder {
 
 .admin-toolbar {
   grid-template-columns: minmax(240px, 1fr) minmax(220px, 360px) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+}
+
+.admin-toolbar .title-block {
+  min-width: 0;
 }
 
 .admin-link {
