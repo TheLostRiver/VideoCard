@@ -1012,6 +1012,83 @@ input::placeholder {
   margin-bottom: 10px;
 }
 
+.admin-facets {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.admin-facet-group {
+  display: grid;
+  gap: 6px;
+}
+
+.admin-facet-label {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.admin-facet-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 0;
+}
+
+.admin-facet-group + .admin-facet-group .admin-facet-chips {
+  max-height: 96px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.admin-facet-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  padding: 5px 8px;
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.admin-facet-chip span {
+  min-width: 18px;
+  border-radius: 999px;
+  padding: 2px 5px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.admin-facet-chip:hover,
+.admin-facet-chip.is-active {
+  border-color: var(--accent-nvidia);
+  background: rgba(118, 185, 0, 0.14);
+  color: var(--text-primary);
+}
+
+.admin-facet-chip[data-admin-facet-value="amd"].is-active {
+  border-color: var(--accent-amd);
+  background: rgba(237, 28, 36, 0.15);
+}
+
+.admin-facet-chip[data-admin-facet-value="intel"].is-active {
+  border-color: var(--accent-intel);
+  background: rgba(0, 151, 230, 0.15);
+}
+
 .admin-category-select {
   flex: 1;
   padding: 6px 8px;
