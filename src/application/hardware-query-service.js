@@ -70,6 +70,7 @@ function createListItemViewModel(category, detail, resolver) {
 
   return {
     id: detail.item.id,
+    manufacturerId: detail.item.manufacturerId,
     title: String(resolveRawField(detail, listView.titleField) ?? detail.item.name),
     subtitle: facts.map((fact) => fact.displayValue).filter(Boolean).join(" · "),
     badges: badge ? [badge] : [],

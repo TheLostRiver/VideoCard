@@ -88,7 +88,9 @@ function renderSchemaAdminEditor(gpu, schema) {
     <form id="gpuForm" class="admin-form schema-form" data-category-id="${escapeHtml(schema.id)}">
       ${renderAdminHeading(gpu)}
       ${mobileHint}
-      ${schemaBody}
+      <div class="admin-form-sections">
+        ${schemaBody}
+      </div>
       <div id="adminFormMessage" class="admin-form-message" role="status"></div>
     </form>
   `;
@@ -102,56 +104,52 @@ function renderLegacyAdminEditor(gpu) {
 
   return `
     <form id="gpuForm" class="admin-form">
-      <div class="admin-editor-heading">
-        <div>
-          <h2>${escapeHtml(gpu.name)}</h2>
-          <p>${escapeHtml(gpu.id)}</p>
-        </div>
-        <button class="ghost-button save-button" type="submit">保存</button>
-      </div>
+      ${renderAdminHeading(gpu)}
       ${mobileHint}
-      ${fieldset("基础信息", [
-        input("id", "ID", value.id, "text"),
-        input("name", "名称", value.name, "text"),
-        select("brand", "品牌", value.brand, labelOptions(BRANDS)),
-        select("segment", "版本", value.segment, labelOptions(SEGMENTS)),
-        input("generation", "世代", value.generation, "text"),
-        input("architecture", "架构", value.architecture, "text"),
-        input("releaseDate", "发布时间", value.releaseDate, "text"),
-        input("performanceIndex", "性能指数", value.performanceIndex, "number"),
-        select("tier", "层级", value.tier, labelOptions(TIERS)),
-        select("confidence", "可信度", value.confidence, {
-          aggregate: "aggregate",
-          estimated: "estimated"
-        })
-      ])}
-      ${fieldset("核心规格", [
-        input("specs.coresLabel", "核心标签", value["specs.coresLabel"], "text"),
-        input("specs.cores", "核心数量", value["specs.cores"], "number"),
-        input("specs.baseClockMHz", "基础频率 MHz", value["specs.baseClockMHz"], "number"),
-        input("specs.boostClockMHz", "加速频率 MHz", value["specs.boostClockMHz"], "number")
-      ])}
-      ${fieldset("显存与功耗", [
-        input("specs.memorySizeGB", "显存 GB", value["specs.memorySizeGB"], "number"),
-        input("specs.memoryType", "显存类型", value["specs.memoryType"], "text"),
-        input("specs.memoryBusBit", "位宽 bit", value["specs.memoryBusBit"], "number"),
-        input("specs.bandwidthGBs", "带宽 GB/s", value["specs.bandwidthGBs"], "number"),
-        input("specs.powerW", "桌面功耗 W", value["specs.powerW"], "number"),
-        input("specs.tgpRangeW", "移动版 TGP 范围", value["specs.tgpRangeW"], "text")
-      ])}
-      ${fieldset("跑分与游戏建议", [
-        input("benchmarks.timeSpyGraphics", "Time Spy Graphics", value["benchmarks.timeSpyGraphics"], "number"),
-        input("benchmarks.steelNomadGraphics", "Steel Nomad Graphics", value["benchmarks.steelNomadGraphics"], "number"),
-        input("benchmarks.passMarkG3D", "PassMark G3D", value["benchmarks.passMarkG3D"], "number"),
-        input("benchmarks.sourceNote", "跑分说明", value["benchmarks.sourceNote"], "text"),
-        input("gaming.recommendedResolution", "推荐分辨率", value["gaming.recommendedResolution"], "text"),
-        input("gaming.rayTracingLevel", "光追等级", value["gaming.rayTracingLevel"], "text"),
-        input("gaming.efficiencyNote", "能效说明", value["gaming.efficiencyNote"], "text")
-      ])}
-      ${fieldset("备注与来源", [
-        textarea("notesText", "备注，每行一条", value.notesText),
-        textarea("sourcesText", "来源，每行格式：label|url", value.sourcesText)
-      ])}
+      <div class="admin-form-sections">
+        ${fieldset("基础信息", [
+          input("id", "ID", value.id, "text"),
+          input("name", "名称", value.name, "text"),
+          select("brand", "品牌", value.brand, labelOptions(BRANDS)),
+          select("segment", "版本", value.segment, labelOptions(SEGMENTS)),
+          input("generation", "世代", value.generation, "text"),
+          input("architecture", "架构", value.architecture, "text"),
+          input("releaseDate", "发布时间", value.releaseDate, "text"),
+          input("performanceIndex", "性能指数", value.performanceIndex, "number"),
+          select("tier", "层级", value.tier, labelOptions(TIERS)),
+          select("confidence", "可信度", value.confidence, {
+            aggregate: "aggregate",
+            estimated: "estimated"
+          })
+        ])}
+        ${fieldset("核心规格", [
+          input("specs.coresLabel", "核心标签", value["specs.coresLabel"], "text"),
+          input("specs.cores", "核心数量", value["specs.cores"], "number"),
+          input("specs.baseClockMHz", "基础频率 MHz", value["specs.baseClockMHz"], "number"),
+          input("specs.boostClockMHz", "加速频率 MHz", value["specs.boostClockMHz"], "number")
+        ])}
+        ${fieldset("显存与功耗", [
+          input("specs.memorySizeGB", "显存 GB", value["specs.memorySizeGB"], "number"),
+          input("specs.memoryType", "显存类型", value["specs.memoryType"], "text"),
+          input("specs.memoryBusBit", "位宽 bit", value["specs.memoryBusBit"], "number"),
+          input("specs.bandwidthGBs", "带宽 GB/s", value["specs.bandwidthGBs"], "number"),
+          input("specs.powerW", "桌面功耗 W", value["specs.powerW"], "number"),
+          input("specs.tgpRangeW", "移动版 TGP 范围", value["specs.tgpRangeW"], "text")
+        ])}
+        ${fieldset("跑分与游戏建议", [
+          input("benchmarks.timeSpyGraphics", "Time Spy Graphics", value["benchmarks.timeSpyGraphics"], "number"),
+          input("benchmarks.steelNomadGraphics", "Steel Nomad Graphics", value["benchmarks.steelNomadGraphics"], "number"),
+          input("benchmarks.passMarkG3D", "PassMark G3D", value["benchmarks.passMarkG3D"], "number"),
+          input("benchmarks.sourceNote", "跑分说明", value["benchmarks.sourceNote"], "text"),
+          input("gaming.recommendedResolution", "推荐分辨率", value["gaming.recommendedResolution"], "text"),
+          input("gaming.rayTracingLevel", "光追等级", value["gaming.rayTracingLevel"], "text"),
+          input("gaming.efficiencyNote", "能效说明", value["gaming.efficiencyNote"], "text")
+        ])}
+        ${fieldset("备注与来源", [
+          textarea("notesText", "备注，每行一条", value.notesText),
+          textarea("sourcesText", "来源，每行格式：label|url", value.sourcesText)
+        ])}
+      </div>
       <div id="adminFormMessage" class="admin-form-message" role="status"></div>
     </form>
   `;
@@ -160,11 +158,13 @@ function renderLegacyAdminEditor(gpu) {
 function renderAdminHeading(gpu) {
   return `
     <div class="admin-editor-heading">
-      <div>
+      <div class="admin-editor-title">
         <h2>${escapeHtml(gpu.name)}</h2>
         <p>${escapeHtml(gpu.id)}</p>
       </div>
-      <button class="ghost-button save-button" type="submit">保存</button>
+      <div class="admin-editor-actions">
+        <button class="ghost-button save-button" type="submit">保存</button>
+      </div>
     </div>
   `;
 }
@@ -332,13 +332,17 @@ function renderSchemaAdminEditorForNew(detail, schema) {
   return `
     <form id="gpuForm" class="admin-form schema-form" data-category-id="${escapeHtml(schema.id)}">
       <div class="admin-editor-heading">
-        <div>
+        <div class="admin-editor-title">
           <h2>新增 ${escapeHtml(schema.label || schema.id)}</h2>
           <p>填写新硬件信息</p>
         </div>
-        <button class="ghost-button save-button" type="submit">创建</button>
+        <div class="admin-editor-actions">
+          <button class="ghost-button save-button" type="submit">创建</button>
+        </div>
       </div>
-      ${schemaBody}
+      <div class="admin-form-sections">
+        ${schemaBody}
+      </div>
       <div id="adminFormMessage" class="admin-form-message" role="status"></div>
     </form>
   `;
@@ -356,13 +360,17 @@ function renderSchemaAdminEditorForCategory(item, schema) {
   return `
     <form id="gpuForm" class="admin-form schema-form" data-category-id="${escapeHtml(schema.id)}">
       <div class="admin-editor-heading">
-        <div>
+        <div class="admin-editor-title">
           <h2>${escapeHtml(item.name)}</h2>
           <p>${escapeHtml(item.id)}</p>
         </div>
-        <button class="ghost-button save-button" type="submit">保存</button>
+        <div class="admin-editor-actions">
+          <button class="ghost-button save-button" type="submit">保存</button>
+        </div>
       </div>
-      ${schemaBody}
+      <div class="admin-form-sections">
+        ${schemaBody}
+      </div>
       <div id="adminFormMessage" class="admin-form-message" role="status"></div>
     </form>
   `;

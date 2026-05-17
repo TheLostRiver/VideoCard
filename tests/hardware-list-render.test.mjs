@@ -50,6 +50,24 @@ test("renderHardwareList renders an empty state and multiple rows", () => {
   assert.match(html, /is-selected/);
 });
 
+test("renderHardwareListItem applies manufacturer accent to AMD and Intel rows", () => {
+  const amdHtml = renderHardwareListItem({
+    ...laptop4070ViewModel,
+    id: "amd-ryzen-9-7950x",
+    title: "AMD Ryzen 9 7950X",
+    manufacturerId: "amd"
+  });
+  const intelHtml = renderHardwareListItem({
+    ...laptop4070ViewModel,
+    id: "intel-core-i9-13900k",
+    title: "Intel Core i9-13900K",
+    manufacturerId: "intel"
+  });
+
+  assert.match(amdHtml, /style="--hardware-accent:var\(--accent-amd\)"/);
+  assert.match(intelHtml, /style="--hardware-accent:var\(--accent-intel\)"/);
+});
+
 test("hardware list renderer contains no GPU-specific field assumptions", async () => {
   const source = await readFile(new URL("../src/features/hardware-list/render-list.js", import.meta.url), "utf8");
 

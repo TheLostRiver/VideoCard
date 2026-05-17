@@ -28,6 +28,9 @@ test("renderAdminEditor exposes grouped fields and mobile guidance", () => {
   const gpu = gpus.find((item) => item.id === "rtx-4070-laptop");
   const html = renderAdminEditor(gpu, gpuSchema);
   assert.match(html, /class="admin-form schema-form"/);
+  assert.match(html, /class="admin-editor-title"/);
+  assert.match(html, /class="admin-editor-actions"/);
+  assert.match(html, /class="admin-form-sections"/);
   assert.match(html, /name="metric:gpu.power.tgpRange"/);
   assert.match(html, /value="45-115W"/);
   assert.match(html, /移动版必须填写 TGP 范围/);

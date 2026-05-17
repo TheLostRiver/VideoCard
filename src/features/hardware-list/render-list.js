@@ -1,3 +1,8 @@
+const manufacturerAccentVars = {
+  amd: "var(--accent-amd)",
+  intel: "var(--accent-intel)"
+};
+
 export function renderHardwareList(items = [], options = {}) {
   if (!items.length) {
     return `<div class="hardware-list-empty">没有匹配的硬件</div>`;
@@ -28,9 +33,10 @@ export function renderHardwareListItem(item, options = {}) {
   const subtitle = subtitleParts.length ? subtitleParts.join(" · ") : "";
   const factLabelsAttr = facts.map((f) => f.label).filter(Boolean).join(", ");
   const activeScore = resolveActiveScore(item, options.activeBenchmark);
+  const accentStyle = renderManufacturerAccentStyle(item.manufacturerId);
 
   return `
-    <article class="hardware-list-item${selectedClass}" data-hardware-id="${escapeHtml(item.id)}" role="option" aria-selected="${isSelected ? "true" : "false"}"${factLabelsAttr ? ` data-fact-labels="${escapeHtml(factLabelsAttr)}"` : ""}>
+    <article class="hardware-list-item${selectedClass}" data-hardware-id="${escapeHtml(item.id)}" role="option" aria-selected="${isSelected ? "true" : "false"}"${factLabelsAttr ? ` data-fact-labels="${escapeHtml(factLabelsAttr)}"` : ""}${accentStyle}>
       <div class="hardware-list-main">
         <strong>${escapeHtml(item.title)}</strong>
         ${subtitle ? `<span class="hardware-list-subtitle">${subtitle}</span>` : ""}
@@ -41,6 +47,11 @@ export function renderHardwareListItem(item, options = {}) {
       ${renderRecommendation(item.recommendation)}
     </article>
   `;
+}
+
+function renderManufacturerAccentStyle(manufacturerId) {
+  const accent = manufacturerAccentVars[String(manufacturerId || "").toLowerCase()];
+  return accent ? ` style="--hardware-accent:${accent}"` : "";
 }
 
 function renderRecommendation(recommendation) {
