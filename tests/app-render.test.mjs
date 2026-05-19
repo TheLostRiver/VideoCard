@@ -4,11 +4,13 @@ import { gpus } from "../src/data/gpus.js";
 import {
   createGpuPageHardwareModel,
   createInitialState,
+  filterHardwareListItemsByFacets,
   getUniqueValues,
   parseCompareHash,
   renderComparePage,
   renderDetailMarkup,
   renderFilterChips,
+  renderHardwareFilterChips,
   renderGpuRow,
   searchHardwareListItems,
   shouldShowMobileDrawer
@@ -62,6 +64,37 @@ test("renderFilterChips renders brands, segments, and generations", () => {
   assert.match(html, /data-filter-value="RTX 40"/);
 });
 
+test("renderHardwareFilterChips renders desktop CPU brand and generation filters", () => {
+  const items = [
+    createListItem("ryzen-7-7800x3d", "AMD Ryzen 7 7800X3D", "amd", "Ryzen 7000"),
+    createListItem("core-i9-14900k", "Intel Core i9-14900K", "intel", "14th Gen"),
+    createListItem("core-i9-10900k", "Intel Core i9-10900K", "intel", "10th Gen")
+  ];
+
+  const html = renderHardwareFilterChips(items, { categoryId: "desktop-cpu" });
+
+  assert.match(html, /data-filter-type="brands" data-filter-value="amd"/);
+  assert.match(html, /data-filter-type="brands" data-filter-value="intel"/);
+  assert.match(html, /data-filter-type="generations" data-filter-value="14th Gen"/);
+  assert.match(html, /data-filter-type="generations" data-filter-value="Ryzen 7000"/);
+  assert.doesNotMatch(html, /data-filter-type="segments"/);
+});
+
+test("filterHardwareListItemsByFacets filters generic hardware by brand and generation", () => {
+  const items = [
+    createListItem("ryzen-7-7800x3d", "AMD Ryzen 7 7800X3D", "amd", "Ryzen 7000"),
+    createListItem("ryzen-7-9700x", "AMD Ryzen 7 9700X", "amd", "Ryzen 9000"),
+    createListItem("core-i9-14900k", "Intel Core i9-14900K", "intel", "14th Gen")
+  ];
+
+  const result = filterHardwareListItemsByFacets(items, {
+    brands: new Set(["amd"]),
+    generations: new Set(["Ryzen 9000"])
+  });
+
+  assert.deepEqual(result.map((item) => item.id), ["ryzen-7-9700x"]);
+});
+
 test("service-backed GPU page model preserves search, mobile badge, warning, and benchmark rendering", async () => {
   const pageModel = await createGpuPageHardwareModel();
   const matches = searchHardwareListItems(pageModel.listViewModel.items, "4070");
@@ -110,3 +143,15 @@ test("renderComparePage renders a compare table for two GPUs", async () => {
   assert.match(html, /rtx-4090-desktop/);
   assert.match(html, /Core Count/);
 });
+
+function createListItem(id, title, manufacturerId, generation) {
+  return {
+    id,
+    title,
+    manufacturerId,
+    facts: [
+      { id: "brand", label: "Brand", displayValue: manufacturerId },
+      { id: "generation", label: "Generation", displayValue: generation }
+    ]
+  };
+}

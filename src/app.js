@@ -136,6 +136,114 @@ export function renderFilterChips(items = gpus) {
     + `<div class="filter-group filter-group--gen"><span class="filter-group-label">架构<button class="gen-toggle" type="button" data-gen-toggle>▾</button></span><div class="filter-group-chips filter-gen-chips">${genChips}</div></div>`;
 }
 
+export function renderHardwareFilterChips(items = [], options = {}) {
+  const categoryId = options.categoryId || "";
+  const manufacturerOptions = createFilterOptions(
+    items,
+    (item) => item.manufacturerId,
+    formatManufacturerLabel,
+    (a, b) => getManufacturerSortIndex(a.value) - getManufacturerSortIndex(b.value) || a.label.localeCompare(b.label)
+  );
+  const generationOptions = createFilterOptions(
+    items,
+    getHardwareListItemGeneration,
+    (value) => value,
+    (a, b) => getGenerationSortIndex(a.value, categoryId) - getGenerationSortIndex(b.value, categoryId) || a.label.localeCompare(b.label)
+  );
+  const groups = [];
+
+  if (manufacturerOptions.length > 1) {
+    groups.push(renderFilterGroup("品牌", manufacturerOptions.map((option) => renderChip("brands", option.value, option.label)).join("")));
+  }
+
+  if (generationOptions.length > 1) {
+    groups.push(renderFilterGroup(
+      `系列 / 代际<button class="gen-toggle" type="button" data-gen-toggle>▾</button>`,
+      generationOptions.map((option) => renderChip("generations", option.value, option.label)).join(""),
+      " filter-group--gen is-expanded",
+      " filter-gen-chips"
+    ));
+  }
+
+  return groups.join("");
+}
+
+export function filterHardwareListItemsByFacets(items = [], state = {}) {
+  const selectedBrands = state.brands || new Set();
+  const selectedGenerations = state.generations || new Set();
+
+  return items.filter((item) => {
+    if (selectedBrands.size && !selectedBrands.has(item.manufacturerId)) return false;
+
+    if (selectedGenerations.size) {
+      const generation = getHardwareListItemGeneration(item);
+      if (!selectedGenerations.has(generation)) return false;
+    }
+
+    return true;
+  });
+}
+
+function renderFilterGroup(labelHtml, chipsHtml, groupClass = "", chipsClass = "") {
+  return `<div class="filter-group${groupClass}"><span class="filter-group-label">${labelHtml}</span><div class="filter-group-chips${chipsClass}">${chipsHtml}</div></div>`;
+}
+
+function createFilterOptions(items, getValue, getLabel, sorter) {
+  const values = new Set();
+  for (const item of items) {
+    const value = normalizeFacetValue(getValue(item));
+    if (value) values.add(value);
+  }
+
+  return [...values]
+    .map((value) => ({ value, label: getLabel(value) }))
+    .sort(sorter);
+}
+
+function getHardwareListItemGeneration(item) {
+  return normalizeFacetValue((item.facts || []).find((fact) => fact.id === "generation")?.displayValue);
+}
+
+function normalizeFacetValue(value) {
+  const normalized = String(value || "").trim();
+  if (!normalized || normalized === "待补充") return "";
+  return normalized;
+}
+
+function formatManufacturerLabel(value) {
+  const key = String(value || "").toLowerCase();
+  const labels = {
+    amd: "AMD",
+    apple: "Apple",
+    intel: "Intel",
+    mediatek: "MediaTek",
+    nvidia: "NVIDIA",
+    qualcomm: "Qualcomm",
+    samsung: "Samsung"
+  };
+  return labels[key] || String(value || "").replace(/\b[a-z]/g, (letter) => letter.toUpperCase());
+}
+
+function getManufacturerSortIndex(value) {
+  const order = ["nvidia", "amd", "intel", "qualcomm", "mediatek", "samsung", "apple"];
+  const index = order.indexOf(String(value || "").toLowerCase());
+  return index === -1 ? order.length : index;
+}
+
+function getGenerationSortIndex(value, categoryId) {
+  const text = String(value || "");
+
+  if (categoryId === "desktop-cpu") {
+    const intelGeneration = text.match(/^(\d+)(?:st|nd|rd|th)\s+Gen$/i);
+    if (intelGeneration) return 100 - Number(intelGeneration[1]);
+
+    const ryzenGeneration = text.match(/^Ryzen\s+(\d{4})$/i);
+    if (ryzenGeneration) return 200 - Number(ryzenGeneration[1]) / 100;
+  }
+
+  return 1000;
+}
+
 export function renderChip(type, value, label) {
   return `<button class="filter-chip" type="button" data-filter-type="${escapeHtml(type)}" data-filter-value="${escapeHtml(value)}">${escapeHtml(label)}</button>`;
 }
@@ -282,8 +390,9 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
       elements.filterBar.innerHTML = renderFilterChips(data);
       elements.filterBar.hidden = false;
     } else {
-      elements.filterBar.innerHTML = "";
-      elements.filterBar.hidden = true;
+      const filterHtml = renderHardwareFilterChips(state.genericItems, { categoryId: state.categoryId });
+      elements.filterBar.innerHTML = filterHtml;
+      elements.filterBar.hidden = !filterHtml;
     }
   }
 
@@ -419,6 +528,7 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
       else set.add(value);
       state.drawerOpen = false;
       if (state.categoryId === "gpu") renderGpuMode();
+      else renderGenericList();
     });
 
     elements.resetButton.addEventListener("click", () => {
@@ -522,6 +632,7 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
     if (query) {
       items = items.filter((item) => searchHardwareListItems([item], state.query).length > 0);
     }
+    items = filterHardwareListItemsByFacets(items, state);
     items = filterByYears(items, state.selectedYears, state.showUnknownYears, (item) => item.releaseYear != null ? String(item.releaseYear) : null);
     const profileId = state.sortBy;
     return [...items].sort((a, b) => {
@@ -535,6 +646,7 @@ export function initApp({ doc = document, win = window, data = gpus, categories 
   }
 
   function renderGenericList() {
+    updateControlState();
     const items = getSortedGenericItems();
     const profileId = state.sortBy;
     elements.ladderList.innerHTML = renderHardwareList(items, { selectedId: state.selectedId, activeBenchmark: profileId });
