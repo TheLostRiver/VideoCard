@@ -20,12 +20,15 @@
         <a class="ghost-button admin-link" href="./index.html">返回天梯图</a>
       </header>
 
+      <section id="adminImportPanel" class="admin-import-panel" aria-label="数据导入"></section>
+
       <section class="admin-grid">
         <aside class="admin-list-panel" aria-label="硬件列表">
           <div class="admin-list-actions">
             <select id="adminCategorySelect" class="admin-category-select"></select>
             <button id="adminNewButton" class="ghost-button admin-new-button" type="button">＋ 新增</button>
           </div>
+          <div id="adminFacets" class="admin-facets" aria-label="列表筛选"></div>
           <div id="adminStatus" class="admin-status">正在加载数据...</div>
           <div id="adminList" class="admin-list"></div>
         </aside>

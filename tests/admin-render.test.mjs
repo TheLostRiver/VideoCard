@@ -4,8 +4,13 @@ import { readFileSync } from "node:fs";
 import { gpus } from "../src/data/gpus.js";
 import {
   buildGpuFromForm,
+  createAdminFacetGroups,
   filterAdminGpus,
+  filterAdminItems,
   renderAdminEditor,
+  renderAdminFacets,
+  renderAdminImportPanel,
+  renderAdminImportPreview,
   renderAdminList,
   stringifyGpuForForm
 } from "../src/admin.js";
@@ -18,16 +23,175 @@ test("filterAdminGpus searches names, ids, brands, and segment labels", () => {
   assert.equal(result[0].id, "rtx-4070-laptop");
 });
 
+test("createAdminFacetGroups groups GPU items by manufacturer and product series", () => {
+  const items = [
+    { id: "rtx-5090", name: "GeForce RTX 5090", brand: "nvidia", segment: "desktop", generation: "GB202" },
+    { id: "rtx-4070", name: "GeForce RTX 4070", brand: "nvidia", segment: "desktop", generation: "RTX 40" },
+    { id: "rx-9070", name: "Radeon RX 9070 XT", brand: "amd", segment: "desktop", generation: "Navi 48" },
+    { id: "arc-b580", name: "Intel Arc B580", brand: "intel", segment: "desktop", generation: "BMG-G21" }
+  ];
+
+  const groups = createAdminFacetGroups(items, "gpu");
+  const manufacturerLabels = groups.find((group) => group.id === "manufacturer").options.map((option) => option.label);
+  const seriesLabels = groups.find((group) => group.id === "series").options.map((option) => option.label);
+
+  assert.deepEqual(manufacturerLabels, ["全部", "NVIDIA", "AMD", "Intel"]);
+  assert.ok(seriesLabels.includes("RTX 50"));
+  assert.ok(seriesLabels.includes("RTX 40"));
+  assert.ok(seriesLabels.includes("RX 9000"));
+  assert.ok(seriesLabels.includes("Arc B"));
+});
+
+test("filterAdminGpus narrows results by selected manufacturer and series facets", () => {
+  const items = [
+    { id: "rtx-5090", name: "GeForce RTX 5090", brand: "nvidia", segment: "desktop", generation: "GB202" },
+    { id: "rtx-4070", name: "GeForce RTX 4070", brand: "nvidia", segment: "desktop", generation: "RTX 40" },
+    { id: "rx-9070", name: "Radeon RX 9070 XT", brand: "amd", segment: "desktop", generation: "Navi 48" }
+  ];
+
+  const nvidia40 = filterAdminGpus(items, "", { manufacturer: "nvidia", series: "RTX 40" });
+  const amd9000 = filterAdminGpus(items, "", { manufacturer: "amd", series: "RX 9000" });
+
+  assert.deepEqual(nvidia40.map((item) => item.id), ["rtx-4070"]);
+  assert.deepEqual(amd9000.map((item) => item.id), ["rx-9070"]);
+});
+
+test("filterAdminItems supports manufacturer and generation facets for schema categories", () => {
+  const items = [
+    {
+      id: "ryzen-9-7950x",
+      title: "AMD Ryzen 9 7950X",
+      manufacturerId: "amd",
+      subtitle: "amd · Ryzen 7000 · AM5",
+      facts: [
+        { id: "brand", displayValue: "amd" },
+        { id: "generation", displayValue: "Ryzen 7000" },
+        { id: "cpu.socket", displayValue: "AM5" }
+      ]
+    },
+    {
+      id: "core-i9-13900k",
+      title: "Intel Core i9-13900K",
+      manufacturerId: "intel",
+      subtitle: "intel · 13th Gen · LGA 1700",
+      facts: [
+        { id: "brand", displayValue: "intel" },
+        { id: "generation", displayValue: "13th Gen" },
+        { id: "cpu.socket", displayValue: "LGA 1700" }
+      ]
+    }
+  ];
+
+  const result = filterAdminItems(items, "", { manufacturer: "intel", series: "13th Gen" }, "desktop-cpu");
+
+  assert.deepEqual(result.map((item) => item.id), ["core-i9-13900k"]);
+});
+
+test("createAdminFacetGroups keeps consumer CPU generations ahead of imported codenames", () => {
+  const items = [
+    {
+      id: "gorgon-a",
+      title: "Imported Gorgon A",
+      manufacturerId: "amd",
+      facts: [
+        { id: "brand", displayValue: "amd" },
+        { id: "generation", displayValue: "Gorgon Point" }
+      ]
+    },
+    {
+      id: "gorgon-b",
+      title: "Imported Gorgon B",
+      manufacturerId: "amd",
+      facts: [
+        { id: "brand", displayValue: "amd" },
+        { id: "generation", displayValue: "Gorgon Point" }
+      ]
+    },
+    {
+      id: "core-i9-14900k",
+      title: "Intel Core i9-14900K",
+      manufacturerId: "intel",
+      facts: [
+        { id: "brand", displayValue: "intel" },
+        { id: "generation", displayValue: "14th Gen" }
+      ]
+    },
+    {
+      id: "ryzen-9-7950x",
+      title: "AMD Ryzen 9 7950X",
+      manufacturerId: "amd",
+      facts: [
+        { id: "brand", displayValue: "amd" },
+        { id: "generation", displayValue: "Ryzen 7000" }
+      ]
+    }
+  ];
+
+  const groups = createAdminFacetGroups(items, "desktop-cpu");
+  const seriesLabels = groups.find((group) => group.id === "series").options.map((option) => option.label);
+
+  assert.deepEqual(seriesLabels.slice(0, 4), ["全部", "14th Gen", "Ryzen 7000", "Gorgon Point"]);
+});
+
+test("renderAdminFacets renders active filter chips with counts", () => {
+  const groups = [
+    {
+      id: "manufacturer",
+      label: "品牌",
+      options: [
+        { value: "all", label: "全部", count: 2 },
+        { value: "amd", label: "AMD", count: 1 }
+      ]
+    }
+  ];
+
+  const html = renderAdminFacets(groups, { manufacturer: "amd" });
+
+  assert.match(html, /data-admin-facet="manufacturer"/);
+  assert.match(html, /data-admin-facet-value="amd"/);
+  assert.match(html, /aria-pressed="true"/);
+  assert.match(html, /<span>1<\/span>/);
+});
+
 test("renderAdminList marks selected GPU", () => {
   const html = renderAdminList(gpus.slice(0, 2), "rtx-4070-desktop");
   assert.match(html, /data-gpu-id="rtx-4070-desktop"/);
   assert.match(html, /is-selected/);
 });
 
+test("renderAdminImportPanel exposes import controls", () => {
+  const html = renderAdminImportPanel("gpu");
+
+  assert.match(html, /id="adminImportCategory"/);
+  assert.match(html, /id="adminImportFile"/);
+  assert.match(html, /id="adminImportText"/);
+  assert.match(html, /id="adminImportPreviewButton"/);
+  assert.match(html, /id="adminImportCommitButton"/);
+});
+
+test("renderAdminImportPreview renders status counts and selectable rows", () => {
+  const html = renderAdminImportPreview({
+    summary: { total: 3, new: 1, duplicate: 1, invalid: 1, selectable: 1 },
+    rows: [
+      { id: "new-gpu", name: "New GPU", manufacturerId: "amd", status: "new", selectable: true, reason: "Ready" },
+      { id: "old-gpu", name: "Old GPU", manufacturerId: "nvidia", status: "duplicate", selectable: false, reason: "Exists" },
+      { id: "bad-gpu", name: "Bad GPU", manufacturerId: "unknown", status: "invalid", selectable: false, reason: "Unsupported" }
+    ]
+  });
+
+  assert.match(html, /data-import-status="new"/);
+  assert.match(html, /value="new-gpu"/);
+  assert.match(html, /disabled/);
+  assert.match(html, /data-import-status="invalid"/);
+});
+
 test("renderAdminEditor exposes grouped fields and mobile guidance", () => {
   const gpu = gpus.find((item) => item.id === "rtx-4070-laptop");
   const html = renderAdminEditor(gpu, gpuSchema);
   assert.match(html, /class="admin-form schema-form"/);
+  assert.match(html, /class="admin-editor-title"/);
+  assert.match(html, /class="admin-editor-actions"/);
+  assert.match(html, /class="admin-form-sections"/);
   assert.match(html, /name="metric:gpu.power.tgpRange"/);
   assert.match(html, /value="45-115W"/);
   assert.match(html, /移动版必须填写 TGP 范围/);

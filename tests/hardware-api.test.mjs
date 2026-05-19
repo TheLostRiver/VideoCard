@@ -227,6 +227,171 @@ test("POST /api/admin/hardware/:category/items rejects missing item.id", async (
   });
 });
 
+test("POST /api/admin/import/preview classifies new, duplicate, and invalid GPU rows", async () => {
+  await withApi(async ({ baseUrl }) => {
+    const response = await fetch(`${baseUrl}/api/admin/import/preview`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        categoryId: "gpu",
+        records: [
+          {
+            Product_Name: "GeForce RTX 4090",
+            GPU_Chip: "AD102",
+            Released: "Oct 12th, 2022",
+            Memory: "24 GB, GDDR6X, 384 bit",
+            GPU_clock: "2235 MHz",
+            Shaders_TMUs_ROPs: "16384 / 512 / 176"
+          },
+          {
+            Product_Name: "Radeon RX 9070 Import Test",
+            GPU_Chip: "Navi 48",
+            Released: "Mar 2025",
+            Memory: "16 GB, GDDR6, 256 bit",
+            GPU_clock: "2400 MHz",
+            Shaders_TMUs_ROPs: "4096 / 256 / 96"
+          },
+          {
+            Product_Name: "B200 Import Test",
+            GPU_Chip: "GB100",
+            Released: "Nov 2024",
+            Memory: "180 GB, HBM3E, 5120 bit",
+            GPU_clock: "1800 MHz",
+            Shaders_TMUs_ROPs: "0 / 0 / 0"
+          }
+        ]
+      })
+    });
+    const body = await response.json();
+
+    assert.equal(response.status, 200);
+    assert.deepEqual(body.plan.summary, {
+      total: 3,
+      new: 1,
+      duplicate: 1,
+      invalid: 1,
+      selectable: 1
+    });
+    assert.deepEqual(body.plan.rows.map((row) => row.status), ["duplicate", "new", "invalid"]);
+  });
+});
+
+test("POST /api/admin/import/commit saves only selected new rows", async () => {
+  await withApi(async ({ baseUrl }) => {
+    const records = [
+      {
+        Product_Name: "Radeon RX 9070 Commit Test",
+        GPU_Chip: "Navi 48",
+        Released: "Mar 2025",
+        Memory: "16 GB, GDDR6, 256 bit",
+        GPU_clock: "2400 MHz",
+        Shaders_TMUs_ROPs: "4096 / 256 / 96"
+      }
+    ];
+    const previewResponse = await fetch(`${baseUrl}/api/admin/import/preview`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ categoryId: "gpu", records })
+    });
+    const previewBody = await previewResponse.json();
+    const selectedIds = previewBody.plan.rows.filter((row) => row.status === "new").map((row) => row.id);
+
+    const response = await fetch(`${baseUrl}/api/admin/import/commit`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ categoryId: "gpu", records, selectedIds })
+    });
+    const body = await response.json();
+
+    assert.equal(response.status, 201);
+    assert.equal(body.imported.length, 1);
+    assert.equal(body.imported[0].id, "radeon-rx-9070-commit-test");
+
+    const getResponse = await fetch(`${baseUrl}/api/hardware/gpu/items/radeon-rx-9070-commit-test`);
+    assert.equal(getResponse.status, 200);
+  });
+});
+
+test("POST /api/admin/import/preview rejects non-desktop CPU brands for CPU imports", async () => {
+  await withApi(async ({ baseUrl }) => {
+    const response = await fetch(`${baseUrl}/api/admin/import/preview`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        categoryId: "desktop-cpu",
+        records: [
+          {
+            Name: "AMD Ryzen 7 9700X Import Test",
+            Codename: "Granite Ridge",
+            Cores: "8 / 16",
+            Clock: "3.8 to 5.5 GHz",
+            Socket: "AM5",
+            Process: "TSMC 4nm",
+            "L3 Cache": "32 MB",
+            TDP: "65 W",
+            Released: "Aug 2024"
+          },
+          {
+            Name: "Qualcomm Snapdragon X Elite Import Test",
+            Codename: "Oryon",
+            Cores: "12 / 12",
+            Clock: "3.8 GHz",
+            Socket: "BGA",
+            Process: "4 nm",
+            "L3 Cache": "42 MB",
+            TDP: "23 W",
+            Released: "Jun 2024"
+          }
+        ]
+      })
+    });
+    const body = await response.json();
+
+    assert.equal(response.status, 200);
+    assert.deepEqual(body.plan.rows.map((row) => row.status), ["new", "invalid"]);
+    assert.equal(body.plan.rows[0].releaseDate, "2024-08");
+  });
+});
+
+test("POST /api/admin/import/commit saves selected desktop CPU rows", async () => {
+  await withApi(async ({ baseUrl }) => {
+    const records = [
+      {
+        Name: "AMD Ryzen 7 9700X Commit Test",
+        Codename: "Granite Ridge",
+        Cores: "8 / 16",
+        Clock: "3.8 to 5.5 GHz",
+        Socket: "AM5",
+        Process: "TSMC 4nm",
+        "L3 Cache": "32 MB",
+        TDP: "65 W",
+        Released: "Aug 2024"
+      }
+    ];
+    const previewResponse = await fetch(`${baseUrl}/api/admin/import/preview`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ categoryId: "desktop-cpu", records })
+    });
+    const previewBody = await previewResponse.json();
+    const selectedIds = previewBody.plan.rows.filter((row) => row.status === "new").map((row) => row.id);
+
+    const response = await fetch(`${baseUrl}/api/admin/import/commit`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ categoryId: "desktop-cpu", records, selectedIds })
+    });
+    const body = await response.json();
+
+    assert.equal(response.status, 201);
+    assert.equal(body.imported.length, 1);
+    assert.equal(body.imported[0].id, "amd-ryzen-7-9700x-commit-test");
+
+    const getResponse = await fetch(`${baseUrl}/api/hardware/desktop-cpu/items/amd-ryzen-7-9700x-commit-test`);
+    assert.equal(getResponse.status, 200);
+  });
+});
+
 async function withApi(callback) {
   const root = await mkdtemp(join(tmpdir(), "hardware-api-"));
   await mkdir(join(root, "src", "data", "categories"), { recursive: true });

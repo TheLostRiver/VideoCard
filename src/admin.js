@@ -39,34 +39,469 @@ const schemaMetricFieldPaths = new Map([
   ["gpu.gaming.efficiencyNote", "gaming.efficiencyNote"]
 ]);
 
-export function filterAdminGpus(items, query) {
-  const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
-  if (!terms.length) return items;
+const allFacetValue = "all";
+const adminManufacturerLabels = {
+  amd: "AMD",
+  apple: "Apple",
+  intel: "Intel",
+  mediatek: "MediaTek",
+  nvidia: "NVIDIA",
+  qualcomm: "Qualcomm",
+  samsung: "Samsung"
+};
+const manufacturerSortOrder = ["nvidia", "amd", "intel", "qualcomm", "mediatek", "samsung", "apple"];
+const gpuSeriesSortOrder = [
+  "RTX 50",
+  "RTX 40",
+  "RTX 30",
+  "RTX 20",
+  "GTX 16",
+  "GTX 10",
+  "RX 9000",
+  "RX 8000",
+  "RX 7000",
+  "RX 6000",
+  "RX 5000",
+  "RX 500",
+  "Arc B",
+  "Arc A"
+];
+const naturalCollator = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
 
-  return items.filter((gpu) => {
-    const haystack = [
-      gpu.id,
-      gpu.name,
-      gpu.brand,
-      BRANDS[gpu.brand]?.label,
-      gpu.segment,
-      SEGMENTS[gpu.segment],
-      gpu.generation,
-      gpu.architecture
-    ].join(" ").toLowerCase();
-    return terms.every((term) => haystack.includes(term));
+const adminFacetConfigs = [
+  {
+    id: "manufacturer",
+    label: "品牌",
+    getValue: (item) => getAdminItemManufacturer(item),
+    getLabel: (value) => formatManufacturerLabel(value)
+  },
+  {
+    id: "series",
+    label: "系列 / 代际",
+    getValue: (item, categoryId) => getAdminItemSeries(item, categoryId),
+    getLabel: (value) => value
+  }
+];
+
+export function filterAdminGpus(items, query, facets = {}) {
+  return filterAdminCollection(items, query, facets, "gpu");
+}
+
+export function filterAdminItems(items, query, facets = {}, categoryId = "hardware") {
+  return filterAdminCollection(items, query, facets, categoryId);
+}
+
+export function createAdminFacetGroups(items, categoryId = "gpu", selectedFacets = {}, query = "") {
+  const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const textFilteredItems = items.filter((item) => matchesAdminQuery(item, terms, categoryId));
+
+  return adminFacetConfigs.map((config) => {
+    const otherFacetValues = { ...selectedFacets, [config.id]: allFacetValue };
+    const sourceItems = applyAdminFacetFilters(textFilteredItems, otherFacetValues, categoryId);
+    const counts = new Map();
+
+    for (const item of sourceItems) {
+      const value = normalizeFacetValue(config.getValue(item, categoryId));
+      if (!value) continue;
+      counts.set(value, (counts.get(value) || 0) + 1);
+    }
+
+    const options = sortAdminFacetOptions(
+      [...counts.entries()].map(([value, count]) => ({
+        value,
+        label: config.getLabel(value),
+        count
+      })),
+      config.id,
+      categoryId
+    );
+
+    return {
+      id: config.id,
+      label: config.label,
+      options: [
+        { value: allFacetValue, label: "全部", count: sourceItems.length },
+        ...options
+      ]
+    };
+  }).filter((group) => group.options.length > 1);
+}
+
+export function renderAdminFacets(groups, selectedFacets = {}) {
+  if (!groups.length) return "";
+
+  return groups.map((group) => `
+    <section class="admin-facet-group" aria-label="${escapeHtml(group.label)}">
+      <div class="admin-facet-label">${escapeHtml(group.label)}</div>
+      <div class="admin-facet-chips">
+        ${group.options.map((option) => renderAdminFacetChip(group.id, option, selectedFacets[group.id])).join("")}
+      </div>
+    </section>
+  `).join("");
+}
+
+export function renderAdminImportPanel(selectedCategoryId = "gpu") {
+  const categoryId = selectedCategoryId === "desktop-cpu" ? "desktop-cpu" : "gpu";
+
+  return `
+    <div class="admin-import-copy">
+      <strong>导入数据</strong>
+      <span>支持本地 GPU / CPU JSON，先预览去重，再按勾选项写入主数据。</span>
+    </div>
+    <div class="admin-import-controls">
+      <label class="admin-import-control">
+        <span>类型</span>
+        <select id="adminImportCategory">
+          <option value="gpu"${categoryId === "gpu" ? " selected" : ""}>GPU</option>
+          <option value="desktop-cpu"${categoryId === "desktop-cpu" ? " selected" : ""}>Desktop CPU</option>
+        </select>
+      </label>
+      <label class="admin-import-file">
+        <span>选择 JSON</span>
+        <input id="adminImportFile" type="file" accept=".json,application/json">
+      </label>
+      <div class="admin-import-actions">
+        <button id="adminImportPreviewButton" class="ghost-button" type="button">预览</button>
+        <button id="adminImportCommitButton" class="ghost-button save-button" type="button" disabled>导入选中</button>
+      </div>
+    </div>
+    <label class="admin-import-text">
+      <span>粘贴 JSON</span>
+      <textarea id="adminImportText" rows="5" placeholder='[{"Product_Name":"Radeon RX 9070 XT", "...":"..."}]'></textarea>
+    </label>
+    <div id="adminImportMessage" class="admin-import-message" role="status"></div>
+    <div id="adminImportPreview" class="admin-import-preview"></div>
+  `;
+}
+
+export function renderAdminImportPreview(plan) {
+  if (!plan) return "";
+  const rows = plan.rows || [];
+  const summary = plan.summary || {};
+
+  if (!rows.length) {
+    return `<p class="empty-state">没有可预览的数据。</p>`;
+  }
+
+  return `
+    <div class="admin-import-summary" aria-label="导入预览统计">
+      ${renderImportSummaryPill("总计", summary.total || 0)}
+      ${renderImportSummaryPill("新增", summary.new || 0, "new")}
+      ${renderImportSummaryPill("重复", summary.duplicate || 0, "duplicate")}
+      ${renderImportSummaryPill("无效", summary.invalid || 0, "invalid")}
+    </div>
+    <div class="admin-import-table" role="table" aria-label="导入预览">
+      ${rows.map(renderAdminImportRow).join("")}
+    </div>
+  `;
+}
+
+function renderImportSummaryPill(label, value, status = "") {
+  return `
+    <span class="admin-import-summary-pill${status ? ` is-${escapeHtml(status)}` : ""}">
+      ${escapeHtml(label)}
+      <strong>${escapeHtml(value)}</strong>
+    </span>
+  `;
+}
+
+function renderAdminImportRow(row) {
+  const isSelectable = row.selectable === true;
+  const statusLabel = formatImportStatus(row.status);
+  const meta = [
+    formatManufacturerLabel(row.manufacturerId),
+    row.generation,
+    row.releaseDate
+  ].filter(Boolean).join(" · ");
+
+  return `
+    <label class="admin-import-row" data-import-status="${escapeHtml(row.status)}">
+      <input
+        type="checkbox"
+        name="adminImportRow"
+        value="${escapeHtml(row.id)}"
+        ${isSelectable ? "checked" : "disabled"}
+      >
+      <span class="admin-import-row-main">
+        <strong>${escapeHtml(row.name)}</strong>
+        ${meta ? `<small>${escapeHtml(meta)}</small>` : ""}
+      </span>
+      <span class="admin-import-row-status">${escapeHtml(statusLabel)}</span>
+      <span class="admin-import-row-reason">${escapeHtml(row.reason || "")}</span>
+    </label>
+  `;
+}
+
+function formatImportStatus(status) {
+  if (status === "new") return "新增";
+  if (status === "duplicate") return "重复";
+  if (status === "invalid") return "无效";
+  return status || "";
+}
+
+function renderAdminFacetChip(groupId, option, selectedValue) {
+  const isActive = normalizeSelectedFacet(selectedValue) === normalizeSelectedFacet(option.value);
+
+  return `
+    <button
+      class="admin-facet-chip${isActive ? " is-active" : ""}"
+      type="button"
+      data-admin-facet="${escapeHtml(groupId)}"
+      data-admin-facet-value="${escapeHtml(option.value)}"
+      aria-pressed="${isActive ? "true" : "false"}"
+    >
+      ${escapeHtml(option.label)}
+      <span>${escapeHtml(option.count)}</span>
+    </button>
+  `;
+}
+
+function filterAdminCollection(items, query, facets, categoryId) {
+  const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const textFilteredItems = items.filter((item) => matchesAdminQuery(item, terms, categoryId));
+  return applyAdminFacetFilters(textFilteredItems, facets, categoryId);
+}
+
+function matchesAdminQuery(item, terms, categoryId) {
+  if (!terms.length) return true;
+
+  const manufacturer = getAdminItemManufacturer(item);
+  const haystack = [
+    item.id,
+    getAdminItemTitle(item),
+    item.name,
+    item.title,
+    manufacturer,
+    formatManufacturerLabel(manufacturer),
+    item.brand,
+    BRANDS[item.brand]?.label,
+    item.manufacturerId,
+    item.segment,
+    SEGMENTS[item.segment],
+    item.generation,
+    item.architecture,
+    item.subtitle,
+    getAdminItemSeries(item, categoryId),
+    ...(item.facts || []).flatMap((fact) => [fact.label, fact.displayValue]),
+    ...(item.badges || []).map((badge) => badge.label)
+  ].join(" ").toLowerCase();
+
+  return terms.every((term) => haystack.includes(term));
+}
+
+function applyAdminFacetFilters(items, facets = {}, categoryId = "hardware") {
+  const selectedManufacturer = normalizeSelectedFacet(facets.manufacturer);
+  const selectedSeries = normalizeSelectedFacet(facets.series);
+
+  return items.filter((item) => {
+    if (selectedManufacturer !== allFacetValue) {
+      const manufacturer = normalizeSelectedFacet(getAdminItemManufacturer(item));
+      if (manufacturer !== selectedManufacturer) return false;
+    }
+
+    if (selectedSeries !== allFacetValue) {
+      const series = normalizeSelectedFacet(getAdminItemSeries(item, categoryId));
+      if (series !== selectedSeries) return false;
+    }
+
+    return true;
   });
 }
 
-export function renderAdminList(items, selectedId) {
-  if (!items.length) return `<p class="empty-state">没有匹配的显卡</p>`;
+function sortAdminFacetOptions(options, facetId, categoryId) {
+  return [...options].sort((a, b) => {
+    if (facetId === "manufacturer") {
+      return getManufacturerSortIndex(a.value) - getManufacturerSortIndex(b.value)
+        || naturalCollator.compare(a.label, b.label);
+    }
 
-  return items.map((gpu) => `
-    <button class="admin-list-item${gpu.id === selectedId ? " is-selected" : ""}" type="button" data-gpu-id="${escapeHtml(gpu.id)}">
-      <strong>${escapeHtml(gpu.name)}</strong>
-      <span>${escapeHtml(BRANDS[gpu.brand]?.label || gpu.brand)} · ${escapeHtml(SEGMENTS[gpu.segment] || gpu.segment)} · ${escapeHtml(gpu.generation)}</span>
+    if (facetId === "series") {
+      return getAdminSeriesSortIndex(a.value, categoryId) - getAdminSeriesSortIndex(b.value, categoryId)
+        || b.count - a.count
+        || naturalCollator.compare(a.label, b.label);
+    }
+
+    return naturalCollator.compare(a.label, b.label);
+  });
+}
+
+function getManufacturerSortIndex(value) {
+  const index = manufacturerSortOrder.indexOf(String(value).toLowerCase());
+  return index === -1 ? manufacturerSortOrder.length : index;
+}
+
+function getGpuSeriesSortIndex(value) {
+  const index = gpuSeriesSortOrder.findIndex((series) => series.toLowerCase() === String(value).toLowerCase());
+  return index === -1 ? gpuSeriesSortOrder.length : index;
+}
+
+function getAdminSeriesSortIndex(value, categoryId) {
+  if (categoryId === "gpu") return getGpuSeriesSortIndex(value);
+
+  const text = String(value || "").trim();
+  const intelGeneration = text.match(/^(\d+)(?:st|nd|rd|th)\s+Gen$/i);
+  if (intelGeneration) return 100 - Number(intelGeneration[1]);
+
+  const ryzenGeneration = text.match(/^Ryzen\s+(\d{4})$/i);
+  if (ryzenGeneration) return 200 - Number(ryzenGeneration[1]) / 100;
+
+  const appleMGeneration = text.match(/^M(\d+)/i);
+  if (appleMGeneration) return 300 - Number(appleMGeneration[1]);
+
+  const snapdragonGeneration = text.match(/^Snapdragon\s+(\d+)/i);
+  if (snapdragonGeneration) return 400 - Number(snapdragonGeneration[1]);
+
+  const dimensityGeneration = text.match(/^Dimensity\s+(\d+)/i);
+  if (dimensityGeneration) return 500 - Number(dimensityGeneration[1]) / 100;
+
+  return 1000;
+}
+
+function getAdminItemTitle(item) {
+  return String(item.name || item.title || item.id || "");
+}
+
+function getAdminItemManufacturer(item) {
+  return normalizeFacetValue(item.brand || item.manufacturerId || getFactDisplayValue(item, "brand") || getSubtitlePart(item, 0));
+}
+
+function getAdminItemSeries(item, categoryId) {
+  if (categoryId === "gpu") return deriveGpuSeries(item);
+  return normalizeFacetValue(item.generation || getFactDisplayValue(item, "generation") || getSubtitlePart(item, 1));
+}
+
+function deriveGpuSeries(item) {
+  const rawGeneration = normalizeFacetValue(item.generation || getFactDisplayValue(item, "generation"));
+  const directSeries = normalizeKnownGpuSeries(rawGeneration);
+  if (directSeries) return directSeries;
+
+  const inferredSeries = normalizeKnownGpuSeries([
+    item.name,
+    item.title,
+    item.id,
+    rawGeneration
+  ].filter(Boolean).join(" "));
+
+  return inferredSeries || rawGeneration;
+}
+
+function normalizeKnownGpuSeries(value) {
+  const text = String(value || "")
+    .replace(/[_-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  const upper = text.toUpperCase();
+  if (!upper) return "";
+
+  const rtx = upper.match(/\bRTX\s*(50|40|30|20)(?:\d{2})?\b/);
+  if (rtx) return `RTX ${rtx[1]}`;
+
+  const gtx = upper.match(/\bGTX\s*(16|10)(?:\d{2})?\b/);
+  if (gtx) return `GTX ${gtx[1]}`;
+
+  const rxFourDigit = upper.match(/\bRX\s*([5-9])\d{3}\b/);
+  if (rxFourDigit) return `RX ${rxFourDigit[1]}000`;
+
+  const rxThreeDigit = upper.match(/\bRX\s*([4-9])\d{2}\b/);
+  if (rxThreeDigit) return `RX ${rxThreeDigit[1]}00`;
+
+  const arc = upper.match(/\bARC\s*([AB])(?:\d{3})?\b/);
+  if (arc) return `Arc ${arc[1]}`;
+
+  return "";
+}
+
+function getFactDisplayValue(item, id) {
+  const fact = (item.facts || []).find((entry) => entry.id === id || entry.metricId === id);
+  return normalizeFacetValue(fact?.displayValue);
+}
+
+function getSubtitlePart(item, index) {
+  return normalizeFacetValue(String(item.subtitle || "").split("·")[index]);
+}
+
+function normalizeFacetValue(value) {
+  const normalized = String(value ?? "").trim();
+  if (!normalized || normalized === "待补全") return "";
+  return normalized;
+}
+
+function normalizeSelectedFacet(value) {
+  return String(value || allFacetValue).trim().toLowerCase() || allFacetValue;
+}
+
+function formatManufacturerLabel(value) {
+  const key = String(value || "").toLowerCase();
+  return adminManufacturerLabels[key] || BRANDS[key]?.label || toTitleCase(value);
+}
+
+function toTitleCase(value) {
+  return String(value || "").replace(/\b[a-z]/g, (letter) => letter.toUpperCase());
+}
+
+function getAdminItemMeta(item, categoryId) {
+  const manufacturer = formatManufacturerLabel(getAdminItemManufacturer(item));
+  const series = getAdminItemSeries(item, categoryId);
+  const extraFacts = (item.facts || [])
+    .filter((fact) => fact.id !== "brand" && fact.id !== "generation")
+    .map((fact) => normalizeFacetValue(fact.displayValue))
+    .filter(Boolean);
+
+  if (categoryId === "gpu") {
+    return [
+      manufacturer,
+      SEGMENTS[item.segment] || item.segment,
+      series
+    ].filter(Boolean);
+  }
+
+  return [
+    manufacturer,
+    series,
+    ...extraFacts.slice(0, 1)
+  ].filter(Boolean);
+}
+
+function createDefaultAdminFacets() {
+  return {
+    manufacturer: allFacetValue,
+    series: allFacetValue
+  };
+}
+
+function reconcileAdminFacets(facets, groups) {
+  const nextFacets = { ...createDefaultAdminFacets(), ...facets };
+
+  for (const group of groups) {
+    const selectedValue = normalizeSelectedFacet(nextFacets[group.id]);
+    const hasSelectedValue = group.options.some((option) => normalizeSelectedFacet(option.value) === selectedValue);
+    if (!hasSelectedValue) nextFacets[group.id] = allFacetValue;
+  }
+
+  return nextFacets;
+}
+
+function haveAdminFacetsChanged(current, next) {
+  return adminFacetConfigs.some((config) => current[config.id] !== next[config.id]);
+}
+
+function createAdminStatusText(filteredCount, totalCount) {
+  if (filteredCount === totalCount) return `已加载 ${totalCount} 条数据`;
+  return `已显示 ${filteredCount} / ${totalCount} 条数据`;
+}
+
+export function renderAdminList(items, selectedId, categoryId = "gpu") {
+  if (!items.length) return `<p class="empty-state">没有匹配的硬件</p>`;
+
+  return items.map((item) => {
+    const meta = getAdminItemMeta(item, categoryId).join(" · ");
+    return `
+    <button class="admin-list-item${item.id === selectedId ? " is-selected" : ""}" type="button" data-gpu-id="${escapeHtml(item.id)}">
+      <strong>${escapeHtml(getAdminItemTitle(item))}</strong>
+      ${meta ? `<span>${escapeHtml(meta)}</span>` : ""}
     </button>
-  `).join("");
+  `;
+  }).join("");
 }
 
 export function renderAdminEditor(gpu, schema) {
@@ -88,7 +523,9 @@ function renderSchemaAdminEditor(gpu, schema) {
     <form id="gpuForm" class="admin-form schema-form" data-category-id="${escapeHtml(schema.id)}">
       ${renderAdminHeading(gpu)}
       ${mobileHint}
-      ${schemaBody}
+      <div class="admin-form-sections">
+        ${schemaBody}
+      </div>
       <div id="adminFormMessage" class="admin-form-message" role="status"></div>
     </form>
   `;
@@ -102,56 +539,52 @@ function renderLegacyAdminEditor(gpu) {
 
   return `
     <form id="gpuForm" class="admin-form">
-      <div class="admin-editor-heading">
-        <div>
-          <h2>${escapeHtml(gpu.name)}</h2>
-          <p>${escapeHtml(gpu.id)}</p>
-        </div>
-        <button class="ghost-button save-button" type="submit">保存</button>
-      </div>
+      ${renderAdminHeading(gpu)}
       ${mobileHint}
-      ${fieldset("基础信息", [
-        input("id", "ID", value.id, "text"),
-        input("name", "名称", value.name, "text"),
-        select("brand", "品牌", value.brand, labelOptions(BRANDS)),
-        select("segment", "版本", value.segment, labelOptions(SEGMENTS)),
-        input("generation", "世代", value.generation, "text"),
-        input("architecture", "架构", value.architecture, "text"),
-        input("releaseDate", "发布时间", value.releaseDate, "text"),
-        input("performanceIndex", "性能指数", value.performanceIndex, "number"),
-        select("tier", "层级", value.tier, labelOptions(TIERS)),
-        select("confidence", "可信度", value.confidence, {
-          aggregate: "aggregate",
-          estimated: "estimated"
-        })
-      ])}
-      ${fieldset("核心规格", [
-        input("specs.coresLabel", "核心标签", value["specs.coresLabel"], "text"),
-        input("specs.cores", "核心数量", value["specs.cores"], "number"),
-        input("specs.baseClockMHz", "基础频率 MHz", value["specs.baseClockMHz"], "number"),
-        input("specs.boostClockMHz", "加速频率 MHz", value["specs.boostClockMHz"], "number")
-      ])}
-      ${fieldset("显存与功耗", [
-        input("specs.memorySizeGB", "显存 GB", value["specs.memorySizeGB"], "number"),
-        input("specs.memoryType", "显存类型", value["specs.memoryType"], "text"),
-        input("specs.memoryBusBit", "位宽 bit", value["specs.memoryBusBit"], "number"),
-        input("specs.bandwidthGBs", "带宽 GB/s", value["specs.bandwidthGBs"], "number"),
-        input("specs.powerW", "桌面功耗 W", value["specs.powerW"], "number"),
-        input("specs.tgpRangeW", "移动版 TGP 范围", value["specs.tgpRangeW"], "text")
-      ])}
-      ${fieldset("跑分与游戏建议", [
-        input("benchmarks.timeSpyGraphics", "Time Spy Graphics", value["benchmarks.timeSpyGraphics"], "number"),
-        input("benchmarks.steelNomadGraphics", "Steel Nomad Graphics", value["benchmarks.steelNomadGraphics"], "number"),
-        input("benchmarks.passMarkG3D", "PassMark G3D", value["benchmarks.passMarkG3D"], "number"),
-        input("benchmarks.sourceNote", "跑分说明", value["benchmarks.sourceNote"], "text"),
-        input("gaming.recommendedResolution", "推荐分辨率", value["gaming.recommendedResolution"], "text"),
-        input("gaming.rayTracingLevel", "光追等级", value["gaming.rayTracingLevel"], "text"),
-        input("gaming.efficiencyNote", "能效说明", value["gaming.efficiencyNote"], "text")
-      ])}
-      ${fieldset("备注与来源", [
-        textarea("notesText", "备注，每行一条", value.notesText),
-        textarea("sourcesText", "来源，每行格式：label|url", value.sourcesText)
-      ])}
+      <div class="admin-form-sections">
+        ${fieldset("基础信息", [
+          input("id", "ID", value.id, "text"),
+          input("name", "名称", value.name, "text"),
+          select("brand", "品牌", value.brand, labelOptions(BRANDS)),
+          select("segment", "版本", value.segment, labelOptions(SEGMENTS)),
+          input("generation", "世代", value.generation, "text"),
+          input("architecture", "架构", value.architecture, "text"),
+          input("releaseDate", "发布时间", value.releaseDate, "text"),
+          input("performanceIndex", "性能指数", value.performanceIndex, "number"),
+          select("tier", "层级", value.tier, labelOptions(TIERS)),
+          select("confidence", "可信度", value.confidence, {
+            aggregate: "aggregate",
+            estimated: "estimated"
+          })
+        ])}
+        ${fieldset("核心规格", [
+          input("specs.coresLabel", "核心标签", value["specs.coresLabel"], "text"),
+          input("specs.cores", "核心数量", value["specs.cores"], "number"),
+          input("specs.baseClockMHz", "基础频率 MHz", value["specs.baseClockMHz"], "number"),
+          input("specs.boostClockMHz", "加速频率 MHz", value["specs.boostClockMHz"], "number")
+        ])}
+        ${fieldset("显存与功耗", [
+          input("specs.memorySizeGB", "显存 GB", value["specs.memorySizeGB"], "number"),
+          input("specs.memoryType", "显存类型", value["specs.memoryType"], "text"),
+          input("specs.memoryBusBit", "位宽 bit", value["specs.memoryBusBit"], "number"),
+          input("specs.bandwidthGBs", "带宽 GB/s", value["specs.bandwidthGBs"], "number"),
+          input("specs.powerW", "桌面功耗 W", value["specs.powerW"], "number"),
+          input("specs.tgpRangeW", "移动版 TGP 范围", value["specs.tgpRangeW"], "text")
+        ])}
+        ${fieldset("跑分与游戏建议", [
+          input("benchmarks.timeSpyGraphics", "Time Spy Graphics", value["benchmarks.timeSpyGraphics"], "number"),
+          input("benchmarks.steelNomadGraphics", "Steel Nomad Graphics", value["benchmarks.steelNomadGraphics"], "number"),
+          input("benchmarks.passMarkG3D", "PassMark G3D", value["benchmarks.passMarkG3D"], "number"),
+          input("benchmarks.sourceNote", "跑分说明", value["benchmarks.sourceNote"], "text"),
+          input("gaming.recommendedResolution", "推荐分辨率", value["gaming.recommendedResolution"], "text"),
+          input("gaming.rayTracingLevel", "光追等级", value["gaming.rayTracingLevel"], "text"),
+          input("gaming.efficiencyNote", "能效说明", value["gaming.efficiencyNote"], "text")
+        ])}
+        ${fieldset("备注与来源", [
+          textarea("notesText", "备注，每行一条", value.notesText),
+          textarea("sourcesText", "来源，每行格式：label|url", value.sourcesText)
+        ])}
+      </div>
       <div id="adminFormMessage" class="admin-form-message" role="status"></div>
     </form>
   `;
@@ -160,11 +593,13 @@ function renderLegacyAdminEditor(gpu) {
 function renderAdminHeading(gpu) {
   return `
     <div class="admin-editor-heading">
-      <div>
+      <div class="admin-editor-title">
         <h2>${escapeHtml(gpu.name)}</h2>
         <p>${escapeHtml(gpu.id)}</p>
       </div>
-      <button class="ghost-button save-button" type="submit">保存</button>
+      <div class="admin-editor-actions">
+        <button class="ghost-button save-button" type="submit">保存</button>
+      </div>
     </div>
   `;
 }
@@ -261,16 +696,6 @@ export function getFormFields(form) {
   return Object.fromEntries(new FormData(form).entries());
 }
 
-function filterAdminItems(items, query) {
-  const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
-  if (!terms.length) return items;
-
-  return items.filter((item) => {
-    const haystack = [item.id, item.name, item.manufacturerId].join(" ").toLowerCase();
-    return terms.every((term) => haystack.includes(term));
-  });
-}
-
 function renderNewEditor(categoryId, schema) {
   if (categoryId === "gpu") {
     const blankGpu = createBlankGpu();
@@ -332,13 +757,17 @@ function renderSchemaAdminEditorForNew(detail, schema) {
   return `
     <form id="gpuForm" class="admin-form schema-form" data-category-id="${escapeHtml(schema.id)}">
       <div class="admin-editor-heading">
-        <div>
+        <div class="admin-editor-title">
           <h2>新增 ${escapeHtml(schema.label || schema.id)}</h2>
           <p>填写新硬件信息</p>
         </div>
-        <button class="ghost-button save-button" type="submit">创建</button>
+        <div class="admin-editor-actions">
+          <button class="ghost-button save-button" type="submit">创建</button>
+        </div>
       </div>
-      ${schemaBody}
+      <div class="admin-form-sections">
+        ${schemaBody}
+      </div>
       <div id="adminFormMessage" class="admin-form-message" role="status"></div>
     </form>
   `;
@@ -356,13 +785,17 @@ function renderSchemaAdminEditorForCategory(item, schema) {
   return `
     <form id="gpuForm" class="admin-form schema-form" data-category-id="${escapeHtml(schema.id)}">
       <div class="admin-editor-heading">
-        <div>
+        <div class="admin-editor-title">
           <h2>${escapeHtml(item.name)}</h2>
           <p>${escapeHtml(item.id)}</p>
         </div>
-        <button class="ghost-button save-button" type="submit">保存</button>
+        <div class="admin-editor-actions">
+          <button class="ghost-button save-button" type="submit">保存</button>
+        </div>
       </div>
-      ${schemaBody}
+      <div class="admin-form-sections">
+        ${schemaBody}
+      </div>
       <div id="adminFormMessage" class="admin-form-message" role="status"></div>
     </form>
   `;
@@ -417,6 +850,8 @@ async function initAdmin() {
     search: document.querySelector("#adminSearch"),
     categorySelect: document.querySelector("#adminCategorySelect"),
     newButton: document.querySelector("#adminNewButton"),
+    importPanel: document.querySelector("#adminImportPanel"),
+    facets: document.querySelector("#adminFacets"),
     list: document.querySelector("#adminList"),
     editor: document.querySelector("#adminEditor"),
     status: document.querySelector("#adminStatus")
@@ -428,10 +863,17 @@ async function initAdmin() {
     items: [],
     gpus: [],
     query: "",
+    facets: createDefaultAdminFacets(),
     selectedId: "",
     creatingNew: false,
-    schema: null
+    schema: null,
+    importPlan: null,
+    importRecords: []
   };
+
+  if (elements.importPanel) {
+    elements.importPanel.innerHTML = renderAdminImportPanel(state.categoryId);
+  }
 
   async function loadCategories() {
     const response = await fetch("/api/hardware/categories");
@@ -469,12 +911,21 @@ async function initAdmin() {
   }
 
   function render() {
+    let facetGroups = createAdminFacetGroups(state.items, state.categoryId, state.facets, state.query);
+    const reconciledFacets = reconcileAdminFacets(state.facets, facetGroups);
+    if (haveAdminFacetsChanged(state.facets, reconciledFacets)) {
+      state.facets = reconciledFacets;
+      facetGroups = createAdminFacetGroups(state.items, state.categoryId, state.facets, state.query);
+    }
+
     const filtered = state.categoryId === "gpu"
-      ? filterAdminGpus(state.items, state.query)
-      : filterAdminItems(state.items, state.query);
+      ? filterAdminGpus(state.items, state.query, state.facets)
+      : filterAdminItems(state.items, state.query, state.facets, state.categoryId);
     if (!state.creatingNew && !filtered.some((item) => item.id === state.selectedId)) {
       state.selectedId = filtered[0]?.id || state.items[0]?.id || "";
     }
+    elements.facets.innerHTML = renderAdminFacets(facetGroups, state.facets);
+    elements.status.textContent = createAdminStatusText(filtered.length, state.items.length);
     elements.list.innerHTML = renderAdminList(filtered, state.selectedId, state.categoryId);
 
     if (state.creatingNew) {
@@ -489,12 +940,131 @@ async function initAdmin() {
     }
   }
 
+  function getImportElements() {
+    if (!elements.importPanel) return {};
+    return {
+      category: elements.importPanel.querySelector("#adminImportCategory"),
+      file: elements.importPanel.querySelector("#adminImportFile"),
+      text: elements.importPanel.querySelector("#adminImportText"),
+      message: elements.importPanel.querySelector("#adminImportMessage"),
+      preview: elements.importPanel.querySelector("#adminImportPreview"),
+      commitButton: elements.importPanel.querySelector("#adminImportCommitButton")
+    };
+  }
+
+  function setImportMessage(message, kind = "") {
+    const { message: messageElement } = getImportElements();
+    if (!messageElement) return;
+    messageElement.textContent = message;
+    messageElement.className = `admin-import-message${kind ? ` is-${kind}` : ""}`;
+  }
+
+  function resetImportPreview(message = "") {
+    state.importPlan = null;
+    const { preview, commitButton } = getImportElements();
+    if (preview) preview.innerHTML = "";
+    if (commitButton) commitButton.disabled = true;
+    if (message) setImportMessage(message);
+  }
+
+  function updateImportCommitState() {
+    const { commitButton } = getImportElements();
+    if (!commitButton) return;
+    const checkedCount = elements.importPanel.querySelectorAll('input[name="adminImportRow"]:checked').length;
+    commitButton.disabled = checkedCount === 0;
+  }
+
+  function getSelectedImportIds() {
+    return [...elements.importPanel.querySelectorAll('input[name="adminImportRow"]:checked')]
+      .map((inputElement) => inputElement.value);
+  }
+
+  function parseImportRecords(text) {
+    const parsed = JSON.parse(text);
+    if (Array.isArray(parsed)) return parsed;
+    if (Array.isArray(parsed?.records)) return parsed.records;
+    if (Array.isArray(parsed?.gpus)) return parsed.gpus;
+    if (Array.isArray(parsed?.cpus)) return parsed.cpus;
+    throw new Error("JSON 需要是数组，或包含 records / gpus / cpus 数组。");
+  }
+
+  async function handleImportPreview() {
+    const { category, text, preview, commitButton } = getImportElements();
+    const categoryId = category?.value || "gpu";
+
+    try {
+      setImportMessage("正在解析并检查重复数据...");
+      const records = parseImportRecords(text?.value || "");
+      const response = await fetch("/api/admin/import/preview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ categoryId, records })
+      });
+      const body = await response.json();
+      if (!response.ok) throw new Error((body.errors || ["导入预览失败"]).join("；"));
+
+      state.importRecords = records;
+      state.importPlan = body.plan;
+      if (preview) preview.innerHTML = renderAdminImportPreview(body.plan);
+      setImportMessage(`预览完成：${body.plan.summary.new} 条可导入，${body.plan.summary.duplicate} 条重复，${body.plan.summary.invalid} 条无效。`, "success");
+      if (commitButton) commitButton.disabled = body.plan.summary.selectable === 0;
+    } catch (error) {
+      state.importPlan = null;
+      if (preview) preview.innerHTML = "";
+      if (commitButton) commitButton.disabled = true;
+      setImportMessage(error.message, "error");
+    }
+  }
+
+  async function handleImportCommit() {
+    const { category } = getImportElements();
+    const categoryId = category?.value || "gpu";
+    const selectedIds = getSelectedImportIds();
+
+    if (!selectedIds.length) {
+      setImportMessage("请至少选择一条新增数据。", "error");
+      return;
+    }
+
+    try {
+      setImportMessage("正在写入选中数据...");
+      const response = await fetch("/api/admin/import/commit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ categoryId, records: state.importRecords, selectedIds })
+      });
+      const body = await response.json();
+      if (!response.ok) throw new Error((body.errors || ["导入失败"]).join("；"));
+
+      state.importPlan = body.plan;
+      const firstImportedId = body.imported?.[0]?.savedId || body.imported?.[0]?.id;
+      setImportMessage(`已导入 ${body.imported.length} 条，跳过 ${body.skipped.length} 条。`, "success");
+      if (categoryId === state.categoryId) {
+        await loadItems();
+        if (firstImportedId && state.items.some((item) => item.id === firstImportedId)) {
+          state.selectedId = firstImportedId;
+          state.creatingNew = false;
+          render();
+        }
+      }
+      resetImportPreview(`已导入 ${body.imported.length} 条，列表已更新。`);
+      setImportMessage(`已导入 ${body.imported.length} 条，列表已更新。`, "success");
+    } catch (error) {
+      setImportMessage(error.message, "error");
+    }
+  }
+
   elements.categorySelect.addEventListener("change", async (event) => {
     state.categoryId = event.target.value;
     state.query = "";
+    state.facets = createDefaultAdminFacets();
     elements.search.value = "";
     await loadSchema();
     await loadItems();
+    const { category } = getImportElements();
+    if (category && (state.categoryId === "gpu" || state.categoryId === "desktop-cpu")) {
+      category.value = state.categoryId;
+    }
   });
 
   elements.newButton.addEventListener("click", () => {
@@ -505,6 +1075,16 @@ async function initAdmin() {
 
   elements.search.addEventListener("input", (event) => {
     state.query = event.target.value;
+    render();
+  });
+
+  elements.facets.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-admin-facet]");
+    if (!button) return;
+    state.facets = {
+      ...state.facets,
+      [button.dataset.adminFacet]: button.dataset.adminFacetValue || allFacetValue
+    };
     render();
   });
 
@@ -580,6 +1160,44 @@ async function initAdmin() {
       message.classList.add("is-error");
     }
   });
+
+  if (elements.importPanel) {
+    elements.importPanel.addEventListener("change", async (event) => {
+      if (event.target?.id === "adminImportFile") {
+        const file = event.target.files?.[0];
+        if (!file) return;
+        const { text } = getImportElements();
+        text.value = await file.text();
+        resetImportPreview(`已读取 ${file.name}，可以预览。`);
+        return;
+      }
+
+      if (event.target?.id === "adminImportCategory") {
+        resetImportPreview("已切换导入类型，请重新预览。");
+        return;
+      }
+
+      if (event.target?.name === "adminImportRow") {
+        updateImportCommitState();
+      }
+    });
+
+    elements.importPanel.addEventListener("input", (event) => {
+      if (event.target?.id === "adminImportText") {
+        resetImportPreview();
+      }
+    });
+
+    elements.importPanel.addEventListener("click", async (event) => {
+      if (event.target?.id === "adminImportPreviewButton") {
+        await handleImportPreview();
+      }
+
+      if (event.target?.id === "adminImportCommitButton") {
+        await handleImportCommit();
+      }
+    });
+  }
 
   await loadCategories();
   await loadSchema();

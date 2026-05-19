@@ -74,6 +74,16 @@ test("list view exposes rankingProfiles summary on category", async () => {
   assert.equal(composite.isDefault, true);
 });
 
+test("list view items expose manufacturer id for manufacturer-specific styling", async () => {
+  const service = createService();
+  const listView = await service.getListViewModel("desktop-cpu");
+  const amd = listView.items.find((item) => item.id === "ryzen-9-7950x");
+  const intel = listView.items.find((item) => item.id === "core-i9-13900k");
+
+  assert.equal(amd?.manufacturerId, "amd");
+  assert.equal(intel?.manufacturerId, "intel");
+});
+
 test("primaryScore falls back to default ranking profile when listView.scoreField has no value", async () => {
   const service = createService();
   const listView = await service.getListViewModel("desktop-cpu");
